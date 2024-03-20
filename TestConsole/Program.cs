@@ -1,10 +1,15 @@
-﻿using DataAccess.CRUD;
+﻿
+using CoreApp;
+using DataAccess.CRUD;
 using DTO;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using Formatting = Newtonsoft.Json.Formatting;
 
 namespace TestConsole
 {
@@ -70,10 +75,10 @@ namespace TestConsole
                         UpdateUser();
                         break;
                     case "4":
-                       // ListUser();
+                        ListUser();
                         break;
                     case "5":
-                       // SearchUserById();
+                        SearchUserById();
                         break;
                     case "6":
                         Program_menu();
@@ -145,9 +150,9 @@ namespace TestConsole
             };
 
             try
-            { 
-                var uc = new UserCrudFactory();
-                uc.Create(newUser);
+            {
+                var um = new UserManager();
+                um.Create(newUser);
                 Console.WriteLine("\nUser Created");
             }
             catch (Exception ex)
@@ -173,8 +178,8 @@ namespace TestConsole
 
                 var userToDelete = new User { Id = userIdToDelete };
 
-                var uc = new UserCrudFactory();
-                uc.Delete(userToDelete);
+                var um = new UserManager();
+                um.Delete(userToDelete);
                 Console.WriteLine("\nUser Deleted");
             }
             catch (FormatException)
@@ -200,7 +205,7 @@ namespace TestConsole
                 int userIdToUpdate = int.Parse(userInput);
 
                 var userToUpdate = new User { Id = userIdToUpdate };
-                var uc = new UserCrudFactory();
+                var um = new UserManager();
 
 
 
@@ -249,7 +254,7 @@ namespace TestConsole
 
                     Console.WriteLine("\nUser Updated");
 
-                    uc.Update(userToUpdate);
+                    um.Update(userToUpdate);
                 }
                 else
                 {
@@ -263,6 +268,52 @@ namespace TestConsole
             catch (Exception ex)
             {
                 Console.WriteLine($"\nError updating user: {ex.Message}");
+            }
+        }
+
+        static void ListUser()
+        {
+            var um = new UserManager();
+            List<User> userList = um.RetrieveAll();
+            if (userList.Count > 0)
+            {
+                // Serializar la lista de usuarios a formato JSON
+                string jsonUsers = JsonConvert.SerializeObject(userList, Formatting.Indented);
+
+                // Imprimir el JSON resultante
+                Console.WriteLine("\tLista de Usuarios");
+                Console.WriteLine(jsonUsers);
+            }
+            else
+            {
+                Console.WriteLine("No se encontraron usuarios.");
+            }
+        }
+
+        static void SearchUserById()
+        {
+
+            Console.Write("Ingrese el ID del usuario a buscar: ");
+            if (int.TryParse(Console.ReadLine(), out int userId))
+            {
+                var um = new UserManager();
+                User user = um.RetrieveById(userId);
+
+                if (user != null)
+                {
+
+                    string jsonUser = JsonConvert.SerializeObject(user, Formatting.Indented);
+                    Console.WriteLine("\nDatos del Usuario con el Id numero: " + userId);
+                    Console.WriteLine(jsonUser);
+                }
+                else
+                {
+                    Console.WriteLine($"No se encontró ningún usuario con el ID {userId}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Entrada no válida para el ID del usuario.");
             }
         }
     }
