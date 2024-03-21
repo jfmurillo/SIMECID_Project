@@ -28,7 +28,7 @@ namespace TestConsole
             Console.WriteLine("\nProgram Menu" +
            "\n1. User Info" +
            "\n2. Nurse Info" +
-           "\n3. " +
+           "\n3. Patient Info" +
            "\n4. Exit");
 
             var opc = Console.ReadLine();
@@ -42,7 +42,7 @@ namespace TestConsole
                     NurseMenu();
                     break;
                 case "3":
-                   // MantainanceMenu();
+                    PatientMenu();
                     break;
                 case "4":
                     Environment.Exit(0);
@@ -91,46 +91,7 @@ namespace TestConsole
 
         }
 
-		static void NurseMenu()
-		{
-			while (true)
-			{
-				Console.WriteLine("\nUser Menu" +
-				 "\n1. Create Nurse" +
-				 "\n2. Delete Nurse" +
-				 "\n3. Update Nurse" +
-				 "\n4. List Nurse" +
-				 "\n5. Search Nurse by Id" +
-				 "\n6. Return to main menu" +
-				 "\n7. Exit program");
-				var opc_nurse = Console.ReadLine();
-				switch (opc_nurse)
-				{
-					case "1":
-						CreateNurse();
-						break;
-					case "2":
-						DeleteNurse();
-						break;
-					case "3":
-						UpdateNurse();
-						break;
-					case "4":
-						ListNurse();
-						break;
-					case "5":
-						SearchNurseById();
-						break;
-					case "6":
-						Program_menu();
-						break;
-					case "7":
-						Environment.Exit(0);
-						break;
-				}
-			}
-
-		}
+		
 
 		static void CreateUser()
         {
@@ -356,6 +317,47 @@ namespace TestConsole
             {
                 Console.WriteLine("Entrada no válida para el ID del usuario.");
             }
+        }
+
+        static void NurseMenu()
+        {
+            while (true)
+            {
+                Console.WriteLine("\nUser Menu" +
+                 "\n1. Create Nurse" +
+                 "\n2. Delete Nurse" +
+                 "\n3. Update Nurse" +
+                 "\n4. List Nurse" +
+                 "\n5. Search Nurse by Id" +
+                 "\n6. Return to main menu" +
+                 "\n7. Exit program");
+                var opc_nurse = Console.ReadLine();
+                switch (opc_nurse)
+                {
+                    case "1":
+                        CreateNurse();
+                        break;
+                    case "2":
+                        DeleteNurse();
+                        break;
+                    case "3":
+                        UpdateNurse();
+                        break;
+                    case "4":
+                        ListNurse();
+                        break;
+                    case "5":
+                        SearchNurseById();
+                        break;
+                    case "6":
+                        Program_menu();
+                        break;
+                    case "7":
+                        Environment.Exit(0);
+                        break;
+                }
+            }
+
         }
 
         static void CreateNurse()
@@ -584,5 +586,271 @@ namespace TestConsole
 				Console.WriteLine("No se encontraron usuarios.");
 			}
 		}
-	}
+
+        static void PatientMenu()
+        {
+            while (true)
+            {
+                Console.WriteLine("\nPatient Menu" +
+                 "\n1. Create Patient" +
+                 "\n2. Delete Patient" +
+                 "\n3. Update Patient" +
+                 "\n4. List Patient" +
+                 "\n5. Search Patient by Id" +
+                 "\n6. Return to main menu" +
+                 "\n7. Exit program");
+                var opc_user = Console.ReadLine();
+                switch (opc_user)
+                {
+                    case "1":
+                        CreatePatient();
+                        break;
+                    case "2":
+                        DeletePatient();
+                        break;
+                    case "3":
+                        UpdatePatient();
+                        break;
+                    case "4":
+                        ListPatient();
+                        break;
+                    case "5":
+                        SearchPatientById();
+                        break;
+                    case "6":
+                        Program_menu();
+                        break;
+                    case "7":
+                        Environment.Exit(0);
+                        break;
+                }
+            }
+
+        }
+
+        static void CreatePatient()
+        {
+            Console.WriteLine("\nCreate Patient ");
+
+            Console.WriteLine("\nEnter Patient name");
+            var name = Console.ReadLine();
+
+            Console.WriteLine("\nEnter Patient last name");
+            var lastname = Console.ReadLine();
+
+            Console.WriteLine("\nEnter Patient phone number");
+            var phonenumber = Console.ReadLine();
+
+            Console.WriteLine("\nEnter Patient email");
+            var email = Console.ReadLine();
+
+            Console.WriteLine("\nEnter Patient password");
+            var password = Console.ReadLine();
+
+            Console.WriteLine("\nEnter Patient sex");
+            var sex = Console.ReadLine();
+
+            Console.WriteLine("\nEnter Patient birthdate (yyyy-MM-dd)");
+            var birthdateString = Console.ReadLine();
+
+            DateTime birthdate;
+            if (!DateTime.TryParse(birthdateString, out birthdate))
+            {
+                Console.WriteLine("Invalid date format. Please enter date in yyyy-MM-dd format.");
+                return;
+            }
+
+            var role = "Paciente";
+
+
+            var status = "Moroso";
+
+            Console.WriteLine("\nEnter user adress");
+            var adress = Console.ReadLine();
+
+            var newPatient = new Patient()
+            {
+                Name = name,
+                LastName = lastname,
+                PhoneNumber = int.Parse(phonenumber),
+                Email = email,
+                Password = password,
+                Sex = sex,
+                BirthDate = birthdate,
+                Role = role,
+                Status = status,
+                Adress = adress
+
+
+
+            };
+
+            try
+            {
+                var pm = new PatientManager();
+                pm.Create(newPatient);
+                Console.WriteLine("\nPatient Created");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+
+
+            Console.ReadLine();
+        }
+
+        static void DeletePatient()
+        {
+            Console.WriteLine("\n Patient to Delete ");
+
+            Console.WriteLine("\nEnter Patient id to delete:");
+            string userInput = Console.ReadLine();
+
+            try
+            {
+                int patientIdToDelete = int.Parse(userInput);
+
+                var patientToDelete = new Patient { Id = patientIdToDelete };
+
+                var pm = new PatientManager();
+                pm.Delete(patientToDelete);
+                Console.WriteLine("\nPatient Deleted");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("\nInvalid patient ID. Please enter a valid integer.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"\nError Deleting patient: {ex.Message}");
+            }
+        }
+
+        static void UpdatePatient()
+
+        {
+            Console.WriteLine("\nUpdate Patient");
+
+            Console.WriteLine("\nEnter Patient id to update:");
+            string userInput = Console.ReadLine();
+
+            try
+            {
+                int patientIdToUpdate = int.Parse(userInput);
+
+                var patientToUpdate = new Patient { Id = patientIdToUpdate };
+                var pm = new PatientManager();
+
+
+
+                if (patientToUpdate != null)
+                {
+
+                    Console.WriteLine("\nEnter new patient information:");
+
+                    Console.WriteLine("\nEnter patient name");
+                    patientToUpdate.Name = Console.ReadLine();
+
+                    Console.WriteLine("\nEnter patient last name");
+                    patientToUpdate.LastName = Console.ReadLine();
+
+                    Console.WriteLine("\nEnter patient phone number");
+                    patientToUpdate.PhoneNumber = int.Parse(Console.ReadLine());
+
+                    Console.WriteLine("\nEnter patient email");
+                    patientToUpdate.Email = Console.ReadLine();
+
+                    Console.WriteLine("\nEnter patient password");
+                    patientToUpdate.Password = Console.ReadLine();
+
+                    Console.WriteLine("\nEnter patient sex");
+                    patientToUpdate.Sex = Console.ReadLine();
+
+                    Console.WriteLine("\nEnter patient birthdate (yyyy-MM-dd)");
+                    var birthdateString = Console.ReadLine();
+
+                    DateTime birthdate;
+                    if (!DateTime.TryParse(birthdateString, out birthdate))
+                    {
+                        Console.WriteLine("Invalid date format. Please enter date in yyyy-MM-dd format.");
+                        return;
+                    }
+                    patientToUpdate.BirthDate = birthdate;
+
+                    Console.WriteLine("\nEnter patient role");
+                    patientToUpdate.Role = Console.ReadLine();
+
+                    Console.WriteLine("\nEnter patient status");
+                    patientToUpdate.Status = Console.ReadLine();
+
+                    Console.WriteLine("\nEnter patient adress");
+                    patientToUpdate.Adress = Console.ReadLine();
+
+                    Console.WriteLine("\n{Patient Updated");
+
+                    pm.Update(patientToUpdate);
+                }
+                else
+                {
+                    Console.WriteLine("\nPatient not found with the given ID.");
+                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("\nInvalid patient ID. Please enter a valid integer.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"\nError updating patient: {ex.Message}");
+            }
+        }
+
+        static void ListPatient()
+        {
+            var pm = new PatientManager();
+            List<Patient> patientList = pm.RetrieveAll();
+            if (patientList.Count > 0)
+            {
+                // Serializar la lista de usuarios a formato JSON
+                string jsonPatients = JsonConvert.SerializeObject(patientList, Formatting.Indented);
+
+                // Imprimir el JSON resultante
+                Console.WriteLine("\tLista de Pacientes");
+                Console.WriteLine(jsonPatients);
+            }
+            else
+            {
+                Console.WriteLine("No se encontraron pacientes.");
+            }
+        }
+
+        static void SearchPatientById()
+        {
+
+            Console.Write("Ingrese el ID del paciente a buscar: ");
+            if (int.TryParse(Console.ReadLine(), out int patientId))
+            {
+                var pm = new PatientManager();
+                Patient patient = pm.RetrieveById(patientId);
+
+                if (patient != null)
+                {
+
+                    string jsonPatient = JsonConvert.SerializeObject(patient, Formatting.Indented);
+                    Console.WriteLine("\nDatos del Paciente con el Id numero: " + patientId);
+                    Console.WriteLine(jsonPatient);
+                }
+                else
+                {
+                    Console.WriteLine($"No se encontró ningún paciente con el ID {patientId}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Entrada no válida para el ID del paciente.");
+            }
+        }
+    }
 }
