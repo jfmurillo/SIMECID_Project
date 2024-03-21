@@ -60,10 +60,10 @@ namespace CoreApp
             dc.Create(doctor);
         }
 
-        public List<Doctor> RetrieveAll()
+        public List<T> RetrieveAll<T>()
         {
             var dc = new DoctorCrudFactory();
-            return dc.RetrieveAll<Doctor>();
+            return dc.RetrieveAll<T>();
         }
 
         public Doctor RetrieveById(int doctorID)

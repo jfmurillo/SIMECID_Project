@@ -16,7 +16,7 @@ namespace WebAPI.Controllers
             try
             {
                 var dm = new DoctorManager();
-                var doctorList = dm.RetrieveAll();
+                var doctorList = dm.RetrieveAll<Doctor>();
                 return Ok(doctorList);
             }
             catch (Exception ex)

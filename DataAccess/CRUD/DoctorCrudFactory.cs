@@ -57,7 +57,8 @@ namespace DataAccess.CRUD
             }
 
             var sqlOperation = new SqlOperation { ProcedureName = "UPD_DOCTOR_PR" };
-            sqlOperation.AddIntParam("P_USERID", doctor.Id);
+            sqlOperation.AddIntParam("P_USER_ID", doctor.Id);
+            sqlOperation.AddIntParam("P_BRANCH_ID", doctor.BranchID);
             sqlOperation.AddVarcharParam("P_NAME", doctor.Name);
             sqlOperation.AddVarcharParam("P_LAST_NAME", doctor.LastName);
             sqlOperation.AddIntParam("P_PHONE_NUMBER", doctor.PhoneNumber);
@@ -67,7 +68,7 @@ namespace DataAccess.CRUD
             sqlOperation.AddDatetimeParam("P_BIRTHDATE", doctor.BirthDate);
             sqlOperation.AddVarcharParam("P_ROLE", doctor.Role);
             sqlOperation.AddVarcharParam("P_STATUS", doctor.Status);
-            sqlOperation.AddVarcharParam("P_AdDRESS", doctor.Address);
+            sqlOperation.AddVarcharParam("P_ADDRESS", doctor.Address);
 
             _dao.ExecuteProcedure(sqlOperation);
         }
@@ -81,7 +82,7 @@ namespace DataAccess.CRUD
         public override T RetrieveById<T>(int Id)
         {
             var sqlOperation = new SqlOperation() { ProcedureName = "RET_DOCTOR_BY_ID" };
-            sqlOperation.AddIntParam("P_USER_ID", Id);
+            sqlOperation.AddIntParam("P_DOCTOR_ID", Id);
             var lstResult = _dao.ExecuteQueryProcedure(sqlOperation);
 
             if (lstResult.Count > 0)
