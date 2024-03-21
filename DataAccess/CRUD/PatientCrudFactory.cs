@@ -65,7 +65,7 @@ namespace DataAccess.CRUD
 
 
             var sqlOperation = new SqlOperation { ProcedureName = "UPD_PATIENT_PR" };
-            sqlOperation.AddIntParam("P_USERID", patient.Id);
+            sqlOperation.AddIntParam("P_PATIENTID", patient.Id);
             sqlOperation.AddVarcharParam("P_NAME", patient.Name);
             sqlOperation.AddVarcharParam("P_LAST_NAME", patient.LastName);
             sqlOperation.AddIntParam("P_PHONE_NUMBER", patient.PhoneNumber);
