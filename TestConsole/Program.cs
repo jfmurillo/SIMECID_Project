@@ -28,7 +28,7 @@ namespace TestConsole
             Console.WriteLine("\nProgram Menu" +
            "\n1. User Info" +
            "\n2. Nurse Info" +
-           "\n3. " +
+           "\n3. Patient Info" +
            "\n4. Exit");
 
             var opc = Console.ReadLine();
@@ -42,7 +42,7 @@ namespace TestConsole
                     NurseMenu();
                     break;
                 case "3":
-                   // MantainanceMenu();
+                    PatientMenu();
                     break;
                 case "4":
                     Environment.Exit(0);
@@ -91,46 +91,7 @@ namespace TestConsole
 
         }
 
-		static void NurseMenu()
-		{
-			while (true)
-			{
-				Console.WriteLine("\nUser Menu" +
-				 "\n1. Create Nurse" +
-				 "\n2. Delete Nurse" +
-				 "\n3. Update Nurse" +
-				 "\n4. List Nurse" +
-				 "\n5. Search Nurse by Id" +
-				 "\n6. Return to main menu" +
-				 "\n7. Exit program");
-				var opc_nurse = Console.ReadLine();
-				switch (opc_nurse)
-				{
-					case "1":
-						CreateNurse();
-						break;
-					case "2":
-						DeleteNurse();
-						break;
-					case "3":
-						UpdateNurse();
-						break;
-					case "4":
-						ListNurse();
-						break;
-					case "5":
-						SearchNurseById();
-						break;
-					case "6":
-						Program_menu();
-						break;
-					case "7":
-						Environment.Exit(0);
-						break;
-				}
-			}
-
-		}
+		
 
 		static void CreateUser()
         {
@@ -356,6 +317,47 @@ namespace TestConsole
             {
                 Console.WriteLine("Entrada no válida para el ID del usuario.");
             }
+        }
+
+        static void NurseMenu()
+        {
+            while (true)
+            {
+                Console.WriteLine("\nUser Menu" +
+                 "\n1. Create Nurse" +
+                 "\n2. Delete Nurse" +
+                 "\n3. Update Nurse" +
+                 "\n4. List Nurse" +
+                 "\n5. Search Nurse by Id" +
+                 "\n6. Return to main menu" +
+                 "\n7. Exit program");
+                var opc_nurse = Console.ReadLine();
+                switch (opc_nurse)
+                {
+                    case "1":
+                        CreateNurse();
+                        break;
+                    case "2":
+                        DeleteNurse();
+                        break;
+                    case "3":
+                        UpdateNurse();
+                        break;
+                    case "4":
+                        ListNurse();
+                        break;
+                    case "5":
+                        SearchNurseById();
+                        break;
+                    case "6":
+                        Program_menu();
+                        break;
+                    case "7":
+                        Environment.Exit(0);
+                        break;
+                }
+            }
+
         }
 
         static void CreateNurse()
@@ -584,5 +586,48 @@ namespace TestConsole
 				Console.WriteLine("No se encontraron usuarios.");
 			}
 		}
-	}
+
+        static void PatientMenu()
+        {
+            while (true)
+            {
+                Console.WriteLine("\nUser Menu" +
+                 "\n1. Create User" +
+                 "\n2. Delete User" +
+                 "\n3. Update User" +
+                 "\n4. List Users" +
+                 "\n5. Search user by Id" +
+                 "\n6. Return to main menu" +
+                 "\n7. Exit program");
+                var opc_user = Console.ReadLine();
+                switch (opc_user)
+                {
+                    case "1":
+                        CreateUser();
+                        break;
+                    case "2":
+                        DeleteUser();
+                        break;
+                    case "3":
+                        UpdateUser();
+                        break;
+                    case "4":
+                        ListUser();
+                        break;
+                    case "5":
+                        SearchUserById();
+                        break;
+                    case "6":
+                        Program_menu();
+                        break;
+                    case "7":
+                        Environment.Exit(0);
+                        break;
+                }
+            }
+
+        }
+
+
+    }
 }
