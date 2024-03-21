@@ -66,9 +66,10 @@ namespace DataAccess.CRUD
 
 			var sqlOperation = new SqlOperation { ProcedureName = "UPD_NURSE_PR" };
 			sqlOperation.AddIntParam("P_NURSE_ID", nurse.Id);
+			sqlOperation.AddIntParam("P_BRANCH_ID", nurse.BranchId);
 			sqlOperation.AddVarcharParam("P_NAME", nurse.Name);
 			sqlOperation.AddVarcharParam("P_LAST_NAME", nurse.LastName);
-			sqlOperation.AddIntParam("P_NURSE_ID", nurse.PhoneNumber);
+			sqlOperation.AddIntParam("P_PHONE_NUMBER", nurse.PhoneNumber);
 			sqlOperation.AddVarcharParam("P_EMAIL", nurse.Email);
 			sqlOperation.AddVarcharParam("P_PASSWORD", nurse.Password);
 			sqlOperation.AddVarcharParam("P_SEX", nurse.Sex);
@@ -87,7 +88,7 @@ namespace DataAccess.CRUD
 			var NurseToReturn = new Nurse()
 			{
 				Id = (int)row["Nurse_Id"],
-				BranchId = (int)row["Nurse_Id"],
+				BranchId = (int)row["Branch_Id"],
 				Name = (string)row["Name"],
 				LastName = (string)row["LastName"],
 				PhoneNumber = (int)row["PhoneNumber"],

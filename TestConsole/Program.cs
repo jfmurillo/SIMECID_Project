@@ -481,6 +481,9 @@ namespace TestConsole
 				{
 					Console.WriteLine("\nEnter new nurse information:");
 
+                    Console.WriteLine("\nEnter new nurse branch");
+                    nurseToUpdate.BranchId = int.Parse(Console.ReadLine());
+
 					Console.WriteLine("\nEnter nurse name");
 					nurseToUpdate.Name = Console.ReadLine();
 
