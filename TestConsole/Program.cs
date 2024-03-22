@@ -29,8 +29,8 @@ namespace TestConsole
            "\n1. User Info" +
            "\n2. Nurse Info" +
            "\n3. Patient Info" +
-           "\n4. Branch Info" +
-           "\n0. Exit");
+           "\n4. Appointment Info" +
+           "\nO. Exit");
 
             var opc = Console.ReadLine();
 
@@ -46,12 +46,104 @@ namespace TestConsole
                     PatientMenu();
                     break;
                 case "4":
-                    BranchMenu();
+                    AppointmentMenu();
                     break;
                 case "0":
                     Environment.Exit(0);
                     break;
             }
+        }
+
+        private static void AppointmentMenu()
+        {
+            // throw new NotImplementedException();
+            while (true)
+            {
+                Console.WriteLine("\n Appointment Menu" +
+                 "\n1. Create Appointment" +
+                 "\n2. Delete Appointment" +
+                 "\n3. Update Appointment" +
+                 "\n4. Search Appointment by Id" +
+                 "\n0. Return to main menu");
+                var opc_user = Console.ReadLine();
+                switch (opc_user)
+                {
+                    case "1":
+                        CreateAppointment();
+                        break;
+                    case "2":
+                        //DeleteAppointment();
+                        break;
+                    case "3":
+                        // UpdateAppointment();
+                        break;
+                    case "4":
+                        //SearchAppointmentById();
+                        break;
+                    case "0":
+                        Program_menu();
+                        break;
+                 
+                }
+            }
+        }
+
+        private static void CreateAppointment()
+        {
+            // throw new NotImplementedException();
+
+            Console.WriteLine("_________________________");
+            Console.WriteLine("Appointment creation page");
+
+            Console.WriteLine("Enter Patient Id");
+            var patientId = Console.ReadLine();
+
+            Console.WriteLine("Enter Doctor Id");
+            var doctorId = Console.ReadLine();
+
+
+            Console.WriteLine("Enter Service Id");
+            var serviceId = Console.ReadLine();
+
+
+            Console.WriteLine("Enter Branch Id");
+            var branchId = Console.ReadLine();
+
+
+            Console.WriteLine("Enter Appointment date");
+            var appointDate = Console.ReadLine();
+
+
+            Console.WriteLine("Enter Appointment motive");
+            var motive = Console.ReadLine();
+
+
+            var status = "Payment Pending";
+
+            //crear nuevo objeto Appointment
+            var newAppt = new Appointment()
+            {
+                PatientId = int.Parse(patientId),
+                DoctorId = int.Parse(doctorId),
+                ServiceId = int.Parse(serviceId),
+                BranchId = int.Parse(branchId),
+                AppointmentDate = DateTime.Parse(appointDate),
+                Motive = motive,
+                Status = status
+            };
+
+
+            //Creacion del user 
+            try
+            {
+                var apc = new AppointmentCrudFactory();
+                apc.Create(newAppt);
+                Console.WriteLine("Appointment made");
+            }catch(Exception ex) 
+            {
+                Console.WriteLine( ex.ToString);
+            }
+            Console.ReadLine();
         }
 
         static void UserMenu()
