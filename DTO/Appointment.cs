@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,23 +9,22 @@ namespace DTO
 {
     public class Appointment : BaseDTO
     {
+        [Required(ErrorMessage = "Patient id is required")]
         public int PatientId;
-
-        public int NurseId;
 
         public int DoctorId;
 
         public int ServiceId;
 
+        [Required(ErrorMessage = "Branch id is required")]
         public int BranchId;
 
-        public int DiagnosticId;
-
+        [Required(ErrorMessage = "Date and time is required")]
         public DateTime AppointmentDate;
 
-        public string motive;
+        public string Motive;
 
-        public string status;
+        public string Status;
 
     }
 }
