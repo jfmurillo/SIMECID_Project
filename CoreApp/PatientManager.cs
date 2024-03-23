@@ -10,59 +10,55 @@ using System.Threading.Tasks;
 
 namespace CoreApp
 {
-    //Clase de negocio donde se aplican las validaciones funcionales 
-    public class UserManager
+    public class PatientManager
     {
-        //Metodo para create
-
-
-        public void Create(User user)
+        public void Create(Patient patient)
         {
-            var uc = new UserCrudFactory();
+            var pc = new PatientCrudFactory();
 
             //Valiacion de forma
 
-            if (!IsValidName(user.Name))
+            if (!IsValidName(patient.Name))
             {
                 throw new Exception("Invalid name format");
             }
-            else if (!IsValidLastName(user.LastName))
+            else if (!IsValidLastName(patient.LastName))
             {
                 throw new Exception("Invalid Lastname format");
             }
-            else if (!IsValidPhoneNumber(user.PhoneNumber))
+            else if (!IsValidPhoneNumber(patient.PhoneNumber))
             {
                 throw new Exception("Invalid phone number format");
             }
-            else if (!IsValidEmail(user.Email))
+            else if (!IsValidEmail(patient.Email))
             {
                 throw new Exception("Email is required");
             }
-            else if (!IsValidPassword(user.Password))
+            else if (!IsValidPassword(patient.Password))
             {
                 throw new Exception("Invalid Password format");
             }
-            else if (!IsValidSex(user.Sex))
+            else if (!IsValidSex(patient.Sex))
             {
                 throw new Exception("Invalid Sex format");
             }
-            else if (!IsValidBirthDate(user.BirthDate))
+            else if (!IsValidBirthDate(patient.BirthDate))
             {
                 throw new Exception("Invalid birth date format");
             }
-            else if (!IsValidRole(user.Role))
+            else if (!IsValidRole(patient.Role))
             {
                 throw new Exception("Invalid role format");
             }
-            else if (!IsValidStatus(user.Status))
+            else if (!IsValidStatus(patient.Status))
             {
                 throw new Exception("Invalid status value");
             }
-            else if (!IsValidAdress(user.Address))
+            else if (!IsValidAdress(patient.Address))
             {
                 throw new Exception("Invalid Adress format");
             }
-            uc.Create(user);
+            pc.Create(patient);
 
 
 
@@ -71,71 +67,71 @@ namespace CoreApp
 
         }
 
-        public List<User> RetrieveAll()
+        public List<Patient> RetrieveAll()
         {
-            var uc = new UserCrudFactory();
-            return uc.RetrieveAll<User>();
+            var pc = new PatientCrudFactory();
+            return pc.RetrieveAll<Patient>();
         }
 
-        public User RetrieveById(int userId)
+        public Patient RetrieveById(int patientId)
         {
-            var uc = new UserCrudFactory();
-            return uc.RetrieveById<User>(userId);
+            var pc = new PatientCrudFactory();
+            return pc.RetrieveById<Patient>(patientId);
         }
-        
 
-        public void Update(User user)
+
+        public void Update(Patient patient)
         {
-            var uc = new UserCrudFactory();
+            var pc = new PatientCrudFactory();
 
-            if (!IsValidName(user.Name))
+            if (!IsValidName(patient.Name))
             {
                 throw new Exception("Invalid name format");
             }
-            else if (!IsValidLastName(user.LastName))
+            else if (!IsValidLastName(patient.LastName))
             {
                 throw new Exception("Invalid Lastname format");
             }
-            else if (!IsValidPhoneNumber(user.PhoneNumber))
+            else if (!IsValidPhoneNumber(patient.PhoneNumber))
             {
                 throw new Exception("Invalid phone number format");
             }
-            else if (!IsValidEmail(user.Email))
+            else if (!IsValidEmail(patient.Email))
             {
                 throw new Exception("Email is required");
             }
-            else if (!IsValidPassword(user.Password))
+            else if (!IsValidPassword(patient.Password))
             {
                 throw new Exception("Invalid Password format");
             }
-            else if (!IsValidSex(user.Sex))
+            else if (!IsValidSex(patient.Sex))
             {
                 throw new Exception("Invalid Sex format");
             }
-            else if (!IsValidBirthDate(user.BirthDate))
+            else if (!IsValidBirthDate(patient.BirthDate))
             {
                 throw new Exception("Invalid birth date format");
             }
-            else if (!IsValidRole(user.Role))
+            else if (!IsValidRole(patient.Role))
             {
                 throw new Exception("Invalid role format");
             }
-            else if (!IsValidStatus(user.Status))
+            else if (!IsValidStatus(patient.Status))
             {
                 throw new Exception("Invalid status value");
             }
-            else if (!IsValidAdress(user.Address))
+            else if (!IsValidAdress(patient.Address))
             {
                 throw new Exception("Invalid Adress format");
             }
-            uc.Update(user);
+            pc.Update(patient);
 
         }
 
-        public void Delete(User user)
+        public void Delete(Patient patient)
         {
-            var uc = new UserCrudFactory();
-            uc.Delete(user);
+            var pc = new PatientCrudFactory();
+            pc.Delete(patient);
         }
 
         private bool IsValidName(string name)

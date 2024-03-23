@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-	public class User : BaseDTO
-	{
+    public class Admin: BaseDTO
+    {
         [Required(ErrorMessage = "Name is required")]
         public string Name { get; set; }
 

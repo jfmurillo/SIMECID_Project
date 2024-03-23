@@ -10,132 +10,125 @@ using System.Threading.Tasks;
 
 namespace CoreApp
 {
-    //Clase de negocio donde se aplican las validaciones funcionales 
-    public class UserManager
+    public class SecretaryManager
     {
-        //Metodo para create
-
-
-        public void Create(User user)
+        public void Create(Secretary secretary)
         {
-            var uc = new UserCrudFactory();
+            var sc = new SecretaryCrudFactory();
 
-            //Valiacion de forma
 
-            if (!IsValidName(user.Name))
+            if (!IsValidName(secretary.Name))
             {
                 throw new Exception("Invalid name format");
             }
-            else if (!IsValidLastName(user.LastName))
+            else if (!IsValidLastName(secretary.LastName))
             {
                 throw new Exception("Invalid Lastname format");
             }
-            else if (!IsValidPhoneNumber(user.PhoneNumber))
+            else if (!IsValidPhoneNumber(secretary.PhoneNumber))
             {
                 throw new Exception("Invalid phone number format");
             }
-            else if (!IsValidEmail(user.Email))
+            else if (!IsValidEmail(secretary.Email))
             {
                 throw new Exception("Email is required");
             }
-            else if (!IsValidPassword(user.Password))
+            else if (!IsValidPassword(secretary.Password))
             {
                 throw new Exception("Invalid Password format");
             }
-            else if (!IsValidSex(user.Sex))
+            else if (!IsValidSex(secretary.Sex))
             {
                 throw new Exception("Invalid Sex format");
             }
-            else if (!IsValidBirthDate(user.BirthDate))
+            else if (!IsValidBirthDate(secretary.BirthDate))
             {
                 throw new Exception("Invalid birth date format");
             }
-            else if (!IsValidRole(user.Role))
+            else if (!IsValidRole(secretary.Role))
             {
                 throw new Exception("Invalid role format");
             }
-            else if (!IsValidStatus(user.Status))
+            else if (!IsValidStatus(secretary.Status))
             {
                 throw new Exception("Invalid status value");
             }
-            else if (!IsValidAdress(user.Address))
+            else if (!IsValidAdress(secretary.Address))
             {
                 throw new Exception("Invalid Adress format");
             }
-            uc.Create(user);
-
-
-
-
-
-
+            sc.Create(secretary);
         }
 
-        public List<User> RetrieveAll()
+        public List<T> RetrieveAll<T>()
         {
-            var uc = new UserCrudFactory();
-            return uc.RetrieveAll<User>();
+            var sc = new SecretaryCrudFactory();
+            return sc.RetrieveAll<T>();
         }
 
-        public User RetrieveById(int userId)
+        public Secretary RetrieveById(int secretaryID)
         {
-            var uc = new UserCrudFactory();
-            return uc.RetrieveById<User>(userId);
+            var sc = new SecretaryCrudFactory();
+            return sc.RetrieveById<Secretary>(secretaryID);
         }
-        
 
-        public void Update(User user)
+
+        public void Update(Secretary secretary)
         {
-            var uc = new UserCrudFactory();
+            var sc = new SecretaryCrudFactory();
 
-            if (!IsValidName(user.Name))
+            if (!IsValidName(secretary.Name))
             {
                 throw new Exception("Invalid name format");
             }
-            else if (!IsValidLastName(user.LastName))
+            else if (!IsValidLastName(secretary.LastName))
             {
                 throw new Exception("Invalid Lastname format");
             }
-            else if (!IsValidPhoneNumber(user.PhoneNumber))
+            else if (!IsValidPhoneNumber(secretary.PhoneNumber))
             {
                 throw new Exception("Invalid phone number format");
             }
-            else if (!IsValidEmail(user.Email))
+            else if (!IsValidEmail(secretary.Email))
             {
                 throw new Exception("Email is required");
             }
-            else if (!IsValidPassword(user.Password))
+            else if (!IsValidPassword(secretary.Password))
             {
                 throw new Exception("Invalid Password format");
             }
-            else if (!IsValidSex(user.Sex))
+            else if (!IsValidSex(secretary.Sex))
             {
                 throw new Exception("Invalid Sex format");
             }
-            else if (!IsValidBirthDate(user.BirthDate))
+            else if (!IsValidBirthDate(secretary.BirthDate))
             {
                 throw new Exception("Invalid birth date format");
             }
-            else if (!IsValidRole(user.Role))
+            else if (!IsValidRole(secretary.Role))
             {
                 throw new Exception("Invalid role format");
             }
-            else if (!IsValidStatus(user.Status))
+            else if (!IsValidStatus(secretary.Status))
             {
                 throw new Exception("Invalid status value");
             }
-            else if (!IsValidAdress(user.Address))
+            else if (!IsValidAdress(secretary.Address))
             {
                 throw new Exception("Invalid Adress format");
             }
-            uc.Update(user);
+            else if (!IsValidID(secretary.BranchID))
+            {
+                throw new Exception("Invalid Branch ID");
+            }
+            sc.Update(secretary);
 
         }
 
-        public void Delete(User user)
+        public void Delete(Secretary secretary)
         {
-            var uc = new UserCrudFactory();
-            uc.Delete(user);
+            var sc = new SecretaryCrudFactory();
+            sc.Delete(secretary);
         }
 
         private bool IsValidName(string name)
@@ -150,11 +143,9 @@ namespace CoreApp
 
         private bool IsValidPassword(string password)
         {
-            // Verifica si la contraseña no es nula o compuesta solamente de espacios en blanco
             if (string.IsNullOrWhiteSpace(password))
                 return false;
 
-            // Verifica si la contraseña tiene al menos 8 caracteres
             if (password.Length < 8)
                 return false;
 
@@ -163,32 +154,26 @@ namespace CoreApp
 
             foreach (char c in password)
             {
-                // Verifica si el carácter actual es un número
                 if (char.IsDigit(c))
                 {
                     hasNumber = true;
                 }
-                // Verifica si el carácter actual es un carácter especial
                 else if (!char.IsLetterOrDigit(c))
                 {
                     hasSpecialCharacter = true;
                 }
             }
 
-            // Retorna verdadero si la contraseña tiene al menos un número y un carácter especial
             return hasNumber && hasSpecialCharacter;
         }
 
         private bool IsValidSex(string sex)
         {
-            // Verifica si el sexo no es nulo o compuesto solamente de espacios en blanco
             if (string.IsNullOrWhiteSpace(sex))
                 return false;
 
-            // Convierte el sexo a minúsculas para hacer la comparación más fácil
             string sexLower = sex.ToLower();
 
-            // Verifica si el sexo es válido
             return sexLower == "m" || sexLower == "f" || sexLower == "masculino" || sexLower == "femenino";
         }
 
@@ -204,14 +189,11 @@ namespace CoreApp
             return !string.IsNullOrWhiteSpace(status) && char.IsUpper(status[0]) && status.All(c => char.IsLetter(c) || char.IsWhiteSpace(c));
         }
 
-
-
         private bool IsValidPhoneNumber(int phoneNumber)
         {
 
             return phoneNumber.ToString().Length == 8 && !phoneNumber.ToString().Contains(" ");
         }
-
 
         private bool IsValidRole(string role)
         {
@@ -230,5 +212,11 @@ namespace CoreApp
 
             return DateTime.TryParseExact(birthDate.ToString(expectedFormat), expectedFormat, null, DateTimeStyles.None, out _);
         }
+
+        private bool IsValidID(int id)
+        {
+            return id > 0;
+        }
+
     }
 }

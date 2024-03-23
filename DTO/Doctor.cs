@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-	public class User : BaseDTO
-	{
+    public class Doctor: BaseDTO
+    {
         [Required(ErrorMessage = "Name is required")]
         public string Name { get; set; }
 
@@ -39,5 +39,7 @@ namespace DTO
         [Required(ErrorMessage = "Adress is required")]
         public string Address { get; set; }
 
+        [Required(ErrorMessage = "Branch ID is required")]
+        public int BranchID { get; set; }
     }
 }

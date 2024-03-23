@@ -10,59 +10,58 @@ using System.Threading.Tasks;
 
 namespace CoreApp
 {
-    //Clase de negocio donde se aplican las validaciones funcionales 
-    public class UserManager
+    public class AdminManager
     {
         //Metodo para create
 
 
-        public void Create(User user)
+        public void Create(Admin admin)
         {
-            var uc = new UserCrudFactory();
+            var ac = new AdminCrudFactory();
 
             //Valiacion de forma
 
-            if (!IsValidName(user.Name))
+            if (!IsValidName(admin.Name))
             {
                 throw new Exception("Invalid name format");
             }
-            else if (!IsValidLastName(user.LastName))
+            else if (!IsValidLastName(admin.LastName))
             {
                 throw new Exception("Invalid Lastname format");
             }
-            else if (!IsValidPhoneNumber(user.PhoneNumber))
+            else if (!IsValidPhoneNumber(admin.PhoneNumber))
             {
                 throw new Exception("Invalid phone number format");
             }
-            else if (!IsValidEmail(user.Email))
+            else if (!IsValidEmail(admin.Email))
             {
                 throw new Exception("Email is required");
             }
-            else if (!IsValidPassword(user.Password))
+            else if (!IsValidPassword(admin.Password))
             {
                 throw new Exception("Invalid Password format");
             }
-            else if (!IsValidSex(user.Sex))
+            else if (!IsValidSex(admin.Sex))
             {
                 throw new Exception("Invalid Sex format");
             }
-            else if (!IsValidBirthDate(user.BirthDate))
+            else if (!IsValidBirthDate(admin.BirthDate))
             {
                 throw new Exception("Invalid birth date format");
             }
-            else if (!IsValidRole(user.Role))
+            else if (!IsValidRole(admin.Role))
             {
                 throw new Exception("Invalid role format");
             }
-            else if (!IsValidStatus(user.Status))
+            else if (!IsValidStatus(admin.Status))
             {
                 throw new Exception("Invalid status value");
             }
-            else if (!IsValidAdress(user.Address))
+            else if (!IsValidAddress(admin.Address))
             {
-                throw new Exception("Invalid Adress format");
+                throw new Exception("Invalid Address format");
             }
-            uc.Create(user);
+            ac.Create(admin);
 
 
 
@@ -71,71 +70,71 @@ namespace CoreApp
 
         }
 
-        public List<User> RetrieveAll()
+        public List<Admin> RetrieveAll()
         {
-            var uc = new UserCrudFactory();
-            return uc.RetrieveAll<User>();
+            var ac = new AdminCrudFactory();
+            return ac.RetrieveAll<Admin>();
         }
 
-        public User RetrieveById(int userId)
+        public Admin RetrieveById(int adminId)
         {
-            var uc = new UserCrudFactory();
-            return uc.RetrieveById<User>(userId);
+            var ac = new AdminCrudFactory();
+            return ac.RetrieveById<Admin>(adminId);
         }
-        
 
-        public void Update(User user)
+
+        public void Update(Admin admin)
         {
-            var uc = new UserCrudFactory();
+            var ac = new AdminCrudFactory();
 
-            if (!IsValidName(user.Name))
+            if (!IsValidName(admin.Name))
             {
                 throw new Exception("Invalid name format");
             }
-            else if (!IsValidLastName(user.LastName))
+            else if (!IsValidLastName(admin.LastName))
             {
                 throw new Exception("Invalid Lastname format");
             }
-            else if (!IsValidPhoneNumber(user.PhoneNumber))
+            else if (!IsValidPhoneNumber(admin.PhoneNumber))
             {
                 throw new Exception("Invalid phone number format");
             }
-            else if (!IsValidEmail(user.Email))
+            else if (!IsValidEmail(admin.Email))
             {
                 throw new Exception("Email is required");
             }
-            else if (!IsValidPassword(user.Password))
+            else if (!IsValidPassword(admin.Password))
             {
                 throw new Exception("Invalid Password format");
             }
-            else if (!IsValidSex(user.Sex))
+            else if (!IsValidSex(admin.Sex))
             {
                 throw new Exception("Invalid Sex format");
             }
-            else if (!IsValidBirthDate(user.BirthDate))
+            else if (!IsValidBirthDate(admin.BirthDate))
             {
                 throw new Exception("Invalid birth date format");
             }
-            else if (!IsValidRole(user.Role))
+            else if (!IsValidRole(admin.Role))
             {
                 throw new Exception("Invalid role format");
             }
-            else if (!IsValidStatus(user.Status))
+            else if (!IsValidStatus(admin.Status))
             {
                 throw new Exception("Invalid status value");
             }
-            else if (!IsValidAdress(user.Address))
+            else if (!IsValidAddress(admin.Address))
             {
                 throw new Exception("Invalid Adress format");
             }
-            uc.Update(user);
+            ac.Update(admin);
 
         }
 
-        public void Delete(User user)
+        public void Delete(Admin admin)
         {
-            var uc = new UserCrudFactory();
-            uc.Delete(user);
+            var ac = new AdminCrudFactory();
+            ac.Delete(admin);
         }
 
         private bool IsValidName(string name)
@@ -218,7 +217,7 @@ namespace CoreApp
             return !string.IsNullOrWhiteSpace(role) && char.IsUpper(role[0]) && role.All(c => char.IsLetter(c) && !char.IsWhiteSpace(c));
         }
 
-        private bool IsValidAdress(string adress)
+        private bool IsValidAddress(string adress)
         {
             return !string.IsNullOrWhiteSpace(adress) && char.IsUpper(adress[0]) && adress.All(c => char.IsLetterOrDigit(c) || char.IsWhiteSpace(c));
         }
