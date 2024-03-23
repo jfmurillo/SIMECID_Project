@@ -31,7 +31,7 @@ namespace DataAccess.CRUD
             sqlOperation.AddDatetimeParam("P_BIRTHDATE", user.BirthDate);
             sqlOperation.AddVarcharParam("P_ROLE", user.Role);
             sqlOperation.AddVarcharParam("P_STATUS", user.Status);
-            sqlOperation.AddVarcharParam("P_ADRESS", user.Adress);
+            sqlOperation.AddVarcharParam("P_ADDRESS", user.Address);
             
             
             _dao.ExecuteProcedure(sqlOperation);
@@ -48,7 +48,7 @@ namespace DataAccess.CRUD
             }
 
             var SqlOperation = new SqlOperation { ProcedureName = "DEL_USER_PR" };
-            SqlOperation.AddIntParam("P_USERID", user.Id);
+            SqlOperation.AddIntParam("P_USER_ID", user.Id);
 
             _dao.ExecuteProcedure(SqlOperation);
         }
@@ -65,7 +65,7 @@ namespace DataAccess.CRUD
 
 
             var sqlOperation = new SqlOperation { ProcedureName = "UPD_USER_PR" };
-            sqlOperation.AddIntParam("P_USERID", user.Id);
+            sqlOperation.AddIntParam("P_USER_ID", user.Id);
             sqlOperation.AddVarcharParam("P_NAME", user.Name);
             sqlOperation.AddVarcharParam("P_LAST_NAME", user.LastName);
             sqlOperation.AddIntParam("P_PHONE_NUMBER", user.PhoneNumber);
@@ -75,7 +75,7 @@ namespace DataAccess.CRUD
             sqlOperation.AddDatetimeParam("P_BIRTHDATE", user.BirthDate);
             sqlOperation.AddVarcharParam("P_ROLE", user.Role);
             sqlOperation.AddVarcharParam("P_STATUS", user.Status);
-            sqlOperation.AddVarcharParam("P_ADRESS", user.Adress);
+            sqlOperation.AddVarcharParam("P_ADDRESS", user.Address);
 
 
             _dao.ExecuteProcedure(sqlOperation);
@@ -86,18 +86,18 @@ namespace DataAccess.CRUD
         {
             var userToReturn = new User()
             {
-                Id = (int)row["User_Id"],
-                Name = (string)row["Name"],
-                LastName = (string)row["LastName"],
-                PhoneNumber = (int)row["PhoneNumber"],
-                Email = (string)row["Email"],
-                Password = (string)row["Password"],
-                Sex = (string)row["Sex"],
-                BirthDate = (DateTime)row["Birthdate"],
-                Role = (string)row["Role"],
-                Status = (string)row["Status"],
-                Adress = (string)row["Adress"],
-                Created = (DateTime)row["Created"]
+                Id = (int)row["USER_ID"],
+                Name = (string)row["NAME"],
+                LastName = (string)row["LAST_NAME"],
+                PhoneNumber = (int)row["PHONE_NUMBER"],
+                Email = (string)row["EMAIL"],
+                Password = (string)row["PASSWORD"],
+                Sex = (string)row["SEX"],
+                BirthDate = (DateTime)row["BIRTHDATE"],
+                Role = (string)row["ROLE"],
+                Status = (string)row["STATUS"],
+                Address = (string)row["ADDRESS"],
+                Created = (DateTime)row["CREATED"]
             };
             return userToReturn;
         }
