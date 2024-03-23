@@ -137,6 +137,117 @@ namespace CoreApp
             ac.Delete(admin);
         }
 
+        public void AssignRole(int adminId, int userId, string newRole, int branch)
+        {
+            
+            var admin = RetrieveById(adminId);
+            if (admin == null || admin.Role != "Admin")
+            {
+                throw new Exception("Only administrators can assign roles.");
+            }
+
+            if (!IsValidRole(newRole))
+            {
+                throw new Exception("Invalid role format");
+            }
+
+            // Obtener el usuario al que se le asignará el nuevo rol
+            var um = new UserCrudFactory();
+            var user = um.RetrieveById<User>(userId);
+            if (user == null)
+            {
+                throw new Exception("User not found.");
+            }
+
+            user.Role = newRole;
+            um.Update(user);
+
+            switch (newRole)
+            {
+                case "Patient":
+                    var pm = new PatientCrudFactory();
+                    var patient = new Patient
+                    {
+                        Name = user.Name,
+                        LastName = user.LastName,
+                        PhoneNumber = user.PhoneNumber,
+                        Email = user.Email,
+                        Password = user.Password,
+                        Sex = user.Sex,
+                        BirthDate = user.BirthDate,
+                        Role = newRole,
+                        Status = user.Status,
+                        Address = user.Address,
+                    };
+                    pm.Create(patient);
+                    break;
+                case "Doctor":
+                    var dc = new DoctorCrudFactory();
+                    var doctor = new Doctor
+                    {
+                        Name = user.Name,
+                        LastName = user.LastName,
+                        PhoneNumber = user.PhoneNumber,
+                        Email = user.Email,
+                        Password = user.Password,
+                        Sex = user.Sex,
+                        BirthDate = user.BirthDate,
+                        Role = newRole,
+                        Status = user.Status,
+                        Address = user.Address,
+                        BranchID = branch
+                    };
+                    dc.Create(doctor);
+                    break;
+                case "User":
+                    break;
+                case "Nurse":
+                    var nf = new NurseCrudFactory();
+                    var nurse = new Nurse
+                    {
+                        Name = user.Name,
+                        LastName = user.LastName,
+                        PhoneNumber = user.PhoneNumber,
+                        Email = user.Email,
+                        Password = user.Password,
+                        Sex = user.Sex,
+                        BirthDate = user.BirthDate,
+                        Role = newRole,
+                        Status = user.Status,
+                        Address = user.Address,
+                        BranchId = branch
+                    };
+                    nf.Create(nurse);
+                    break;
+                case "Secretary":
+                    var sf = new SecretaryCrudFactory();
+                    var secretary = new Secretary
+                    {
+                        Name = user.Name,
+                        LastName = user.LastName,
+                        PhoneNumber = user.PhoneNumber,
+                        Email = user.Email,
+                        Password = user.Password,
+                        Sex = user.Sex,
+                        BirthDate = user.BirthDate,
+                        Role = newRole,
+                        Status = user.Status,
+                        Address = user.Address,
+                        BranchID=branch
+                    };
+                    sf.Create(secretary);
+                    break;
+
+            }
+        }
+
+
+
+
+
+
+        /// VALIDACIONES
+
         private bool IsValidName(string name)
         {
             return !string.IsNullOrWhiteSpace(name) && char.IsUpper(name[0]) && name.All(c => char.IsLetter(c) && !char.IsWhiteSpace(c));
@@ -149,11 +260,9 @@ namespace CoreApp
 
         private bool IsValidPassword(string password)
         {
-            // Verifica si la contraseña no es nula o compuesta solamente de espacios en blanco
             if (string.IsNullOrWhiteSpace(password))
                 return false;
 
-            // Verifica si la contraseña tiene al menos 8 caracteres
             if (password.Length < 8)
                 return false;
 
@@ -162,32 +271,23 @@ namespace CoreApp
 
             foreach (char c in password)
             {
-                // Verifica si el carácter actual es un número
                 if (char.IsDigit(c))
                 {
                     hasNumber = true;
                 }
-                // Verifica si el carácter actual es un carácter especial
                 else if (!char.IsLetterOrDigit(c))
                 {
                     hasSpecialCharacter = true;
                 }
             }
-
-            // Retorna verdadero si la contraseña tiene al menos un número y un carácter especial
             return hasNumber && hasSpecialCharacter;
         }
 
         private bool IsValidSex(string sex)
         {
-            // Verifica si el sexo no es nulo o compuesto solamente de espacios en blanco
             if (string.IsNullOrWhiteSpace(sex))
                 return false;
-
-            // Convierte el sexo a minúsculas para hacer la comparación más fácil
             string sexLower = sex.ToLower();
-
-            // Verifica si el sexo es válido
             return sexLower == "m" || sexLower == "f" || sexLower == "masculino" || sexLower == "femenino";
         }
 
