@@ -145,7 +145,7 @@ namespace TestConsole
                 BirthDate = birthdate,
                 Role = role,
                 Status = status,
-                Adress = adress
+                Address = adress
                 
 
 
@@ -252,7 +252,7 @@ namespace TestConsole
                     userToUpdate.Status = Console.ReadLine();
 
                     Console.WriteLine("\nEnter user adress");
-                    userToUpdate.Adress = Console.ReadLine();
+                    userToUpdate.Address = Console.ReadLine();
 
                     Console.WriteLine("\nUser Updated");
 
