@@ -29,7 +29,8 @@ namespace TestConsole
            "\n1. User Info" +
            "\n2. Nurse Info" +
            "\n3. Patient Info" +
-           "\n4. Exit");
+           "\n4. Branch Info" +
+           "\n0. Exit");
 
             var opc = Console.ReadLine();
 
@@ -45,6 +46,9 @@ namespace TestConsole
                     PatientMenu();
                     break;
                 case "4":
+                    BranchMenu();
+                    break;
+                case "0":
                     Environment.Exit(0);
                     break;
             }
@@ -850,6 +854,235 @@ namespace TestConsole
             else
             {
                 Console.WriteLine("Entrada no válida para el ID del paciente.");
+            }
+        }
+
+        static void BranchMenu()
+        {
+            while (true)
+            {
+                Console.WriteLine("\nBranch Menu" +
+                 "\n1. Create Branch" +
+                 "\n2. Delete Branch" +
+                 "\n3. Update Branch" +
+                 "\n4. List Branch" +
+                 "\n5. Search Branch by Id" +
+                 "\n6. Return to main menu" +
+                 "\n7. Exit program");
+                var opc_branch = Console.ReadLine();
+                switch (opc_branch)
+                {
+                    case "1":
+                        CreateBranch();
+                        break;
+                    case "2":
+                        DeleteBranch();
+                        break;
+                    case "3":
+                        UpdateBranch();
+                        break;
+                    case "4":
+                        ListBranch();
+                        break;
+                    case "5":
+                        SearchBranchById();
+                        break;
+                    case "6":
+                        Program_menu();
+                        break;
+                    case "7":
+                        Environment.Exit(0);
+                        break;
+                }
+            }
+
+        }
+
+        static void CreateBranch()
+        {
+            Console.WriteLine("\nCreate Branch test");
+
+            Console.WriteLine("\nEnter Branch name");
+            var name = Console.ReadLine();
+
+            Console.WriteLine("\nEnter Branch Address");
+            var address = Console.ReadLine();
+
+            Console.WriteLine("\nEnter Branch Description");
+            var description = Console.ReadLine();
+
+            Console.WriteLine("\nEnter Branch Creation Date (yyyy-MM-dd)");
+            var creationDate = Console.ReadLine();
+
+
+            /*
+            
+            
+            DateTime creationDate;
+            if (!DateTime.TryParse(creationDateString, out creationDate))
+            {
+                Console.WriteLine("Invalid date format. Please enter date in yyyy-MM-dd format.");
+                return;
+            }
+            */
+            var newBranch = new Branch()
+            {
+                Name = name,
+                Address = address,
+                Description = description,
+            };
+
+            try
+            {
+                var um = new BranchCrudFactory();
+                um.Create(newBranch);
+                Console.WriteLine("\nBranch Created");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            
+
+            Console.ReadLine();
+        }
+
+        static void DeleteBranch()
+        {
+            Console.WriteLine("\n Delete Branch ");
+
+            Console.WriteLine("\nEnter Branch's id to delete:");
+            string branchInput = Console.ReadLine();
+
+            
+            try
+            {
+                int branchIdToDelete = int.Parse(branchInput);
+
+                var branchToDelete = new Branch { Id = branchIdToDelete };
+
+                var um = new BranchCrudFactory();
+                um.Delete(branchToDelete);
+                Console.WriteLine("\nBranch Deleted");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("\nInvalid branch ID. Please enter a valid integer.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"\nError Deleting branch: {ex.Message}");
+            }
+        }
+
+        static void UpdateBranch()
+
+        {
+            Console.WriteLine("\nUpdate Branch");
+
+            Console.WriteLine("\nEnter Branch's id to update:");
+            string branchInput = Console.ReadLine();
+
+            try
+            {
+                int branchIdToUpdate = int.Parse(branchInput);
+
+                var branchToUpdate = new Branch { Id = branchIdToUpdate };
+                var um = new BranchCrudFactory();
+
+
+
+                if (branchToUpdate != null)
+                {
+
+                    Console.WriteLine("\nEnter new branch information:");
+
+                    Console.WriteLine("\nEnter user name");
+                    branchToUpdate.Name = Console.ReadLine();
+
+                    Console.WriteLine("\nEnter branch address");
+                    branchToUpdate.Address = Console.ReadLine();
+
+                    Console.WriteLine("\nEnter branch description");
+                    branchToUpdate.Description = Console.ReadLine();
+
+                    Console.WriteLine("\nEnter branch creation date (yyyy-MM-dd)");
+                    var creationDate = Console.ReadLine();
+
+                    /*
+                    DateTime creationDate;
+                    if (!DateTime.TryParse(creationDateString, out creationDate))
+                    {
+                        Console.WriteLine("Invalid date format. Please enter date in yyyy-MM-dd format.");
+                        return;
+                    } 
+                    
+                    branchIdToUpdate.CreationDate = creationDate;
+                    */
+
+                    Console.WriteLine("\nBranch Updated");
+
+                    um.Update(branchToUpdate);
+                }
+                else
+                {
+                    Console.WriteLine("\nBranch not found with the given ID.");
+                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("\nInvalid branch ID. Please enter a valid integer.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"\nError updating branch: {ex.Message}");
+            }
+        }
+
+        static void ListBranch()
+        {
+            var um = new BranchManager();
+            List<Branch> branchList = um.RetrieveAll();
+            if (branchList.Count > 0)
+            {
+                // Serializar la lista de sedes a formato JSON
+                string jsonBranches = JsonConvert.SerializeObject(branchList, Formatting.Indented);
+
+                // Imprimir el JSON resultante
+                Console.WriteLine("\tLista de Sedes");
+                Console.WriteLine(jsonBranches);
+            }
+            else
+            {
+                Console.WriteLine("No se encontraron sedes.");
+            }
+        }
+
+        static void SearchBranchById()
+        {
+
+            Console.Write("Ingrese el ID del branch a buscar: ");
+            if (int.TryParse(Console.ReadLine(), out int branchId))
+            {
+                var um = new BranchManager();
+                Branch branch = um.RetrieveById(branchId);
+
+                if (branch != null)
+                {
+
+                    string jsonBranch = JsonConvert.SerializeObject(branch, Formatting.Indented);
+                    Console.WriteLine("\nDatos del branch con el Id numero: " + branchId);
+                    Console.WriteLine(jsonBranch);
+                }
+                else
+                {
+                    Console.WriteLine($"No se encontró ningún branch con el ID {branchId}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Entrada no válida para el ID del branch.");
             }
         }
     }
