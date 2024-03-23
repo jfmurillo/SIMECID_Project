@@ -12,19 +12,31 @@ namespace DTO
         [Required(ErrorMessage = "Patient id is required")]
         public int PatientId;
 
+        public String PatientName;
+        public String PatientLastName;
+
         public int DoctorId;
 
+        public String DoctorName;
+        public String DoctorLastName;
+
         public int ServiceId;
+
+        public String ServiceName;
 
         [Required(ErrorMessage = "Branch id is required")]
         public int BranchId;
 
-        [Required(ErrorMessage = "Date and time is required")]
-        public DateTime AppointmentDate;
+        public String BranchName;
 
-        public string Motive;
+        [Required(ErrorMessage = "Star appointment time is required")]
+        public DateTime StartTime;
 
-        public string Status;
+        [Required(ErrorMessage = "End appointment time is required")]
+        public DateTime EndTime;
 
+        public String Text; //Este es el motive 
+
+        public String Status;
     }
 }
