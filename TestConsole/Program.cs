@@ -679,7 +679,7 @@ namespace TestConsole
                 BirthDate = birthdate,
                 Role = role,
                 Status = status,
-                Adress = adress
+                Address = adress
 
 
 
@@ -786,7 +786,7 @@ namespace TestConsole
                     patientToUpdate.Status = Console.ReadLine();
 
                     Console.WriteLine("\nEnter patient adress");
-                    patientToUpdate.Adress = Console.ReadLine();
+                    patientToUpdate.Address = Console.ReadLine();
 
                     Console.WriteLine("\n{Patient Updated");
 

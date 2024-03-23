@@ -54,7 +54,7 @@ namespace CoreApp
             {
                 throw new Exception("Invalid status value");
             }
-            else if (!IsValidAdress(patient.Adress))
+            else if (!IsValidAdress(patient.Address))
             {
                 throw new Exception("Invalid Adress format");
             }
@@ -120,7 +120,7 @@ namespace CoreApp
             {
                 throw new Exception("Invalid status value");
             }
-            else if (!IsValidAdress(patient.Adress))
+            else if (!IsValidAdress(patient.Address))
             {
                 throw new Exception("Invalid Adress format");
             }

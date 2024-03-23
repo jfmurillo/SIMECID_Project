@@ -31,7 +31,7 @@ namespace DataAccess.CRUD
 			sqlOperation.AddDatetimeParam("P_BIRTHDATE", nurse.BirthDate);
 			sqlOperation.AddVarcharParam("P_ROLE", nurse.Role);
 			sqlOperation.AddVarcharParam("P_STATUS", nurse.Status);
-			sqlOperation.AddVarcharParam("P_ADRESS", nurse.Address);
+			sqlOperation.AddVarcharParam("P_ADDRESS", nurse.Address);
 
 
 			_dao.ExecuteProcedure(sqlOperation);
@@ -76,7 +76,7 @@ namespace DataAccess.CRUD
 			sqlOperation.AddDatetimeParam("P_BIRTHDATE", nurse.BirthDate);
 			sqlOperation.AddVarcharParam("P_ROLE", nurse.Role);
 			sqlOperation.AddVarcharParam("P_STATUS", nurse.Status);
-			sqlOperation.AddVarcharParam("P_ADRESS", nurse.Address);
+			sqlOperation.AddVarcharParam("P_ADDRESS", nurse.Address);
 
 
 			_dao.ExecuteProcedure(sqlOperation);
@@ -87,19 +87,19 @@ namespace DataAccess.CRUD
 		{
 			var NurseToReturn = new Nurse()
 			{
-				Id = (int)row["Nurse_Id"],
-				BranchId = (int)row["Branch_Id"],
-				Name = (string)row["Name"],
-				LastName = (string)row["LastName"],
-				PhoneNumber = (int)row["PhoneNumber"],
-				Email = (string)row["Email"],
-				Password = (string)row["Password"],
-				Sex = (string)row["Sex"],
-				BirthDate = (DateTime)row["Birthdate"],
-				Role = (string)row["Role"],
-				Status = (string)row["Status"],
-				Address = (string)row["Adress"],
-				Created = (DateTime)row["Created"]
+				Id = (int)row["NURSE_ID"],
+				BranchId = (int)row["BRANCH_ID"],
+				Name = (string)row["NAME"],
+				LastName = (string)row["LAST_NAME"],
+				PhoneNumber = (int)row["PHONE_NUMBER"],
+				Email = (string)row["EMAIL"],
+				Password = (string)row["PASSWORD"],
+				Sex = (string)row["SEX"],
+				BirthDate = (DateTime)row["BIRTHDATE"],
+				Role = (string)row["ROLE"],
+				Status = (string)row["STATUS"],
+				Address = (string)row["ADDRESS"],
+				Created = (DateTime)row["CREATED"]
 			};
 			return NurseToReturn;
 		}
@@ -140,10 +140,8 @@ namespace DataAccess.CRUD
 					nurseList.Add((T)Convert.ChangeType(nurse, typeof(T)));
 				}
 
-
 			}
 			return nurseList;
-
 		}
 	}
 }
