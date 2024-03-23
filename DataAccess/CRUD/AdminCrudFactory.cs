@@ -31,7 +31,7 @@ namespace DataAccess.CRUD
             sqlOperation.AddDatetimeParam("P_BIRTHDATE", admin.BirthDate);
             sqlOperation.AddVarcharParam("P_ROLE", admin.Role);
             sqlOperation.AddVarcharParam("P_STATUS", admin.Status);
-            sqlOperation.AddVarcharParam("P_ADRESS", admin.Adress);
+            sqlOperation.AddVarcharParam("P_ADDRESS", admin.Address);
 
 
             _dao.ExecuteProcedure(sqlOperation);
@@ -48,7 +48,7 @@ namespace DataAccess.CRUD
             }
 
             var SqlOperation = new SqlOperation { ProcedureName = "DEL_ADMIN_PR" };
-            SqlOperation.AddIntParam("P_ADMINID", admin.Id);
+            SqlOperation.AddIntParam("P_ADMIN_ID", admin.Id);
 
             _dao.ExecuteProcedure(SqlOperation);
         }
@@ -65,7 +65,7 @@ namespace DataAccess.CRUD
 
 
             var sqlOperation = new SqlOperation { ProcedureName = "UPD_ADMIN_PR" };
-            sqlOperation.AddIntParam("P_ADMINID", admin.Id);
+            sqlOperation.AddIntParam("P_ADMIN_ID", admin.Id);
             sqlOperation.AddVarcharParam("P_NAME", admin.Name);
             sqlOperation.AddVarcharParam("P_LAST_NAME", admin.LastName);
             sqlOperation.AddIntParam("P_PHONE_NUMBER", admin.PhoneNumber);
@@ -75,7 +75,7 @@ namespace DataAccess.CRUD
             sqlOperation.AddDatetimeParam("P_BIRTHDATE", admin.BirthDate);
             sqlOperation.AddVarcharParam("P_ROLE", admin.Role);
             sqlOperation.AddVarcharParam("P_STATUS", admin.Status);
-            sqlOperation.AddVarcharParam("P_ADRESS", admin.Adress);
+            sqlOperation.AddVarcharParam("P_ADDRESS", admin.Address);
 
 
             _dao.ExecuteProcedure(sqlOperation);
@@ -86,18 +86,18 @@ namespace DataAccess.CRUD
         {
             var adminToReturn = new Admin()
             {
-                Id = (int)row["Admin_Id"],
-                Name = (string)row["Name"],
-                LastName = (string)row["LastName"],
-                PhoneNumber = (int)row["PhoneNumber"],
-                Email = (string)row["Email"],
-                Password = (string)row["Password"],
-                Sex = (string)row["Sex"],
-                BirthDate = (DateTime)row["Birthdate"],
-                Role = (string)row["Role"],
-                Status = (string)row["Status"],
-                Adress = (string)row["Adress"],
-                Created = (DateTime)row["Created"]
+                Id = (int)row["ADMIN_ID"],
+                Name = (string)row["NAME"],
+                LastName = (string)row["LAST_NAME"],
+                PhoneNumber = (int)row["PHONE_NUMBER"],
+                Email = (string)row["EMAIL"],
+                Password = (string)row["PASSWORD"],
+                Sex = (string)row["SEX"],
+                BirthDate = (DateTime)row["BIRTHDATE"],
+                Role = (string)row["ROLE"],
+                Status = (string)row["STATUS"],
+                Address = (string)row["ADDRESS"],
+                Created = (DateTime)row["CREATED"]
             };
             return adminToReturn;
         }
@@ -143,8 +143,5 @@ namespace DataAccess.CRUD
             return adminList;
 
         }
-
-
-
     }
 }

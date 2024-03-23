@@ -57,7 +57,7 @@ namespace CoreApp
 			{
 				throw new Exception("Invalid status value");
 			}
-			else if (!IsValidAdress(nurse.Address))
+			else if (!IsValidAddress(nurse.Address))
 			{
 				throw new Exception("Invalid Adress format");
 			}
@@ -123,7 +123,7 @@ namespace CoreApp
 			{
 				throw new Exception("Invalid status value");
 			}
-			else if (!IsValidAdress(nurse.Address))
+			else if (!IsValidAddress(nurse.Address))
 			{
 				throw new Exception("Invalid Adress format");
 			}
@@ -217,7 +217,7 @@ namespace CoreApp
 			return !string.IsNullOrWhiteSpace(role) && char.IsUpper(role[0]) && role.All(c => char.IsLetter(c) && !char.IsWhiteSpace(c));
 		}
 
-		private bool IsValidAdress(string adress)
+		private bool IsValidAddress(string adress)
 		{
 			return !string.IsNullOrWhiteSpace(adress) && char.IsUpper(adress[0]) && adress.All(c => char.IsLetterOrDigit(c) || char.IsWhiteSpace(c));
 		}

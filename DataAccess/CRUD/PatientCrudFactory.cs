@@ -31,7 +31,7 @@ namespace DataAccess.CRUD
             sqlOperation.AddDatetimeParam("P_BIRTHDATE", patient.BirthDate);
             sqlOperation.AddVarcharParam("P_ROLE", patient.Role);
             sqlOperation.AddVarcharParam("P_STATUS", patient.Status);
-            sqlOperation.AddVarcharParam("P_ADRESS", patient.Adress);
+            sqlOperation.AddVarcharParam("P_ADDRESS", patient.Address);
 
 
             _dao.ExecuteProcedure(sqlOperation);
@@ -48,7 +48,7 @@ namespace DataAccess.CRUD
             }
 
             var SqlOperation = new SqlOperation { ProcedureName = "DEL_PATIENT_PR" };
-            SqlOperation.AddIntParam("P_PATIENTID", patient.Id);
+            SqlOperation.AddIntParam("P_PATIENT_ID", patient.Id);
 
             _dao.ExecuteProcedure(SqlOperation);
         }
@@ -65,7 +65,7 @@ namespace DataAccess.CRUD
 
 
             var sqlOperation = new SqlOperation { ProcedureName = "UPD_PATIENT_PR" };
-            sqlOperation.AddIntParam("P_PATIENTID", patient.Id);
+            sqlOperation.AddIntParam("P_PATIENT_ID", patient.Id);
             sqlOperation.AddVarcharParam("P_NAME", patient.Name);
             sqlOperation.AddVarcharParam("P_LAST_NAME", patient.LastName);
             sqlOperation.AddIntParam("P_PHONE_NUMBER", patient.PhoneNumber);
@@ -75,7 +75,7 @@ namespace DataAccess.CRUD
             sqlOperation.AddDatetimeParam("P_BIRTHDATE", patient.BirthDate);
             sqlOperation.AddVarcharParam("P_ROLE", patient.Role);
             sqlOperation.AddVarcharParam("P_STATUS", patient.Status);
-            sqlOperation.AddVarcharParam("P_ADRESS", patient.Adress);
+            sqlOperation.AddVarcharParam("P_ADDRESS", patient.Address);
 
 
             _dao.ExecuteProcedure(sqlOperation);
@@ -86,18 +86,18 @@ namespace DataAccess.CRUD
         {
             var patientToReturn = new Patient()
             {
-                Id = (int)row["Patient_Id"],
-                Name = (string)row["Name"],
-                LastName = (string)row["LastName"],
-                PhoneNumber = (int)row["PhoneNumber"],
-                Email = (string)row["Email"],
-                Password = (string)row["Password"],
-                Sex = (string)row["Sex"],
-                BirthDate = (DateTime)row["Birthdate"],
-                Role = (string)row["Role"],
-                Status = (string)row["Status"],
-                Adress = (string)row["Adress"],
-                Created = (DateTime)row["Created"]
+                Id = (int)row["PATIENT_ID"],
+                Name = (string)row["NAME"],
+                LastName = (string)row["LAST_NAME"],
+                PhoneNumber = (int)row["PHONE_NUMBER"],
+                Email = (string)row["EMAIL"],
+                Password = (string)row["PASSWORD"],
+                Sex = (string)row["SEX"],
+                BirthDate = (DateTime)row["BIRTHDATE"],
+                Role = (string)row["ROLE"],
+                Status = (string)row["STATUS"],
+                Address = (string)row["ADDRESS"],
+                Created = (DateTime)row["CREATED"]
             };
             return patientToReturn;
         }
