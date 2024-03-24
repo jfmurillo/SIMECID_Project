@@ -17,8 +17,5 @@ namespace DTO
 
         [Required(ErrorMessage = "PhoneNumber is required")]
         public int Price { get; set; }
-
-        [Required(ErrorMessage = "Branch ID is required")]
-        public int BranchID { get; set; }
     }
 }

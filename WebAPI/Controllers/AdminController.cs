@@ -91,6 +91,21 @@ namespace WebAPI.Controllers
 
         }
 
+        [HttpPost]
+        [Route("AssignRole")]
+        public ActionResult AssignRole(int adminId, int userId, string newRole, int branch)
+        {
+            try
+            {
+                var am = new AdminManager();
+                am.AssignRole(adminId, userId, newRole, branch);
+                return Ok($"Role '{newRole}' assigned successfully to user with ID {userId}.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred while assigning role: {ex.Message}");
+            }
+        }
 
 
         [HttpDelete]

@@ -62,10 +62,6 @@ namespace CoreApp
             {
                 throw new Exception("Invalid price format");
             }
-            else if (!IsValidID(service.BranchID))
-            {
-                throw new Exception("Invalid Branch ID");
-            }
             sc.Update(service);
         }
 
@@ -88,12 +84,6 @@ namespace CoreApp
         private bool IsValidDesc(string desc)
         {
             return !string.IsNullOrWhiteSpace(desc);
-        }
-
-
-        private bool IsValidID(int id)
-        {
-            return id > 0;
         }
     }
 }
