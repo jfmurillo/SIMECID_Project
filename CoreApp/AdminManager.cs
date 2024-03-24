@@ -159,6 +159,36 @@ namespace CoreApp
                 throw new Exception("User not found.");
             }
 
+           /* switch (user.Role)
+            {
+                case "Doctor":
+                    var dc = new DoctorCrudFactory();
+                    var doctor = new Doctor
+                    {
+                        Id= user.Id,
+                    };
+                    dc.Delete(doctor);
+                    break;
+                case "Nurse":
+                    var nf = new NurseCrudFactory();
+                    var nurse = new Nurse
+                    {
+                        Id = user.Id,
+                    };
+                    nf.Delete(nurse);
+                    break;
+                case "Secretary":
+                    var sf = new SecretaryCrudFactory();
+                    var secretary = new Secretary
+                    {
+                        Id = user.Id
+                    };
+                    sf.Delete(secretary);
+                    break;
+
+            }*/
+
+
             user.Role = newRole;
             um.Update(user);
 
