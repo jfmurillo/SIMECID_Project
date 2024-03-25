@@ -29,8 +29,9 @@ namespace TestConsole
            "\n1. User Info" +
            "\n2. Nurse Info" +
            "\n3. Patient Info" +
-           "\n4. Branch Info" +
-           "\n0. Exit");
+           "\n4. Exit" +
+           "\n6. Appointment Info"
+            );
 
             var opc = Console.ReadLine();
 
@@ -45,14 +46,307 @@ namespace TestConsole
                 case "3":
                     PatientMenu();
                     break;
-                case "4":
-                    BranchMenu();
+                case "6":
+                    AppointmentMenu();
                     break;
-                case "0":
+                case "5":
                     Environment.Exit(0);
                     break;
             }
         }
+
+        //METODOS DE APPOINTMENT
+        private static void AppointmentMenu()
+        {
+            // throw new NotImplementedException();
+            while (true)
+            {
+                Console.WriteLine("\n Appointment Menu" +
+                 "\n1. Create Appointment" +
+                 "\n2. Delete Appointment" +
+                 "\n3. Update Appointment" +
+                 "\n4. Search Appointment by Id" +
+                 "\n5. Get all appointments" +
+                 "\n0. Return to main menu");
+                var opc_user = Console.ReadLine();
+                switch (opc_user)
+                {
+                    case "1":
+                        CreateAppointment();
+                        break;
+                    case "2":
+                        DeleteAppointment();
+                        break;
+                    case "3":
+                        UpdateAppointment();
+                        break;
+                    case "4":
+                        ShowAppointmentById();
+                        break;
+                    case "5":
+                        ShowAllAppointments();
+                        break;
+                    case "0":
+                        Program_menu();
+                        break;
+                 
+                }
+            }
+        }
+
+        private static void UpdateAppointment()
+        {
+            //throw new NotImplementedException();
+            Console.WriteLine("__________________");
+            Console.WriteLine("APPOINTMENT UPDATE PAGE");
+
+            Console.WriteLine("Enter the id for the appointment you wish to UPDATE");
+            var id = Console.ReadLine();
+            Console.WriteLine("Enter Patient Id");
+            var patientId = Console.ReadLine();
+
+            Console.WriteLine("Enter Doctor Id");
+            var doctorId = Console.ReadLine();
+
+
+            Console.WriteLine("Enter Service Id");
+            var serviceId = Console.ReadLine();
+
+
+            Console.WriteLine("Enter Branch Id");
+            var branchId = Console.ReadLine();
+
+
+            Console.WriteLine("Enter Appointment start time");
+            var startTime = Console.ReadLine();
+
+            Console.WriteLine("Enter Appointment start time");
+            var endTime = Console.ReadLine();
+
+            Console.WriteLine("Enter Appointment motive");
+            var motive = Console.ReadLine();
+
+
+            var status = "Payment Pending";
+
+            var newAppointment = new Appointment()
+            {
+                PatientId = int.Parse(patientId),
+                DoctorId = int.Parse(doctorId),
+                ServiceId = int.Parse(serviceId),
+                BranchId = int.Parse(branchId),
+                StartTime = DateTime.Parse(startTime),
+                EndTime = DateTime.Parse(endTime),
+                Text = motive,
+                Status = status
+            };
+
+            try
+            {
+                // Vamos a agarrar el usuario en db
+                var apc = new AppointmentCrudFactory();
+                apc.Update(newAppointment);
+                Console.WriteLine("Yohoo! Appointment updated");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            Console.ReadLine();
+        }
+
+        private static void ShowAllAppointments()
+        {
+            //throw new NotImplementedException();
+            Console.WriteLine("____________________");
+            Console.WriteLine("All Appointments List");
+
+            try
+            {
+                var appointmentCrudFactory = new AppointmentCrudFactory();
+                var appointments = appointmentCrudFactory.RetrieveAll<Appointment>();
+
+                if (appointments.Count > 0)
+                {
+                    Console.WriteLine("\nAll Appointments:\n");
+
+                    foreach (var appointment in appointments)
+                    {
+                        Console.WriteLine($"Appointment ID: {appointment.Id}");
+                        Console.WriteLine($"Patient ID: {appointment.PatientId}");
+                        Console.WriteLine($"Patient name: {appointment.PatientName}");
+                        Console.WriteLine($"Patient last name: {appointment.PatientLastName}");
+                        Console.WriteLine($"Doctor ID: {appointment.DoctorId}");
+                        Console.WriteLine($"Doctor name: {appointment.DoctorName}");
+                        Console.WriteLine($"Doctor last name: {appointment.DoctorLastName}");
+                        Console.WriteLine($"Service ID: {appointment.ServiceId}");
+                        Console.WriteLine($"Service name: {appointment.ServiceName}");
+                        Console.WriteLine($"Branch ID: {appointment.BranchId}");
+                        Console.WriteLine($"Branch Name: {appointment.BranchName}");
+                        Console.WriteLine($"Start time: {appointment.StartTime}");
+                        Console.WriteLine($"End time: {appointment.EndTime}");
+                        Console.WriteLine($"Motive: {appointment.Text}");
+                        Console.WriteLine($"Status: {appointment.Status}");
+                        Console.WriteLine("-------------------------------------------");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No appointments found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+        }
+
+
+        private static void ShowAppointmentById()
+        {
+            //throw new NotImplementedException();
+            Console.WriteLine("____________________");
+            Console.WriteLine("APPOINTMENT DETAILS PAGE");
+
+            Console.WriteLine("Enter the appointment Id you wish to see:");
+            if (int.TryParse(Console.ReadLine(), out int apptId))
+            {
+                try
+                {
+                    var appointmentCrudFactory = new AppointmentCrudFactory();
+                    var appointment = appointmentCrudFactory.RetrieveById<Appointment>(apptId);
+
+                    if (appointment != null)
+                    {
+                        Console.WriteLine($"Appointment ID: {appointment.Id}");
+                        Console.WriteLine($"Patient ID: {appointment.PatientId}");
+                        Console.WriteLine($"Patient name: {appointment.PatientName}");
+                        Console.WriteLine($"Patient last name: {appointment.PatientLastName}");
+                        Console.WriteLine($"Doctor ID: {appointment.DoctorId}");
+                        Console.WriteLine($"Doctor name: {appointment.DoctorName}");
+                        Console.WriteLine($"Doctor last name: {appointment.DoctorLastName}");
+                        Console.WriteLine($"Service ID: {appointment.ServiceId}");
+                        Console.WriteLine($"Service name: {appointment.ServiceName}");
+                        Console.WriteLine($"Branch ID: {appointment.BranchId}");
+                        Console.WriteLine($"Branch Name: {appointment.BranchName}");
+                        Console.WriteLine($"Start time: {appointment.StartTime}");
+                        Console.WriteLine($"End time: {appointment.EndTime}");
+                        Console.WriteLine($"Motive: {appointment.Text}");
+                        Console.WriteLine($"Status: {appointment.Status}");
+                        Console.WriteLine("-------------------------------------------");
+
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Appointment with ID {apptId} not found.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error: {ex.Message}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter a valid ID.");
+            }
+        }
+
+        private static void DeleteAppointment()
+        {
+            //throw new NotImplementedException();
+
+            Console.WriteLine("_________________________");
+            Console.WriteLine("Appointment Delete page");
+
+            Console.WriteLine("Enter the Id for the appointment you wish to delete");
+            var ApptId = Console.ReadLine();
+
+            //crear nuevo objeto Appointment
+            var newAppt = new Appointment()
+            {
+                Id = int.Parse(ApptId)
+            };
+
+            try
+            {
+                // Vamos a borrar el Asset en db
+                var apc = new AppointmentCrudFactory();
+                apc.Delete(newAppt);
+                Console.WriteLine("Appointment deleted");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            Console.ReadLine();
+
+        }
+
+        private static void CreateAppointment()
+        {
+            // throw new NotImplementedException();
+
+            Console.WriteLine("_________________________");
+            Console.WriteLine("Appointment creation page");
+
+            Console.WriteLine("Enter Patient Id");
+            var patientId = Console.ReadLine();
+
+            Console.WriteLine("Enter Doctor Id");
+            var doctorId = Console.ReadLine();
+
+
+            Console.WriteLine("Enter Service Id");
+            var serviceId = Console.ReadLine();
+
+
+            Console.WriteLine("Enter Branch Id");
+            var branchId = Console.ReadLine();
+
+
+            Console.WriteLine("Enter Appointment start time");
+            var startTime = Console.ReadLine();
+
+            Console.WriteLine("Enter Appointment start time");
+            var endTime = Console.ReadLine();
+
+            Console.WriteLine("Enter Appointment motive");
+            var motive = Console.ReadLine();
+
+
+            var status = "Payment Pending";
+
+            //crear nuevo objeto Appointment
+            var newAppt = new Appointment()
+            {
+                PatientId = int.Parse(patientId),
+                DoctorId = int.Parse(doctorId),
+                ServiceId = int.Parse(serviceId),
+                BranchId = int.Parse(branchId),
+                StartTime = DateTime.Parse(startTime),
+                EndTime = DateTime.Parse(endTime),
+                Text = motive,
+                Status = status
+            };
+
+
+            //Creacion del user 
+            try
+            {
+                var apc = new AppointmentCrudFactory();
+                apc.Create(newAppt);
+                Console.WriteLine("Appointment made");
+            }catch(Exception ex) 
+            {
+                Console.WriteLine( ex.ToString);
+            }
+            Console.ReadLine();
+        }
+
+        // USER MENU 
 
         static void UserMenu()
         {
@@ -151,8 +445,6 @@ namespace TestConsole
                 Status = status,
                 Address = adress
                 
-
-
             };
 
             try
