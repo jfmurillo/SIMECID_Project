@@ -29,8 +29,9 @@ namespace TestConsole
            "\n1. User Info" +
            "\n2. Nurse Info" +
            "\n3. Patient Info" +
-           "\n4. Appointment Info" +
-           "\n5. Exit");
+           "\n4. Exit" +
+           "\n6. Appointment Info"
+            );
 
             var opc = Console.ReadLine();
 
@@ -45,7 +46,7 @@ namespace TestConsole
                 case "3":
                     PatientMenu();
                     break;
-                case "4":
+                case "6":
                     AppointmentMenu();
                     break;
                 case "5":
