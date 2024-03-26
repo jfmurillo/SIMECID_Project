@@ -77,7 +77,8 @@ img {
 
     .split.left {
         left: 0;
-        background: url(/img/dr-taking-notes.png);
+        background: url('../assets/1_doctor_taking_notes.png');
+        /*background: url(/img/dr-taking-notes.png);*/
         background-repeat: no-repeat;
         background-size: cover;
         width: 40%;
@@ -132,6 +133,16 @@ img {
     font-family: inherit;
     font-size: 2rem;
     border-radius: 20px;
+}
+
+footer {
+    color: black;
+    padding: 20px 0;
+    text-align: left;
+    margin-left: 10%;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
 
