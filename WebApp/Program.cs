@@ -1,7 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using WebApp.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+builder.Services.AddDbContext<CalendarDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("CalendarContext")));
 
 var app = builder.Build();
 
