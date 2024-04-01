@@ -95,7 +95,7 @@ p {
     min-width: 40px;
     min-height: 40px;
     border-radius: 50%;
-    overflow: hidden; /*Este lo puse Para que las fotos si queden circulares*/
+    overflow: hidden; /* Asegura que cualquier contenido adicional esté oculto dentro del círculo */
 }
 
 .userName {
