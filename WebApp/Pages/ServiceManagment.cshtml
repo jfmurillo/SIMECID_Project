@@ -1,6 +1,7 @@
 ﻿@page
 @model WebApp.Pages.ServiceManagmentModel
 @{
+    Layout = null;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="icon" href="~/assets/2_logosimecid.png" type="image/x-icon" />
     <title>SideBarTemplate</title>
-    <link href=" ~ /css/sidebartemplate.css" rel="stylesheet"/>
+    <link href="~/css/servicemanagment.css" rel="stylesheet" />
 </head>
 
 
@@ -25,14 +26,14 @@
         <div class="sidebar">
             <!------- Logo y titulo ------>
             <div class="containerLogo">
-                <img src="~/assets/logosimecid.png" />
-                <div class="fontTitle">SIMECID</div>
+                 <img src="~/assets/logosimecid.png" /> 
+               
             </div>
             <!------- Icono y nombre del usuario, e icono de settings------>
             <div class="containerUser">
                 <!--Boton para ver el perfil de usuario (no es lo mismo que gestion de users)-->
                 <button class="buttonUser">
-                    <img src="~/assets/3rd_girl.png" />
+                    <img src="~/assets/3rd_girl.png" /> 
                     <div class="fontTitle userName">Emily Sanchez</div>
                 </button>
                 <!--Boton para ir a los settings-->
@@ -52,7 +53,7 @@
                 <button class="buttonMenu" id="examinationMenuId">Examination</button>
                 <button class="buttonMenu" id="prescriptionsMenuId">Prescriptions</button>
                 <button class="buttonMenu" id="medicalReportMenuId">Medical Report</button>
-                <div class="sidebarFooter">@2024 Codecrafters All Right Reserved to </div>
+                <div class="sidebarFooter">2024 Codecrafters All Right Reserved to </div>
             </div>
         
         </div>
