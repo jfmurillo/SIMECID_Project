@@ -61,6 +61,11 @@ p {
     align-items: center;
     background-color: var(--whiteBackground);
 }
+    .containerLogo img {
+        width: 40%;
+        margin: 2%;
+    }
+
 
 /* Estilos para el logo mini */
 .logoMini {
@@ -90,6 +95,14 @@ p {
     display: flex;
     align-items: center;
 }
+    .containerUser img {
+        width: 4vw;
+        height: 4vw;
+        min-width: 40px;
+        min-height: 40px;
+        border-radius: 50%;
+        overflow: hidden; /*Este lo puse Para que las fotos si queden circulares*/
+    }
 
 .userIcon {
     width: 4vw;
@@ -154,7 +167,7 @@ p {
 .sidebarFooter {
     position: center;
     padding: 10%;
-    font-size: 12px;
+    font-size: 10px;
     color: white;
 }
 
