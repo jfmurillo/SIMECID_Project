@@ -62,7 +62,7 @@ p {
 
 /* Estilos para el logo mini */
 .logoMini {
-    width: 20%;
+    width: 40%;
     margin: 2%;
 }
 
@@ -95,7 +95,7 @@ p {
     min-width: 40px;
     min-height: 40px;
     border-radius: 50%;
-    overflow: hidden; /*Este lo puse Para que las fotos si queden circulares*/
+    overflow: hidden; /* Asegura que cualquier contenido adicional esté oculto dentro del círculo */
 }
 
 .userName {
