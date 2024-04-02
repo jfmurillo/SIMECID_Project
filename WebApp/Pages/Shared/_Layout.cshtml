@@ -10,30 +10,11 @@
 </head>
 <body>
     <header>
-        <div class="header">
-            <ul>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-page="/Test">Test</a>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-page="/LandingPageSIMECID">Landing</a>
-                <li>Home</li>
-                <li>About us</li>
-                <li>FAQ</li>
-            </ul>
-            <div class="ContLogoHeader"><img class="LogoSimecidHeader" src="~/images/logosimecid.png" /> </div>
-            <button class="login-btn">Log in</button>
-        </div>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - WebApp - <a asp-area="" asp-page="/Privacy">Privacy</a>
-        </div>
-    </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
