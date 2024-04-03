@@ -25,7 +25,7 @@ namespace CoreApp
             {
                 throw new Exception("Invalid description format");
             }
-            else if (!IsValidPrice(service.Price))
+            else if (!IsValidPrice((int)service.Price))
             {
                 throw new Exception("Invalid price format");
             }
@@ -58,7 +58,7 @@ namespace CoreApp
             {
                 throw new Exception("Invalid description format");
             }
-            else if (!IsValidPrice(service.Price))
+            else if (!IsValidPrice((int)service.Price))
             {
                 throw new Exception("Invalid price format");
             }

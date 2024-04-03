@@ -16,6 +16,6 @@ namespace DTO
         public string Description { get; set; }
 
         [Required(ErrorMessage = "PhoneNumber is required")]
-        public int Price { get; set; }
+        public double Price { get; set; }
     }
 }
