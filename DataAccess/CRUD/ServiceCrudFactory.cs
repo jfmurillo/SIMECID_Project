@@ -23,6 +23,7 @@ namespace DataAccess.CRUD
             sqlOperation.AddVarcharParam("P_NAME", service.Name);
             sqlOperation.AddVarcharParam("P_DESCRIPTION", service.Description);
             sqlOperation.AddDecimalParam("P_PRICE", (decimal)service.Price);
+            sqlOperation.AddDecimalParam("P_TAX", (decimal)service.Tax);
 
             _dao.ExecuteProcedure(sqlOperation);
         }
@@ -53,6 +54,7 @@ namespace DataAccess.CRUD
             sqlOperation.AddVarcharParam("P_NAME", service.Name);
             sqlOperation.AddVarcharParam("P_DESCRIPTION", service.Description);
             sqlOperation.AddDecimalParam("P_PRICE", (decimal)service.Price);
+            sqlOperation.AddDecimalParam("P_TAX", (decimal)service.Tax);
 
             _dao.ExecuteProcedure(sqlOperation);
         }
@@ -106,6 +108,7 @@ namespace DataAccess.CRUD
                 Name = (string)row["NAME"],
                 Description = (string)row["DESCRIPTION"],
                 Price = (double)row["PRICE"],
+                Tax = (double)row["TAX"],
                 /*BranchID = row["BRANCH_ID"] != DBNull.Value ? (int)row["BRANCH_ID"] : 0, // Check for DBNull for integer fields*/
             };
             return srvToReturn;
