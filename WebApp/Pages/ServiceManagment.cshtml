@@ -58,83 +58,30 @@
         
         </div>
         <div class="container1">
-            <h1 class="title1">All your services</h1>
-            <h class="subtitle">Select the branch where you want to see the services</h>
+            <h1 class="title1">Your Branches</h1>
+            <p class="subtitle">Select the branch where you want to see the services</p>
 
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th scope="col">Type</th>
-                    <th scope="col">Column heading</th>
-                    <th scope="col">Column heading</th>
-                    <th scope="col">Column heading</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="table-active">
-                    <th scope="row">Active</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                </tr>
-                <tr>
-                    <th scope="row">Default</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                </tr>
-                <tr class="table-primary">
-                    <th scope="row">Primary</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                </tr>
-                <tr class="table-secondary">
-                    <th scope="row">Secondary</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                </tr>
-                <tr class="table-success">
-                    <th scope="row">Success</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                </tr>
-                <tr class="table-danger">
-                    <th scope="row">Danger</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                </tr>
-                <tr class="table-warning">
-                    <th scope="row">Warning</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                </tr>
-                <tr class="table-info">
-                    <th scope="row">Info</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                </tr>
-                <tr class="table-light">
-                    <th scope="row">Light</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                </tr>
-                <tr class="table-dark">
-                    <th scope="row">Dark</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                </tr>
-                </tbody>
-            </table>
+            <!--Primera Tabla-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <table id="tblBranch" class="table table-hover" class="display" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>BranchId</th>
+                                <th>Name</th>
+                                <th>Address</th>
+                                <th>Description</th>
+                                <th>ServiceId</th>
+
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+            </div>
         </div>
 
+        <!--Segunda Tabla-->
         <div class="container2">
             <h1 class="title2">Services at your branch</h1>
 
@@ -143,7 +90,26 @@
                 <p>Create new</p>
             </div>
 
-            <table class="table table-hover">
+            <div class="row">
+                <div class="col-lg-12">
+                    <table id="tblServices" class="table table-hover" class="display" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>SerivceId</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                                <th>Tax</th>
+
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+            </div>
+
+            
+          @*   <table class="table table-hover">
                 <thead>
                 <tr>
                     <th scope="col">Type</th>
@@ -215,36 +181,41 @@
                 </tr>
                 </tbody>
             </table>
-        </div>
+        </div> *@
         
         <div class="container3">
             <h1 class="details">Service Details</h1>
-
+        </div>
             <div class="form">
                 <form action="/action_page.php">
-                  <div class="form-field">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" value="">
+                 <div class="form-field">
+                   <label for="textId"> Service Id</label>
+                   <input type="textId" class="formularyform" id="ServiceId" type="number">
                   </div>
                   <div class="form-field">
-                    <label class="description" for="description">Description</label>
-                    <input type="text" id="description" name="description" value="">
+                   <label for="textName" > Name</label>
+                   <input type="textName" class="formularyform" id="textName" >
                   </div>
                   <div class="form-field">
-                    <label for="price">Price</label>
-                    <input type="text" id="price" name="price" value="">
+                    <label  for="textDescription">Description</label>
+                    <input type="textDescription" class="formularyform" id="textDescription" >
                   </div>
                   <div class="form-field">
-                    <label for="tax">Tax</label>
-                    <input type="text" id="tax" name="tax" value="">
+                    <label for="textPrice">Price</label>
+                    <input type="textPrice" class="formularyform" id="textPrice" type="number">
+                  </div>
+                  <div class="form-field">
+                    <label for="textTax">Tax</label>
+                    <input type="textTax" class="formularyform" id="textTax" type="number">
                   </div>
                   <div class="form-buttons">
+                    <button type="submit">Register</button>
                     <button type="submit">Update</button>
                     <button type="submit">Delete</button>
-                    <button type="submit">Register</button>
+                    
                   </div>
                 </form>
             </div>
-    </div>
+    
 </body>
 </html>

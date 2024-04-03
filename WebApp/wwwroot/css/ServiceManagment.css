@@ -246,11 +246,12 @@ h1 {
 
 .title1 {
     color: #4ec8a4;
-    margin-left: 26%;
+    margin-left: 20%;
 }
 
 .title2 {
     color: #1f95a1;
+    margin-left:12%;
 }
 
 .spaceP {
@@ -290,7 +291,19 @@ h2 {
 
 .form {
     width: 300px;
-    margin-left: -20%;
+    margin-left: 5%;
+    margin-top: 2%;     
+}
+
+.formularyform {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    width: 200px;
+    flex: 1;
+    padding: 5px;
+    margin-left: 2%;
+    
 }
 
 .form-field {
@@ -336,10 +349,13 @@ h2 {
     }
 
 .subtitle {
-    margin-left: 18%;
+    margin-left: 5%;
     font-size: 18px;
+    width: 100%;
+    display: block;
 }
 
 .details {
-    margin-left: 2.5%;
+    margin-top:2%;
+    margin-left: -42%;
 }
