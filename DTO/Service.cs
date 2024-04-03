@@ -17,5 +17,8 @@ namespace DTO
 
         [Required(ErrorMessage = "PhoneNumber is required")]
         public double Price { get; set; }
+
+        [Required(ErrorMessage = "Tax is required")]
+        public double Tax { get; set; }
     }
 }
