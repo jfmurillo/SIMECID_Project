@@ -1,0 +1,166 @@
+﻿@page
+@model WebApp.Pages.AppointmentManagerModel
+@{
+    Layout = "";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="icon" href="~/assets/2_logosimecid.png" type="image/x-icon" />
+    <link type="text/css" rel="stylesheet" href="themes/calendar_green.css" />
+    <link type="text/css" rel="stylesheet" href="themes/calendar_traditional.css" />
+    <link type="text/css" rel="stylesheet" href="themes/calendar_transparent.css" />
+    <link type="text/css" rel="stylesheet" href="themes/calendar_white.css" />
+    <link href="~/css/Appointmentsmanager.css" rel="stylesheet" />
+	<link rel="icon" href="~/assets/2_logosimecid.png" type="image/x-icon"   />
+	<link href="~/css/SideBarTemplate.css" rel="stylesheet" />
+</head>
+
+<div class="sidebar">
+    <!------- Logo y titulo ------>
+    <div class="containerLogo">
+        <img src="~/assets/2_logosimecid.png" class="logoMini" />
+        <div class="fontTitle">SIMECID</div>
+    </div>
+    <!------- Icono y nombre del usuario, e icono de settings------>
+    <div class="containerUser">
+        <!--Boton para ver el perfil de usuario (no es lo mismo que gestion de users)-->
+        <button class="buttonUser">
+            <img src="~/assets/3rd_girl.png" class="userIcon" />
+            <div class="fontTitle userName">Emily Sanchez</div>
+        </button>
+        <!--Boton para ir a los settings-->
+        <button class="buttonSettings">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-gear-fill settingsIcon" viewBox="0 0 16 16">
+                <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
+            </svg>
+        </button>
+    </div>
+
+    <div class="MainMenu">
+        <button class="buttonMenu" id="appointmentsMenuId">Appointments</button>
+        <button class="buttonMenu" id="servicesMenuId">Services</button>
+        <button class="buttonMenu" id="branchesMenuId">Branches</button>
+        <button class="buttonMenu" id="usersMenuId">Users</button>
+        <button class="buttonMenu" id="paymentMenuId">Payment</button>
+        <button class="buttonMenu" id="examinationMenuId">Examination</button>
+        <button class="buttonMenu" id="prescriptionsMenuId">Prescriptions</button>
+        <button class="buttonMenu" id="medicalReportMenuId">Medical Report</button>
+        <div class="sidebarFooter">All Rights Reserved</div>
+    </div>
+
+</div>
+
+<!------- CONTENIDO PRINCIPAL --------->
+<body>
+    <div class="wrapper">
+        <h2>Make your Appointments</h2>
+        <h3>Select your location and preferred services</h3>
+        <div class="wrapper">
+            <form id="myForm">
+                <div class="wrapper">
+                    <h2 class="branchesTitle">Branches</h2>
+                    <input type="hidden" id="branchSelection" name="serviceSelection" value="" />
+                    <div>
+                        <table id="tblBranches">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Branch Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="wrapper">
+                    <h2 class="servicesTitle">Services</h2>
+                    <input type="hidden" id="serviceSelection" name="serviceSelection" value="" />
+                    <div>
+                        <table id="tblServices">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Service Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="wrapper paddingSeparate">
+                    <h2>Select your prefered date</h2>
+                    <input type="date" class="form-control" id="txtAcquisition" />
+                </div>
+                <div class="wrapper ">
+                    <label>Confirm Appointment</label>
+                    <input type="button" value="Submit" class="btn btn-primary wrapper btnBlack"/>
+                </div>
+
+            </form>
+
+            <div class="paddingSeparate ">
+                <div>
+                    <table class="paddingSeparate " id="tblAppointments">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Branch Name</th>
+                            <th>Service Name</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                </table>
+                </div>
+                <div class="paddingSeparate ">
+                    <form>
+                        <div>
+                            <label class="form-label mt-4">Id</label>
+                            <input type="number" class="form-control" id="txtId" />
+                        </div>
+                        <div>
+                            <label class="form-label mt-4">Branch Name</label>
+                            <input type="text" class="form-control" id="txtBranchName" />
+                        </div>
+                        <div>
+                            <label class="form-label mt-4">Service Name</label>
+                            <input type="text" class="form-control" id="txtServiceName" />
+                        </div>
+                        <div >
+                            <label class="form-label mt-4">Description</label>
+                            <input type="text" class="form-control" id="txtDescription"/>
+                        </div>
+                        <div class="paddingSeparate">
+                            <input type="button" value="Pay" class="btn btn-primary btnBlack" id="btnPay" />
+                            <input type="button" value="Update" class="btn btn-primary btnBlack" id="btnUpdate" />
+                            <input type="button" value="Delete" class="btn btn-primary btnBlack" id="btnDelete" />
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="~/lib/daypilot/daypilot-all.min.js" asp-append-version="true"></script>
+    <script>
+        function seleccionarOpcionBranch(opcion) {
+            document.getElementById("branchSelection").value = opcion;
+        }
+
+        function seleccionarOpcionService(opcion) {
+            document.getElementById("serviceSelection").value = opcion;
+        }
+    </script>
+</body>
+</html>
