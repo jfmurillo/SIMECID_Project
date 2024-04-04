@@ -3,6 +3,61 @@
 //vista o pagina
 
 //Definmos la clase 
+function BranchController() {
+    this.ViewName = "Branch"; //como se llama la pagina
+    this.ApiService = "Branch";
+
+    this.LoadTableBranch();
+
+    this.InitView = function () {
+        console.log("Services view init");
+        this.LoadTableBranch();
+
+    }
+
+    this.LoadTableBranch = function () { //Metodo para la carga de la tabla de datos
+        var ca = new ControlActions();
+
+        //Ruta del api
+        var urlService = ca.GetUrlApiService(this.ApiService + "/RetrieveAll")
+
+
+
+        var columns = [];
+        columns[0] = { 'data': "id" }
+        columns[1] = { 'data': "name" }
+        columns[2] = { 'data': "address" }
+        columns[3] = { 'data': "description" }
+        columns[4] = { 'data': "serviceId" }
+
+        $("#tblBranch").dataTable({
+            "ajax": {
+                "url": urlService,
+                "dataSrc": ""
+            },
+            "columns": columns
+        });
+
+        //Asignacion de evento al click de la fila de la tabla
+        //$('#tblBranch tbody').on('click', 'tr', function () {
+
+        //    //Extrae la fila a la que le dio click
+        //    var row = $(this).closest('tr');
+
+        //    //Extraer la data del registro contenido en la fila
+        //    var branch = $('#tblBranch').DataTable().row(row).data();
+
+        //    //Mapeo de los valores del objeto data con el formulario
+        //    $("#BranchId").val(branch.id);
+        //    $("#textName").val(branch.name);
+        //    $("#textAddress").val(branch.address);
+        //    $("#textDescription").val(branch.description);
+        //    $("#textServiceId").val(branch.serviceId);
+
+
+        //});
+    }
+}
 function ServiceController() {
     this.ViewName = "Services"; //como se llama la pagina
     this.ApiService = "Service"  //Servicio de Api
@@ -11,7 +66,7 @@ function ServiceController() {
 
     this.InitView = function () {
 
-        console.log("Branch view init");
+        console.log("Services view init");
 
         //Bind del click del boton del create con la funcion correspondiente //# para que busque por Id
         $("#btnCreate").click(function () {
@@ -31,8 +86,8 @@ function ServiceController() {
             vc.Delete();
 
         })
-
-        this.LoadTable();
+        this.LoadTableService();
+       
 
     }
     /*
@@ -121,7 +176,7 @@ function ServiceController() {
         });
     }
 
-    this.LoadTable = function () { //Metodo para la carga de la tabla de datos
+    this.LoadTableService = function () { //Metodo para la carga de la tabla de datos
         var ca = new ControlActions();
 
         //Ruta del api
@@ -132,7 +187,7 @@ function ServiceController() {
         var columns = [];
         columns[0] = { 'data': "id" }
         columns[1] = { 'data': "name" }
-        columns[2] = { 'data': "descrition" }
+        columns[2] = { 'data': "description" }
         columns[3] = { 'data': "price" }
         columns[4] = { 'data': "tax" }
 
@@ -151,7 +206,7 @@ function ServiceController() {
             var row = $(this).closest('tr');
 
             //Extraer la data del registro contenido en la fila
-            var service = $('#tbServices').DataTable().row(row).data();
+            var service = $('#tblServices').DataTable().row(row).data();
 
             //Mapeo de los valores del objeto data con el formulario
             $("#ServiceId").val(service.id);
@@ -164,11 +219,18 @@ function ServiceController() {
         });
     }
 
+    
+
 
 }
 
 //Instanciamineto de la clase 
 $(document).ready(function () {
-    var vc = new UserController();
+    var vc = new ServiceController();
     vc.InitView();
+})
+
+$(document).ready(function () {
+    var bc = new BranchController();
+    bc.InitView();
 })
