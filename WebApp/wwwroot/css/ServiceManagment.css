@@ -56,10 +56,11 @@ p {
 
 /*Contenedor del logo y el título */
 .containerLogo {
-    width: 100%;
+    width: 99%;
     display: flex;
     align-items: center;
     background-color: var(--whiteBackground);
+    border: 2px solid #02B1A9;
 }
     .containerLogo img {
         width: 40%;

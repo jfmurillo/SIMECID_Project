@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-    <link rel="stylesheet" href="/css/sign-up.css" />
+    <link href="~/css/sign-up.css" rel="stylesheet" />
     <title>Sign-up</title>
 </head>
 <body>
@@ -57,7 +57,7 @@
 
                 <div class="sign-up-form">
                     <label for="sex">Sex</label><br>
-                    <select id="sex" name="sex" style="width: 30vw; height: 4vh;" required>
+                    <select class="classinput" id="sex" name="sex" style="width: 30vw; height: 4vh;" required>
                         <option value="" disabled selected hidden>Select your gender</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
@@ -67,12 +67,12 @@
 
                 <div class="sign-up-form">
                     <label for="birthdate">Birth Date</label><br>
-                    <input type="date" id="birthdate" name="birthdate" required><br><br>
+                    <input class="password" type="date" id="birthdate" name="birthdate" required><br><br>
                 </div>
 
                 <div class="sign-up-form">
                     <label for="address">Address</label><br>
-                    <textarea id="address" name="address" required style="width: 600px; height: 48px;"></textarea><br><br>
+                    <textarea class="classinput" id="address" name="address" required style="width: 600px; height: 48px;"></textarea><br><br>
                 </div>
 
                 @* <button class="btn" type="submit" style="margin-left: 350px;">Create Account</button> *@
