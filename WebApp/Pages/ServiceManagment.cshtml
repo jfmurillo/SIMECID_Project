@@ -1,8 +1,12 @@
 ﻿@page
 @model WebApp.Pages.ServiceManagmentModel
 @{
-    Layout = null;
+     Layout = null;
+    
+
 }
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +18,16 @@
     <link rel="icon" href="~/assets/2_logosimecid.png" type="image/x-icon" />
     <title>SideBarTemplate</title>
     <link href="~/css/servicemanagment.css" rel="stylesheet" />
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/controlactions.js"></script>
+
+    <link href="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.css" rel="stylesheet">
+    <script src="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.js"></script>
+    <script src="~/js/pages/servicemanagment.js"></script>
+
 </head>
 
 
@@ -216,6 +230,8 @@
                   </div>
                 </form>
             </div>
-    
+            
+           
 </body>
+
 </html>

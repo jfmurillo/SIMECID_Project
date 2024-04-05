@@ -27,12 +27,7 @@ namespace DataAccess.CRUD
             sqlOperation.AddVarcharParam("P_ADDRESS", branch.Address);
             sqlOperation.AddVarcharParam("P_DESCRIPTION", branch.Description);
 
-            // Inicializar la lista de servicios como una lista vacía
-           // branch.Services = new List<int>();
-
-            // Establecer la lista de servicios como vacía
-            branch.Services.Clear();
-
+            
             _dao.ExecuteProcedure(sqlOperation);
         }
 
@@ -82,6 +77,8 @@ namespace DataAccess.CRUD
                 Name = (string)row["NAME"],
                 Address = (string)row["ADDRESS"],
                 Description = (string)row["DESCRIPTION"],
+                //ServiceId = (int)row["SERVICE_ID"],
+                //ServiceName = (string)row["SERVICE_NAME"]
 
             };
             return branchToReturn;
@@ -135,6 +132,37 @@ namespace DataAccess.CRUD
             sqlOperation.AddIntParam("P_BRANCH_ID", branchId);
             sqlOperation.AddIntParam("P_SERVICE_ID", serviceId);
             _dao.ExecuteProcedure(sqlOperation);
+        }
+
+        private Branch BuildBranchXServices(Dictionary<string, object> row)
+        {
+            var branchToReturn = new Branch()
+            {
+                Id = (int)row["BRANCH_ID"],
+                Name = (string)row["BRANCH_NAME"],
+                ServiceId = (int)row["SERVICE_ID"],
+                ServiceName = (string)row["SERVICE_NAME"],
+                ServicePrice = (double)row["PRICE"],
+                ServiceTax = (double)row["TAX"]
+
+            };
+            return branchToReturn;
+        }
+        public List<T> RetrieveServicesByBranchId<T>(int Id)
+        {
+            var sqlOperation = new SqlOperation() { ProcedureName = "GET_SERVICES_BY_BRANCH_ID_PR" };
+            sqlOperation.AddIntParam("P_BRANCH_ID", Id);
+            var lstResult = _dao.ExecuteQueryProcedure(sqlOperation);
+
+            List<T> servicesList = new List<T>(); // Lista para almacenar los servicios
+
+            foreach (var row in lstResult)
+            {
+                var service = BuildBranchXServices(row);
+                servicesList.Add((T)Convert.ChangeType(service, typeof(T)));
+            }
+
+            return servicesList;
         }
 
     }
