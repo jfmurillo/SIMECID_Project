@@ -104,26 +104,28 @@ img {
 
 .sign-up-form {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
     margin-bottom: 20px;
+    align-items: center;
 }
 
     .sign-up-form input {
-        border-radius: 5px;
-        display: block;
-        width: 600px;
-        font-size: 18px;
+        display: flex;
+        width: 100px;
+        margin-left: 10px;
+        text-align: right;
     }
 
-#sex, #address, #birthdate {
+.password {
+    flex: 1;
+    padding: 5px;
+    margin-left: 1%;
     border-radius: 5px;
-    display: block;
-    width: 600px;
-    font-size: 18px;
-    border-color: black;
-    border: 2px solid black;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    width: 200px;
 }
+
+
 
     .sign-up-form label {
         display: inline-block;
@@ -134,15 +136,7 @@ img {
         white-space: nowrap;
     }
 
-#address, #birthdate, #sex {
-    flex: 1;
-    padding: 5px;
-    margin-left: 1%;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    width: 200px;
-}
+
 
 #sex {
     font-family: "Montserrat", sans-serif;
@@ -154,15 +148,17 @@ textarea {
 }
 
 .btn {
-    cursor: pointer;
-    display: inline-block;
-    width: 50%;
-    color: #EFEFEF;
-    background: black;
-    padding: 15px;
-    font-family: inherit;
-    font-size: 2rem;
-    border-radius: 20px;
+    cursor: pointer; /* Cambia el cursor al pasar sobre el enlace */
+    display: inline-block; /* Hace que el enlace se comporte como un bloque en línea */
+    width: 50%; /* Ancho del 50% del contenedor */
+    color: #EFEFEF; /* Color del texto */
+    background: black; /* Color de fondo */
+    padding: 15px; /* Relleno de 15px */
+    font-family: inherit; /* Utiliza el tipo de fuente del elemento contenedor */
+    font-size: 2rem; /* Tamaño de fuente de 2rem (equivalente a 32px) */
+    border-radius: 20px; /* Radio de 20px para los bordes */
+    text-decoration: none; /* Quita el subrayado del enlace */
+    text-align: center; /* Centra el texto dentro del enlace */
 }
 
 footer {
