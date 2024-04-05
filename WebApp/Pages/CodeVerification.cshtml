@@ -24,7 +24,7 @@
 
         <div class="split right">
             <span class="topSignUp">
-                <img src="~/assets/2_logosimecid.png" />  alt="logo-simecid">
+                <img src="~/assets/logo-white.png" />
                 <h1>SIMECID</h1>
             </span>
             <h2>
@@ -37,7 +37,8 @@
                     <label for="text">OTP  </label>
                     <input type="text" id="otp" name="otp" required>
                 </div>
-                <button class="btn" type="submit" style="margin-left: 350px;">Verify Me</button>
+                @* <button class="btn" type="submit" style="margin-left: 350px;">Verify Me</button> *@
+                <a class="btn" style="margin-left: 350px;" asp-area="" asp-page="/Login">Verify Me</a>
             </form>
         </div>
     </div>

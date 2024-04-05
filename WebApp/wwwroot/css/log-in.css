@@ -37,6 +37,7 @@ body {
 }
 
     .container h2 {
+        margin: 0;
         font-weight: 900 bold;
     }
 
@@ -50,8 +51,8 @@ h2 {
 }
 
 img {
-    width: 201px;
-    height: 193px;
+    width: 120px;
+    height: 130px;
     top: 25px;
     left: 695px;
     gap: 0px;
@@ -68,7 +69,7 @@ img {
 
 .split.right h2 {
     width: 70%;
-    top: 5%;
+    top: 28%;
     padding: 0;
     margin-left: 200px;
     font-weight: 900 bold;
@@ -115,6 +116,7 @@ img {
     flex-direction: column;
     justify-content: space-between;
     max-width: 1000px;
+    margin-top:195px;
     margin-left: 00px;
     padding: 40px;
 }

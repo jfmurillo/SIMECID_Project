@@ -38,6 +38,7 @@ body {
 
     .container h2 {
         font-weight: 900 bold;
+        margin: 0
     }
 
 h2 {
@@ -50,8 +51,8 @@ h2 {
 }
 
 img {
-    width: 201px;
-    height: 193px;
+    width: 120px;
+    height: 130px;
     top: 25px;
     left: 695px;
     gap: 0px;
@@ -68,10 +69,10 @@ img {
 
 .split.right h2 {
     width: 70%;
-    top: 9%;
+    top: 19%;
     padding: 0;
     margin-left: 200px;
-    font-size: 60px;
+    font-size: 70px;
     font-weight: 900 bold;
     flex-wrap: wrap;
 }
@@ -92,14 +93,14 @@ img {
         background: url('../assets/estetoscopio.png');
         background-repeat: no-repeat;
         background-size: cover;
-        width: 50%;
+        width: 40%;
     }
 
     .split.right {
         right: 0;
         background-repeat: no-repeat;
         background-size: cover;
-        width: 50%;
+        width: 60%;
     }
 
 
@@ -108,16 +109,22 @@ img {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    margin-top: 150px;
+    margin-top: 250px;
     margin-right: 100px;
     font-size: x-large;
 }
 
+#otp {
+    
+    font-size:20px
+}
+
 .OtpRecPwd {
     width: 500px;
-    margin-left: 200px;
+    margin-left: 290px;
     height: 40px;
     font-size: 32px;
+    font-weight: lighter;
 }
 
 .btn {
@@ -137,7 +144,7 @@ footer {
     color: black;
     padding: 20px 0;
     text-align: left;
-    margin-left: 20%;
+    margin-left: 10%;
     position: fixed;
     bottom: 0;
     width: 100%;
