@@ -14,6 +14,7 @@
     <link href="~/css/landingpagesimecid.css" rel="stylesheet" />
     <title>LandingPageSimecid</title>
     <link href="~/css/landingpagesimecid.css" rel="stylesheet" />
+    <script src="~/js/sign-in.js"></script>
 
 </head>
 
@@ -25,7 +26,8 @@
             <li class="li-header">FAQ</li>
         </ul>
         <div class="ContLogoHeader"><img class="LogoSimecidHeader" src="~/assets/logosimecid.png"/> </div>
-        <button class="loginBtnHeader">Log in</button>
+        @* <button class="loginBtnHeader">Log in</button> *@
+        <a class="loginBtnHeader" asp-area="" asp-page="/Login">Log in</a>
     </div>
 </header>
 
@@ -37,7 +39,8 @@
         </div>
         <div class="SubCont-Primera-Capa-ParteDerecha">
             <p class="Txt-PrimeraCapa-ParteDerecha">Simplify your health with our <br> efficient medical <br> appointment app.</p>
-            <button class="Btn-SingUp-PrimeraCapa">Sing up</button>
+            @* <button class="Btn-SingUp-PrimeraCapa" id="signUpBtn" type="click">Sing up</button> *@
+            <a class="Btn-SingUp-PrimeraCapa" asp-area="" asp-page="/SignUp">Sign up</a>
         </div>
     </div>
 
@@ -176,7 +179,8 @@
         </div>
         <div class="Sub-Cont-PrimerCuadro-Septima-Capa">
             <h1 class="H1-PrimerCuadro-SeptimaCapa">Welcome to our Medical Appointment App</h1>
-            <button class="Btn-Cuadro-SeptimaCapa">Sign Up Now</button>
+            @* <button class="Btn-Cuadro-SeptimaCapa">Sign Up Now</button> *@
+            <a class="Btn-Cuadro-SeptimaCapa" asp-area="" asp-page="/SignUp">Sign Up Now</a>
         </div>
     </div>
 

@@ -44,8 +44,8 @@ h2 {
 }
 
 img {
-    width: 201px;
-    height: 193px;
+    width: 120px;
+    height: 130px;
     top: 25px;
     left: 695px;
     gap: 0px;
@@ -97,6 +97,7 @@ img {
     flex-direction: column;
     justify-content: space-between;
     max-width: 1000px;
+    margin-top: 100px;
     margin-left: 00px;
     padding: 40px;
 }
@@ -114,6 +115,15 @@ img {
         width: 600px;
         font-size: 18px;
     }
+
+#sex, #address, #birthdate {
+    border-radius: 5px;
+    display: block;
+    width: 600px;
+    font-size: 18px;
+    border-color: black;
+    border: 2px solid black;
+}
 
     .sign-up-form label {
         display: inline-block;
@@ -136,6 +146,11 @@ img {
 
 #sex {
     font-family: "Montserrat", sans-serif;
+}
+
+textarea {
+    font-family: "Montserrat", sans-serif;
+    font-size: 22px;
 }
 
 .btn {

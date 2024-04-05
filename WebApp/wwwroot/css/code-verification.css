@@ -37,6 +37,7 @@ body {
 }
 
     .container h2 {
+        margin: 0;
         font-weight: 900 bold;
     }
 
@@ -50,8 +51,8 @@ h2 {
 }
 
 img {
-    width: 201px;
-    height: 193px;
+    width: 120px;
+    height: 130px;
     top: 25px;
     left: 695px;
     gap: 0px;
@@ -68,7 +69,7 @@ img {
 
 .split.right h2 {
     width: 70%;
-    top: 9%;
+    top: 28%;
     padding: 0;
     margin-left: 200px;
     font-size: 66px;
@@ -85,17 +86,17 @@ img {
 
     .split.left {
         left: 0;
-        background: url(..//Assets//Block_Faces.png);
+        background: url(/Assets//Block_Faces.png);
         background-repeat: no-repeat;
-        background-size: cover;
-        width: 50%;
+        background-size:cover;
+        width: 40%;
     }
 
     .split.right {
         right: 0;
         background-repeat: no-repeat;
         background-size: cover;
-        width: 50%;
+        width: 60%;
     }
 
 .form-container {
@@ -103,6 +104,7 @@ img {
     flex-direction: column;
     justify-content: space-between;
     max-width: 1000px;
+    margin-top: 195px;
     margin-left: 00px;
     padding: 40px;
 }
@@ -148,7 +150,7 @@ footer {
     color: black;
     padding: 20px 0;
     text-align: left;
-    margin-left: 20%;
+    margin-left: 10%;
     position: fixed;
     bottom: 0;
     width: 100%;
