@@ -85,7 +85,17 @@ namespace CoreApp
                 uc.Delete(branch);
             }
 
-            private bool IsValidName(string name)
+        public void AddServices(Branch branch)
+        {
+            var uc = new BranchCrudFactory();
+
+            foreach (var serviceId in branch.Services)
+            {
+                uc.AddServiceToBranch(branch.Id, serviceId);
+            }
+        }
+
+        private bool IsValidName(string name)
             {
                 return !string.IsNullOrWhiteSpace(name) && char.IsUpper(name[0]) && name.All(c => char.IsLetter(c) && !char.IsWhiteSpace(c));
             }
@@ -102,5 +112,7 @@ namespace CoreApp
 
 
         }
+
+
     }
 

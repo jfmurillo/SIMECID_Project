@@ -26,8 +26,12 @@ namespace DataAccess.CRUD
             sqlOperation.AddVarcharParam("P_NAME", branch.Name);
             sqlOperation.AddVarcharParam("P_ADDRESS", branch.Address);
             sqlOperation.AddVarcharParam("P_DESCRIPTION", branch.Description);
-            sqlOperation.AddIntParam("P_SERVICE_ID", branch.ServiceId); 
 
+            // Inicializar la lista de servicios como una lista vacía
+           // branch.Services = new List<int>();
+
+            // Establecer la lista de servicios como vacía
+            branch.Services.Clear();
 
             _dao.ExecuteProcedure(sqlOperation);
         }
@@ -64,7 +68,6 @@ namespace DataAccess.CRUD
             sqlOperation.AddVarcharParam("P_NAME", branch.Name);
             sqlOperation.AddVarcharParam("P_ADDRESS", branch.Address);
             sqlOperation.AddVarcharParam("P_DESCRIPTION", branch.Description);
-            sqlOperation.AddIntParam("P_SERVICE_ID", branch.ServiceId);
 
 
             _dao.ExecuteProcedure(sqlOperation);
@@ -79,7 +82,7 @@ namespace DataAccess.CRUD
                 Name = (string)row["NAME"],
                 Address = (string)row["ADDRESS"],
                 Description = (string)row["DESCRIPTION"],
-                ServiceId = (int)row["SERVICE_ID"]
+
             };
             return branchToReturn;
         }
@@ -123,7 +126,15 @@ namespace DataAccess.CRUD
 
             }
             return branchList;
+        }
 
+
+       public void AddServiceToBranch(int branchId, int serviceId)
+        {
+            var sqlOperation = new SqlOperation { ProcedureName = "ADD_SERVICES_TO_BRANCH" };
+            sqlOperation.AddIntParam("P_BRANCH_ID", branchId);
+            sqlOperation.AddIntParam("P_SERVICE_ID", serviceId);
+            _dao.ExecuteProcedure(sqlOperation);
         }
 
     }

@@ -20,5 +20,7 @@ namespace DTO
 
         [Required(ErrorMessage = "Tax is required")]
         public double Tax { get; set; }
+
+        public int BranchId { get; set; }
     }
 }
