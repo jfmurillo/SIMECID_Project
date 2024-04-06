@@ -16,7 +16,23 @@ function AllBranchInfoController() {
 
         })
         this.LoadTableAllInfoBranch();
+
+        this.LoadBranches();
+        this.LoadServices();
     }
+
+    this.LoadBranches = function () {
+        var ba = new ControlActions();
+        var urlService = this.ApiService + "/RetrieveAll";
+
+        ba.GetToApi(urlService, function (response) {
+            response.forEach(function (branch) {
+                $("#branchSelect").append('<option value="' + branch.id + '">' + branch.id + ' - ' + branch.name + '</option>');
+            });
+        });
+    }
+
+    
 
     this.Add = function () {
         //Crear un Dto de User
@@ -60,6 +76,7 @@ function AllBranchInfoController() {
     }
 }
 
+//CONTROLLER DE BRANCH 
 function BranchController() {
     this.ViewName = "Branch"; //como se llama la pagina
     this.ApiService = "Branch";
@@ -102,6 +119,8 @@ function BranchController() {
 
     }
 }
+
+//CONTROLLER DE SERVICIOS 
 function ServiceController() {
     this.ViewName = "Service"; //como se llama la pagina
     this.ApiService = "Service"  //Servicio de Api
@@ -143,6 +162,18 @@ function ServiceController() {
       "price": 0
     }
     */
+
+    this.LoadAllServices = function (callback) {
+        var ca = new ControlActions();
+        var urlService = this.ApiService + "/RetrieveAll";
+
+        ca.GetToApi(urlService, function (response) {
+
+            response.forEach(function (service) {
+                $("#serviceSelect").append('<option value="' + service.id + '">' + service.id + ' - ' + service.name + '</option>');
+            });
+        });
+    }
 
     this.Create = function () {
 

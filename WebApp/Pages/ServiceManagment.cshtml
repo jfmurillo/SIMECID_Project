@@ -74,7 +74,7 @@
         
         </div>
         <div class="container1">
-            <h1 class="title1">Your Branches</h1>
+            <h1 class="title1">Service Managment</h1>
             <!--Todas las branch tabla-->
             <div class="row">
                 <div class="col-lg-12">
@@ -115,25 +115,34 @@
                 </div>
             </div>
 
-            <!--Add servive to branch form-->
+            <!-- Add service to branch form -->
             <div class="container3">
                 <h1 class="details">Add service to branch</h1>
             </div>
             <div class="form">
                 <form action="/action_page.php">
                     <div class="form-field">
-                        <label for="textId"> Branch Id</label>
-                        <input class="formularyform" id="BranchId" type="number">
+                        <label for="branchSelect">Branch</label>
+                        <select id="branchSelect" class="formularyform">
+                            <!-- Aquí puedes agregar las opciones de las sucursales desde tu base de datos -->
+                            
+                            <!-- Agrega más opciones según sea necesario -->
+                        </select>
                     </div>
                     <div class="form-field">
-                        <label for="textId"> Service Id</label>
-                        <input class="formularyform" id="ServiceId" type="number">
+                        <label for="serviceSelect">Service</label>
+                        <select id="serviceSelect" class="formularyform">
+                            <!-- Aquí puedes agregar las opciones de los servicios desde tu base de datos -->
+                          
+                            <!-- Agrega más opciones según sea necesario -->
+                        </select>
                     </div>
                     <div class="form-buttons">
                         <button id="btnAdd" type="button">Add</button>
                     </div>
                 </form>
             </div>
+
 
         </div>
 
