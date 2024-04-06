@@ -1,8 +1,12 @@
 ﻿@page
 @model WebApp.Pages.ServiceManagmentModel
 @{
-    Layout = null;
+     Layout = null;
+    
+
 }
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,8 +16,21 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="icon" href="~/assets/2_logosimecid.png" type="image/x-icon" />
-    <title>SideBarTemplate</title>
+    <title>ServiceManagment</title>
     <link href="~/css/servicemanagment.css" rel="stylesheet" />
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/controlactions.js"></script>
+
+    <link href="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.css" rel="stylesheet">
+    <script src="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.js"></script>
+    <script defer src="~/js/pages/servicemanagment.js"></script>
+    
+
+
 </head>
 
 
@@ -69,9 +86,10 @@
                             <tr>
                                 <th>BranchId</th>
                                 <th>Name</th>
-                                <th>Address</th>
-                                <th>Description</th>
                                 <th>ServiceId</th>
+                                <th>ServiceName</th>
+                                <th>Price</th>
+                                <th>Tax</th>
 
                             </tr>
                         </thead>
@@ -85,10 +103,7 @@
         <div class="container2">
             <h1 class="title2">Services at your branch</h1>
 
-            <div class="spaceP">
-                <p>Select one</p>
-                <p>Create new</p>
-            </div>
+            
 
             <div class="row">
                 <div class="col-lg-12">
@@ -109,79 +124,7 @@
             </div>
 
             
-          @*   <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th scope="col">Type</th>
-                    <th scope="col">Column heading</th>
-                    <th scope="col">Column heading</th>
-                    <th scope="col">Column heading</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="table-active">
-                    <th scope="row">Active</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                </tr>
-                <tr>
-                    <th scope="row">Default</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                </tr>
-                <tr class="table-primary">
-                    <th scope="row">Primary</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                </tr>
-                <tr class="table-secondary">
-                    <th scope="row">Secondary</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                </tr>
-                <tr class="table-success">
-                    <th scope="row">Success</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                </tr>
-                <tr class="table-danger">
-                    <th scope="row">Danger</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                </tr>
-                <tr class="table-warning">
-                    <th scope="row">Warning</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                </tr>
-                <tr class="table-info">
-                    <th scope="row">Info</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                </tr>
-                <tr class="table-light">
-                    <th scope="row">Light</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                </tr>
-                <tr class="table-dark">
-                    <th scope="row">Dark</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                </tr>
-                </tbody>
-            </table>
-        </div> *@
+          
         
         <div class="container3">
             <h1 class="details">Service Details</h1>
@@ -216,6 +159,8 @@
                   </div>
                 </form>
             </div>
-    
+            
+           
 </body>
+
 </html>

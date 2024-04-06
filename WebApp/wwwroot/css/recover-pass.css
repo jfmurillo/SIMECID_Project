@@ -128,16 +128,18 @@ img {
 }
 
 .btn {
-    cursor: pointer;
-    display: inline-block;
-    width: 25%;
-    color: #EFEFEF;
-    background: black;
-    padding: 15px;
-    font-family: inherit;
-    font-size: 2rem;
-    border-radius: 20px;
-    margin-top: 50px;
+    cursor: pointer; /* Cambia el cursor al pasar sobre el enlace */
+    display: inline-block; /* Hace que el enlace se comporte como un bloque en línea */
+    width: 25%; /* Ancho del 25% del contenedor */
+    color: #EFEFEF; /* Color del texto */
+    background: black; /* Color de fondo */
+    padding: 15px; /* Relleno de 15px */
+    font-family: inherit; /* Utiliza el tipo de fuente del elemento contenedor */
+    font-size: 2rem; /* Tamaño de fuente de 2rem (equivalente a 32px) */
+    border-radius: 20px; /* Radio de 20px para los bordes */
+    text-decoration: none; /* Quita el subrayado del enlace */
+    text-align: center; /* Centra el texto dentro del enlace */
+    margin-top: 50px; /* Margen superior de 50px */
 }
 
 footer {

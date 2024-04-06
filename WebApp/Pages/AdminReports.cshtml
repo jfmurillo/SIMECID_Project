@@ -1,6 +1,7 @@
 ﻿@page
 @model WebApp.Pages.AdminReportsModel
 @{
+    Layout = null;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -11,22 +12,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link href="~/css/adminreports.css" rel="stylesheet" />
     <title>Admin reports</title>
-    <link rel="stylesheet" href="AdminReports.css">
+
 </head>
 
 <!------- SIDEBAR ------>
 <div class="sidebar">
     <!------- Logo y titulo ------>
     <div class="containerLogo">
-        <img src="Favicon.png" class="logoMini" />
-        <div class="fontTitle">SIMECID</div>
+        <img src="/Assets/logo-white.png" class="logoMini" />
     </div>
     <!------- Icono y nombre del usuario, e icono de settings------>
     <div class="containerUser">
         <!--Boton para ver el perfil de usuario (no es lo mismo que gestion de users)-->
         <button class="buttonUser">
-            <img src="profilepic.png" class="userIcon" />
+            <img src="~/Assets/1st_Girl.png" class="userIcon" />
             <div class="fontTitle userName">Emily Sanchez</div>
         </button>
         <!--Boton para ir a los settings-->
@@ -56,7 +57,7 @@
     <div class="profileHeader">
     </div>
     <div class="gestionDePerfilDeUsuario">
-        <h1 class="fontTitle">Reportes</h1>
+        <h1 class="fontTitle">Reports</h1>
         <form class="form-container">
             <div class="reportFinanceTable">
                 <p class="UserDetails">Finance report</p>

@@ -54,16 +54,18 @@ p {
 
 /*Contenedor del logo y el título */
 .containerLogo {
-    width: 100%;
+    width: 99%;
     display: flex;
     align-items: center;
     background-color: var(--whiteBackground);
+    border: 2px solid #02B1A9;
 }
 
 /* Estilos para el logo mini */
 .logoMini {
     width: 40%;
     margin: 2%;
+
 }
 
 /*Contenedor del boton del icono y nombre del usuario, e icono de settings*/

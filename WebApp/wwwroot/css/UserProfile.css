@@ -105,9 +105,9 @@ p {
     border-radius: 5px;
 }
 
-    .buttonUser:hover {
-        border: 2px solid var(--whiteBackground); /* Agrega un borde al botón en el hover */
-    }
+.buttonUser:hover {
+    border: 2px solid var(--whiteBackground); /* Agrega un borde al botón en el hover */
+}
 
 .containerUser {
     padding: 2%;
@@ -186,7 +186,7 @@ p {
     font-size: 2vh;
 }
 
-/*------- CLASES PARA EL CONTENIDO PRINCIPAL -----*/
+/*------ CLASES PARA EL CONTENIDO PRINCIPAL -----*/
 
 .main-content {
     width: 100%;
@@ -194,7 +194,7 @@ p {
 }
 
 .profileHeader {
-    background-image: url('headerpic.png');
+    background-image: url('../assets/1_Doctor_Taking_Notes.png');
     background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el encabezado */
     text-align: center;
     height: 30vh; /* Ajusta la altura del encabezado según sea necesario */
@@ -282,9 +282,8 @@ p {
 }
 
     .btn:hover {
-        background-color: #666;
+        background-color:   #666;
     }
-
 
 
 

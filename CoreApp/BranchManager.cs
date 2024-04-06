@@ -58,8 +58,20 @@ namespace CoreApp
                 return uc.RetrieveById<Branch>(branchId);
             }
 
+            public List<Branch> RetrieveAllServices(int branchId)
+            {
+                var uc = new BranchCrudFactory();
+                return uc.RetrieveServicesByBranchId<Branch>(branchId);
+            }
 
-            public void Update(Branch branch)
+            public List<Branch> RetrieveAllBranchServices()
+            {
+                var uc = new BranchCrudFactory();
+                return uc.RetrieveAllBranchServices<Branch>();
+            }
+
+
+        public void Update(Branch branch)
             {
                 var uc = new BranchCrudFactory();
 
@@ -85,15 +97,11 @@ namespace CoreApp
                 uc.Delete(branch);
             }
 
-        public void AddServices(Branch branch)
-        {
-            var uc = new BranchCrudFactory();
-
-            foreach (var serviceId in branch.Services)
+            public void AddServices(Branch branch)
             {
-                uc.AddServiceToBranch(branch.Id, serviceId);
+                var uc = new BranchCrudFactory();
+                uc.AddServiceToBranch(branch.Id, branch.ServiceId);
             }
-        }
 
         private bool IsValidName(string name)
             {

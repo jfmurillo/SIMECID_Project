@@ -18,12 +18,13 @@ namespace DTO
 
         public string Description { get; set; }
 
-        public List<int> Services { get; set; }
+        public int ServiceId { get; set; }
 
-        public Branch()
-        {
-            Services = new List<int>();
-        }
+        public string ServiceName { get; set; }
+
+        public double ServicePrice { get; set; }
+
+        public double ServiceTax { get; set; }
 
     }
 }
