@@ -18,7 +18,7 @@ function AllBranchInfoController() {
         this.LoadTableAllInfoBranch();
 
         this.LoadBranches();
-        this.LoadServices();
+        /*this.LoadServices();*/
     }
 
     this.LoadBranches = function () {
@@ -150,7 +150,8 @@ function ServiceController() {
 
         })
         this.LoadTableService();
-
+        
+        this.LoadAllServices();
 
     }
     /*
@@ -172,6 +173,10 @@ function ServiceController() {
             response.forEach(function (service) {
                 $("#serviceSelect").append('<option value="' + service.id + '">' + service.id + ' - ' + service.name + '</option>');
             });
+
+            if (typeof callback === 'function') {
+                callback();
+            }
         });
     }
 
@@ -184,15 +189,20 @@ function ServiceController() {
         service.price = $("#textPrice").val();
         service.tax = $("#textTax").val();
 
+        
         //Invocar Api
         var ca = new ControlActions();
         var serviceRoute = this.ApiService + "/Create";
 
         ca.PostToAPI(serviceRoute, service, function () {
+            let loadsrv = new ServiceController();
             console.log("Service Created --->" + JSON.stringify(service));
             $('#tblServices').DataTable().ajax.reload();
+            loadsrv.LoadAllServices();
+            
 
         });
+       
 
     }
 
@@ -209,8 +219,10 @@ function ServiceController() {
         var serviceRoute = this.ApiService + "/Update";
 
         ca.PutToAPI(serviceRoute, service, function () {
+
             console.log("Service Updated --->" + JSON.stringify(service));
             $('#tblServices').DataTable().ajax.reload();
+            
         });
     }
 
@@ -231,17 +243,19 @@ function ServiceController() {
 
         };
 
-
         // Invocar la API DELETE con el objeto user
         var ca = new ControlActions();
         var serviceRoute = this.ApiService + "/Delete";
 
         ca.DeleteToAPI(serviceRoute, service, function (response) {
+            
             if (response.statusCode == 200) {
+                let loadsrv = new ServiceController();
                 console.log("Service Deleted --->" + serviceId);
                 $('#tblServices').DataTable().ajax.reload();
                 $('#tblBranch').DataTable().ajax.reload(); //Esto para que si se elimina un service se actualice el branch que lo tenia y se elimine
-
+                loadsrv.LoadAllServices();
+                
             } else if (response.statusCode == 500) {
                 console.log("El servicio con el Id " + serviceId + " no existe.");
 
@@ -251,6 +265,8 @@ function ServiceController() {
             }
             $('#tblServices').DataTable().ajax.reload();
             $('#tblBranch').DataTable().ajax.reload();
+                        
+            
         });
     }
 
