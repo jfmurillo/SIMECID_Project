@@ -3,6 +3,80 @@
 //vista o pagina
 
 /*Definmos la clase */
+function AllBranchInfoController() {
+    this.ViewName = "Branch"; //como se llama la pagina
+    this.ApiService = "Branch";
+
+
+    this.InitViewAllBranch = function () {
+        console.log("All Branch view init");
+        $("#btnAdd").click(function () {
+            var vc = new AllBranchInfoController();
+            vc.Add();
+
+        })
+        this.LoadTableAllInfoBranch();
+
+        this.LoadBranches();
+        this.LoadServices();
+    }
+
+    this.LoadBranches = function () {
+        var ba = new ControlActions();
+        var urlService = this.ApiService + "/RetrieveAll";
+
+        ba.GetToApi(urlService, function (response) {
+            response.forEach(function (branch) {
+                $("#branchSelect").append('<option value="' + branch.id + '">' + branch.id + ' - ' + branch.name + '</option>');
+            });
+        });
+    }
+
+    
+
+    this.Add = function () {
+        //Crear un Dto de User
+        var Branchservice = {};
+        Branchservice.branchId = $("#BranchId").val();
+        Branchservice.serviceId = $("#ServiceId").val();
+
+        //Invocar Api
+        var ca = new ControlActions();
+        var serviceRoute = this.ApiService + "/AddServiceToBranch";
+
+        ca.PostToAPI(serviceRoute, Branchservice, function () {
+            console.log("Service Added to branch --->" + JSON.stringify(Branchservice));
+            $('#tblBranch').DataTable().ajax.reload();
+        });
+    }
+
+    this.LoadTableAllInfoBranch = function () { //Metodo para la carga de la tabla de datos
+        var bi = new ControlActions();
+
+        //Ruta del api
+        var urlService = bi.GetUrlApiService(this.ApiService + "/RetrieveAll")
+
+        var columns = [];
+        columns[0] = { 'data': "id" }
+        columns[1] = { 'data': "name" }
+        columns[2] = { 'data': "address" }
+        columns[3] = { 'data': "description" }
+        //columns[4] = { 'data': "serviceId" }
+        //columns[5] = { 'data': "serviceName" }
+        //columns[6] = { 'data': "servicePrice" }
+        //columns[7] = { 'data': "serviceTax" }
+
+        $("#tblAllBranches").dataTable({
+            "ajax": {
+                "url": urlService,
+                "dataSrc": ""
+            },
+            "columns": columns
+        });
+    }
+}
+
+//CONTROLLER DE BRANCH 
 function BranchController() {
     this.ViewName = "Branch"; //como se llama la pagina
     this.ApiService = "Branch";
@@ -45,6 +119,8 @@ function BranchController() {
 
     }
 }
+
+//CONTROLLER DE SERVICIOS 
 function ServiceController() {
     this.ViewName = "Service"; //como se llama la pagina
     this.ApiService = "Service"  //Servicio de Api
@@ -86,6 +162,18 @@ function ServiceController() {
       "price": 0
     }
     */
+
+    this.LoadAllServices = function (callback) {
+        var ca = new ControlActions();
+        var urlService = this.ApiService + "/RetrieveAll";
+
+        ca.GetToApi(urlService, function (response) {
+
+            response.forEach(function (service) {
+                $("#serviceSelect").append('<option value="' + service.id + '">' + service.id + ' - ' + service.name + '</option>');
+            });
+        });
+    }
 
     this.Create = function () {
 
@@ -222,6 +310,8 @@ $(document).ready(function () {
     vc.InitView();
     var bc = new BranchController();
     bc.InitViewBranch();
+    var ba = new AllBranchInfoController();
+    ba.InitViewAllBranch();
     
 })
 
