@@ -34,7 +34,6 @@
 </head>
 
 
-
 <!------- CONTENIDO PRINCIPAL --------->
 <body>
     <div class="main-content">
@@ -76,9 +75,28 @@
         </div>
         <div class="container1">
             <h1 class="title1">Your Branches</h1>
-            <p class="subtitle">Select the branch where you want to see the services</p>
+            <!--Todas las branch tabla-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <table id="tblAllBranches" class="table table-hover" class="display" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>BranchId</th>
+                                <th>Name</th>
+                                <th>Address</th>
+                                <th>Description</th>
+                                @* <th>ServiceId</th>
+                                <th>ServiceName</th>
+                                <th>ServicePrice</th>
+                                <th>ServiceTax</th> *@
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
 
-            <!--Primera Tabla-->
+            <!--Branches con servicio tabla -->
+            <p class="subtitle">Services at your branch </p>
             <div class="row">
                 <div class="col-lg-12">
                     <table id="tblBranch" class="table table-hover" class="display" style="width:100%">
@@ -95,8 +113,28 @@
                         </thead>
                     </table>
                 </div>
-
             </div>
+
+            <!--Add servive to branch form-->
+            <div class="container3">
+                <h1 class="details">Add service to branch</h1>
+            </div>
+            <div class="form">
+                <form action="/action_page.php">
+                    <div class="form-field">
+                        <label for="textId"> Branch Id</label>
+                        <input class="formularyform" id="BranchId" type="number">
+                    </div>
+                    <div class="form-field">
+                        <label for="textId"> Service Id</label>
+                        <input class="formularyform" id="ServiceId" type="number">
+                    </div>
+                    <div class="form-buttons">
+                        <button id="btnAdd" type="button">Add</button>
+                    </div>
+                </form>
+            </div>
+
         </div>
 
         <!--Segunda Tabla-->
@@ -159,6 +197,8 @@
                   </div>
                 </form>
             </div>
+
+
             
            
 </body>

@@ -89,7 +89,7 @@ namespace CoreApp
                  }
             uc.Update(branch);
 
-            }
+        }
 
             public void Delete(Branch branch)
             {
@@ -97,11 +97,12 @@ namespace CoreApp
                 uc.Delete(branch);
             }
 
-            public void AddServices(Branch branch)
-            {
-                var uc = new BranchCrudFactory();
-                uc.AddServiceToBranch(branch.Id, branch.ServiceId);
-            }
+        public void AddServices(Branch branch)
+        {
+            var uc = new BranchCrudFactory();
+            uc.AddServiceToBranch(branch); 
+        }
+
 
         private bool IsValidName(string name)
             {

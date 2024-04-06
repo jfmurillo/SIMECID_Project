@@ -126,11 +126,11 @@ namespace DataAccess.CRUD
         }
 
 
-       public void AddServiceToBranch(int branchId, int serviceId)
+       public void AddServiceToBranch(Branch branch)
         {
             var sqlOperation = new SqlOperation { ProcedureName = "ADD_SERVICES_TO_BRANCH" };
-            sqlOperation.AddIntParam("P_BRANCH_ID", branchId);
-            sqlOperation.AddIntParam("P_SERVICE_ID", serviceId);
+            sqlOperation.AddIntParam("P_BRANCH_ID", branch.Id);
+            sqlOperation.AddIntParam("P_SERVICE_ID", branch.ServiceId);
             _dao.ExecuteProcedure(sqlOperation);
         }
 
