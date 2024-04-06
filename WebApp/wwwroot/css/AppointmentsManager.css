@@ -145,10 +145,10 @@ tbody tr:hover {
 
 /*CLASES PARA EL CALENDARIO*/
 
-calendar-container {
-    max-width: 30%;
-    padding: 2%;
+.calendar-container {
+    width: 80%;
     margin-top: 2%;
+    margin-left: 10%;
     text-align: center;
 }
 
@@ -156,4 +156,13 @@ calendar-container {
     font-family: "Montserrat", sans-serif;
     font-size: 14px;
 }
+
+.date-form input,
+.date-form textarea {
+    width: 20%;
+    min-width: 50px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
 

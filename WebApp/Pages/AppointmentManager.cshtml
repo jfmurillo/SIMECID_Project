@@ -146,9 +146,13 @@
                 <!--Aqui va el calendario, donde deben aparecer las citas disponibles-->
             </div>
 
-            <div class="sign-up-form">
+            <div class="date-form">
                 <label class="appointDate" for="birthdate">Fecha de la cita</label><br>
                 <input type="date" id="appointDate" name="birthdate" required><br><br>
+            </div>
+
+            <div class="buttonContainer">
+                <button id="id_ApptConfirm" class="btn" type="submit">Confirm your appointment</button>
             </div>
 
         </div>
@@ -158,12 +162,12 @@
             <p>Confirm your appointment details</p>
             <div class="sign-up-form">
                 <label for="name">Branch</label><br>
-                <input type="text" id="name" name="name" required><br><br>
+                <input type="text" id="id_branchName" name="branchName" required><br><br>
             </div>
 
-            <div class="confirmation-form">
+            <div class="sign-up-form">
                 <label for="lastName">Service</label><br>
-                <input type="text" id="lastName" name="lastName" required><br><br>
+                <input type="text" id="id_erviceName" name="ServiceName" required><br><br>
             </div>
 
             <div class="sign-up-form">
@@ -174,6 +178,9 @@
 
         <div class="buttonContainer">
             <button class="btn" type="submit">Update</button>
+            <button class="btn" type="submit">Update</button>
+            <button class="btn" type="submit">Update</button>
+
         </div>
 
     <script src="~/lib/daypilot/daypilot-all.min.js" asp-append-version="true"></script>
