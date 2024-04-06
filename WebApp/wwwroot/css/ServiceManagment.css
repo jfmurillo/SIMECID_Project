@@ -206,12 +206,12 @@ th,
 td {
     padding: 8px;
     text-align: left;
-    border-bottom: 1px solid #ffffff;
+   border-bottom: 1px solid var(--whiteBackground);
 }
 
 th {
-    background-color: #02b1a9;
-    color: aliceblue;
+    background-color: var(--greenMain-SideBar);
+    color: var(--whiteBackground);
 }
 
 .table-active,
