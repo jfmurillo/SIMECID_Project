@@ -197,7 +197,7 @@ td {
     border-collapse: separate;
     border-spacing: 0;
     width: 100%;
-    border-radius: 30px; /* Ajusta este valor según tu preferencia */
+    border-radius: 10px; /* Ajusta este valor según tu preferencia */
     overflow: hidden;
     margin-left: -10%;
 }
