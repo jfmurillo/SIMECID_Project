@@ -127,8 +127,8 @@ namespace WebAPI.Controllers
                     return NotFound("Branch not found");
                 }
 
-                // Agregar el ID del servicio al branch
-                branch.Services.Add(serviceId);
+                // Actualizar el ID del servicio del branch con el nuevo serviceId
+                branch.ServiceId = serviceId;
 
                 // Actualizar el branch en el repositorio de datos
                 um.AddServices(branch);
@@ -139,8 +139,34 @@ namespace WebAPI.Controllers
             {
                 return StatusCode(500, ex.Message);
             }
-
         }
+
+        [HttpGet]
+        [Route("RetrieveAllServices")]
+        public ActionResult RetrieveAllServices(int brachId)
+        {
+            try
+            {
+                var um = new BranchManager();
+                var branch = um.RetrieveAllServices(brachId);
+                var branchList = um.RetrieveAllServices(brachId);
+
+                if (branch != null)
+                {
+                    return Ok(branch);
+                }
+                else
+                {
+                    return NotFound("Branch not found");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        
     }
 
 }
