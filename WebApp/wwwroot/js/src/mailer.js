@@ -4,7 +4,6 @@ window.onload = function () {
 };
 
 document.getElementById("entEmail").addEventListener("submit", function (event) {
-    debugger
     event.preventDefault();
 
 
