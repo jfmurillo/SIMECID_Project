@@ -60,99 +60,121 @@
 </div>
 
 <!------- CONTENIDO PRINCIPAL --------->
-<body>
-    <div class="wrapper">
-        <h2>Make your Appointments</h2>
-        <h3>Select your location and preferred services</h3>
-        <div class="wrapper">
-            <form id="myForm">
-                <div class="wrapper">
-                    <h2 class="branchesTitle">Branches</h2>
-                    <input type="hidden" id="branchSelection" name="serviceSelection" value="" />
-                    <div>
-                        <table id="tblBranches">
-                            <thead>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Branch Name</th>
-                                    <th>Description</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div>
-
-                <div class="wrapper">
-                    <h2 class="servicesTitle">Services</h2>
-                    <input type="hidden" id="serviceSelection" name="serviceSelection" value="" />
-                    <div>
-                        <table id="tblServices">
-                            <thead>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Service Name</th>
-                                    <th>Description</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div>
-
-                <div class="wrapper paddingSeparate">
-                    <h2>Select your prefered date</h2>
-                    <input type="date" class="form-control" id="txtAcquisition" />
-                </div>
-                <div class="wrapper ">
-                    <label>Confirm Appointment</label>
-                    <input type="button" value="Submit" class="btn btn-primary wrapper btnBlack"/>
-                </div>
-
-            </form>
-
-            <div class="paddingSeparate ">
-                <div>
-                    <table class="paddingSeparate " id="tblAppointments">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Branch Name</th>
-                            <th>Service Name</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                </table>
-                </div>
-                <div class="paddingSeparate ">
-                    <form>
-                        <div>
-                            <label class="form-label mt-4">Id</label>
-                            <input type="number" class="form-control" id="txtId" />
-                        </div>
-                        <div>
-                            <label class="form-label mt-4">Branch Name</label>
-                            <input type="text" class="form-control" id="txtBranchName" />
-                        </div>
-                        <div>
-                            <label class="form-label mt-4">Service Name</label>
-                            <input type="text" class="form-control" id="txtServiceName" />
-                        </div>
-                        <div >
-                            <label class="form-label mt-4">Description</label>
-                            <input type="text" class="form-control" id="txtDescription"/>
-                        </div>
-                        <div class="paddingSeparate">
-                            <input type="button" value="Pay" class="btn btn-primary btnBlack" id="btnPay" />
-                            <input type="button" value="Update" class="btn btn-primary btnBlack" id="btnUpdate" />
-                            <input type="button" value="Delete" class="btn btn-primary btnBlack" id="btnDelete" />
-                        </div>
-                        
-                    </form>
-                </div>
-            </div>
-        </div>
+<body class="main-content">
+    <div class="profileHeader">
     </div>
+    <div class="gestionDeCitas">
+        <h1 class="fontTitle">Make your appointments</h1>
+        <div class="table-container">
+            <p>Select your prefered branch </p>
+            <table>
+                <thead>
+                    <tr id="idBranches_tbl">
+                        <th>BranchId</th>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="fila1">
+                        <td>1</td>
+                        <td>Cartago</td>
+                        <td>Consulta general</td>
+                        <td>Dr. Smith</td>
+                    </tr>
+                    <tr id="fila2">
+                        <td>2</td>
+                        <td>San Jose</td>
+                        <td>Examen de sangre</td>
+                        <td>Dr. Johnson</td>
+                    </tr>
+                    <tr id="fila3">
+                        <td>3</td>
+                        <td>Tres Rios</td>
+                        <td>Control de presión arterial</td>
+                        <td>Dr. Williams</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
+        <div class="table-container">
+            <p>Select your prefered service </p>
+            <table>
+                <thead>
+                    <tr id="idServices_tbl">
+                        <th>ServiceId</th>
+                        <th>Name</th>
+                        <th>Descripción</th>
+                        <th>Price</th>
+                        <th>Tax</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="fila1">
+                        <td>1</td>
+                        <td>Ginecologia</td>
+                        <td>Lorem ipsum</td>
+                        <td>20.000</td>
+                        <td>13.00</td>
 
+                    </tr>
+                    <tr id="fila2">
+                        <td>2</td>
+                        <td>Consulta general</td>
+                        <td>Lorem ipsum</td>
+                        <td>20.000</td>
+                        <td>13.00</td>
+                    </tr>
+                    <tr id="fila3">
+                        <td>3</td>
+                        <td>Pediatria</td>
+                        <td>Lorem ipsum</td>
+                        <td>20.000</td>
+                        <td>13.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="calendar-container">
+            <h1 class="fontTitle">Choose your date</h1>
+
+            <div>
+
+                <!--Aqui va el calendario, donde deben aparecer las citas disponibles-->
+            </div>
+
+            <div class="sign-up-form">
+                <label class="appointDate" for="birthdate">Fecha de la cita</label><br>
+                <input type="date" id="appointDate" name="birthdate" required><br><br>
+            </div>
+
+        </div>
+        
+
+        <form class="form-container">
+            <p>Confirm your appointment details</p>
+            <div class="sign-up-form">
+                <label for="name">Branch</label><br>
+                <input type="text" id="name" name="name" required><br><br>
+            </div>
+
+            <div class="confirmation-form">
+                <label for="lastName">Service</label><br>
+                <input type="text" id="lastName" name="lastName" required><br><br>
+            </div>
+
+            <div class="sign-up-form">
+                <label class="birthdate" for="birthdate">Birth Date</label><br>
+                <input type="date" id="birthdate" name="birthdate" required><br><br>
+            </div>
+        </form>
+
+        <div class="buttonContainer">
+            <button class="btn" type="submit">Update</button>
+        </div>
 
     <script src="~/lib/daypilot/daypilot-all.min.js" asp-append-version="true"></script>
     <script>
