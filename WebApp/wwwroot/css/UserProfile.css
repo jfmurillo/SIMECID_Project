@@ -24,14 +24,14 @@ body {
 /* ---- CLASES GENERALES ---*/
 
 :root {
-    --greenMain-SideBar: #02b1a9; /* Fondo del sidebar */
-    --whiteBackground: #ffffff; /* Fondo */
+    --greenMain-SideBar: #02B1A9; /* Fondo del sidebar */
+    --whiteBackground: #FFFFFF; /* Fondo */
     --colorText: #333; /* Texto normal */
     --colorTextLight: #666; /* texto más claro */
-    --colorLightGrey: #efefef; /* gris claro para distinguir del blanco */
-    --greenLight1: #4ec8a4; /* Turqueza claro*/
-    --greenMedium2: #2fa5a5; /* Turqueza medio */
-    --greenDark3: #1f95a1; /* Turqueza Oscuro */
+    --colorLightGrey: #EFEFEF; /* gris claro para distinguir del blanco */
+    --greenLight1: #4EC8A4; /* Turqueza claro*/
+    --greenMedium2: #2FA5A5; /* Turqueza medio */
+    --greenDark3: #1F95A1; /* Turqueza Oscuro */
 }
 
 body {
@@ -51,6 +51,7 @@ p {
     line-height: 1.6;
 }
 
+
 /* para darle formato a los titulos */
 .fontTitle {
     font-family: "Montserrat", sans-serif;
@@ -65,6 +66,7 @@ p {
     line-height: 1.2;
 }
 
+
 /* ----CLASES PARA EL SIDEBAR------- */
 .sidebar {
     position: fixed;
@@ -72,25 +74,26 @@ p {
     top: 0px;
     width: 20%;
     height: 100%;
+    min-width: 150px;
     background: var(--greenMain-SideBar);
 }
 
+
 /*Contenedor del logo y el título */
 .containerLogo {
-    width: 99%;
+    width: 100%;
     display: flex;
     align-items: center;
     background-color: var(--whiteBackground);
-    border: 2px solid #02B1A9;
 }
 
 /* Estilos para el logo mini */
 .logoMini {
-    width: 40%;
+    width: 20%;
     margin: 2%;
 }
 
-/*Contenedor del boton del icono y nombre del usuario, e icono de settings*/
+/Contenedor del boton del icono y nombre del usuario, e icono de settings/
 .buttonUser {
     display: flex;
     margin-top: 1%;
@@ -102,9 +105,9 @@ p {
     border-radius: 5px;
 }
 
-    .buttonUser:hover {
-        border: 2px solid var(--whiteBackground); /* Agrega un borde al botón en el hover */
-    }
+.buttonUser:hover {
+    border: 2px solid var(--whiteBackground); /* Agrega un borde al botón en el hover */
+}
 
 .containerUser {
     padding: 2%;
@@ -149,7 +152,7 @@ p {
     height: 4vh;
 }
 
-/*Menu del sidebar*/
+
 .MainMenu {
     padding: 2%;
 }
@@ -166,7 +169,7 @@ p {
     border-radius: 5px;
     margin-top: 10px;
     border: 2px solid var(--greenMain-SideBar); /* Aunque no se vea, No se debe borrar el borde, porque cambia los padding y entonces las cosas se mueven */
-    transition: border 0.2s;
+    transition: border 0.20s;
 }
 
     .buttonMenu:hover {
@@ -176,11 +179,14 @@ p {
 .sidebarFooter {
     position: center;
     padding: 10%;
-    font-size: 12px;
-    color: white;
+    color: var(--colorLightGrey);
 }
 
-/*------- CLASES PARA EL CONTENIDO PRINCIPAL -----*/
+.sidebarFooter {
+    font-size: 2vh;
+}
+
+/------- CLASES PARA EL CONTENIDO PRINCIPAL -----/
 
 .main-content {
     width: 100%;
@@ -276,9 +282,8 @@ p {
 }
 
     .btn:hover {
-        background-color: #666;
+        background-color:   #666;
     }
-
 
 
 
