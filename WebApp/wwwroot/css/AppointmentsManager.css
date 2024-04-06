@@ -24,21 +24,23 @@ body {
 /*------ CLASES PARA EL CONTENIDO PRINCIPAL -----*/
 
 .main-content {
-    width: 100%;
-    margin-left: 10%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
-.profileHeader {
-    background-image: url('../assets/1_Doctor_Taking_Notes.png');
-    background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el encabezado */
-    text-align: center;
-    height: 30vh; /* Ajusta la altura del encabezado según sea necesario */
+
+.branchTitle {
+    color: var(--greenLight1)
+}
+
+.serviceTitle {
+    color: var(--greenMedium2)
 }
 
 
 .gestionDeCitas {
     margin-top: 5%;
-    text-align: center;
 }
 
 .form-container {
@@ -47,14 +49,28 @@ body {
     padding: 2%;
 }
 
+.btn-send {
+    width: 75%;
+    margin-left: 20%;
+    margin-bottom: 10%;
+    padding: 3% 5%;
+    background-color: #02B1A9;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family: "Montserrat", sans-serif;
+}
+
 .confirmation-form {
-width: 100%;
-display: flex;
-flex-direction: row;
-margin-bottom: 3%;
-text-align: right;
-font-family: "Montserrat", sans-serif;
-font-size: 16px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 3%;
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
 }
 
 .sign-up-form label {
@@ -88,6 +104,24 @@ font-size: 16px;
     margin: 0 auto;
 }
 
+body, html {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif; /* Ajusta la fuente según tu preferencia */
+}
+
+.main-content {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+}
+
+/* Estilos para centrar los títulos */
+.branchTitle,
+.serviceTitle,
+.fontTitle {
+    text-align: center;
+}
+
 .btn {
     width: 40%;
     margin-left: 20%;
@@ -112,13 +146,11 @@ font-size: 16px;
 .table-container {
     width: 100%; 
     margin-top: 2%;
-    text-align: center;
 }
 
 table {
     border-collapse: collapse;
     background-color: var(--whiteBackground);
-    margin-left: 30%;
 }
 
 thead {
@@ -149,7 +181,6 @@ tbody tr:hover {
     width: 80%;
     margin-top: 2%;
     margin-left: 10%;
-    text-align: center;
 }
 
 .appointDate {
