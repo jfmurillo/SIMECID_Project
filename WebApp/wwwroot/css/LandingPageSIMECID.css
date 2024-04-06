@@ -41,20 +41,16 @@ body {
 }
 
 .loginBtnHeader {
-    border: 2px solid gray; /* Borde de 2px sólido blanco */
+    border: 2px solid #ccc; /* Bordados grises */
     border-radius: 50px; /* Radio de 50 para los bordes */
-    padding: 10px 20px; /* Relleno de 10px arriba y abajo, 20px a los lados */
-    background-color: white; /* Fondo blanco */
-    color: black; /* Texto negro */
-    width: 112px; /* Ancho de 112px */
-    height: 41px; /* Altura de 41px */
-    display: inline-block; /* Hace que el enlace se comporte como un bloque en línea */
-    text-align: center; /* Centra el texto dentro del enlace */
-    margin-left: 55px; /* Margen izquierdo de 55px */
-    margin-top: 25px; /* Margen superior de 25px */
-    font-family: Montserrat, sans-serif; /* Tipo de fuente */
-    text-decoration: none; /* Quita el subrayado del enlace */
-    line-height: 41px;
+    padding: 10px 20px;
+    background-color: white;
+    color: black;
+    width: 112px;
+    height: 41px;
+    display: inline-block; /* Hace que el botón se comporte como un bloque en línea */
+    text-align: center; /* Centra el texto dentro del botón */
+    font-family: Montserrat, sans-serif; /* Tipo de fuente predeterminado */
 }
 
 .li-header {
@@ -106,20 +102,18 @@ body {
 }
 
 .Btn-SingUp-PrimeraCapa {
-    border: 2px solid white; /* Borde de 2px sólido blanco */
+    border: 2px solid white; /* Bordados grises */
     border-radius: 50px; /* Radio de 50 para los bordes */
-    padding: 10px 20px; /* Relleno de 10px arriba y abajo, 20px a los lados */
-    background-color: white; /* Fondo blanco */
-    color: black; /* Texto negro */
-    width: 112px; /* Ancho de 112px */
-    height: 41px; /* Altura de 41px */
-    display: inline-block; /* Hace que el enlace se comporte como un bloque en línea */
-    text-align: center; /* Centra el texto dentro del enlace */
-    margin-left: 55px; /* Margen izquierdo de 55px */
-    margin-top: 25px; /* Margen superior de 25px */
-    font-family: Montserrat, sans-serif; /* Tipo de fuente */
-    text-decoration: none; /* Quita el subrayado del enlace */
-    line-height: 41px;
+    padding: 10px 20px;
+    background-color: white;
+    color: black;
+    width: 112px;
+    height: 41px;
+    display: inline-block; /* Hace que el botón se comporte como un bloque en línea */
+    text-align: center; /* Centra el texto dentro del botón */
+    margin-left: 55px;
+    margin-top: 25px;
+    font-family: Montserrat, sans-serif; /* Tipo de fuente predeterminado */
 }
 
 .Cont-General-Segunda-Capa {
@@ -778,17 +772,14 @@ body {
 }
 
 .Btn-Cuadro-SeptimaCapa {
-    background-color: #1F95A1; /* Color de fondo */
-    color: white; /* Color del texto */
-    padding: 30px 80px; /* Relleno de 30px arriba y abajo, 80px a los lados */
-    border: none; /* Sin borde */
-    border-radius: 10px; /* Radio de 10px para los bordes */
-    font-family: Montserrat, sans-serif; /* Tipo de fuente */
-    font-weight: bold; /* Texto en negrita */
-    margin-top: 20px; /* Margen superior de 20px */
-    text-decoration: none; /* Quita el subrayado del enlace */
-    display: inline-block; /* Hace que el enlace se comporte como un bloque en línea */
-    text-align: center; /* Centra el texto dentro del enlace */
+    background-color: #1F95A1;
+    color: white;
+    padding: 30px 80px;
+    border: none;
+    border-radius: 10px;
+    font-family: Montserrat, sans-serif; /* Tipo de fuente predeterminado */
+    font-weight: bold;
+    margin-top: 20px;
 }
 
 .Cont-General-Octava-Capa {
