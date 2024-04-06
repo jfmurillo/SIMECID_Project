@@ -165,5 +165,24 @@ namespace DataAccess.CRUD
             return servicesList;
         }
 
+        public  List<T> RetrieveAllBranchServices<T>()
+        {
+
+            var branchList = new List<T>();
+            var sqlOperation = new SqlOperation() { ProcedureName = "RETRIEVE_ALL_BRANCH_SERVICES" };
+            var lstResults = _dao.ExecuteQueryProcedure(sqlOperation);
+
+            if (lstResults.Count > 0)
+            {
+                foreach (var row in lstResults)
+                {
+                    var branch = BuildBranchXServices(row);
+                    branchList.Add((T)Convert.ChangeType(branch, typeof(T)));
+                }
+
+
+            }
+            return branchList;
+        }
     }
 }

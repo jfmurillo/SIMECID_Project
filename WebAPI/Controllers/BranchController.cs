@@ -165,8 +165,26 @@ namespace WebAPI.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+    
 
-        
+        [HttpGet]
+        [Route("RetrieveAllBranchServices")]
+        public ActionResult RetrieveAllBranchServices()
+        {
+            try
+            {
+                var um = new BranchManager();
+                var branchList = um.RetrieveAllBranchServices();
+                return Ok(branchList);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+
+        }
+
+
     }
 
 }

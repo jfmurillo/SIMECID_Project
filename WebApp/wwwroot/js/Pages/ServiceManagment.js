@@ -9,18 +9,18 @@ function BranchController() {
 
 
 
-    this.InitView = function () {
+    this.InitViewBranch = function () {
         console.log("Branch view init");
         this.LoadTableBranch();
 
     }
 
     this.LoadTableBranch = function () { //Metodo para la carga de la tabla de datos
-        var ca = new ControlActions();
+        var ba = new ControlActions();
 
         //Ruta del api
-        var urlService = ca.GetUrlApiService(this.ApiService + "/RetrieveAllServices")
-
+        var urlService = ba.GetUrlApiService(this.ApiService + "/RetrieveAllBranchServices")
+        console.log(urlService);
 
 
         var columns = [];
@@ -30,6 +30,8 @@ function BranchController() {
         columns[3] = { 'data': "serviceName" }
         columns[4] = { 'data': "servicePrice" }
         columns[5] = { 'data': "serviceTax" }
+        console.log(columns);
+
 
         $("#tblBranch").dataTable({
             "ajax": {
@@ -38,6 +40,8 @@ function BranchController() {
             },
             "columns": columns
         });
+
+        console.log(urlService);
 
     }
 }
@@ -106,6 +110,7 @@ function ServiceController() {
 
     this.Update = function () {
         var service = {};
+        service.Id = $("#ServiceId").val();
         service.name = $("#textName").val();
         service.description = $("#textDescription").val();
         service.price = $("#textPrice").val();
@@ -175,7 +180,7 @@ function ServiceController() {
         columns[2] = { 'data': "description" }
         columns[3] = { 'data': "price" }
         columns[4] = { 'data': "tax" }
-
+        console.log(columns)
         
 
         $("#tblServices").dataTable({
@@ -215,9 +220,9 @@ function ServiceController() {
 $(document).ready(function () {
     var vc = new ServiceController();
     vc.InitView();
+    var bc = new BranchController();
+    bc.InitViewBranch();
+    
 })
 
-$(document).ready(function () {
-    var bc = new BranchController();
-    bc.InitView();
-})
+
