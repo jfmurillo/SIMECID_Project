@@ -64,6 +64,11 @@ namespace CoreApp
                 return uc.RetrieveServicesByBranchId<Branch>(branchId);
             }
 
+            public List<Branch> RetrieveAllBranchServices()
+            {
+                var uc = new BranchCrudFactory();
+                return uc.RetrieveAllBranchServices<Branch>();
+            }
 
 
         public void Update(Branch branch)
