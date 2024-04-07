@@ -17,6 +17,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/mailer.js"></script>
     <link rel="stylesheet" href="/css/enterEmail.css" />
     <title>Recover password</title>
 </head>
@@ -42,12 +43,12 @@
                     <p>Enter your email address</p>
                 </span>
                 <input class="emailTxt" type="email" id="email" name="email" required>
-                @* <a class="btn" style="margin-left: 350px;" asp-area="" asp-page="/RecoverPassword">Try</a> *@
-                <button class="btn" type="submit" style="margin-left: 350px;">Try</button> 
+
+                <a class="btn" style="margin-left: 350px;" asp-area="" asp-page="/RecoverPassword">Try</a>
+                <button class="btn" id="btnTry" style="margin-left: 350px;">Try</button> 
             </form>
             
         </div>
     </div>
-    <script src="/js/src/mailer.js"></script>
 </body>
 </html>
