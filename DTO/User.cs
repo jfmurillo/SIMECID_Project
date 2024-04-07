@@ -36,8 +36,11 @@ namespace DTO
         [Required(ErrorMessage = "Status is required")]
         public string Status { get; set; }
 
-        [Required(ErrorMessage = "Adress is required")]
+        [Required(ErrorMessage = "Address is required")]
         public string Address { get; set; }
+
+        [Required(ErrorMessage = "OTP is required")]
+        public string OTP { get; set; }
 
     }
 }
