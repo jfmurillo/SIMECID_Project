@@ -48,7 +48,7 @@
         </div>
     </div>
 
-    <div class="Cont-General-Segunda-Capa">
+    <div id="about" class="Cont-General-Segunda-Capa">
         <div class="Sub-Cont-Segunda-Capa-ParteIaquierda">
             <img class="Img-SegundaCapa" src="~/assets/estetoscopio.png" alt="">
         </div>
@@ -151,7 +151,7 @@
 
     </div>
 
-    <div class="Cont-General-Sexta-Capa">
+    <div id="FAQ" class="Cont-General-Sexta-Capa">
         <div class="SubCont-TituloGeneral-SextaCapa">
             <h1 class="H1-TituloGeneral-SextaCapa">FAQ</h1>
         </div>
@@ -183,7 +183,9 @@
         </div>
         <div class="Sub-Cont-PrimerCuadro-Septima-Capa">
             <h1 class="H1-PrimerCuadro-SeptimaCapa">Welcome to our Medical Appointment App</h1>
+            <form asp-page="/SignUp">
             <button class="Btn-Cuadro-SeptimaCapa">Sign Up Now</button> 
+            </form>
             @* <a class="Btn-Cuadro-SeptimaCapa" asp-area="" asp-page="/SignUp">Sign Up Now</a> *@
         </div>
     </div>
@@ -216,8 +218,8 @@
         <nav>
             <ul>
                 <li><a href="#">Home</a></li>
-                <li><a href="#">About us</a></li>
-                <li><a href="#">FAQ</a></li>
+                <li><a href="#about">About us</a></li>
+                <li><a href="#FAQ">FAQ</a></li>
             </ul>
         </nav>
     </div>
