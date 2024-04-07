@@ -23,21 +23,21 @@ namespace CoreApp
             {
                 var uc = new BranchCrudFactory();
 
-                //Valiacion de forma
+            //Valiacion de forma
 
-                if (!IsValidName(branch.Name))
-                {
-                    throw new Exception("Invalid name format");
-                }
-                else if (!IsValidAddress(branch.Address))
-                {
-                    throw new Exception("Invalid Address format");
-                }
-                else if (!IsValidDescription(branch.Description))
-                {
-                    throw new Exception("Invalid Description format");
-                }
-                uc.Create(branch);
+            if (!IsValidName(branch.Name))
+            {
+                throw new Exception("Invalid name format");
+            }
+            else if (!IsValidAddress(branch.Address))
+            {
+                throw new Exception("Invalid Address format");
+            }
+            else if (!IsValidDescription(branch.Description))
+            {
+                throw new Exception("Invalid Description format");
+            }
+            uc.Create(branch);
 
 
 
@@ -89,7 +89,7 @@ namespace CoreApp
                  }
             uc.Update(branch);
 
-            }
+        }
 
             public void Delete(Branch branch)
             {
@@ -97,11 +97,12 @@ namespace CoreApp
                 uc.Delete(branch);
             }
 
-            public void AddServices(Branch branch)
-            {
-                var uc = new BranchCrudFactory();
-                uc.AddServiceToBranch(branch.Id, branch.ServiceId);
-            }
+        public void AddServices(Branch branch)
+        {
+            var uc = new BranchCrudFactory();
+            uc.AddServiceToBranch(branch); 
+        }
+
 
         private bool IsValidName(string name)
             {
@@ -111,7 +112,7 @@ namespace CoreApp
             private bool IsValidAddress(string address)
             {
                 return !string.IsNullOrWhiteSpace(address) && char.IsUpper(address[0]) && address.All(c => char.IsLetter(c) && !char.IsWhiteSpace(c));
-            }
+        }
 
         private bool IsValidDescription(string description)
         {

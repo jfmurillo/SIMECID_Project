@@ -38,6 +38,10 @@ namespace DataAccess.DAOs
             Parameters.Add(new SqlParameter(paramName, paramValue));
         }
 
+        public void AddDoubleParam(string paramName, double paramValue)
+        {
+            Parameters.Add(new SqlParameter(paramName, paramValue));
+        }
 
         public void AddDatetimeParam(string paramName, DateTime birthDate)
         {

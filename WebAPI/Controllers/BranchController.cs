@@ -115,22 +115,21 @@ namespace WebAPI.Controllers
 
         [HttpPost]
         [Route("AddServiceToBranch")]
-        public ActionResult AddServiceToBranch(int branchId, int serviceId)
+        public ActionResult AddServiceToBranch(Branch branch)
         {
             try
             {
                 var um = new BranchManager();
-                var branch = um.RetrieveById(branchId);
 
-                if (branch == null)
+                // Verificar si el branch existe
+                var existingBranch = um.RetrieveById(branch.Id);
+
+                if (existingBranch == null)
                 {
                     return NotFound("Branch not found");
                 }
 
-                // Actualizar el ID del servicio del branch con el nuevo serviceId
-                branch.ServiceId = serviceId;
-
-                // Actualizar el branch en el repositorio de datos
+                // Agregar el servicio al branch
                 um.AddServices(branch);
 
                 return Ok(branch);
@@ -140,6 +139,10 @@ namespace WebAPI.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+
+
+
+
 
         [HttpGet]
         [Route("RetrieveAllServices")]

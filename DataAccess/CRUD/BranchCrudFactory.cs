@@ -19,17 +19,24 @@ namespace DataAccess.CRUD
 
         public override void Create(BaseDTO baseDTO)
         {
-            //Convertir BaseDTO en una sede
+            // Convertir BaseDTO en una sede
             var branch = baseDTO as Branch;
-            //Creacion de instructivo para que el Dao pueda ejecutar
+
+            // Creación de instructivo para que el Dao pueda ejecutar
             var sqlOperation = new SqlOperation { ProcedureName = "CRE_BRANCH_PR" };
             sqlOperation.AddVarcharParam("P_NAME", branch.Name);
             sqlOperation.AddVarcharParam("P_ADDRESS", branch.Address);
             sqlOperation.AddVarcharParam("P_DESCRIPTION", branch.Description);
 
-            
+            // Quemar valores para ServiceId, ServiceName, ServicePrice y ServiceTax
+            sqlOperation.AddIntParam("P_SERVICE_ID", 0); // Valor quemado para ServiceId
+            sqlOperation.AddVarcharParam("P_SERVICE_NAME", "Default"); // Valor quemado para ServiceName
+            sqlOperation.AddDoubleParam("P_SERVICE_PRICE", 0); // Valor quemado para ServicePrice
+            sqlOperation.AddDoubleParam("P_SERVICE_TAX", 0); // Valor quemado para ServiceTax
+
             _dao.ExecuteProcedure(sqlOperation);
         }
+
 
         public override void Delete(BaseDTO baseDTO)
         {
@@ -126,11 +133,11 @@ namespace DataAccess.CRUD
         }
 
 
-       public void AddServiceToBranch(int branchId, int serviceId)
+       public void AddServiceToBranch(Branch branch)
         {
             var sqlOperation = new SqlOperation { ProcedureName = "ADD_SERVICES_TO_BRANCH" };
-            sqlOperation.AddIntParam("P_BRANCH_ID", branchId);
-            sqlOperation.AddIntParam("P_SERVICE_ID", serviceId);
+            sqlOperation.AddIntParam("P_BRANCH_ID", branch.Id);
+            sqlOperation.AddIntParam("P_SERVICE_ID", branch.ServiceId);
             _dao.ExecuteProcedure(sqlOperation);
         }
 
@@ -144,7 +151,6 @@ namespace DataAccess.CRUD
                 ServiceName = (string)row["SERVICE_NAME"],
                 ServicePrice = (double)row["PRICE"],
                 ServiceTax = (double)row["TAX"]
-
             };
             return branchToReturn;
         }
