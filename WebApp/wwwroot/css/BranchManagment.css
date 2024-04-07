@@ -294,7 +294,7 @@ h2 {
         text-align: right;
     }
 
-    .form-field input[type="text"] {
+    .form-field input {
         flex: 1;
         padding: 5px;
         margin-left: 1%;
