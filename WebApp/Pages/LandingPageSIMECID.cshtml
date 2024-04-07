@@ -26,7 +26,9 @@
             <li class="li-header">FAQ</li>
         </ul>
         <div class="ContLogoHeader"><img class="LogoSimecidHeader" src="~/assets/logosimecid.png"/> </div>
-         <button class="loginBtnHeader">Log in</button> 
+        <form asp-page="/Login">
+            <button type="submit" class="loginBtnHeader">Log in</button>
+        </form>
         @* <a class="loginBtnHeader" asp-area="" asp-page="/Login">Log in</a> *@
     </div>
 </header>
@@ -39,7 +41,9 @@
         </div>
         <div class="SubCont-Primera-Capa-ParteDerecha">
             <p class="Txt-PrimeraCapa-ParteDerecha">Simplify your health with our <br> efficient medical <br> appointment app.</p>
+            <form asp-page="/SignUp">
             <button class="Btn-SingUp-PrimeraCapa" id="signUpBtn" type="click">Sing up</button> 
+            </form>
            @*  <a class="Btn-SingUp-PrimeraCapa" asp-area="" asp-page="/SignUp">Sign up</a> *@
         </div>
     </div>
