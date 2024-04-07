@@ -132,7 +132,7 @@ namespace WebAPI.Controllers
                 // Agregar el servicio al branch
                 um.AddServices(branch);
 
-                return Ok("Service added to branch successfully.");
+                return Ok(branch);
             }
             catch (Exception ex)
             {

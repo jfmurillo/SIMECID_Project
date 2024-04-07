@@ -41,9 +41,16 @@ function AllBranchInfoController() {
     // Método para agregar un servicio a una sucursal
     this.Add = function () {
         //Crear un Dto
-        var Branchservice = {};
-        Branchservice.branchId = $("#BranchId").val();
-        Branchservice.serviceId = $("#ServiceId").val();
+        var branchId = $("#branchSelect").val();
+        var serviceId = $("#serviceSelect").val();
+        var Branchservice = {
+            id: branchId,
+            name: "Default",
+            address: "Default",
+            description: "Default",
+            serviceId: serviceId,
+            serviceName: "Default"
+        };
 
         //Invocar Api para agregar el servicio a la sucursal
         var ca = new ControlActions();
@@ -52,6 +59,27 @@ function AllBranchInfoController() {
         ca.PostToAPI(serviceRoute, Branchservice, function () {
             console.log("Service Added to branch --->" + JSON.stringify(Branchservice));
             $('#tblBranch').DataTable().ajax.reload();
+        });
+    }
+
+    // Método para crear un nuevo servicio
+    this.Create = function () {
+        // Crear un objeto con los datos del nuevo servicio
+        var service = {};
+        service.name = $("#textName").val();
+        service.description = $("#textDescription").val();
+        service.price = $("#textPrice").val();
+        service.tax = $("#textTax").val();
+
+        // Invocar la API para crear el servicio
+        var ca = new ControlActions();
+        var serviceRoute = this.ApiService + "/Create";
+
+        ca.PostToAPI(serviceRoute, service, function () {
+            let loadsrv = new ServiceController();
+            console.log("Service Created --->" + JSON.stringify(service));
+            $('#tblServices').DataTable().ajax.reload();
+            loadsrv.LoadAllServices();
         });
     }
 
