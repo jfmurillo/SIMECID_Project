@@ -205,13 +205,13 @@ p {
 }
 
 .gestionDePerfilDeUsuario {
-    margin-top: 15%;
+    margin-top: 5%;
     text-align: center;
 }
 
 .form-container {
     max-width: 30%;
-    margin: 0 auto;
+    margin: 2% 30%;
     padding: 2%;
 }
 
@@ -258,7 +258,7 @@ p {
 
 .buttonContainer {
     max-width: 30%;
-    margin: 0 auto;
+    margin: 2% 30%;
 }
 
 .btn {
