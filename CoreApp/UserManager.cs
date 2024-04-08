@@ -64,11 +64,6 @@ namespace CoreApp
             }
             uc.Create(user);
 
-
-
-
-
-
         }
 
         public List<User> RetrieveAll()
