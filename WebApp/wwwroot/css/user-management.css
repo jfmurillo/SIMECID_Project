@@ -116,6 +116,7 @@ p {
     border: 2px solid var(--greenMain-SideBar); /* Aunque no se vea, No se debe borrar el borde, porque cambia los padding y entonces las cosas se mueven */
     border-radius: 5px;
     margin-top: 10px;
+    margin-left: 16px;
 }
 
     .buttonSettings:hover {
