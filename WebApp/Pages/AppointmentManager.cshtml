@@ -33,23 +33,30 @@
 
     <script src="~/js/pages/appointmentmanager.js"></script>
 
-    <title>Appointment manager</title>
+
+	<link rel="icon" href="~/assets/2_logosimecid.png" type="image/x-icon"   />
+    <link href="~/css/appointmentsmanager.css" rel="stylesheet" />
+
 
 </head>
 
+<!------- SIDEBAR ------>
 <div class="sidebar">
     <!------- Logo y titulo ------>
     <div class="containerLogo">
-        <img src="/Assets/logo-white.png" class="logoMini" />
-        <div class="fontTitle">SIMECID</div>
+        <img src="~/Assets/LogoSIMECID.png" class="logoMini" />
     </div>
     <!------- Icono y nombre del usuario, e icono de settings------>
     <div class="containerUser">
         <!--Boton para ver el perfil de usuario (no es lo mismo que gestion de users)-->
-        <button class="buttonUser">
-            <img src="~/assets/3rd_girl.png" class="userIcon" />
-            <div class="fontTitle userName">Emily Sanchez</div>
-        </button>
+
+        <form asp-page="/UserProfile">
+            <button class="buttonUser">
+                <img src="/Assets/1st_Girl.png" class="userIcon" />
+                <div class="fontTitleNavBar userName">Emily Sanchez</div>
+            </button>
+        </form>
+
         <!--Boton para ir a los settings-->
         <button class="buttonSettings">
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-gear-fill settingsIcon" viewBox="0 0 16 16">
