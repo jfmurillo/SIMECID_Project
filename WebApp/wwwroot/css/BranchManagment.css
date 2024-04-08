@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
 /* ---- CLASES GENERALES ---*/
 
 :root {
@@ -65,7 +67,6 @@ p {
 .logoMini {
     width: 40%;
     margin: 2%;
-
 }
 
 /*Contenedor del boton del icono y nombre del usuario, e icono de settings*/
@@ -157,7 +158,6 @@ p {
     font-size: 12px;
     color: white;
 }
-
 /*------- CLASES PARA EL CONTENIDO PRINCIPAL -----*/
 
 .main-content {
