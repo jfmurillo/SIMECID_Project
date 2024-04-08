@@ -66,15 +66,31 @@
     </div>
 
     <div class="MainMenu">
-        <button class="buttonMenu" id="appointmentsMenuId">Appointments</button>
-        <button class="buttonMenu" id="servicesMenuId">Services</button>
-        <button class="buttonMenu" id="branchesMenuId">Branches</button>
-        <button class="buttonMenu" id="usersMenuId">Users</button>
-        <button class="buttonMenu" id="paymentMenuId">Payment</button>
-        <button class="buttonMenu" id="examinationMenuId">Examination</button>
-        <button class="buttonMenu" id="prescriptionsMenuId">Prescriptions</button>
-        <button class="buttonMenu" id="medicalReportMenuId">Medical Report</button>
-        <div class="sidebarFooter">2024 Codecrafters All Right Reserved to</div>
+        <form asp-page="/AppointmentManager">
+            <button class="buttonMenu" id="appointmentsMenuId">Appointments</button>
+        </form>
+        <form asp-page="/ServiceManagment">
+            <button class="buttonMenu" id="servicesMenuId">Services</button>
+        </form>
+        <form asp-page="/BranchManagment">
+            <button class="buttonMenu" id="branchesMenuId">Branches</button>
+        </form>
+        <form asp-page="/UserManagement">
+            <button class="buttonMenu" id="">Users</button>
+        </form>
+        <form asp-page="/">
+            <button class="buttonMenu" id="paymentMenuId">Payment</button>
+        </form>
+        <form asp-page="/">
+            <button class="buttonMenu" id="examinationMenuId">Examination</button>
+        </form>
+        <form asp-page="/">
+            <button class="buttonMenu" id="prescriptionsMenuId">Prescriptions</button>
+        </form>
+        <form asp-page="/">
+            <button class="buttonMenu" id="medicalReportMenuId">Medical Report</button>
+        </form>
+        <div class="sidebarFooter">2024 Codecrafters All Right Reserved to </div>
     </div>
 </div>
 
