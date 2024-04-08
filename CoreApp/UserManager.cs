@@ -42,10 +42,10 @@ namespace CoreApp
             {
                 throw new Exception("Invalid Password format");
             }
-            else if (!IsValidSex(user.Sex))
+            /*else if (!IsValidSex(user.Sex))
             {
                 throw new Exception("Invalid Sex format");
-            }
+            }*/
             else if (!IsValidBirthDate(user.BirthDate))
             {
                 throw new Exception("Invalid birth date format");
@@ -108,10 +108,10 @@ namespace CoreApp
             {
                 throw new Exception("Invalid Password format");
             }
-            else if (!IsValidSex(user.Sex))
+            /*else if (!IsValidSex(user.Sex))
             {
                 throw new Exception("Invalid Sex format");
-            }
+            }*/
             else if (!IsValidBirthDate(user.BirthDate))
             {
                 throw new Exception("Invalid birth date format");
