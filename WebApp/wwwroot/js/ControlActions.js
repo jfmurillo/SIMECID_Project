@@ -181,7 +181,6 @@ function ControlActions() {
 		});
 	}
 }
-
 //Custom jquery actions
 $.put = function (url, data, callback) {
 	if ($.isFunction(data)) {
