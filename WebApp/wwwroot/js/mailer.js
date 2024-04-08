@@ -7,7 +7,6 @@ function EmailController() {
         $("#btnTry").click(function () {
             let ec = new EmailController();
             ec.SendEmail();
-            alert("Email has been sent");
         });
     };
 
@@ -29,6 +28,7 @@ function EmailController() {
 
         ca.PostToAPI(srvRoute, keysAuth, function (response) {
             console.log(response)
+            alert("Email has been sent");
         })
         } 
 }

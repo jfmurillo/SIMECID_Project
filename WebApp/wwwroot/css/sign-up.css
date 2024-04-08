@@ -110,9 +110,11 @@ img {
 
     .sign-up-form input {
         display: flex;
-        width: 100px;
+        width: 30vw;
+        height: 3vh;
         margin-left: 10px;
-        text-align: right;
+        text-align: center;
+        font-family: "Montserrat", sans-serif;
     }
 
 .password {
@@ -134,17 +136,40 @@ img {
         margin-bottom: 10px;
         margin-left: 100px;
         white-space: nowrap;
+        padding: 0;
+        justify-content: space-evenly
     }
 
+.sign-up-form #txtAddress {
+    display: inline-block;
+    width: 575px;
+    text-align: left;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    white-space: nowrap;
+    padding: 0;
+}
 
 
-#sex {
+
+#txtSex {
     font-family: "Montserrat", sans-serif;
+    margin-left: 10px
+    
+}
+
+#txtBirthdate {
+    max-width: 575px
+}
+
+#txtAddress{
+    border-radius: 5px;
+    margin-right: 10px
 }
 
 textarea {
     font-family: "Montserrat", sans-serif;
-    font-size: 22px;
+    font-size: 14px;
 }
 
 .btn {
