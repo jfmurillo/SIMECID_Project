@@ -9,7 +9,6 @@ namespace DTO
 {
     public class Appointment : BaseDTO
     {
-        [Required(ErrorMessage = "Patient id is required")]
         public int PatientId { get; set; }
 
         public String PatientName { get; set; }
@@ -29,10 +28,8 @@ namespace DTO
 
         public String BranchName { get; set; }
 
-        [Required(ErrorMessage = "Star appointment time is required")]
         public DateTime StartTime { get; set; }
 
-        [Required(ErrorMessage = "End appointment time is required")]
         public DateTime EndTime { get; set; }
 
         public String Text { get; set; } //Este es el motive 

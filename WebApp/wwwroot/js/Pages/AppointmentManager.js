@@ -32,11 +32,13 @@
         var appointment = {};
         appointment.patientName = $("#txtPatientName").val();
         appointment.patientLastName = $("#txtPatientLastName").val();
-        appointment.serviceName = $("#txtServiceName").val();
-        appointment.branchName = $("#txtBranchName").val();
+        appointment.branchId = $("#BranchId").val();
+        appointment.branchName = $("#TxtName").val();
+        appointment.serviceId = $("#ServiceId").val();
+        appointment.serviceName = $("#textServiceName").val();
+        appointment.text = $("#txtReason").val();
         appointment.startTime = $("#txtStartTime").val();
-        appointment.text = $("#txtText").val();
-        appointment.status = $("#txtStatus").val();
+        appointment.endTime = $("#txtStartTime").val()
 
 
         // invocar al api
