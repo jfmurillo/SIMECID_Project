@@ -235,13 +235,14 @@ h1 {
 
 .title1 {
     color: #4ec8a4;
-    margin-left: 20%;
+    margin-left: 25%;
 }
 
 .title2 {
     color: #1f95a1;
-    margin-left:12%;
+    margin-left: 20%;
 }
+
 
 .spaceP {
     width: 100%;
@@ -280,7 +281,7 @@ h2 {
 
 .form {
     width: 300px;
-    margin-left: 5%;
+    margin-left: 24%;
     margin-top: 2%;     
 }
 
@@ -337,6 +338,16 @@ h2 {
         cursor: pointer;
     }
 
+.buttonAdd{
+
+    margin-left: 40%;
+
+}
+
+.botonesAbajo {
+    margin-left: -7%;
+}
+
 .subtitle {
     margin-left: 5%;
     font-size: 18px;
@@ -349,3 +360,7 @@ h2 {
     margin-left: -42%;
 }
 
+.margenH1Service {
+    margin-top: 2%;
+    margin-left: -35%;
+}
