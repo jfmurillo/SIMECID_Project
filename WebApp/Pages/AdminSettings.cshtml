@@ -16,7 +16,6 @@
 <link href="~/css/adminsettings.css" rel="stylesheet" />
 </head>
 
-<!------- SIDEBAR ------>
 <<!------- SIDEBAR ------>
 <div class="sidebar">
     <!------- Logo y titulo ------>
@@ -77,10 +76,9 @@
     <div class="profileHeader">
     </div>
     <div class="gestionDePerfilDeUsuario">
-        <h1 class="fontTitle">Admin</h1>
-        <p class="UserDetails">Settings</p>
         <form class="form-container">
-
+            <h1 class="fontTitle">Admin Settings</h1>
+            <p class="UserDetails">Configute your alerts</p>
             <div class="sign-up-form">
                 <label for="status">Alerts</label><br>
                 <select id="status" name="status" required>
@@ -101,7 +99,7 @@
             </div>
 
             <div class="sign-up-form">
-                <label class="birthdate" for="birthdate">Alerts time</label><br>
+                <label class="alertdate" for="birthdate">Alerts time</label><br>
                 <input type="time" id="time" name="time" required><br><br>
             </div>
 
@@ -113,11 +111,10 @@
                     <option value="female">Light</option>
                 </select><br><br>
             </div>
-
+            <div class="buttonContainer">
+                <button class="btn" type="submit">Update</button>
+            </div>
         </form>
-        <div class="buttonContainer">
-            <button class="btn" type="submit">Update</button>
-        </div>
     </div>
 </body>
 </html>

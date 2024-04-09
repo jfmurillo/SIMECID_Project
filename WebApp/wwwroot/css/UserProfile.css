@@ -164,7 +164,6 @@ p {
 
 .main-content {
     width: 100%;
-    margin-left: 10%;
 }
 
 .profileHeader {
@@ -176,22 +175,22 @@ p {
 
 
 .profilePic {
-    width: 150px;
-    height: 150px;
+    width: 20vh;
+    height: 20vh;
     border-radius: 50%; /* Esto hace que la imagen sea un círculo */
     overflow: hidden; /* Asegura que cualquier contenido adicional esté oculto dentro del círculo */
     margin-top: 20vh;
+    margin-left: 20%;
 }
 
 .gestionDePerfilDeUsuario {
-    margin-top: 5%;
     text-align: center;
+    padding-left: 18%;
 }
 
 .form-container {
-    max-width: 30%;
-    margin: 2% 30%;
-    padding: 2%;
+    max-width: 100%;
+    margin: 10% 40%;
 }
 
 .sign-up-form {
@@ -201,7 +200,6 @@ p {
     margin-bottom: 3%;
     text-align: right;
     font-family: "Montserrat", sans-serif;
-    font-size: 16px;
 }
 
     .sign-up-form label {
@@ -209,14 +207,14 @@ p {
         width: 30%;
         min-width: 50px;
         margin-bottom: 2%;
-        margin-right: 5%;
+        margin-right: 10%;
+        text-align: right;
         font-family: "Montserrat", sans-serif;
-        font-size: 14px;
     }
 
     .sign-up-form input,
     .sign-up-form textarea {
-        width: 50%;
+        width: 100%;
         min-width: 50px;
         border: 1px solid black;
         border-radius: 5px;
@@ -228,7 +226,7 @@ p {
 }
 
 .sign-up-form select {
-    width: 50%;
+    width: 100%;
     border: 1px solid black;
     border-radius: 5px;
     font-family: "Montserrat", sans-serif;
@@ -236,8 +234,8 @@ p {
 }
 
 .buttonContainer {
-    max-width: 30%;
-    margin: 2% 32%;
+    max-width: 100%;
+    margin-top: 10%;
 }
 
 .btn {
@@ -256,7 +254,7 @@ p {
 }
 
     .btn:hover {
-        background-color:   #666;
+        background-color: var(--greenLight1);
     }
 
 

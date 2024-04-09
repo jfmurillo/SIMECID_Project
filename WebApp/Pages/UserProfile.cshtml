@@ -80,9 +80,9 @@
         <img src="/Assets/1st_Girl.png" alt="Foto de Perfil" class="profilePic">
     </div>
     <div class="gestionDePerfilDeUsuario">
-        <h1 class="fontTitle">Edit profile</h1>
-        <p class="UserDetails">User details</p>
         <form class="form-container">
+            <h1 class="fontTitle">Edit profile</h1>
+            <p class="UserDetails">User details</p>
             <div class="sign-up-form">
                 <label for="name">Name</label><br>
                 <input type="text" id="name" name="name" required><br><br>
@@ -148,19 +148,19 @@
                 <label for="address">Address</label><br>
                 <textarea id="address" name="address" required></textarea><br><br>
             </div>
-        </form>
-        <div class="buttonContainer">
-            <div class="sign-up-form">
-                <label for="theme">Theme</label><br>
-                <select id="theme" name="theme" required>
-                    <option value="" disabled selected hidden>Select</option>
-                    <option value="male">Dark</option>
-                    <option value="female">Light</option>
-                </select><br><br>
+            <div class="buttonContainer">
+                <h1 class="fontTitle">Settings</h1>
+                <div class="sign-up-form">
+                    <label for="theme">Theme</label><br>
+                    <select id="theme" name="theme" required>
+                        <option value="" disabled selected hidden>Select</option>
+                        <option value="male">Dark</option>
+                        <option value="female">Light</option>
+                    </select><br><br>
+                </div>
+                <button class="btn" type="submit">Update</button>
             </div>
-            <button class="btn" type="submit">Update</button>
-
-        </div>
+        </form>
     </div>
 </body>
 </html>
