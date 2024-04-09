@@ -102,7 +102,7 @@
         <h1 class="fontTitle">Make your appointments</h1>
         <div class="row">
             <div class="col-lg-12">
-                <table id="tblAllBranches" class="table table-hover" style="width:100%">
+                <table id="tblAllBranches" class="display table table-hover" style="width:100%">
                     <thead>
                         <tr>
                             <th>BranchId</th>
@@ -121,7 +121,7 @@
         <div class="row">
             <h2 class="serviceTitle">Choose your prefered service</h2>
             <div class="col-lg-12">
-                <table id="tblBranch" class="table table-hover" style="width:100%">
+                <table id="tblBranch" class="table table-hover display" style="width:100%">
                     <thead>
                         <tr>
                             <th>BranchId</th>
@@ -139,62 +139,35 @@
         <form class="form-container" style="justify-content:center">
             <p>Confirm your appointment details</p>
             <div>
-                <label for="txtPatientName">Patient Name</label>
-                <input type="text" id="txtPatientName" />
-            </div><br />
+
+                <input type="number" id="txtPatientId" hidden />
+            </div>
             <div>
-                <label for="txtPatientLastName">Patient Last Name</label>
-                <input type="text" id="txtPatientLastName" />
-            </div><br />
+
+                <input type="number" id="DoctorId" hidden />
+            </div>
             <div class="form-field">
                 <input type="number" class="formularyform" id="BranchId" hidden>
             </div>
             <div class="form-field">
-                <label for="name">Branch</label>
-                <input type="text" id="TxtName" name="name" value="">
-            </div>
-            <br />
-            <div class="form-field">
                 <input type="number" class="formularyform" id="ServiceId" hidden>
-            </div>
-            <div class="form-field">
-                <label for="name">Service</label>
-                <input type="text" id="textServiceName" name="name" value="">
             </div>
             <br />
             <div>
                 <label for="reason">Reason</label>
-                <input type="text" id="txtReason" name="reason"/>
+                <input type="text" id="txtReason" name="reason" />
             </div>
-                
+
             <br />
             <h1 class="fontTitle">Choose your date</h1>
-            <div>
-               @*  <!-- div del calendario-->
-                <div style="display: flex ">
-                    <div style="margin-right: 10px;">
-                        <div id="nav"></div>
-                    </div>
-                    <div style="flex-grow: 1;">
-                        <div class="toolbar">
-                            Theme:
-                            <select id="theme">
-                                <option value="calendar_default">Default</option>
-                                <option value="calendar_white" selected>White</option>
-                                <option value="calendar_green">Green</option>
-                                <option value="calendar_traditional">Traditional</option>
-                                <option value="calendar_transparent">Transparent</option>
-                            </select>
-                        </div>
-                        <div id="dp"></div>
-                    </div>
-                </div> *@
-                
-            </div>
             <div class="date-form">
                 <label class="appointDate" for="birthdate">Fecha de la cita</label><br>
                 <input type="date" id="txtStartTime" name="birthdate" required><br><br>
-            </div>
+            </div><br />
+            <div>
+                <label for="status">Status</label>
+                <input type="text" id="txtStatus" name="status" />
+            </div><br />
             <div>
                 <button id="btnCreate" class="btn-send" type="submit">Confirm your appointment</button>
             </div>
@@ -204,72 +177,94 @@
     <div>
         <div class="table-container">
             <p>Select your Appointment</p>
-            <table class="table table-hover" id="tblAppointments">
+            <table id="tblAppointments">
                 <thead>
                     <tr>
+                        <th>Appointment Id</th>
+                        <th>Patient Id</th>
                         <th>Patient Name</th>
                         <th>Patient Last Name</th>
+                        <th>Doctor Id</th>
+                        <th>Doctor Name</th>
+                        <th>Doctor Last Name</th>
+                        <th>Service Id</th>
                         <th>Service Name</th>
+                        <th>Branch Id</th>
                         <th>Branch Name</th>
                         <th>Start Time</th>
+                        <th>End Time</th>
                         <th>Text</th>
                         <th>Status</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr id="fila3">
-                        <td>Juan</td>
-                        <td>Perez</td>
-                        <td>Lorem ipsum</td>
-                        <td>Alajuela</td>
-                        <td>2023</td>
-                        <td>Malo</td>
-                        <td>Malo</td>
-                    </tr>
-                </tbody>
             </table>
         </div>
 
         <form class="form-container">
             <div>
-                <label for="txtPatientName">Patient Name</label>
+                <label for="txtId">Appointment ID</label><br />
+                <input type="number" id="txtId" name="txtAppointmentId"/>
+            </div><br />
+            <div>
+                <label for="txtPatientId">Patient ID</label><br />
+                <input type="number" id="patientId" />
+            </div><br />
+            <div>
+                <label for="txtPatientName">Patient Name</label><br />
                 <input type="text" id="txtPatientName" />
             </div><br />
             <div>
-                <label for="txtPatientLastName">Patient Last Name</label>
+                <label for="txtPatientLastName">Patient Last Name</label><br />
                 <input type="text" id="txtPatientLastName" />
             </div><br />
             <div>
-                <label for="txtServiceName">Service Name</label>
+                <label for="DoctorId">Doctor ID</label><br />
+                <input type="number" id="doctorId" />
+            </div><br />
+            <div>
+                <label for="DoctorName">Doctor Name</label><br />
+                <input type="text" id="doctorName" />
+            </div><br />
+            <div>
+                <label for="DoctorLastName">Doctor Last Name</label><br />
+                <input type="text" id="doctorLastName" />
+            </div><br />
+
+            <div>
+                <label for="txtServiceId">Service Id</label><br />
+                <input type="number" id="serviceId" />
+            </div><br />
+            <div>
+                <label for="txtServiceName">Service Name</label><br />
                 <input type="text" id="txtServiceName" />
             </div><br />
             <div>
-                <label for="txtBranchName">Branch Name</label>
+                <label for="txtBranchId">Branch Id</label><br />
+                <input type="number" id="branchId" />
+            </div><br />
+            <div>
+                <label for="txtBranchName">Branch Name</label><br />
                 <input type="text" id="txtBranchName" />
             </div><br />
-            <div>
-                <label for="txtStartTime">Start Time</label><br />
-                <input type="date" id="txtStartTime" />
+            <div class="date-form">
+                <label class="appointDate">Appointment Date</label><br>
+                <input type="date" id="startTime"><br><br>
             </div><br />
             <div>
-                <label for="txtText">Text</label><br />
-                <input type="text" id="txtText" />
+                <label for="txtReason">Text</label><br />
+                <input type="text" id="text" />
             </div><br />
             <div>
                 <label for="txtStatus">Status</label><br />
-                <input type="text" id="txtStatus" />
+                <input type="text" id="status" />
             </div><br />
             <br />
             <div style="flex-wrap: ">
                 <button class="btn" type="submit">Pay</button>
-                <button class="btn" type="submit">Update</button>
-                <button class="btn" type="submit">Delete</button>
+                <button class="btn" type="submit" id="btnUpdate">Update</button>
+                <button class="btn" type="submit" id="btnDelete">Delete</button>
             </div>
-
-
         </form>
-
-
 
     </div>
     </div>

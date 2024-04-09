@@ -10,7 +10,7 @@ namespace DataAccess.CRUD
 {
     public class AppointmentCrudFactory : CrudFactory
     {
-        public AppointmentCrudFactory() 
+        public AppointmentCrudFactory()
         {
             _dao = SqlDao.GetInstace();
         }
@@ -19,7 +19,7 @@ namespace DataAccess.CRUD
             //throw new NotImplementedException();
 
             var appointment = baseDTO as Appointment;
-            var sqlOperation = new SqlOperation { ProcedureName= "CRE_APPOINTMENT_PR" };
+            var sqlOperation = new SqlOperation { ProcedureName = "CRE_APPOINTMENT_PR" };
             sqlOperation.AddIntParam("P_PATIENT_ID", appointment.PatientId);
             sqlOperation.AddIntParam("P_DOCTOR_ID", appointment.DoctorId);
             sqlOperation.AddIntParam("P_SERVICE_ID", appointment.ServiceId);
@@ -119,7 +119,7 @@ namespace DataAccess.CRUD
         {
             var apptToReturn = new Appointment()
             {
-                Id = (int)row["ID"],
+                Id = (int)row["APPOINTMENT_ID"],
                 PatientId = (int)row["PATIENT_ID"],
                 PatientName = (string)row["PATIENT_NAME"],
                 PatientLastName = (string)row["PATIENT_LASTNAME"],
@@ -130,6 +130,8 @@ namespace DataAccess.CRUD
                 ServiceName = (string)row["SERVICE_NAME"],
                 BranchId = (int)row["BRANCH_ID"],
                 BranchName = (string)row["BRANCH_NAME"],
+                Text = (string)row["TEXT"],
+                Status = (string)row["STATUS"],
                 StartTime = (DateTime)row["APPOINTMENT_START_TIME"],
                 EndTime = (DateTime)row["APPOINTMENT_END_TIME"]
             };

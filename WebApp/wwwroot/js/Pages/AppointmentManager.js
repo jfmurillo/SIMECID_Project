@@ -27,41 +27,57 @@
     };
 
     this.Create = function () {
+        try {
+            // Crear un dto
+            var appointment = {};
 
-        // crear un dto
-        var appointment = {};
-        appointment.patientName = $("#txtPatientName").val();
-        appointment.patientLastName = $("#txtPatientLastName").val();
-        appointment.branchId = $("#BranchId").val();
-        appointment.branchName = $("#TxtName").val();
-        appointment.serviceId = $("#ServiceId").val();
-        appointment.serviceName = $("#textServiceName").val();
-        appointment.text = $("#txtReason").val();
-        appointment.startTime = $("#txtStartTime").val();
-        appointment.endTime = $("#txtStartTime").val()
+            appointment.patientId = 15;
+            appointment.patientName = "Default";
+            appointment.patientLastName = "Default";
+            appointment.doctorId = 15;
+            appointment.doctorName = "Default";
+            appointment.doctorLastName = "Default";
+            appointment.serviceId = $("#ServiceId").val();
+            appointment.serviceName = "Default";
+            appointment.branchId = $("#BranchId").val();
+            appointment.branchName = "Default";
+            appointment.startTime = formatDate($("#startTime").val()); // Format date here
+            appointment.endTime = formatDate($("#startTime").val());
+            appointment.text = $("#txtReason").val();
+            appointment.status = $("#txtStatus").val();
 
+            // Invocar al API
+            var ca = new ControlActions();
+            var serviceRoute = this.ApiService + "/Create";
 
-        // invocar al api
-
-        var ca = new ControlActions();
-        var serviceRoute = this.ApiService + "/Create";
-
-        ca.PostToAPI(serviceRoute, appointment, function () {
-            console.log("Appointment Created --->" + JSON.stringify(appointment));
-        })
+            ca.PostToAPI(serviceRoute, appointment, function () {
+                console.log("Appointment Created --->" + JSON.stringify(appointment));
+            });
+        } catch (error) {
+            console.error("Error occurred while creating appointment:", error);
+        }
     };
+
 
     this.Update = function () {
 
         // crear un dto
         var appointment = {};
+        appointment.id = $("#txtId").val();
+        appointment.patientId = $("#patientId").val();
         appointment.patientName = $("#txtPatientName").val();
         appointment.patientLastName = $("#txtPatientLastName").val();
+        appointment.doctorId = $("#doctorId").val();
+        appointment.doctorName = $("#doctorName").val();
+        appointment.doctorLastName = $("#doctorLastName").val();
+        appointment.serviceId = $("#serviceId").val();
         appointment.serviceName = $("#txtServiceName").val();
+        appointment.branchId = $("#branchId").val();
         appointment.branchName = $("#txtBranchName").val();
-        appointment.startTime = $("#txtStartTime").val();
-        appointment.text = $("#txtText").val();
-        appointment.status = $("#txtStatus").val();
+        appointment.startTime = formatDate($("#startTime").val()); // Format date here
+        appointment.endTime = formatDate($("#startTime").val());
+        appointment.text = $("#text").val();
+        appointment.status = $("#status").val();
 
         // invocar al api
 
@@ -78,6 +94,20 @@
         // crear un dto
         var appointment = {};
         appointment.id = $("#txtId").val();
+        appointment.patientId = $("#patientId").val();
+        appointment.patientName = $("#txtPatientName").val();
+        appointment.patientLastName = $("#txtPatientLastName").val();
+        appointment.doctorId = $("#doctorId").val();
+        appointment.doctorName = $("#doctorName").val();
+        appointment.doctorLastName = $("#doctorLastName").val();
+        appointment.serviceId = $("#serviceId").val();
+        appointment.serviceName = $("#txtServiceName").val();
+        appointment.branchId = $("#branchId").val();
+        appointment.branchName = $("#txtBranchName").val();
+        appointment.startTime = formatDate($("#startTime").val()); // Format date here
+        appointment.endTime = formatDate($("#startTime").val());
+        appointment.text = $("#text").val();
+        appointment.status = $("#status").val();
 
 
         // invocar al api
@@ -99,13 +129,21 @@
 
         // Definir las columnas a extraer del json de  respuesta
         var columns = [];
-        columns[0] = { 'data': 'patientName' }
-        columns[1] = { 'data': 'patientLastName' }
-        columns[2] = { 'data': 'serviceName' }
-        columns[3] = { 'data': 'branchName' }
-        columns[4] = { 'data': 'startTime' }
-        columns[5] = { 'data': 'text' }
-        columns[6] = { 'data': 'status' }
+        columns[0] = { 'data': 'id' }
+        columns[1] = { 'data': 'patientId' }
+        columns[2] = { 'data': 'patientName' }
+        columns[3] = { 'data': 'patientLastName' }
+        columns[4] = { 'data': 'doctorId' }
+        columns[5] = { 'data': 'doctorName' }
+        columns[6] = { 'data': 'doctorLastName' }
+        columns[7] = { 'data': 'serviceId' }
+        columns[8] = { 'data': 'serviceName' }
+        columns[9] = { 'data': 'branchId' }
+        columns[10] = { 'data': 'branchName' }
+        columns[11] = { 'data': 'startTime' }
+        columns[12] = { 'data': 'endTime' }
+        columns[13] = { 'data': 'text' }
+        columns[14] = { 'data': 'status' }
 
         // Inicializar la tabla como un data table
         $("#tblAppointments").dataTable({
@@ -113,7 +151,41 @@
                 "url": urlService,
                 "dataSrc": ""
             },
-            "columns": columns
+            "columns": columns,
+            columnDefs: [
+                {
+                    target: 1,
+                    visible: false
+                },
+                {
+                    target: 4,
+                    visible: false
+                },
+                {
+                    target: 5,
+                    visible: false
+                },
+                {
+                    target: 6,
+                    visible: false
+                },
+                {
+                    target: 7,
+                    visible: false
+                },
+                {
+                    target: 8,
+                    visible: false
+                },
+                {
+                    target: 9,
+                    visible: false
+                },
+                {
+                    target: 12,
+                    visible: false
+                }
+            ]
         });
 
         $('#tblAppointments tbody').on('click', 'tr', function () {
@@ -126,18 +198,29 @@
             var appointment = $('#tblAppointments').DataTable().row(row).data();
 
             // mapeo de los valores del objeto data con el  formulario
-            $("#txtId").val(apppointment.Id);
+            $("#txtId").val(appointment.id);
+            $("#patientId").val(appointment.patientId);
             $("#txtPatientName").val(appointment.patientName);
             $("#txtPatientLastName").val(appointment.patientLastName);
+            $("#doctorId").val(appointment.doctorId);
+            $("#doctorName").val(appointment.doctorName);
+            $("#doctorLastName").val(appointment.doctorLastName);
+            $("#serviceId").val(appointment.serviceId);
             $("#txtServiceName").val(appointment.serviceName);
+            $("#branchId").val(appointment.branchId);
             $("#txtBranchName").val(appointment.branchName);
-            $("#txtStartTime").val(apppointment.startTime);
-            $("#txtText").val(appointment.text);
-            $("#txtStatus").val(appointment.status);
-
-
+            $("#text").val(appointment.text);
+            $("#status").val(appointment.status);
 
         })
+    }
+
+    function formatDate(dateString) {
+        var date = new Date(dateString);
+        var year = date.getFullYear();
+        var month = ('0' + (date.getMonth() + 1)).slice(-2);
+        var day = ('0' + date.getDate()).slice(-2);
+        return year + '-' + month + '-' + day;
     }
 
 }
@@ -234,10 +317,10 @@ function AllBranchInfoController() {
             // Extraer la fila en la que se hizo clic
             var row = $(this).closest('tr');
             // Extraer los datos del servicio de la fila
-            var service = $('#tblBranch').DataTable().row(row).data();
+            var rowData = $('#tblBranch').DataTable().row(row).data();
             // Mapear los valores del objeto de datos con los campos del formulario
-            $("#ServiceId").val(service.Id);
-            $("#textServiceName").val(service.name);
+            $("#ServiceId").val(rowData.serviceId);
+            $("#textServiceName").val(rowData.serviceName);
         });
     }
 }
