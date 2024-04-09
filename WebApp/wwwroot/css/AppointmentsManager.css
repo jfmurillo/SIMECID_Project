@@ -288,36 +288,50 @@ body, html {
 
 
 /* ----CLASES PARA LA TABLA------- */
-.table-container {
-    width: 100%; 
-    margin-top: 2%;
-}
-
 table {
+    width: 100%;
     border-collapse: collapse;
-    background-color: var(--whiteBackground);
+    /* Otros estilos según tus preferencias */
 }
 
-thead {
-    background-color: var(--greenDark3);
-    color: #fff;
+th,
+td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    /* Otros estilos según tus preferencias */
 }
 
-th, td {
-    padding: 12px 15px;
+.table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    border-radius: 10px; /* Ajusta este valor según tu preferencia */
+    overflow: hidden;
+    margin-left: -10%;
+}
+
+th,
+td {
+    padding: 8px;
     text-align: left;
+    border-bottom: 1px solid var(--whiteBackground);
 }
 
 th {
-    border-bottom: 2px solid #ddd;
+    background-color: var(--greenMain-SideBar);
+    color: var(--whiteBackground);
 }
 
-tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-tbody tr:hover {
-    background-color: #ddd;
+.table-active,
+.table-primary,
+.table-secondary,
+.table-success,
+.table-danger,
+.table-warning,
+.table-info,
+.table-light,
+.table-dark {
+    background-color: rgba(255, 255, 255, 0.075);
 }
 
 /*CLASES PARA EL CALENDARIO*/
@@ -341,4 +355,9 @@ tbody tr:hover {
     border-radius: 5px;
 }
 
+.MarginPrimerH{
+
+    margin-left: 20%;
+
+}
 
