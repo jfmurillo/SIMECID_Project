@@ -53,9 +53,21 @@ body {
     font-family: Montserrat, sans-serif; /* Tipo de fuente predeterminado */
 }
 
+/* Estilos para los enlaces del encabezado */
 .li-header {
-    font-size: 20px;
+    text-decoration: none; /* Quita el subrayado predeterminado */
+    color: #333; /* Color del texto */
+    font-size: 20px; /* Tamaño del texto */
+    font-weight: bold; /* Peso de la fuente */
+    margin-right: 20px; /* Espacio entre los elementos */
+    transition: color 0.3s; /* Transición suave del color */
 }
+
+    /* Cambio de color al pasar el cursor */
+    .li-header:hover {
+        color: #007bff; /* Cambia el color del texto al pasar el cursor */
+    }
+
 
 .Cont-General-Primera-Capa {
     display: flex;
@@ -160,11 +172,19 @@ body {
     background-color: #02B1A9;
     text-align: center;
     height: 1770px;
+   /* display: flex;*/
+}
+.Flex1-Tercera-Capa {
+    width: 50%;
+}
+.Flex2-Tercera-Capa {
+    width: 50%;
 }
 
 .Sub-Cont-Titulo-Tercera-Capa {
     padding: 10px; /* Espacio interior del texto */
     text-align: center;
+    width: 80%;
 }
 
 .H1-Titulo-TerceraCapa {
@@ -526,10 +546,12 @@ body {
     padding: 20px;
     margin: 10px;
     margin-left: 100px;
-    margin-top: 40px;
+    margin-top: 5%;
+    margin-bottom: 5%;
     width: 500px;
     text-align: left;
 }
+
 
 .SubCont-Img-H1-QuintoCuadro {
     display: flex;
@@ -563,10 +585,9 @@ body {
 }
 
 .Img-ParteDerecha-QuintaCapa {
-    margin-top: -100px;
-    width: 800px; /* Ancho de la imagen */
-    height: 1680px; /* Altura de la imagen */
-    margin-left: 200px;
+    width: 70%; /* Ancho de la imagen */
+    height: 80%; /* Altura de la imagen */
+    margin: 5%;
 }
 
 .Cont-General-Sexta-Capa {

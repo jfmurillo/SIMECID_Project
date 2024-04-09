@@ -159,37 +159,26 @@ p {
 }
 
 /*------- CLASES PARA EL CONTENIDO PRINCIPAL -----*/
-
 .main-content {
     width: 100%;
-    margin-left: 10%;
 }
 
 .profileHeader {
-    background-image: url('headerpic.png');
+    background-image: url('../assets/1_Doctor_Taking_Notes.png');
     background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el encabezado */
     text-align: center;
     height: 30vh; /* Ajusta la altura del encabezado según sea necesario */
-}
-
-
-.profilePic {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%; /* Esto hace que la imagen sea un círculo */
-    overflow: hidden; /* Asegura que cualquier contenido adicional esté oculto dentro del círculo */
-    margin-top: 20vh;
+    margin: 0;
 }
 
 .gestionDePerfilDeUsuario {
-    margin-top: 5%;
     text-align: center;
+    padding-left: 18%
 }
 
 .form-container {
-    max-width: 30%;
-    margin: 0 auto;
-    padding: 2%;
+    max-width: 100%;
+    margin: 5% 40%;
 }
 
 .sign-up-form {
@@ -197,36 +186,33 @@ p {
     display: flex;
     flex-direction: row;
     margin-bottom: 3%;
-    text-align: right;
+    text-align: left;
     font-family: "Montserrat", sans-serif;
-    font-size: 16px;
 }
 
     .sign-up-form label {
-        justify-self: start;
         width: 30%;
         min-width: 50px;
         margin-bottom: 2%;
-        margin-right: 5%;
+        margin-right: 15%;
+        text-align: right;
         font-family: "Montserrat", sans-serif;
-        font-size: 14px;
     }
 
     .sign-up-form input,
     .sign-up-form textarea {
-        width: 50%;
+        width: 100%;
         min-width: 50px;
         border: 1px solid black;
         border-radius: 5px;
     }
 
-.birthdate {
+.alertdate {
     font-family: "Montserrat", sans-serif;
-    font-size: 14px;
 }
 
 .sign-up-form select {
-    width: 50%;
+    width: 500%;
     border: 1px solid black;
     border-radius: 5px;
     font-family: "Montserrat", sans-serif;
@@ -235,14 +221,19 @@ p {
 
 .buttonContainer {
     max-width: 30%;
-    margin: 0 auto;
+    margin: 2% 30%;
+}
+
+.buttonContainer {
+    max-width: 100%;
+    margin-top: 10%;
 }
 
 .btn {
-    width: 40%;
+    width: 100%;
     margin-left: 20%;
     margin-bottom: 10%;
-    padding: 2% 4%;
+    padding: 8%;
     background-color: #02B1A9;
     color: #fff;
     border: none;
@@ -254,7 +245,7 @@ p {
 }
 
     .btn:hover {
-        background-color: #666;
+        background-color: var(--greenLight1);
     }
 
 
