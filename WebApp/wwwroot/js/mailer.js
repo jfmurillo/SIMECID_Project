@@ -10,18 +10,20 @@ function EmailController() {
         });
     };
 
+
+
     this.SendEmail = function () {
         let email = $("#email").val().trim();
-        
-            if (email.trim() === "") {
-                alert("Please enter an email address.");
-                return;
-            }
 
-            let keysAuth = {
-                emailAddress: email,
-                otp: 0
-            };
+        if (email.trim() === "") {
+            alert("Please enter an email address.");
+            return;
+        }
+
+        let keysAuth = {
+            emailAddress: email,
+            otp: 0
+        };
 
         let srvRoute = this.ApiService + "/SendEmail"
         var ca = new ControlActions();
@@ -30,11 +32,12 @@ function EmailController() {
             console.log(response)
             alert("Email has been sent");
         })
-        } 
+    }
 }
 
-   
-    $(document).ready(function () {
-        var ec = new EmailController();
-        ec.InitView();
-    });
+
+$(document).ready(function () {
+    var ec = new EmailController();
+    ec.InitView();
+});
+

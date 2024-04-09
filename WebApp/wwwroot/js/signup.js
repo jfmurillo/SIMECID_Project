@@ -49,7 +49,9 @@ function SignUpController() {
             console.log(response);
             let ee = new EmailController();
             console.log("estoy aqui")
-            ee.SendEmail()
+            ee.SendEmail();
+
+            window.location.href = "/CodeVerification";
         });
     };
 }
@@ -133,4 +135,20 @@ $(document).ready(function () {
     ee.InitView();
     ec.InitView();
     vc.InitView();
+
+    // Manejar el evento click del botón "Create Account"
+    $("#BtnSignIn").click(function () {
+        let ec = new SignUpController();
+        ec.Create();
+        // Submit del formulario para redirigir al usuario
+        $("#codeVerificationForm").submit();
+    });
+
+    $("#verifyMe").click(function () {
+        // Lógica para verificar el código aquí
+        alert("Verification code is being verified...");
+        // Ejemplo de redirección a otra página después de la verificación
+        window.location.href = "/Login"; // Cambia "/Dashboard" por la ruta deseada
+    });
+
 });

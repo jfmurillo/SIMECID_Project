@@ -13,6 +13,15 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="/css/log-in.css" />
     <link rel="icon" href="~/assets/2_logosimecid.png" type="image/x-icon"   />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+@*     <script>
+        document.getElementById("btn").addEventListener("onClick", redirect);
+        function redirect() {
+            window.location.href = "/UserProfile";
+        };
+    </script> *@
+
+
     <title>Log-In</title>
 </head>
 <body>
@@ -40,11 +49,17 @@
                     <label for="password">Password</label><br>
                     <input type="password" id="password" name="password" required><br><br>
                 </div>
+                <div>
                 <a class="frgtPwd" asp-area="" asp-page="/RecoverPass-Email">Did you forget your password?</a>
-                <button class="btn" type="submit" style="margin-left: 350px;">Log In</button>
+                </div>
             </form>
+
+            <form asp-page="/UserProfile">
+                <button id="btn" class="btn" style="margin-left: 460px;">Log In</button>
+            </form>
+     
         </div>
     </div>
-    <script src=></script>
+
 </body>
 </html>
