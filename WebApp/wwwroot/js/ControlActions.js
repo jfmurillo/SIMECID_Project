@@ -80,17 +80,16 @@ function ControlActions() {
 			contentType: "application/json; charset=utf-8",
 			dataType: "json",
 			success: function (data) {
-				if (callBackFunction) {
-					Swal.fire(
-						'Good job!',
-						'Transaction completed!',
-						'success'
-					)
+				if (callBackFunction && typeof callBackFunction === "function") {
 					callBackFunction(data);
 				}
+				Swal.fire(
+					'¡Buen trabajo!',
+					'¡Transacción completada!',
+					'success'
+				);
 			},
 			error: function (jqXHR, textStatus, errorThrown) {
-
 				var responseJson = jqXHR.responseJSON;
 				var message = jqXHR.responseText;
 
@@ -101,10 +100,10 @@ function ControlActions() {
 				}
 				Swal.fire({
 					icon: 'error',
-					title: 'Oops...',
+					title: '¡Oops...',
 					html: message,
 					footer: 'UCenfotec'
-				})
+				});
 			}
 		});
 	};

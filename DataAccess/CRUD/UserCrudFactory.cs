@@ -32,9 +32,7 @@ namespace DataAccess.CRUD
             sqlOperation.AddVarcharParam("P_ROLE", user.Role);
             sqlOperation.AddVarcharParam("P_STATUS", user.Status);
             sqlOperation.AddVarcharParam("P_ADDRESS", user.Address);
-            sqlOperation.AddVarcharParam("P_OTP", user.OTP);
-            
-            
+
             _dao.ExecuteProcedure(sqlOperation);
         }
 
