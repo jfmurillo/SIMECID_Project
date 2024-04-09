@@ -2,13 +2,23 @@ function SignUpController() {
     this.ViewNmae = "User";
     this.ApiService = "User";
 
+    var email = "";
     this.InitView = function () {
         console.log("init view sign up")
         $("#BtnSignIn").click(function () {
             let ec = new SignUpController();
+            email = $("#txtEmail").val();
             ec.Create();
+            /*ec.ValidateOTP();*/
+            $("#codeVerificationForm").submit();
+        });
+
+        $("#verifyMe").click(function () {
+            var sc = new ValidateOTPController();
+            sc.ValidateOTP(email);
         });
     };
+
     this.Create = function () {
         
         var name = $("#txtName").val();
@@ -17,7 +27,7 @@ function SignUpController() {
         var email = $("#txtEmail").val();
         var password = $("#txtPassword").val();
         var sex = $("#txtSex").val();
-        var birthdate = $("#txtBirthdate").val();
+        var birthdate = new Date($("#txtBirthdate").val());
         var address = $("#txtAddress").val();
         var user = {
             name: name,
@@ -30,7 +40,6 @@ function SignUpController() {
             role: 'Default',
             status: 'Default',
             address: address,
-            otp: ''
         };
 
         var ca = new ControlActions();
@@ -39,6 +48,7 @@ function SignUpController() {
         ca.PostToAPI(serviceRoute, user, function (response) {
             console.log(response);
             let ee = new EmailController();
+            console.log("estoy aqui")
             ee.SendEmail()
         });
     };
@@ -55,7 +65,7 @@ function EmailController() {
     };
 
     this.SendEmail = function () {
-        let email = $("#txtEmail").val();
+        var email = $("#txtEmail").val();
 
         if (email === "") {
             alert("Please enter an email address.");
@@ -70,16 +80,57 @@ function EmailController() {
         let srvRoute = this.ApiService + "/SendEmail"
         var ca = new ControlActions();
 
-        ca.PostToAPI(srvRoute, keysAuth, function (response) {
-            console.log(response)
-            alert("Email has been sent");
+        ca.PostToAPI(srvRoute, keysAuth, function () {
+            console.log("estoy aqui - email api")
         })
     }
+}
+
+
+function ValidateOTPController() {
+    this.InitView = function () {
+        console.log("init view validate otp")
+        $("#verifyMe").click(function () {
+            let sc = new ValidateOTPController();
+            sc.ValidateOTP();
+        })
+    };
+
+    this.ValidateOTP = function (email) {
+        let ec = new SignUpController();
+        
+        var otp = $("#txtOTP").val();
+
+        if (email === "" || otp === "") {
+            alert("Por favor ingresa tu correo electrónico y OTP.");
+            return;
+        }
+
+        let srvRoute = this.ApiService + "/ValidateOTP";
+        var ca = new ControlActions();
+
+        ca.GetToApi(srvRoute + "?email=" + email + "&otp=" + otp, function (response) {
+            if (response === true) {
+                alert("OTP is valid")
+                console.log("OTP válido");
+                //let ec = new SignUpController();
+                //ec.Create();
+                // Continuar con el proceso de registro del usuario
+                // Llamar a la función Create para crear el usuario
+            } else {
+                console.log("OTP inválido");
+                alert("Invalid OTP.");
+                // Permitir al usuario corregir el OTP
+            }
+        });
+    };
 }
 
 $(document).ready(function () {
     var ec = new SignUpController();
     var ee = new EmailController();
+    var vc = new ValidateOTPController();
     ee.InitView();
     ec.InitView();
+    vc.InitView();
 });

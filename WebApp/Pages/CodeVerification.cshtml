@@ -12,6 +12,13 @@
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="/css/code-verification.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/js/signup.js"></script>
+    <script src="~/js/controlactions.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <title>Code Verification</title>
 </head>
 <body>
@@ -35,10 +42,10 @@
             <form class="form-container">
                 <div class="sign-up-form">
                     <label for="text">OTP  </label>
-                    <input type="text" id="otp" name="otp" required>
+                    <input type="text" id="txtOTP" name="otp" required>
                 </div>
                 <form asp-page="/Login">
-                 <button class="btn" type="submit" style="margin-left: 350px;">Verify Me</button>
+                 <button class="btn" type="button" id="verifyMe" style="margin-left: 350px;">Verify Me</button>
                 </form>
                 @* <a class="btn" style="margin-left: 350px;" asp-area="" asp-page="/Login">Verify Me</a> *@
             </form>
