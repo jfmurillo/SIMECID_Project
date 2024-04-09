@@ -104,7 +104,7 @@ function ValidateOTPController() {
         var otp = $("#txtOTP").val();
 
         if (email === "" || otp === "") {
-            alert("Por favor ingresa tu correo electrónico y OTP.");
+            /*alert("Por favor ingresa tu correo electrónico y OTP.");*/
             return;
         }
 
