@@ -21,17 +21,17 @@
 <header>
     <div class="header">
         <ul>
-            <li class="li-header-home li-header">Home</li>
-            <li class="li-header">About us</li>
-            <li class="li-header">FAQ</li>
+            <li><a href="#about" class="li-header">About the app</a></li>
+            <li><a href="#FAQ" class="li-header">FAQ</a></li>
         </ul>
-        <div class="ContLogoHeader"><img class="LogoSimecidHeader" src="~/assets/logosimecid.png"/> </div>
+        <div class="ContLogoHeader"><img class="LogoSimecidHeader" src="~/assets/logosimecid.png" /> </div>
         <form asp-page="/Login">
             <button style="cursor:pointer" type="submit" class="loginBtnHeader">Log in</button>
         </form>
         @* <a class="loginBtnHeader" asp-area="" asp-page="/Login">Log in</a> *@
     </div>
 </header>
+
 
 <body>
     <div class="Cont-General-Primera-Capa">
@@ -58,6 +58,7 @@
         </div>
     </div>
 
+    <!--CAPA DE LOS KEY BENEFITS-->
     <div class="Cont-General-Tercera-Capa">
         <div class="Sub-Cont-Titulo-Tercera-Capa">
             <h1 class="H1-Titulo-TerceraCapa">Key Benefits</h1>
@@ -94,6 +95,7 @@
         </div>
     </div>
 
+    <!--CAPA DE TESTIMONIOS-->
     <div class="Cont-General-Quinta-Capa">
 
         <div class="SubCont-Quinta-Capa-ParteIzquierda">
@@ -217,8 +219,7 @@
         <img src="~/assets/logosimecidenano.png" alt="SIMECID Logo">
         <nav>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#about">About us</a></li>
+                <li><a href="#about">About the app</a></li>
                 <li><a href="#FAQ">FAQ</a></li>
             </ul>
         </nav>
