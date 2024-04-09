@@ -345,12 +345,12 @@ th {
 .appointDate {
     font-family: "Montserrat", sans-serif;
     font-size: 14px;
+    width: 100%;
 }
 
 .date-form input,
 .date-form textarea {
-    width: 20%;
-    min-width: 50px;
+    width: 100%;
     border: 1px solid black;
     border-radius: 5px;
 }
