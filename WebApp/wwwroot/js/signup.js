@@ -140,6 +140,9 @@ $(document).ready(function () {
     $("#BtnSignIn").click(function () {
         let ec = new SignUpController();
         ec.Create();
+        setTimeout(function () {
+            console.log("Este mensaje aparecerá después de 1 segundo.");
+        }, 1000);
         // Submit del formulario para redirigir al usuario
         $("#codeVerificationForm").submit();
     });
