@@ -111,7 +111,7 @@ namespace CoreApp
 
             private bool IsValidAddress(string address)
             {
-                return !string.IsNullOrWhiteSpace(address) && char.IsUpper(address[0]) && address.All(c => char.IsLetter(c) && !char.IsWhiteSpace(c));
+                return !string.IsNullOrWhiteSpace(address);
         }
 
         private bool IsValidDescription(string description)

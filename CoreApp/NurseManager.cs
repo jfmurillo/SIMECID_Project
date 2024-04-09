@@ -219,7 +219,7 @@ namespace CoreApp
 
 		private bool IsValidAddress(string adress)
 		{
-			return !string.IsNullOrWhiteSpace(adress) && char.IsUpper(adress[0]) && adress.All(c => char.IsLetterOrDigit(c) || char.IsWhiteSpace(c));
+			return !string.IsNullOrWhiteSpace(adress);
 		}
 
 
