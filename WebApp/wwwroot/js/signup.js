@@ -51,7 +51,12 @@ function SignUpController() {
             console.log("estoy aqui")
             ee.SendEmail();
 
-            window.location.href = "/CodeVerification";
+
+            setTimeout(function () {
+                window.location.href = "/CodeVerification";
+            }, 2000); 
+
+            
         });
     };
 }

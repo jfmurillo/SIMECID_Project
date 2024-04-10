@@ -84,8 +84,8 @@ function ControlActions() {
 					callBackFunction(data);
 				}
 				Swal.fire(
-					'¡Buen trabajo!',
-					'¡Transacción completada!',
+					'¡Good Job!',
+					'¡Transaction completed!',
 					'success'
 				);
 			},
