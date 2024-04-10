@@ -116,7 +116,7 @@ namespace CoreApp
 
         private bool IsValidDescription(string description)
         {
-            return !string.IsNullOrWhiteSpace(description) && char.IsUpper(description[0]) && description.All(c => char.IsLetter(c) && !char.IsWhiteSpace(c));
+            return !string.IsNullOrWhiteSpace(description);
         }
 
 
