@@ -19,7 +19,8 @@ namespace CoreApp
 
             EmailClient emailClient = new EmailClient(connectionString);
             EmailContent emailContent = new EmailContent("OTP Verification"); //Subject
-            emailContent.PlainText = "Here is your verification code:" + generateOTP();
+            emailContent.PlainText = "\nHere is your verification code:" + generateOTP();
+
 
 
             List<EmailAddress> emailAddresses = new List<EmailAddress> { new EmailAddress(emailAddress, "Suscriptor de ISA-CLINIC") };

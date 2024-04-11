@@ -10,10 +10,41 @@ namespace CoreApp
 {
     public class ValidateOTPManager
     {
-            public ValidateOTP ValidateOTP(string verifyEmail, string verifyOtp)
+        public void CreateOTP(ValidateOTP validateOTP)
+        {
+            var vc = new ValidateOTPCrudFactory();
+
+            if (validateOTP.Email == null || validateOTP.OTP == null)
             {
-                var vc = new ValidateOTPCrudFactory();
-                return vc.ValidateOTP<ValidateOTP>(verifyEmail, verifyOtp);
+                throw new ArgumentNullException("Email or OTP cannot be null or empty.");
+            }
+
+            vc.CreateOTP(validateOTP);
+        }
+
+        public string GetUserOTP(string email, string otp)
+        {
+            var vc = new ValidateOTPCrudFactory();
+            var result = vc.GetUserOTP(email, otp);
+
+            string emailResult = result.Email;
+            string otpResult = result.OTP;
+
+            return (otpResult);
+        }
+
+
+        public bool ValidateOtp(string email, string otpInput)
+        {
+            var Otp = GetUserOTP(email, otpInput);
+            if (Otp == otpInput)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
+    }
 }
