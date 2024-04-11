@@ -34,7 +34,7 @@
             appointment.patientId = 15;
             appointment.patientName = "Default";
             appointment.patientLastName = "Default";
-            appointment.doctorId = 15;
+            appointment.doctorId = 16; //Cambio doctor
             appointment.doctorName = "Default";
             appointment.doctorLastName = "Default";
             appointment.serviceId = $("#ServiceId").val();
