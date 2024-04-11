@@ -74,8 +74,8 @@
         appointment.serviceName = $("#txtServiceName").val();
         appointment.branchId = $("#branchId").val();
         appointment.branchName = $("#txtBranchName").val();
-        appointment.startTime = formatDate($("#startTime").val()); // Format date here
-        appointment.endTime = formatDate($("#startTime").val());
+        appointment.startTime = formatDate($("#txtStartTime").val()); // Format date here
+        appointment.endTime = formatDate($("#txtStartTime").val());
         appointment.text = $("#text").val();
         appointment.status = $("#status").val();
 
@@ -104,8 +104,8 @@
         appointment.serviceName = $("#txtServiceName").val();
         appointment.branchId = $("#branchId").val();
         appointment.branchName = $("#txtBranchName").val();
-        appointment.startTime = formatDate($("#startTime").val()); // Format date here
-        appointment.endTime = formatDate($("#startTime").val());
+        appointment.startTime = formatDate($("#txtStartTime").val()); // Format date here
+        appointment.endTime = formatDate($("#txtStartTime").val());
         appointment.text = $("#text").val();
         appointment.status = $("#status").val();
 
