@@ -7,16 +7,32 @@ function SignUpController() {
         console.log("init view sign up")
         $("#BtnSignIn").click(function () {
             let ec = new SignUpController();
-            email = $("#txtEmail").val();
             ec.Create();
-            /*ec.ValidateOTP();*/
+            setTimeout(function () {
+                console.log("Este mensaje aparecerá después de 1 segundo.");
+            }, 1000);
+            // Submit del formulario para redirigir al usuario
             $("#codeVerificationForm").submit();
         });
 
         $("#verifyMe").click(function () {
-            var sc = new ValidateOTPController();
-            sc.ValidateOTP(email);
+            // Lógica para verificar el código aquí
+            alert("Verification code is being verified...");
+            // Ejemplo de redirección a otra página después de la verificación
+            window.location.href = "/Login"; // Cambia "/Dashboard" por la ruta deseada
         });
+        //$("#BtnSignIn").click(function () {
+        //    let ec = new SignUpController();
+        //    email = $("#txtEmail").val();
+        //    ec.Create();
+        //    /*ec.ValidateOTP();*/
+        //    $("#codeVerificationForm").submit();
+        //});
+
+        //$("#verifyMe").click(function () {
+        //    var sc = new ValidateOTPController();
+        //    sc.ValidateOTP(email);
+        //});
     };
 
     this.Create = function () {
@@ -141,22 +157,22 @@ $(document).ready(function () {
     ec.InitView();
     vc.InitView();
 
-    // Manejar el evento click del botón "Create Account"
-    $("#BtnSignIn").click(function () {
-        let ec = new SignUpController();
-        ec.Create();
-        setTimeout(function () {
-            console.log("Este mensaje aparecerá después de 1 segundo.");
-        }, 1000);
-        // Submit del formulario para redirigir al usuario
-        $("#codeVerificationForm").submit();
-    });
+    // //Manejar el evento click del botón "Create Account"
+    //$("#BtnSignIn").click(function () {
+    //    let ec = new SignUpController();
+    //    ec.Create();
+    //    setTimeout(function () {
+    //        console.log("Este mensaje aparecerá después de 1 segundo.");
+    //    }, 1000);
+    //    // Submit del formulario para redirigir al usuario
+    //    $("#codeVerificationForm").submit();
+    //});
 
-    $("#verifyMe").click(function () {
-        // Lógica para verificar el código aquí
-        alert("Verification code is being verified...");
-        // Ejemplo de redirección a otra página después de la verificación
-        window.location.href = "/Login"; // Cambia "/Dashboard" por la ruta deseada
-    });
+    //$("#verifyMe").click(function () {
+    //    // Lógica para verificar el código aquí
+    //    alert("Verification code is being verified...");
+    //    // Ejemplo de redirección a otra página después de la verificación
+    //    window.location.href = "/Login"; // Cambia "/Dashboard" por la ruta deseada
+    //});
 
 });
