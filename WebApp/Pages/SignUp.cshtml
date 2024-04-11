@@ -1,0 +1,97 @@
+﻿@page
+@model WebApp.Pages.SignUpModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="~/css/sign-up.css" rel="stylesheet" />
+    <script src="~/js/signup.js"></script>
+    <script src="~/js/controlactions.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Sign-up</title>
+</head>
+<body>
+    <div class="container">
+        <div class="split left">
+            <footer>
+                <p>&copy; 2024 CodeCrafters. All rights reserved.</p>
+            </footer>
+        </div>
+
+        <div class="split right">
+            <span class="topSignUp">
+                <img src="/Assets/logo-white.png" />
+                <h1>SIMECID</h1>
+            </span>
+            <h2 style="margin-bottom:20px ;padding: 0">Create new account</h2>
+
+            <form class="form-container">
+                <div class="sign-up-form">
+                    <label for="name">Name</label><br>
+                    <input type="text" id="txtName" name="name" required><br><br>
+
+                </div>
+
+                <div class="sign-up-form" id="signInForm">
+                    <label for="lastName">Last Name</label><br>
+                    <input type="text" id="txtLastName" name="lastName" required><br><br>
+                </div>
+
+                <div class="sign-up-form">
+                    <label for="phoneNumber">Phone Number</label><br>
+                    <input type="tel" id="txtPhoneNumber" name="phoneNumber" required><br><br>
+                </div>
+
+                <div class="sign-up-form">
+                    <label for="email">Email</label><br>
+                    <input type="email" id="txtEmail" name="email" required><br><br>
+                </div>
+
+                <div class="sign-up-form">
+                    <label for="password">Password</label><br>
+                    <input type="password" id="txtPassword" name="password" required><br><br>
+                </div>
+
+                <div class="sign-up-form">
+                    <label for="sex">Sex</label><br>
+                    <select class="classinput" id="txtSex" name="sex" style="width: 30vw; height: 3vh;" required>
+                        <option value="" disabled selected hidden>Select your gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select><br><br>
+                </div>
+
+                <div class="sign-up-form">
+                    <label for="birthdate">Birth Date</label><br>
+                    <input class="password" type="date" id="txtBirthdate" name="txtBirthdate" required><br><br>
+                </div>
+
+                <div class="sign-up-form">
+                    <label for="address">Address</label><br>
+                    <textarea class="classinput" id="txtAddress" name="address" required></textarea><br><br>
+                </div>
+
+
+                <form id="codeVerificationForm">
+                    <button class="btn" id="BtnSignIn" type="button" style="margin-left: 350px;">Create Account</button>
+                </form>
+                @* <a class="btn" style="margin-left: 350px;" asp-area="" asp-page="/CodeVerification">Create Account</a> *@
+            </form>
+
+
+        </div>
+    </div>
+</body>
+</html>
