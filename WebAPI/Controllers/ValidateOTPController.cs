@@ -37,23 +37,17 @@ namespace WebAPI.Controllers
 
         [HttpGet]
         [Route("VerifyOtp")]
-        public IActionResult VerifyOtp(string email, string otpInput)
+        public IActionResult VerifyOtp()
         {
-            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(otpInput))
-            {
-                return BadRequest("Email or OTP input is missing.");
-            }
-
             try
             {
-                bool isValid = _validateOTPManager.ValidateOtp(email, otpInput);
-                return Ok(isValid);
-            }
-            catch (Exception ex)
+                var vm = new ValidateOTPManager();
+                var otpList = vm.RetrieveAllOTP();
+                return Ok(otpList);
+            } catch (Exception ex)
             {
-                return StatusCode(500, $"An error occurred: {ex.Message}");
+                return StatusCode(500, ex.Message);
             }
         }
-
     }
 }

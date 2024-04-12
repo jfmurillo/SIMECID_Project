@@ -67,6 +67,25 @@ namespace DataAccess.CRUD
             return validateOTP;
         }
 
+        public List<T> RetrieveAllOTP<T>()
+        {
+            var otpList = new List<T>();
+            var sqlOperation = new SqlOperation() { ProcedureName = "RET_OTP_ALL" };
+            var lstResults = _dao.ExecuteQueryProcedure(sqlOperation);
+
+            if (lstResults.Count > 0)
+            {
+                foreach (var row in lstResults)
+                {
+                    var user = BuildOTP(row);
+                    otpList.Add((T)Convert.ChangeType(user, typeof(T)));
+                }
+            }
+            return otpList;
+        }
+
+
+
         private ValidateOTP BuildOTP(Dictionary<string, object> row)
         {
             var vldOTP = new ValidateOTP()

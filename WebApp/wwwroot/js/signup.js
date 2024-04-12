@@ -9,7 +9,7 @@ function SignUpController() {
         console.log(urlParams.get(`email`));
         $("#BtnSignIn").click(function () {
             let ec = new SignUpController();
-            ec.SendEmail(); // Envía el correo electrónico con el OTP
+            ec.Create();
         });
 
         $("#verifyMe").click(function () {
@@ -17,7 +17,7 @@ function SignUpController() {
             var otp = $("#txtOTP").val();
             let urlParams = new URLSearchParams(window.location.search);
             email = urlParams.get(`email`)
-            sc.ValidateOTP(email, otp); // Valida el OTP ingresado por el usuario
+            sc.ValidateOTP(email, otp);
         });
     };
 
@@ -30,7 +30,7 @@ function SignUpController() {
         var sex = $("#txtSex").val();
         var birthdate = new Date($("#txtBirthdate").val());
         var address = $("#txtAddress").val();
-        var user = {
+        let user = {
             name: name,
             lastName: lastName,
             email: email,
@@ -48,10 +48,40 @@ function SignUpController() {
             this.ValidateOTP(email);
         });
 
-        setTimeout(function () {
-            window.location.href = `/CodeVerification?email=${user.email}`;
-        }, 1000);
     };
+
+    this.Create = function () {
+        var name = $("#txtName").val();
+        var lastName = $("#txtLastName").val();
+        var phoneNumber = $("#txtPhoneNumber").val();
+        var email = $("#txtEmail").val();
+        var password = $("#txtPassword").val();
+        var sex = $("#txtSex").val();
+        var birthdate = new Date($("#txtBirthdate").val());
+        var address = $("#txtAddress").val();
+        let user = {
+            name: name,
+            lastName: lastName,
+            email: email,
+            phoneNumber: phoneNumber,
+            password: password,
+            sex: sex,
+            birthDate: birthdate,
+            role: 'Default',
+            status: 'Default',
+            address: address,
+        };
+
+        let ca = new ControlActions();
+        let srvR = "User/Create"
+
+        ca.PostToAPI(srvR, user, function (response) {
+            console.log(response);
+            setTimeout(function () {
+                window.location.href = `/CodeVerification?email=${user.email}`;
+            }, 1000);
+        })
+    }
 }
 
 function EmailController2() {
@@ -69,48 +99,52 @@ function EmailController2() {
         ca.PostToAPI(serviceRoute, keysAuth, function (response) {
             console.log("Email sent successfully");
             if (callback && typeof callback === 'function') {
-                callback(); // Llama a la función de retorno si está definida
+                callback();
             }
         }, function (error) {
             console.error("Error sending email:", error);
-            alert("An error occurred while sending the email. Please try again later.");
         });
     };
 
 
     this.ValidateOTP = function (email, otp) {
         if (email === "" || otp === "") {
-            alert("Email or OTP cannot be null or empty.");
             return;
         }
 
         let data = {
             email,
             otp
-        }s
+        }
 
         var srv = "ValidateOTP/CreateData"
         ca.PostToAPI(srv, data, function (response) {
-            console.log("crear data para bd")
+            console.log("Creating data for database");
             var serviceRoute = "ValidateOTP/VerifyOtp";
 
-            let valiodateOTP = ca.GetToApi(serviceRoute, function (response) {
-                console.log(response)
-                if (response === true) {
-                    alert("OTP is valid");
-                    console.log("OTP valido");
-
+            ca.GetToApi(serviceRoute, function (response) {
+                console.log(response);
+                var validOTP = false;
+                for (var i = 0; i < response.length; i++) {
+                    if (response[i].otp === otp && response[i].email === email) {
+                        validOTP = true;
+                        break;
+                    }
+                }
+                if (validOTP) {
+                    console.log("Valid OTP");
+                    let sc = new SignUpController();
+                    sc.Create();
                     window.location.href = "/Login";
                 } else {
-                    console.log("OTP inválido");
-                    alert("Invalid OTP.");
+                    console.log("Invalid OTP");
                 }
             }, function (error) {
                 console.error("Error validating OTP:", error);
-                alert("An error occurred while validating the OTP. Please try again.");
             });
-        })
+        });
     };
+
 }
 
     $(document).ready(function () {

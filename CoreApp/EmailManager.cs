@@ -13,7 +13,7 @@ namespace CoreApp
 {
     public class EmailManager
     {
-        public async Task<string> SendEmail(string emailAddress, int OTP) 
+        public async Task<string> SendEmail(string emailAddress) 
         {
             string connectionString = "endpoint=https://emailotpcommunication.unitedstates.communication.azure.com/;accesskey=fUSkmhkbbVbswwMw55/GkM6SV4KmWLND0FFG1bQ9m7rMe2gTUi3OSyO8DNLbr40Tjid0RqLTr5dBBeevwwlKGA==";
 

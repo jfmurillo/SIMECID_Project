@@ -13,9 +13,6 @@ namespace CoreApp
     //Clase de negocio donde se aplican las validaciones funcionales 
     public class UserManager
     {
-        //Metodo para create
-
-
         public void Create(User user)
         {
             var uc = new UserCrudFactory();
@@ -77,7 +74,7 @@ namespace CoreApp
             var uc = new UserCrudFactory();
             return uc.RetrieveById<User>(userId);
         }
-        
+
 
         public void Update(User user)
         {
@@ -145,11 +142,11 @@ namespace CoreApp
 
         private bool IsValidPassword(string password)
         {
-            // Verifica si la contraseña no es nula o compuesta solamente de espacios en blanco
+
             if (string.IsNullOrWhiteSpace(password))
                 return false;
 
-            // Verifica si la contraseña tiene al menos 8 caracteres
+
             if (password.Length < 8)
                 return false;
 
@@ -158,7 +155,7 @@ namespace CoreApp
 
             foreach (char c in password)
             {
-                // Verifica si el carácter actual es un número
+
                 if (char.IsDigit(c))
                 {
                     hasNumber = true;
@@ -176,23 +173,25 @@ namespace CoreApp
 
         private bool IsValidSex(string sex)
         {
-            // Verifica si el sexo no es nulo o compuesto solamente de espacios en blanco
             if (string.IsNullOrWhiteSpace(sex))
                 return false;
-
-            // Convierte el sexo a minúsculas para hacer la comparación más fácil
             string sexLower = sex.ToLower();
 
-            // Verifica si el sexo es válido
             return sexLower == "m" || sexLower == "f" || sexLower == "masculino" || sexLower == "femenino";
         }
 
         private bool IsValidEmail(string email)
         {
-
+            // Verifica el formato del correo electrónico
             string emailRegexPattern = @"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
-            return Regex.IsMatch(email, emailRegexPattern);
+            if (!Regex.IsMatch(email, emailRegexPattern))
+            {
+                throw new Exception("Email format is invalid");
+            }
+
+            return true;
         }
+
 
         private bool IsValidStatus(string status)
         {
@@ -219,11 +218,25 @@ namespace CoreApp
         }
 
 
+
         private bool IsValidBirthDate(DateTime birthDate)
         {
             string expectedFormat = "yyyy-MM-dd";
 
-            return DateTime.TryParseExact(birthDate.ToString(expectedFormat), expectedFormat, null, DateTimeStyles.None, out _);
+            if (!DateTime.TryParseExact(birthDate.ToString(expectedFormat), expectedFormat, null, DateTimeStyles.None, out _))
+            {
+                return false;
+            }
+            DateTime today = DateTime.Today;
+
+            if (birthDate > today)
+            {
+                throw new Exception("The birth date cannot be greater than today's date.");
+            }
+
+            return true;
         }
+
     }
-}
+};
+
