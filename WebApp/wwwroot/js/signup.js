@@ -18,6 +18,7 @@ function SignUpController() {
             let urlParams = new URLSearchParams(window.location.search);
             email = urlParams.get(`email`)
             sc.ValidateOTP(email, otp);
+
         });
     };
 
@@ -144,7 +145,6 @@ function EmailController2() {
             });
         });
     };
-
 }
 
     $(document).ready(function () {

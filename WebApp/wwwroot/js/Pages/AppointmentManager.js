@@ -34,7 +34,7 @@
             appointment.patientId = 15;
             appointment.patientName = "Default";
             appointment.patientLastName = "Default";
-            appointment.doctorId = 15;
+            appointment.doctorId = 16; //Cambio doctor
             appointment.doctorName = "Default";
             appointment.doctorLastName = "Default";
             appointment.serviceId = $("#ServiceId").val();
@@ -74,8 +74,8 @@
         appointment.serviceName = $("#txtServiceName").val();
         appointment.branchId = $("#branchId").val();
         appointment.branchName = $("#txtBranchName").val();
-        appointment.startTime = formatDate($("#startTime").val()); // Format date here
-        appointment.endTime = formatDate($("#startTime").val());
+        appointment.startTime = formatDate($("#txtStartTime").val()); // Format date here
+        appointment.endTime = formatDate($("#txtStartTime").val());
         appointment.text = $("#text").val();
         appointment.status = $("#status").val();
 
@@ -104,8 +104,8 @@
         appointment.serviceName = $("#txtServiceName").val();
         appointment.branchId = $("#branchId").val();
         appointment.branchName = $("#txtBranchName").val();
-        appointment.startTime = formatDate($("#startTime").val()); // Format date here
-        appointment.endTime = formatDate($("#startTime").val());
+        appointment.startTime = formatDate($("#txtStartTime").val()); // Format date here
+        appointment.endTime = formatDate($("#txtStartTime").val());
         appointment.text = $("#text").val();
         appointment.status = $("#status").val();
 
