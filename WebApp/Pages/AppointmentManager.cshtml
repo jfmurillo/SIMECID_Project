@@ -163,8 +163,8 @@
             <br />
             <h1 class="fontTitle">Choose your date</h1>
             <div class="date-form">
-                <label class="appointDate" for="birthdate">Appointment Date</label><br>
-                <input type="date" id="startTime" name="birthdate" required><br><br>
+                <label class="appointDate" for="AppDate">Appointment Date</label><br>
+                <input type="datetime-local" id="startTime" name="AppDate" required><br><br>
             </div><br />
             <div>
                 <label for="status">Status</label>
@@ -176,7 +176,30 @@
         </form>
 
     </div>
+    
     <div>
+        <div style="display: flex">
+
+            <div style="margin-right: 10px;">
+                <div id="nav"></div>
+            </div>
+
+            <div style="flex-grow: 1;">
+
+                <div class="toolbar">
+                    Theme: <select id="theme">
+                        <option value="calendar_default">Default</option>
+                        <option value="calendar_white" selected>White</option>
+                        <option value="calendar_green">Green</option>
+                        <option value="calendar_traditional">Traditional</option>
+                        <option value="calendar_transparent">Transparent</option>
+                    </select>
+                </div>
+
+                <div id="dp"></div>
+            </div>
+
+        </div>
         <div class="table-container">
             <p>Select your Appointment</p>
             <table id="tblAppointments">
@@ -201,7 +224,7 @@
                 </thead>
             </table>
         </div>
-
+        
         <form class="form-container">
             <div>
                 <label for="txtId">Appointment ID</label><br />
@@ -251,7 +274,7 @@
             <h1 class="fontTitle">Choose your date</h1>
             <div class="date-form">
                 <label class="appointDate" for="birthdate">Appointment Date</label><br>
-                <input type="date" id="txtStartTime" name="birthdate" required><br><br>
+                <input type="datetime-local" id="txtStartTime" name="birthdate" required><br><br>
             </div><br />
             <div>
                 <label for="txtReason">Text</label><br />
@@ -270,7 +293,8 @@
         </form>
 
     </div>
-    </div>
+
     <script src="~/lib/daypilot/daypilot-all.min.js" asp-append-version="true"></script>
+	<script src="~/js/pages/calendar.js"></script>
 </body>
 </html>
