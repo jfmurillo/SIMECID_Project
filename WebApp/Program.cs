@@ -5,7 +5,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-
 builder.Services.AddDbContext<CalendarDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("CalendarContext")));
 
 var app = builder.Build();
@@ -26,5 +25,6 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapRazorPages();
+app.MapControllers();
 
 app.Run();

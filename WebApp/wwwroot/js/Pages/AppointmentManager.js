@@ -41,8 +41,8 @@
             appointment.serviceName = "Default";
             appointment.branchId = $("#BranchId").val();
             appointment.branchName = "Default";
-            appointment.startTime = formatDate($("#startTime").val()); // Format date here
-            appointment.endTime = formatDate($("#startTime").val());
+            appointment.startTime = $("#startTime").val(); // Format date here
+            appointment.endTime = $("#startTime").val();
             appointment.text = $("#txtReason").val();
             appointment.status = $("#txtStatus").val();
 
