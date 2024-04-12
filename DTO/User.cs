@@ -39,5 +39,6 @@ namespace DTO
         [Required(ErrorMessage = "Address is required")]
         public string Address { get; set; }
 
+        public bool isValid { get; set; }
     }
 }

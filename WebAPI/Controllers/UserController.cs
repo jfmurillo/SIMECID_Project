@@ -1,6 +1,7 @@
 ﻿using CoreApp;
 using DTO;
 using Microsoft.AspNetCore.Mvc;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WebAPI.Controllers
 {
@@ -57,12 +58,14 @@ namespace WebAPI.Controllers
 
         [HttpPost]
         [Route("Create")]
-        public ActionResult Create(User user)
+        public async Task<ActionResult> CreateAsync(User user)
         {
             try
             {
                 var um = new UserManager();
                 um.Create(user);
+                var em = new EmailManager();
+                await em.SendEmail(user.Email);
                 return Ok(user);
             }
             catch (Exception ex)
@@ -111,5 +114,7 @@ namespace WebAPI.Controllers
             }
         }
     }
+
+
 
 }

@@ -45,21 +45,46 @@ namespace DataAccess.CRUD
             throw new NotImplementedException();
         }
 
-        public T ValidateOTP<T>(string email, string otp) 
+        public void CreateOTP(ValidateOTP validateOTP)
         {
-            var sqlOperation = new SqlOperation() { ProcedureName = "VALIDATE_OTP_PR" };
+            var vlOtp = validateOTP;
+
+            var sqlOperation = new SqlOperation { ProcedureName = "CRE_VAL_OTP_PR" };
+            sqlOperation.AddVarcharParam("P_EMAIL", vlOtp.Email);
+            sqlOperation.AddVarcharParam("P_OTP", vlOtp.OTP);
+
+            _dao.ExecuteProcedure(sqlOperation);
+        }
+
+        public ValidateOTP GetUserOTP(string email, string otp)
+        {
+            var sqlOperation = new SqlOperation() { ProcedureName = "GET_USER_OTP_PR" }; 
             sqlOperation.AddVarcharParam("P_EMAIL", email);
             sqlOperation.AddVarcharParam("P_OTP", otp);
-            var lstResult = _dao.ExecuteQueryProcedure(sqlOperation);
 
-            if (lstResult.Count > 0)
-            {
-                var row = lstResult[0];
-                var VLDotp = BuildOTP(row);
-                return (T)Convert.ChangeType(VLDotp, typeof(T));
-            }
-            return default(T);
+            var result = _dao.ExecuteQueryProcedure(sqlOperation);
+            var validateOTP = BuildOTP(result[0]);
+            return validateOTP;
         }
+
+        public List<T> RetrieveAllOTP<T>()
+        {
+            var otpList = new List<T>();
+            var sqlOperation = new SqlOperation() { ProcedureName = "RET_OTP_ALL" };
+            var lstResults = _dao.ExecuteQueryProcedure(sqlOperation);
+
+            if (lstResults.Count > 0)
+            {
+                foreach (var row in lstResults)
+                {
+                    var user = BuildOTP(row);
+                    otpList.Add((T)Convert.ChangeType(user, typeof(T)));
+                }
+            }
+            return otpList;
+        }
+
+
 
         private ValidateOTP BuildOTP(Dictionary<string, object> row)
         {

@@ -19,7 +19,7 @@ namespace WebAPI.Controllers
                 }
 
                 var em = new EmailManager();
-                await em.SendEmail(data.EmailAddress, data.OTP);
+                await em.SendEmail(data.EmailAddress);
 
                 return Ok(data.EmailAddress);
             }

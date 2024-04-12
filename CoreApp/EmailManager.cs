@@ -13,13 +13,14 @@ namespace CoreApp
 {
     public class EmailManager
     {
-        public async Task<string> SendEmail(string emailAddress, int OTP) 
+        public async Task<string> SendEmail(string emailAddress) 
         {
             string connectionString = "endpoint=https://emailotpcommunication.unitedstates.communication.azure.com/;accesskey=fUSkmhkbbVbswwMw55/GkM6SV4KmWLND0FFG1bQ9m7rMe2gTUi3OSyO8DNLbr40Tjid0RqLTr5dBBeevwwlKGA==";
 
             EmailClient emailClient = new EmailClient(connectionString);
             EmailContent emailContent = new EmailContent("OTP Verification"); //Subject
-            emailContent.PlainText = "Here is your verification code:" + generateOTP();
+            emailContent.PlainText = "\nHere is your verification code:" + generateOTP();
+
 
 
             List<EmailAddress> emailAddresses = new List<EmailAddress> { new EmailAddress(emailAddress, "Suscriptor de ISA-CLINIC") };
