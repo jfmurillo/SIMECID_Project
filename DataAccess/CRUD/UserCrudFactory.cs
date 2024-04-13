@@ -18,9 +18,10 @@ namespace DataAccess.CRUD
 
         public override void Create(BaseDTO baseDTO)
         {
-            //Convertir BaseDTO en un usario
+            // Convertir BaseDTO en un usuario
             var user = baseDTO as User;
-            //Creacion de instructivo para que el Dao pueda ejecutar
+
+            // Crear la operación SQL para ejecutar el procedimiento almacenado
             var sqlOperation = new SqlOperation { ProcedureName = "CRE_USER_PR" };
             sqlOperation.AddVarcharParam("P_NAME", user.Name);
             sqlOperation.AddVarcharParam("P_LAST_NAME", user.LastName);
@@ -31,12 +32,15 @@ namespace DataAccess.CRUD
             sqlOperation.AddDatetimeParam("P_BIRTHDATE", user.BirthDate);
             sqlOperation.AddVarcharParam("P_ROLE", user.Role);
             sqlOperation.AddVarcharParam("P_STATUS", user.Status);
-            sqlOperation.AddVarcharParam("P_ADDRESS", user.Address);
-            sqlOperation.AddVarcharParam("P_PROVINCIA", user.Provincia);
+            sqlOperation.AddVarcharParam("P_PROVINCE", user.Provincia);
             sqlOperation.AddVarcharParam("P_CANTON", user.Canton);
+            sqlOperation.AddVarcharParam("P_ADDRESS_DETAILS", user.AddressDetails); // Corregir el nombre del parámetro
 
+            // Ejecutar el procedimiento almacenado
             _dao.ExecuteProcedure(sqlOperation);
         }
+
+
 
         public override void Delete(BaseDTO baseDTO)
         {
@@ -58,13 +62,13 @@ namespace DataAccess.CRUD
         {
             var user = baseDTO as User;
 
-
+            // Validar que el usuario no sea nulo y que tenga un ID válido
             if (user == null || user.Id == 0)
             {
-                throw new ArgumentException("Invalid Id.");
+                throw new ArgumentException("Invalid user.");
             }
 
-
+            // Crear la operación SQL para ejecutar el procedimiento almacenado
             var sqlOperation = new SqlOperation { ProcedureName = "UPD_USER_PR" };
             sqlOperation.AddIntParam("P_USER_ID", user.Id);
             sqlOperation.AddVarcharParam("P_NAME", user.Name);
@@ -76,15 +80,16 @@ namespace DataAccess.CRUD
             sqlOperation.AddDatetimeParam("P_BIRTHDATE", user.BirthDate);
             sqlOperation.AddVarcharParam("P_ROLE", user.Role);
             sqlOperation.AddVarcharParam("P_STATUS", user.Status);
-            sqlOperation.AddVarcharParam("P_ADDRESS", user.Address);
+            sqlOperation.AddIntParam("P_ADDRESS_ID", user.AddressId);
             sqlOperation.AddVarcharParam("P_PROVINCIA", user.Provincia);
             sqlOperation.AddVarcharParam("P_CANTON", user.Canton);
 
-
+            // Ejecutar el procedimiento almacenado
             _dao.ExecuteProcedure(sqlOperation);
         }
-        
-        
+
+
+
         private User BuildUser(Dictionary<string, object> row)
         {
             var userToReturn = new User()
@@ -99,14 +104,15 @@ namespace DataAccess.CRUD
                 BirthDate = (DateTime)row["BIRTHDATE"],
                 Role = (string)row["ROLE"],
                 Status = (string)row["STATUS"],
-                Address = (string)row["ADDRESS"],
+                AddressId = (int)row["ADDRESS_ID"],
                 Created = (DateTime)row["CREATED"],
                 Provincia = (string)row["PROVINCIA"],
                 Canton = (string)row["CANTON"]
             };
             return userToReturn;
         }
-        
+
+
         public override T Retrieve<T>()
         {
             throw new NotImplementedException();
