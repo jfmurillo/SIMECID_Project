@@ -4,6 +4,8 @@ function EmailController() {
 
     this.InitView = function () {
         console.log("init view mail")
+        let urlParams = new URLSearchParams(window.location.search);
+        console.log(urlParams.get(`email`));
         $("#btnTry").click(function () {
             let ec = new EmailController();
             ec.SendEmail();
@@ -13,10 +15,10 @@ function EmailController() {
 
 
     this.SendEmail = function () {
-        let email = $("#email").val().trim();
+        let email = $("#email").val();
 
-        if (email.trim() === "") {
-            alert("Please enter an email address.");
+        if (email === "") {
+            
             return;
         }
 
@@ -30,7 +32,10 @@ function EmailController() {
 
         ca.PostToAPI(srvRoute, keysAuth, function (response) {
             console.log(response)
-            alert("Email has been sent");
+
+            setTimeout(function () {
+                window.location.href = `/RecoverPassword?email=${email}`;
+            }, 1000);
         })
     }
 }

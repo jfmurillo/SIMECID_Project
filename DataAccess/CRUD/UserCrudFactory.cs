@@ -143,7 +143,32 @@ namespace DataAccess.CRUD
 
         }
 
+        public List<T> LoginValidation<T>()
+        {
+            var otpList = new List<T>();
+            var sqlOperation = new SqlOperation() { ProcedureName = "VAL_LOGIN_PR" };
+            var lstResults = _dao.ExecuteQueryProcedure(sqlOperation);
 
-        
+            if (lstResults.Count > 0)
+            {
+                foreach (var row in lstResults)
+                {
+                    var user = BuildLogin(row);
+                    otpList.Add((T)Convert.ChangeType(user, typeof(T)));
+                }
+            }
+            return otpList;
+        }
+
+        private User BuildLogin(Dictionary<string, object> row)
+        {
+            var userToReturn = new User()
+            {
+                Email = (string)row["EMAIL"],
+                Password = (string)row["PASSWORD"],
+            };
+            return userToReturn;
+        }
+
     }
 }

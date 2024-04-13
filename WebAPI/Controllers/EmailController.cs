@@ -21,7 +21,7 @@ namespace WebAPI.Controllers
                 var em = new EmailManager();
                 await em.SendEmail(data.EmailAddress);
 
-                return Ok(data.EmailAddress);
+                return Ok(new { data.EmailAddress });
             }
             catch (FormatException ex)
             {
