@@ -62,12 +62,6 @@ namespace DataAccess.CRUD
         {
             var user = baseDTO as User;
 
-            // Validar que el usuario no sea nulo y que tenga un ID válido
-            if (user == null || user.Id == 0)
-            {
-                throw new ArgumentException("Invalid user.");
-            }
-
             // Crear la operación SQL para ejecutar el procedimiento almacenado
             var sqlOperation = new SqlOperation { ProcedureName = "UPD_USER_PR" };
             sqlOperation.AddIntParam("P_USER_ID", user.Id);

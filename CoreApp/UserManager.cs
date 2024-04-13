@@ -81,6 +81,12 @@ namespace CoreApp
 
         public void Update(User user)
         {
+            // Validar que el usuario no sea nulo y que tenga un ID válido
+            if (user == null || user.Id == 0)
+            {
+                throw new ArgumentException("Invalid user.");
+            }
+
             var uc = new UserCrudFactory();
 
             if (!IsValidName(user.Name))
@@ -118,10 +124,6 @@ namespace CoreApp
             else if (!IsValidStatus(user.Status))
             {
                 throw new Exception("Invalid status value");
-            }
-            else if (!IsValidAddress(user.Address))
-            {
-                throw new Exception("Invalid Adress format");
             }
             uc.Update(user);
 
