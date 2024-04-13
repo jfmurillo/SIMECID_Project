@@ -17,7 +17,10 @@ namespace CoreApp
         {
             var uc = new UserCrudFactory();
 
-            //Valiacion de forma
+            if (user == null)
+            {
+                throw new ArgumentNullException(nameof(user), "Fields cannot be left blank");
+            }
 
             if (!IsValidName(user.Name))
             {
@@ -169,15 +172,6 @@ namespace CoreApp
 
             // Retorna verdadero si la contraseña tiene al menos un número y un carácter especial
             return hasNumber && hasSpecialCharacter;
-        }
-
-        private bool IsValidSex(string sex)
-        {
-            if (string.IsNullOrWhiteSpace(sex))
-                return false;
-            string sexLower = sex.ToLower();
-
-            return sexLower == "m" || sexLower == "f" || sexLower == "masculino" || sexLower == "femenino";
         }
 
         private bool IsValidEmail(string email)
