@@ -75,12 +75,12 @@ namespace DataAccess.CRUD
             sqlOperation.AddVarcharParam("P_ROLE", user.Role);
             sqlOperation.AddVarcharParam("P_STATUS", user.Status);
             sqlOperation.AddIntParam("P_ADDRESS_ID", user.AddressId);
-            sqlOperation.AddVarcharParam("P_PROVINCIA", user.Provincia);
-            sqlOperation.AddVarcharParam("P_CANTON", user.Canton);
+            sqlOperation.AddVarcharParam("P_ADDRESS_DETAILS", user.AddressDetails);
 
             // Ejecutar el procedimiento almacenado
             _dao.ExecuteProcedure(sqlOperation);
         }
+
 
 
 
@@ -98,10 +98,12 @@ namespace DataAccess.CRUD
                 BirthDate = (DateTime)row["BIRTHDATE"],
                 Role = (string)row["ROLE"],
                 Status = (string)row["STATUS"],
-                AddressId = (int)row["ADDRESS_ID"],
                 Created = (DateTime)row["CREATED"],
-                Provincia = (string)row["PROVINCIA"],
-                Canton = (string)row["CANTON"]
+                AddressId = (int)row["ADDRESS_ID"],
+                Provincia = (string)row["PROVINCE"],
+                Canton = (string)row["CANTON"],
+                AddressDetails = (string)row["ADDRESS_DETAILS"],
+
             };
             return userToReturn;
         }
