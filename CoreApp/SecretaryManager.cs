@@ -53,10 +53,6 @@ namespace CoreApp
             {
                 throw new Exception("Invalid status value");
             }
-            else if (!IsValidAdress(secretary.Address))
-            {
-                throw new Exception("Invalid Adress format");
-            }
             sc.Create(secretary);
         }
 
@@ -112,10 +108,6 @@ namespace CoreApp
             else if (!IsValidStatus(secretary.Status))
             {
                 throw new Exception("Invalid status value");
-            }
-            else if (!IsValidAdress(secretary.Address))
-            {
-                throw new Exception("Invalid Adress format");
             }
             else if (!IsValidID(secretary.BranchID))
             {

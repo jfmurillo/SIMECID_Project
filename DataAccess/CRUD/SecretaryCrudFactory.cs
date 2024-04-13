@@ -29,7 +29,6 @@ namespace DataAccess.CRUD
             sqlOperation.AddDatetimeParam("P_BIRTHDATE", secretary.BirthDate);
             sqlOperation.AddVarcharParam("P_ROLE", secretary.Role);
             sqlOperation.AddVarcharParam("P_STATUS", secretary.Status);
-            sqlOperation.AddVarcharParam("P_ADDRESS", secretary.Address);
             sqlOperation.AddIntParam("P_BRANCH_ID", secretary.BranchID);
 
             _dao.ExecuteProcedure(sqlOperation);
@@ -68,7 +67,6 @@ namespace DataAccess.CRUD
             sqlOperation.AddDatetimeParam("P_BIRTHDATE", secretary.BirthDate);
             sqlOperation.AddVarcharParam("P_ROLE", secretary.Role);
             sqlOperation.AddVarcharParam("P_STATUS", secretary.Status);
-            sqlOperation.AddVarcharParam("P_ADDRESS", secretary.Address);
 
             _dao.ExecuteProcedure(sqlOperation);
         }
@@ -128,7 +126,6 @@ namespace DataAccess.CRUD
                 BirthDate = (DateTime)row["BIRTHDATE"],
                 Role = (string)row["ROLE"],
                 Status = (string)row["STATUS"],
-                Address = (string)row["ADDRESS"],
                 Created = (DateTime)row["CREATED"],
                 BranchID = (int)row["BRANCH_ID"],
                 /*BranchID = row["BRANCH_ID"] != DBNull.Value ? (int)row["BRANCH_ID"] : 0, // Check for DBNull for integer fields*/

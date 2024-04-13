@@ -443,7 +443,6 @@ namespace TestConsole
                 BirthDate = birthdate,
                 Role = role,
                 Status = status,
-                Address = adress
                 
             };
 
@@ -548,7 +547,6 @@ namespace TestConsole
                     userToUpdate.Status = Console.ReadLine();
 
                     Console.WriteLine("\nEnter user adress");
-                    userToUpdate.Address = Console.ReadLine();
 
                     Console.WriteLine("\nUser Updated");
 
@@ -712,7 +710,6 @@ namespace TestConsole
 				BirthDate = birthdate,
 				Role = role,
 				Status = status,
-				Address = address
 
 
 
@@ -818,7 +815,6 @@ namespace TestConsole
 					nurseToUpdate.Status = Console.ReadLine();
 
 					Console.WriteLine("\nEnter nurse address");
-					nurseToUpdate.Address = Console.ReadLine();
 
 					Console.WriteLine("\nNurse Updated");
 
@@ -975,7 +971,6 @@ namespace TestConsole
                 BirthDate = birthdate,
                 Role = role,
                 Status = status,
-                Address = adress
 
 
 
@@ -1082,7 +1077,6 @@ namespace TestConsole
                     patientToUpdate.Status = Console.ReadLine();
 
                     Console.WriteLine("\nEnter patient adress");
-                    patientToUpdate.Address = Console.ReadLine();
 
                     Console.WriteLine("\n{Patient Updated");
 

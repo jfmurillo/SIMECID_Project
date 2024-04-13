@@ -58,10 +58,6 @@ namespace CoreApp
             {
                 throw new Exception("Invalid status value");
             }
-            else if (!IsValidAddress(user.Address))
-            {
-                throw new Exception("Invalid Adress format");
-            }
             uc.Create(user);
 
         }
@@ -207,13 +203,6 @@ namespace CoreApp
         {
             return !string.IsNullOrWhiteSpace(role) && char.IsUpper(role[0]) && role.All(c => char.IsLetter(c) && !char.IsWhiteSpace(c));
         }
-
-        private bool IsValidAddress(string address)
-        {
-            return !string.IsNullOrWhiteSpace(address);
-        }
-
-
 
         private bool IsValidBirthDate(DateTime birthDate)
         {

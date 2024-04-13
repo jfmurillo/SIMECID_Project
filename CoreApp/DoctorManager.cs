@@ -53,10 +53,6 @@ namespace CoreApp
             {
                 throw new Exception("Invalid status value");
             }
-            else if (!IsValidAdress(doctor.Address))
-            {
-                throw new Exception("Invalid Adress format");
-            }
             dc.Create(doctor);
         }
 
@@ -112,10 +108,6 @@ namespace CoreApp
             else if (!IsValidStatus(doctor.Status))
             {
                 throw new Exception("Invalid status value");
-            }
-            else if (!IsValidAdress(doctor.Address))
-            {
-                throw new Exception("Invalid Adress format");
             }
             else if (!IsValidID(doctor.BranchID))
             {
