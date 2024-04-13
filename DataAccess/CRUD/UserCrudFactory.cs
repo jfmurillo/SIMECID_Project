@@ -32,6 +32,8 @@ namespace DataAccess.CRUD
             sqlOperation.AddVarcharParam("P_ROLE", user.Role);
             sqlOperation.AddVarcharParam("P_STATUS", user.Status);
             sqlOperation.AddVarcharParam("P_ADDRESS", user.Address);
+            sqlOperation.AddVarcharParam("P_PROVINCIA", user.Provincia);
+            sqlOperation.AddVarcharParam("P_CANTON", user.Canton);
 
             _dao.ExecuteProcedure(sqlOperation);
         }
@@ -75,6 +77,8 @@ namespace DataAccess.CRUD
             sqlOperation.AddVarcharParam("P_ROLE", user.Role);
             sqlOperation.AddVarcharParam("P_STATUS", user.Status);
             sqlOperation.AddVarcharParam("P_ADDRESS", user.Address);
+            sqlOperation.AddVarcharParam("P_PROVINCIA", user.Provincia);
+            sqlOperation.AddVarcharParam("P_CANTON", user.Canton);
 
 
             _dao.ExecuteProcedure(sqlOperation);
@@ -96,7 +100,9 @@ namespace DataAccess.CRUD
                 Role = (string)row["ROLE"],
                 Status = (string)row["STATUS"],
                 Address = (string)row["ADDRESS"],
-                Created = (DateTime)row["CREATED"]
+                Created = (DateTime)row["CREATED"],
+                Provincia = (string)row["PROVINCIA"],
+                Canton = (string)row["CANTON"]
             };
             return userToReturn;
         }

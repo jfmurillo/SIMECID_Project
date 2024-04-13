@@ -40,5 +40,11 @@ namespace DTO
         public string Address { get; set; }
 
         public bool isValid { get; set; }
+
+        [Required(ErrorMessage = "Province is required")]
+        public string Provincia { get; set; }
+
+        [Required(ErrorMessage = "City is required")]
+        public string Canton { get; set; }
     }
 }
