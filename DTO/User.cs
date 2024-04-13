@@ -40,5 +40,9 @@ namespace DTO
         public string Address { get; set; }
 
         public bool isValid { get; set; }
+
+        public string Provincia { get; set; }
+
+        public string Canton { get; set; }
     }
 }
