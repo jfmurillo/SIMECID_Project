@@ -12,6 +12,7 @@
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="~/js/controlactions.js"></script>
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -45,12 +46,13 @@
                 <input class="emailTxt" type="email" id="email" name="email" required>
 
                 @* <a class="btn" style="margin-left: 350px;" asp-area="" asp-page="/RecoverPassword">Try</a> *@
-               
+
+                <button class="btn" type="button" id="btnTry" style="margin-left: 350px;">Try</button>
             </form>
 
-            <form asp-page="/RecoverPassword">
+            @* <form asp-page="/RecoverPassword">
                 <button class="btn" id="btnTry" style="margin-left: 350px;">Try</button>
-            </form>
+            </form> *@
             
         </div>
     </div>
