@@ -30,7 +30,8 @@ function SignUpController() {
         var password = $("#txtPassword").val();
         var sex = $("#txtSex").val();
         var birthdate = new Date($("#txtBirthdate").val());
-        var address = $("#txtAddress").val();
+        var provice = $("#txtProvince").val();
+        var city = $("#txtCity").val();
         let user = {
             name: name,
             lastName: lastName,
@@ -41,7 +42,8 @@ function SignUpController() {
             birthDate: birthdate,
             role: 'Default',
             status: 'Default',
-            address: address,
+            provice: provice,
+            city: city
         };
 
         var emailController = new EmailController2();
@@ -59,7 +61,8 @@ function SignUpController() {
         var password = $("#txtPassword").val();
         var sex = $("#txtSex").val();
         var birthdate = new Date($("#txtBirthdate").val());
-        var address = $("#txtAddress").val();
+        var provice = $("#txtProvince").val();
+        var city = $("#txtCity").val();
         let user = {
             name: name,
             lastName: lastName,
@@ -70,7 +73,9 @@ function SignUpController() {
             birthDate: birthdate,
             role: 'Default',
             status: 'Default',
-            address: address,
+            
+            provice: provice,
+            city: city
         };
 
         let ca = new ControlActions();
@@ -136,7 +141,10 @@ function EmailController2() {
                     console.log("Valid OTP");
                     let sc = new SignUpController();
                     sc.Create();
-                    window.location.href = "/Login";
+                    setTimeout(function () {
+                        window.location.href = `/Login`;
+                    }, 2000);
+                    /*window.location.href = "/Login"*/;
                 } else {
                     console.log("Invalid OTP");
                 }

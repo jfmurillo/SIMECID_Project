@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -13,6 +14,23 @@ namespace CoreApp
     //Clase de negocio donde se aplican las validaciones funcionales 
     public class UserManager
     {
+
+        public string HashPassword(string password)
+        {
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(password));
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    builder.Append(bytes[i].ToString("x2"));
+                }
+                return builder.ToString();
+            }
+        }
+
+
+
         public void Create(User user)
         {
             var uc = new UserCrudFactory();
@@ -58,6 +76,12 @@ namespace CoreApp
             {
                 throw new Exception("Invalid status value");
             }
+            else if (!IsValidAddress(user.Address))
+            {
+                throw new Exception("Invalid Adress format");
+            }
+
+            user.Password = HashPassword(user.Password);
             uc.Create(user);
 
         }
@@ -130,6 +154,51 @@ namespace CoreApp
             var uc = new UserCrudFactory();
             uc.Delete(user);
         }
+
+        public User GetUserByEmail(string email)
+        {
+            var uc = new UserCrudFactory();
+            var users = uc.RetrieveAll<User>();
+
+            return users.FirstOrDefault(u => u.Email == email);
+        }
+
+        public bool VerifyPassword(string passwordInput, string storedPassword)
+        {
+            string hashedPasswordInput = HashPassword(passwordInput);
+            return hashedPasswordInput == storedPassword;
+        }
+
+
+        public void LoginVal(string email, string password)
+        {
+            var user = GetUserByEmail(email);
+
+            if (user == null || !VerifyPassword(password, user.Password))
+            {
+                throw new Exception("Invalid email or password");
+            }
+        }
+
+        public void CreateOTP(ValidateOTP validateOTP)
+        {
+            var vc = new ValidateOTPCrudFactory();
+
+            if (validateOTP.Email == null || validateOTP.OTP == null)
+            {
+                throw new ArgumentNullException("Email or OTP cannot be null or empty.");
+            }
+
+            vc.CreateOTP(validateOTP);
+        }
+
+        public List<ValidateOTP> RetrieveAllOTP()
+        {
+            var uc = new ValidateOTPCrudFactory();
+            return uc.RetrieveAllOTP<ValidateOTP>();
+        }
+
+
 
         private bool IsValidName(string name)
         {
