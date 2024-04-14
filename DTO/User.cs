@@ -37,7 +37,7 @@ namespace DTO
         public string Status { get; set; }
 
         [Required(ErrorMessage = "Address is required")]
-        public string AddressId { get; set; }
+        public int AddressId { get; set; }
 
         public bool isValid { get; set; }
 

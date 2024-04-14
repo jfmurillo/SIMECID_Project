@@ -57,10 +57,6 @@ namespace CoreApp
 			{
 				throw new Exception("Invalid status value");
 			}
-			else if (!IsValidAddress(nurse.Address))
-			{
-				throw new Exception("Invalid Adress format");
-			}
 			uc.Create(nurse);
 
 
@@ -122,10 +118,6 @@ namespace CoreApp
 			else if (!IsValidStatus(nurse.Status))
 			{
 				throw new Exception("Invalid status value");
-			}
-			else if (!IsValidAddress(nurse.Address))
-			{
-				throw new Exception("Invalid Adress format");
 			}
 			uc.Update(nurse);
 

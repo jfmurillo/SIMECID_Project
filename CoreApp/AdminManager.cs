@@ -57,10 +57,6 @@ namespace CoreApp
             {
                 throw new Exception("Invalid status value");
             }
-            else if (!IsValidAddress(admin.Address))
-            {
-                throw new Exception("Invalid Address format");
-            }
             ac.Create(admin);
 
 
@@ -122,10 +118,6 @@ namespace CoreApp
             else if (!IsValidStatus(admin.Status))
             {
                 throw new Exception("Invalid status value");
-            }
-            else if (!IsValidAddress(admin.Address))
-            {
-                throw new Exception("Invalid Adress format");
             }
             ac.Update(admin);
 
@@ -207,7 +199,6 @@ namespace CoreApp
                         BirthDate = user.BirthDate,
                         Role = newRole,
                         Status = user.Status,
-                        Address = user.Address,
                     };
                     pm.Create(patient);
                     break;
@@ -224,7 +215,6 @@ namespace CoreApp
                         BirthDate = user.BirthDate,
                         Role = newRole,
                         Status = user.Status,
-                        Address = user.Address,
                         BranchID = branch
                     };
                     dc.Create(doctor);
@@ -244,7 +234,6 @@ namespace CoreApp
                         BirthDate = user.BirthDate,
                         Role = newRole,
                         Status = user.Status,
-                        Address = user.Address,
                         BranchId = branch
                     };
                     nf.Create(nurse);
@@ -262,7 +251,6 @@ namespace CoreApp
                         BirthDate = user.BirthDate,
                         Role = newRole,
                         Status = user.Status,
-                        Address = user.Address,
                         BranchID=branch
                     };
                     sf.Create(secretary);

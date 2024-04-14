@@ -31,8 +31,6 @@ namespace DataAccess.CRUD
             sqlOperation.AddDatetimeParam("P_BIRTHDATE", admin.BirthDate);
             sqlOperation.AddVarcharParam("P_ROLE", admin.Role);
             sqlOperation.AddVarcharParam("P_STATUS", admin.Status);
-            sqlOperation.AddVarcharParam("P_ADDRESS", admin.Address);
-
 
             _dao.ExecuteProcedure(sqlOperation);
         }
@@ -75,7 +73,6 @@ namespace DataAccess.CRUD
             sqlOperation.AddDatetimeParam("P_BIRTHDATE", admin.BirthDate);
             sqlOperation.AddVarcharParam("P_ROLE", admin.Role);
             sqlOperation.AddVarcharParam("P_STATUS", admin.Status);
-            sqlOperation.AddVarcharParam("P_ADDRESS", admin.Address);
 
 
             _dao.ExecuteProcedure(sqlOperation);
@@ -96,7 +93,6 @@ namespace DataAccess.CRUD
                 BirthDate = (DateTime)row["BIRTHDATE"],
                 Role = (string)row["ROLE"],
                 Status = (string)row["STATUS"],
-                Address = (string)row["ADDRESS"],
                 Created = (DateTime)row["CREATED"]
             };
             return adminToReturn;

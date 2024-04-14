@@ -82,7 +82,6 @@ namespace CoreApp
             }
 
             user.Password = HashPassword(user.Password);
-
             uc.Create(user);
 
         }
@@ -102,6 +101,12 @@ namespace CoreApp
 
         public void Update(User user)
         {
+            // Validar que el usuario no sea nulo y que tenga un ID válido
+            if (user == null || user.Id == 0)
+            {
+                throw new ArgumentException("Invalid user.");
+            }
+
             var uc = new UserCrudFactory();
 
             if (!IsValidName(user.Name))
@@ -139,10 +144,6 @@ namespace CoreApp
             else if (!IsValidStatus(user.Status))
             {
                 throw new Exception("Invalid status value");
-            }
-            else if (!IsValidAddress(user.Address))
-            {
-                throw new Exception("Invalid Adress format");
             }
             uc.Update(user);
 
@@ -271,13 +272,6 @@ namespace CoreApp
         {
             return !string.IsNullOrWhiteSpace(role) && char.IsUpper(role[0]) && role.All(c => char.IsLetter(c) && !char.IsWhiteSpace(c));
         }
-
-        private bool IsValidAddress(string address)
-        {
-            return !string.IsNullOrWhiteSpace(address);
-        }
-
-
 
         private bool IsValidBirthDate(DateTime birthDate)
         {
