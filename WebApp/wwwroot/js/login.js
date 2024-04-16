@@ -19,8 +19,15 @@ function LoginController() {
             email = urlParams.get("email")
             lc.ValidateOTP(email, otp)
         })
-    }
 
+        $("#go").click(function () {
+            let lc = new LoginController();
+            let urlParams = new URLSearchParams(window.location.search);
+            email = urlParams.get("email")
+            lc.NewPasswordUpdate();
+        })
+
+    }
 
     this.Authenticate = function () {
         let email = $("#email").val();
@@ -73,7 +80,7 @@ function LoginController() {
                 if (validOTP) {
                     console.log("Valid OTP");
                     setTimeout(function () {
-                        window.location.href = `/NewPassword`;
+                        window.location.href = `/NewPassword?email=${data.email}`;
                     }, 2000);
                 } else {
                     console.log("Invalid OTP");
@@ -83,9 +90,38 @@ function LoginController() {
             });
         });
     };
+
+    this.NewPasswordUpdate = function () {
+        let newPassword = $("#new-pass").val();
+        let confirmPassword = $("#conf-pass").val();
+        let email;
+
+        if (newPassword !== confirmPassword) {
+            throw new Error("Passwords don't match")
+        }
+
+        let urlParams = new URLSearchParams(window.location.search);
+        email = urlParams.get("email");
+
+        let data = {
+            email: email,
+            newPassword: newPassword,
+            confirmPassword: confirmPassword
+        };
+
+        let serviceRoute = "RecoverPassword/Update";
+
+        ca.PostToAPI(serviceRoute, data, function (response) {
+            console.log(response);
+
+            setTimeout(function () {
+                window.location.href = `/Login`;
+            }, 1000);
+        });
+    };
 }
 
-$(document).ready(function () {
-    let lc = new LoginController();
-    lc.InitView();
-})
+    $(document).ready(function () {
+        let lc = new LoginController();
+        lc.InitView();
+    })

@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 
 namespace CoreApp
 {
-    //Clase de negocio donde se aplican las validaciones funcionales 
     public class UserManager
     {
 
@@ -76,10 +75,10 @@ namespace CoreApp
             {
                 throw new Exception("Invalid status value");
             }
-            else if (!IsValidAddress(user.Address))
+            /*else if (!IsValidAddress(user.Address))
             {
                 throw new Exception("Invalid Adress format");
-            }
+            }*/
 
             user.Password = HashPassword(user.Password);
             uc.Create(user);
@@ -166,8 +165,10 @@ namespace CoreApp
         public bool VerifyPassword(string passwordInput, string storedPassword)
         {
             string hashedPasswordInput = HashPassword(passwordInput);
+
             return hashedPasswordInput == storedPassword;
         }
+
 
 
         public void LoginVal(string email, string password)
@@ -198,6 +199,36 @@ namespace CoreApp
             return uc.RetrieveAllOTP<ValidateOTP>();
         }
 
+        public void UpdatePassword(string email, string newPassword, string confirmPassword)
+        {
+            if (string.IsNullOrWhiteSpace(newPassword))
+            {
+                throw new ArgumentException("New password cannot be empty or null.", nameof(newPassword));
+            }
+
+            if (newPassword != confirmPassword)
+            {
+                throw new ArgumentException("Passwords don't match.", nameof(confirmPassword));
+            }
+
+            var user = GetUserByEmail(email);
+
+            if (user == null)
+            {
+                throw new Exception("User does not exist.");
+            }
+
+            if (!IsValidPassword(newPassword))
+            {
+                throw new Exception("Password does not meet the requirements.");
+            }
+
+            string hashedPassword = HashPassword(newPassword);
+            newPassword = hashedPassword;
+
+            var uc = new UserCrudFactory();
+            uc.UpdateUserPassword(email, newPassword);
+        }
 
 
         private bool IsValidName(string name)
@@ -210,7 +241,7 @@ namespace CoreApp
             return !string.IsNullOrWhiteSpace(name) && char.IsUpper(name[0]) && name.All(c => char.IsLetter(c) && !char.IsWhiteSpace(c));
         }
 
-        private bool IsValidPassword(string password)
+        public bool IsValidPassword(string password)
         {
 
             if (string.IsNullOrWhiteSpace(password))
@@ -230,14 +261,12 @@ namespace CoreApp
                 {
                     hasNumber = true;
                 }
-                // Verifica si el carácter actual es un carácter especial
                 else if (!char.IsLetterOrDigit(c))
                 {
                     hasSpecialCharacter = true;
                 }
             }
 
-            // Retorna verdadero si la contraseña tiene al menos un número y un carácter especial
             return hasNumber && hasSpecialCharacter;
         }
 

@@ -1,6 +1,8 @@
 ﻿using CoreApp;
 using DTO;
 using Microsoft.AspNetCore.Mvc;
+using SendGrid.Helpers.Errors.Model;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WebAPI.Controllers
 {
@@ -50,5 +52,37 @@ namespace WebAPI.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+
+        [HttpPost]
+        [Route("Update")]
+        public IActionResult UpdatePassword(UpdatePassword request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                if (request.NewPassword != request.ConfirmPassword)
+                {
+                    throw new BadRequestException("Password don't match");
+                }
+
+                if (!_userManager.IsValidPassword(request.NewPassword))
+                {
+                    throw new BadRequestException("Password does not meet the requirements");
+                }
+
+                _userManager.UpdatePassword(request.Email, request.NewPassword, request.ConfirmPassword);
+
+                return Ok(new { message = "Password changed successfully" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
     }
 }
