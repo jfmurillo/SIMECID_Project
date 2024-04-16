@@ -178,5 +178,13 @@ namespace DataAccess.CRUD
             return userToReturn;
         }
 
+        public void UpdateUserPassword(string userEmail, string newPassword)
+        {
+            var sqlOperation = new SqlOperation { ProcedureName = "UPD_USER_PASSWORD" };
+            sqlOperation.AddVarcharParam("EMAIL", userEmail);
+            sqlOperation.AddVarcharParam("NEW_PASSWORD", newPassword);
+
+            _dao.ExecuteProcedure(sqlOperation);
+        }
     }
 }
