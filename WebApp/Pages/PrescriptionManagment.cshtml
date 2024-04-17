@@ -78,6 +78,27 @@
     </div>
 
     <div class="gestionDePerfilDeUsuario" style="margin-top:5%">
+        <h1 class="fontTitle">Patient Details</h1>
+
+        <!--Aca tabla service history tabla-->
+        <div class="row" style="margin-left: 20%">
+            <div class="col-lg-12">
+                <table id="" class="table table-hover" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>B</th>
+                            <th>N</th>
+                            <th>A</th>
+                            <th>D</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="gestionDePerfilDeUsuario" style="margin-top:5%">
         <h1 class="fontTitle">Prescription History</h1>
         <p class="UserDetails">Appointment details</p>
 
@@ -98,7 +119,7 @@
         </div>
     </div>
 
-    <div class="gestionDePerfilDeUsuario">
+@*     <div class="gestionDePerfilDeUsuario">
         <form class="form-container">
             <h1 class="fontTitle">Patient Details</h1>
             <div class="sign-up-form">
@@ -111,9 +132,30 @@
                 <input type="text" id="lastName" name="lastName" required><br><br>
             </div>
         </form>
+    </div> *@
+
+    <div class="gestionDePerfilDeUsuario" style="margin-top:5%">
+        <h1 class="fontTitle">Doctor Details</h1>
+
+        <!--Aca tabla service history tabla-->
+        <div class="row" style="margin-left: 20%">
+            <div class="col-lg-12">
+                <table id="" class="table table-hover" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>B</th>
+                            <th>N</th>
+                            <th>A</th>
+                            <th>D</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
     </div>
 
-    <div class="gestionDePerfilDeUsuario">
+
+    @* <div class="gestionDePerfilDeUsuario">
         <form class="form-container">
             <h1 class="fontTitle">Doctor Details</h1>
             <div class="sign-up-form">
@@ -131,7 +173,7 @@
                 <input type="text" id="" name="branchBelong" required><br><br>
             </div>
         </form>
-    </div>
+    </div> *@
 
     <div class="gestionDePerfilDeUsuario">
         <form class="form-container">
@@ -149,22 +191,17 @@
 
             <div class="sign-up-form">
                 <label for="recommendations">Recommendations</label><br>
-                <input type="text" id="" name="recommendations" required><br><br>
+                <textarea id="" name="medical" required></textarea><br><br>
             </div>
 
             <div class="sign-up-form">
-                <input style="width: 50%;margin-right: 40px;" type="text" id="" name="" required><br><br>
-                <input type="text" id="" name="" required><br><br>
+                <label for="medicationName">Patient Id</label><br>
+                <input type="text" id="" name="patientId" required><br><br>
             </div>
 
             <div class="sign-up-form">
-                <input style="width: 50%;margin-right: 40px;" type="text" id="" name="" required><br><br>
-                <input type="text" id="" name="" required><br><br>
-            </div>
-
-            <div class="sign-up-form">
-                <input style="width: 50%;margin-right: 40px;" type="text" id="" name="" required><br><br>
-                <input type="text" id="" name="" required><br><br>
+                <label for="medicationName">Doctor Id</label><br>
+                <input type="text" id="" name="doctorId" required><br><br>
             </div>
 
             <div class="sign-up-form">
@@ -173,8 +210,9 @@
             </div>
 
             <div style="display:flex">
-                <button class="btn" type="button" style="margin-top: 6%">Update</button>
-                <button class="btn" type="button" style="margin-top: 6%">Delete</button>
+                <button class="btn" type="button" id="" style="margin-top: 6%">Create</button>
+                <button class="btn" type="button" id="" style="margin-top: 6%">Update</button>
+                <button class="btn" type="button" id="" style="margin-top: 6%">Delete</button>
             </div>
         </form>
     </div>
