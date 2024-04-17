@@ -29,6 +29,29 @@
     <script src="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.js"></script>
     <script defer src="~/js/pages/BranchManagment.js"></script>
 
+    <script>
+        // Función para actualizar el mapa con la dirección proporcionada
+        function updateMap() {
+            // Obtener la dirección ingresada por el usuario
+            var address = document.getElementById('TxtAddress').value;
+
+            // Obtener la clave de API de Google Maps
+            var apiKey = 'AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik';
+
+            // Construir la URL del mapa de Google Maps con la dirección y la clave de API
+            var mapUrl = 'https://www.google.com/maps/embed/v1/place?q=' + encodeURIComponent(address) + '&key=' + apiKey;
+
+            // Actualizar el atributo 'src' del iframe con la nueva URL del mapa
+            $('.ClassMap').attr('src', mapUrl);
+        }
+
+        // Asociar la función updateMap al evento click de los botones Register y Update
+        $(document).ready(function () {
+            $('#btnCreate, #btnUpdate').click(function () {
+                updateMap();
+            });
+        });
+    </script>
 
 </head>
 
@@ -73,13 +96,13 @@
         <form asp-page="/">
             <button class="buttonMenu" id="paymentMenuId">Payment</button>
         </form>
-        <form asp-page="/">
+        <form asp-page="/ExaminationManagment">
             <button class="buttonMenu" id="examinationMenuId">Examination</button>
         </form>
-        <form asp-page="/">
+        <form asp-page="/PrescriptionManagment">
             <button class="buttonMenu" id="prescriptionsMenuId">Prescriptions</button>
         </form>
-        <form asp-page="/">
+        <form asp-page="/MedicalReportManagment">
             <button class="buttonMenu" id="medicalReportMenuId">Medical Report</button>
         </form>
         <div class="sidebarFooter">2024 Codecrafters All Right Reserved to </div>
@@ -153,7 +176,8 @@
             </div>
 
             <div class="SubCont-Mapa">
-                <iframe class="ClassMap" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3930.0308362318033!2d-84.06672232416749!3d9.931389874209883!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0e3f13462cc7b%3A0x97219232a6ee2da8!2sUniversidad%20CENFOTEC!5e0!3m2!1ses!2scr!4v1711578817773!5m2!1ses!2scr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <!-- Mapa incrustado -->
+                <iframe class="ClassMap" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
 
