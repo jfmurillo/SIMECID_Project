@@ -35,15 +35,15 @@ namespace WebAPI.Controllers
 
 
 
-        [HttpGet]
+        [HttpPost]
         [Route("VerifyOtp")]
-        public IActionResult VerifyOtp()
+        public IActionResult VerifyOtp(ValidateOTP validateOTP)
         {
             try
             {
                 var vm = new ValidateOTPManager();
-                var otpList = vm.RetrieveAllOTP();
-                return Ok(otpList);
+                vm.ValidateOTP(validateOTP);
+                return Ok(validateOTP);
             } catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);

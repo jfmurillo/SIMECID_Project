@@ -36,16 +36,13 @@ namespace DTO
         [Required(ErrorMessage = "Status is required")]
         public string Status { get; set; }
 
+        [Required(ErrorMessage = "Province is required")]
+        public string Province { get; set; }
+
         [Required(ErrorMessage = "Address is required")]
-        public int AddressId { get; set; }
+        public string Address { get; set; }
 
         public bool isValid { get; set; }
-
-        public string Provincia { get; set; }
-
-        public string Canton { get; set; }
-
-        public string AddressDetails { get; set; }
 
     }
 }

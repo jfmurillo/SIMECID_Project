@@ -64,17 +64,12 @@ namespace WebAPI.Controllers
             {
                 var um = new UserManager();
                 um.Create(user);
-                var em = new EmailManager();
-                await em.SendEmail(user.Email);
-                return Ok(user);
+                return Ok(new { message = "User created" + user });
             }
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
             }
-
-
-
         }
 
         [HttpPut]
@@ -94,7 +89,7 @@ namespace WebAPI.Controllers
 
         }
 
-        
+
 
         [HttpDelete]
         [Route("Delete")]
@@ -114,9 +109,26 @@ namespace WebAPI.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("ForgotPassword")]
+        public async Task<ActionResult> ForgotPassword([FromBody] UserForgotPasswordModel model)
+        {
+            try
+            {
+                if (model == null || string.IsNullOrWhiteSpace(model.Email))
+                {
+                    return BadRequest("Invalid model");
+                }
 
+                var um = new UserManager();
+                um.ForgotPassword(model.Email);
+
+                return Ok(new { message = "Operation successful" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
     }
-
-
-
 }

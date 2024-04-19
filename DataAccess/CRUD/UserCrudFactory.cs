@@ -18,7 +18,6 @@ namespace DataAccess.CRUD
 
         public override void Create(BaseDTO baseDTO)
         {
-            // Convertir BaseDTO en un usuario
             var user = baseDTO as User;
 
             // Crear la operación SQL para ejecutar el procedimiento almacenado
@@ -32,9 +31,8 @@ namespace DataAccess.CRUD
             sqlOperation.AddDatetimeParam("P_BIRTHDATE", user.BirthDate);
             sqlOperation.AddVarcharParam("P_ROLE", user.Role);
             sqlOperation.AddVarcharParam("P_STATUS", user.Status);
-            sqlOperation.AddVarcharParam("P_PROVINCE", user.Provincia);
-            sqlOperation.AddVarcharParam("P_CANTON", user.Canton);
-            sqlOperation.AddVarcharParam("P_ADDRESS_DETAILS", user.AddressDetails); // Corregir el nombre del parámetro
+            sqlOperation.AddVarcharParam("P_PROVINCE", user.Province);
+            sqlOperation.AddVarcharParam("P_ADDRESS", user.Address);
 
             // Ejecutar el procedimiento almacenado
             _dao.ExecuteProcedure(sqlOperation);
@@ -74,15 +72,12 @@ namespace DataAccess.CRUD
             sqlOperation.AddDatetimeParam("P_BIRTHDATE", user.BirthDate);
             sqlOperation.AddVarcharParam("P_ROLE", user.Role);
             sqlOperation.AddVarcharParam("P_STATUS", user.Status);
-            sqlOperation.AddIntParam("P_ADDRESS_ID", user.AddressId);
-            sqlOperation.AddVarcharParam("P_ADDRESS_DETAILS", user.AddressDetails);
+            sqlOperation.AddVarcharParam("P_PROVINCE", user.Province);
+            sqlOperation.AddVarcharParam("P_ADDRESS", user.Address);
 
             // Ejecutar el procedimiento almacenado
             _dao.ExecuteProcedure(sqlOperation);
         }
-
-
-
 
         private User BuildUser(Dictionary<string, object> row)
         {
@@ -99,15 +94,12 @@ namespace DataAccess.CRUD
                 Role = (string)row["ROLE"],
                 Status = (string)row["STATUS"],
                 Created = (DateTime)row["CREATED"],
-                AddressId = (int)row["ADDRESS_ID"],
-                Provincia = (string)row["PROVINCE"],
-                Canton = (string)row["CANTON"],
-                AddressDetails = (string)row["ADDRESS_DETAILS"],
+                Province = (string)row["PROVINCE"],
+                Address = (string)row["ADDRESS"],
 
             };
             return userToReturn;
         }
-
 
         public override T Retrieve<T>()
         {

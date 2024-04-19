@@ -10,6 +10,7 @@ function SignUpController() {
         $("#BtnSignIn").click(function () {
             let ec = new SignUpController();
             ec.Create();
+            //mostrar algo que active el spinner
         });
 
         $("#verifyMe").click(function () {
@@ -23,15 +24,15 @@ function SignUpController() {
     };
 
     this.SendEmail = function () {
-        var name = $("#txtName").val();
-        var lastName = $("#txtLastName").val();
-        var phoneNumber = $("#txtPhoneNumber").val();
-        var email = $("#txtEmail").val();
-        var password = $("#txtPassword").val();
-        var sex = $("#txtSex").val();
-        var birthdate = new Date($("#txtBirthdate").val());
-        var provice = $("#txtProvince").val();
-        var city = $("#txtCity").val();
+        let name = $("#txtName").val();
+        let lastName = $("#txtLastName").val();
+        let phoneNumber = $("#txtPhoneNumber").val();
+        let email = $("#txtEmail").val();
+        let password = $("#txtPassword").val();
+        let sex = $("#txtSex").val();
+        let birthdate = new Date($("#txtBirthdate").val());
+        let province = $("#txtProvince").val();
+        let address = $("#txtAddress").val();
         let user = {
             name: name,
             lastName: lastName,
@@ -40,10 +41,10 @@ function SignUpController() {
             password: password,
             sex: sex,
             birthDate: birthdate,
-            role: 'Default',
+            role: 'User',
             status: 'Default',
-            provice: provice,
-            city: city
+            province: province,
+            address: address
         };
 
         var emailController = new EmailController2();
@@ -54,28 +55,28 @@ function SignUpController() {
     };
 
     this.Create = function () {
-        var name = $("#txtName").val();
-        var lastName = $("#txtLastName").val();
-        var phoneNumber = $("#txtPhoneNumber").val();
-        var email = $("#txtEmail").val();
-        var password = $("#txtPassword").val();
-        var sex = $("#txtSex").val();
-        var birthdate = new Date($("#txtBirthdate").val());
-        var provice = $("#txtProvince").val();
-        var city = $("#txtCity").val();
+        let name1 = $("#txtName").val();
+        let lastName = $("#txtLastName").val();
+        let phoneNumber = $("#txtPhoneNumber").val();
+        let email = $("#txtEmail").val();
+        let password = $("#txtPassword").val();
+        let sex = $("#txtSex").val();
+        let birthdateValue = $("#txtBirthdate").val();
+        let birthdate = new Date(birthdateValue);
+        let province = $("#txtProvince").val();
+        let address = $("#txtAddress").val();
         let user = {
-            name: name,
+            name: name1,
             lastName: lastName,
             email: email,
             phoneNumber: phoneNumber,
             password: password,
             sex: sex,
             birthDate: birthdate,
-            role: 'Default',
+            role: 'User',
             status: 'Default',
-            
-            provice: provice,
-            city: city
+            province: province,
+            address: address
         };
 
         let ca = new ControlActions();
@@ -119,39 +120,22 @@ function EmailController2() {
         }
 
         let data = {
-            email,
-            otp
+            Email: email,
+            OTP: otp
         }
 
-        var srv = "ValidateOTP/CreateData"
-        ca.PostToAPI(srv, data, function (response) {
-            console.log("Creating data for database");
-            var serviceRoute = "ValidateOTP/VerifyOtp";
+        var srv = "ValidateOTP/VerifyOtp";
 
-            ca.GetToApi(serviceRoute, function (response) {
-                console.log(response);
-                var validOTP = false;
-                for (var i = 0; i < response.length; i++) {
-                    if (response[i].otp === otp && response[i].email === email) {
-                        validOTP = true;
-                        break;
-                    }
-                }
-                if (validOTP) {
-                    console.log("Valid OTP");
-                    let sc = new SignUpController();
-                    sc.Create();
-                    setTimeout(function () {
-                        window.location.href = `/Login`;
-                    }, 2000);
-                    /*window.location.href = "/Login"*/;
-                } else {
-                    console.log("Invalid OTP");
-                }
-            }, function (error) {
-                console.error("Error validating OTP:", error);
+        try {
+            ca.PostToAPI(srv, data, function (response) {
+                setTimeout(function () {
+                    window.location.href = `/Login`;
+                }, 1000);
             });
-        });
+        } catch (error)
+        {
+            return StatusCode(500, "Something went ");
+        }
     };
 }
 

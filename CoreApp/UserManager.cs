@@ -30,7 +30,7 @@ namespace CoreApp
 
 
 
-        public void Create(User user)
+        public async void Create(User user)
         {
             var uc = new UserCrudFactory();
 
@@ -75,14 +75,33 @@ namespace CoreApp
             {
                 throw new Exception("Invalid status value");
             }
-            /*else if (!IsValidAddress(user.Address))
+            else if (!IsNull(user.Address))
             {
-                throw new Exception("Invalid Adress format");
-            }*/
-
+                throw new Exception("Address can't be null");
+            }
+            else if (!IsNull(user.Province))
+            {
+                throw new Exception("Province can't be null");
+            };
             user.Password = HashPassword(user.Password);
             uc.Create(user);
 
+            var otpM = new ValidateOTPManager();
+            const string digits = "0123456789";
+            var OTP = "";
+            var len = digits.Length;
+            Random random = new Random();
+            for (int i = 0; i < 4; i++)
+            {
+                OTP += digits[(int)Math.Floor(random.NextDouble() * len)];
+            }
+
+            var daoOtp = new ValidateOTP();
+            daoOtp.Email = user.Email;
+            daoOtp.OTP = OTP;
+            otpM.CreateOTP(daoOtp);
+            var em = new EmailManager();
+            await em.SendEmail(user.Email,OTP);
         }
 
         public List<User> RetrieveAll()
@@ -143,7 +162,8 @@ namespace CoreApp
             else if (!IsValidStatus(user.Status))
             {
                 throw new Exception("Invalid status value");
-            }
+            };
+
             uc.Update(user);
 
         }
@@ -169,7 +189,28 @@ namespace CoreApp
             return hashedPasswordInput == storedPassword;
         }
 
+        public async void ForgotPassword(string email)
+        {
+            var otpM = new ValidateOTPManager();
+            const string digits = "0123456789";
+            var OTP = "";
+            var len = digits.Length;
+            Random random = new Random();
+            for (int i = 0; i < 4; i++)
+            {
+                OTP += digits[(int)Math.Floor(random.NextDouble() * len)];
+            }
 
+            var daoOtp = new ValidateOTP();
+            daoOtp.Email = email;
+            daoOtp.OTP = OTP;
+            otpM.CreateOTP(daoOtp);
+            var em = new EmailManager();
+            await em.SendEmail(email, OTP);
+            
+        }
+
+        
 
         public void LoginVal(string email, string password)
         {
@@ -288,6 +329,10 @@ namespace CoreApp
             return !string.IsNullOrWhiteSpace(status) && char.IsUpper(status[0]) && status.All(c => char.IsLetter(c) || char.IsWhiteSpace(c));
         }
 
+        private bool IsNull(string text)
+        {
+            return !string.IsNullOrWhiteSpace(text);
+        }
 
 
         private bool IsValidPhoneNumber(int phoneNumber)
