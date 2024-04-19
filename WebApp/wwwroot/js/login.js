@@ -116,7 +116,7 @@ function LoginController() {
 
             setTimeout(function () {
                 window.location.href = `/Login`;
-            }, 1000);
+            }, 3000);
         });
     };
 }
