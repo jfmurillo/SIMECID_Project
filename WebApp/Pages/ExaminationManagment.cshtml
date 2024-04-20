@@ -76,62 +76,85 @@
 <body class="main-content">
 
     <div class="profileHeader">
-        <img src="/Assets/1st_Girl.png" alt="Foto de Perfil" class="profilePic">
     </div>
 
-    <div class="gestionDePerfilDeUsuario">
-        <form class="form-container">
-            <h1 class="fontTitle">User Details</h1>
-            <div class="sign-up-form">
-                <label for="name">Name</label><br>
-                <input type="text" id="name" name="name" required><br><br>
-            </div>
+    <div class="gestionDePerfilDeUsuario" style="margin-top:5%">
+        <h1 class="fontTitle">Patient Details</h1>
 
-            <div class="sign-up-form">
-                <label for="lastName">Last Name</label><br>
-                <input type="text" id="lastName" name="lastName" required><br><br>
+        <!--Aca tabla service history tabla-->
+        <div class="row" style="margin-left: 20%">
+            <div class="col-lg-12">
+                <table id="" class="table table-hover" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>B</th>
+                            <th>N</th>
+                            <th>A</th>
+                            <th>D</th>
+                        </tr>
+                    </thead>
+                </table>
             </div>
-        </form>
+        </div>
     </div>
 
     <div class="gestionDePerfilDeUsuario">
         <form class="form-container">
             <h1 class="fontTitle">Exam Parameters</h1>
             <div class="sign-up-form">
+                <label for="Id">Id</label><br>
+                <input type="number" id="" name="Id" required><br><br>
+            </div>
+
+
+            <div class="sign-up-form">
+                <label class="birthdate" for="date">Date</label><br>
+                <input type="date" id="date" name="date" required><br><br>
+            </div>
+
+            <div class="sign-up-form">
                 <label for="weight">Weight</label><br>
-                <input type="number" id="weight" name="weight" required><br><br>
+                <input type="text" id="" name="weight" required><br><br>
             </div>
 
             <div class="sign-up-form">
                 <label for="size">Size</label><br>
-                <input type="text" id="size" name="size" required><br><br>
+                <input type="text" id="" name="size" required><br><br>
             </div>
 
             <div class="sign-up-form">
                 <label for="bodyMass">Body mass</label><br>
-                <input type="text" id="bodyMass" name="bodyMass" required><br><br>
+                <input type="text" id="" name="bodyMass" required><br><br>
             </div>
 
             <div class="sign-up-form">
-                <input style="width: 37%;margin-right: 15px;" type="text" id="" name="" required><br><br>
-                <input type="text" id="" name="" required><br><br>
+                <label for="Notes">Notes</label><br>
+                <textarea id="" name="Notes" required></textarea><br><br>
             </div>
 
             <div class="sign-up-form">
-                <input style="width: 37%;margin-right: 15px;" type="text" id="" name="" required><br><br>
-                <input type="text" id="" name="" required><br><br>
+                <label for="Type">Type</label><br>
+                <input type="text" id="" name="Type" required><br><br>
             </div>
 
             <div class="sign-up-form">
-                <input style="width: 37%;margin-right: 15px;" type="text" id="" name="" required><br><br>
-                <input type="text" id="" name="" required><br><br>
+                <label for="examResults">Enter exam results</label><br>
+                <textarea id="" name="examResults" required></textarea><br><br>
             </div>
 
-            <div>
-                <button class="btn" type="button" style="margin-top: 6%">Update</button>
+            <div class="sign-up-form">
+                <label for="photoOrFile">Upload a photo or file</label><br>
+                <input type="text" id="" name="photoOrFile" required><br><br>
+            </div>
+
+            <div style="display:flex">
+                <button class="btn" type="button" id="" style="margin-top: 6%">Create</button>
+                <button class="btn" type="button" id="" style="margin-top: 6%">Update</button>
+                <button class="btn" type="button" id="" style="margin-top: 6%">Delete</button>
             </div>
         </form>
     </div>
+
 
     <div class="gestionDePerfilDeUsuario" style="margin-top:5%">
         <h1 class="fontTitle">Exam History</h1>
@@ -153,31 +176,6 @@
         </div>
     </div>
 
-    <div class="gestionDePerfilDeUsuario">
-        <form class="form-container">
-            <h1 class="fontTitle">Results</h1>
-
-            <div class="sign-up-form">
-                <label for="examResults">Enter exam results</label><br>
-                <textarea id="" name="medical" required></textarea><br><br>
-            </div>
-
-            <div class="sign-up-form">
-                <label for="photo">Upload a photo or file</label><br>
-                <input type="text" id="photo" name="photo" required><br><br>
-            </div>
-
-            <div>
-                <button class="btn" type="button" style="margin-top: 6%">Update</button>
-            </div>
-        </form>
-    </div>
-
-    <div class="gestionDePerfilDeUsuario">
-        <form class="form-container">
-            <p class="UserDetails">History Uploaded Files</p>
-        </form>
-    </div>
 
 </body>
 </html>
