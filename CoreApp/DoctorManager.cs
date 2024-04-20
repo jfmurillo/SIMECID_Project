@@ -1,4 +1,5 @@
 ﻿using DataAccess.CRUD;
+using DataAccess.DAOs;
 using DTO;
 using System;
 using System.Collections.Generic;
@@ -54,6 +55,12 @@ namespace CoreApp
                 throw new Exception("Invalid status value");
             }
             dc.Create(doctor);
+        }
+
+        public void AddSpecialty(Doctor doctor)
+        {
+            var dc = new DoctorCrudFactory();
+            dc.AddSpecialty(doctor);
         }
 
         public List<T> RetrieveAll<T>()
