@@ -68,6 +68,23 @@ namespace WebAPI.Controllers
             }
         }
 
+
+        [HttpPost]
+        [Route("AddSpecialty")]
+        public ActionResult AddSpecialty(Doctor doctor)
+        {
+            try
+            {
+                var dm = new DoctorManager();
+                dm.AddSpecialty(doctor);
+                return Ok(doctor);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
         [HttpPut]
         [Route("Update")]
         public ActionResult Update(Doctor doctor)

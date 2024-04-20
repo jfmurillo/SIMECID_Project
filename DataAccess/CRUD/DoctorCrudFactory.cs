@@ -111,6 +111,14 @@ namespace DataAccess.CRUD
             return doctorList;
         }
 
+        public void AddSpecialty(Doctor doctor)
+        {
+            var sqlOperation = new SqlOperation { ProcedureName = "ADD_SPECIALTY_DOCTOR_PR" };
+            sqlOperation.AddIntParam("DOCTOR_ID", doctor.Id);
+            sqlOperation.AddVarcharParam("SPECIALTY", doctor.Specialty); 
+
+            _dao.ExecuteProcedure(sqlOperation);
+        }
 
         private Doctor BuildDoctor(Dictionary<string, object> row)
         {
