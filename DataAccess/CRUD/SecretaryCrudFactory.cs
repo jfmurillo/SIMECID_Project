@@ -34,6 +34,14 @@ namespace DataAccess.CRUD
             _dao.ExecuteProcedure(sqlOperation);
         }
 
+        public void AddSchedule(Secretary secretary)
+        {
+            var sqlOperation = new SqlOperation { ProcedureName = "ADD_SCHEDULE_SECRETARY_PR" };
+            sqlOperation.AddIntParam("SECRETARY_ID", secretary.Id);
+            sqlOperation.AddVarcharParam("SCHEDULE", secretary.Schedule);
+            _dao.ExecuteProcedure(sqlOperation);
+        }
+
         public override void Delete(BaseDTO baseDTO)
         {
             var secretary = baseDTO as Secretary;

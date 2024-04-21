@@ -38,5 +38,8 @@ namespace DTO
 
         [Required(ErrorMessage = "Branch ID is required")]
         public int BranchID { get; set; }
+
+        public string Schedule { get; set; }
+
     }
 }

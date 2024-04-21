@@ -121,8 +121,16 @@ namespace DataAccess.CRUD
 			return default(T); // Return default value for type T if user not found
 		}
 
+        public void AddSchedule(Nurse nurse)
+        {
+            var sqlOperation = new SqlOperation { ProcedureName = "ADD_SCHEDULE_NURSE_PR" };
+            sqlOperation.AddIntParam("NURSE_ID", nurse.Id);
+            sqlOperation.AddVarcharParam("SCHEDULE", nurse.Schedule);
+            _dao.ExecuteProcedure(sqlOperation);
+        }
 
-		public override List<T> RetrieveAll<T>()
+
+        public override List<T> RetrieveAll<T>()
 		{
 
 			var nurseList = new List<T>();

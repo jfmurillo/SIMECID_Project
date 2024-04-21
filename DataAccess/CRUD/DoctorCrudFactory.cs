@@ -120,6 +120,15 @@ namespace DataAccess.CRUD
             _dao.ExecuteProcedure(sqlOperation);
         }
 
+        public void AddSchedule(Doctor doctor)
+        {
+            var sqlOperation = new SqlOperation { ProcedureName = "ADD_SCHEDULE_DOCTOR_PR" };
+            sqlOperation.AddIntParam("DOCTOR_ID", doctor.Id);
+            sqlOperation.AddVarcharParam("SCHEDULE", doctor.Schedule);
+
+            _dao.ExecuteProcedure(sqlOperation);
+        }
+
         private Doctor BuildDoctor(Dictionary<string, object> row)
         {
             var doctorToReturn = new Doctor()

@@ -40,5 +40,8 @@ namespace DTO
 
         public string Specialty { get; set; }
 
+        public string Schedule { get; set; }
+
+
     }
 }
