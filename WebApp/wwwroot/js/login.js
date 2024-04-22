@@ -41,11 +41,13 @@ function LoginController() {
         serviceRoute = "Login/Authenticate"
         let ca = new ControlActions();
         ca.PostToAPI(serviceRoute, loginData, function (response) {
-            console.log('test', response.ok)
             
             if (response.status == 200) {
                 console.log("Login successful");
-                window.location.href = `/UserProfile`;
+                setTimeout(function () {
+                    window.location.href = `/UserProfile`;
+                }, 1000);
+                
             } else {
                 console.log(response)
                 console.log("Error during login:", response.message); 
