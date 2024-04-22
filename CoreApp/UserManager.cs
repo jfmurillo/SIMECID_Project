@@ -1,5 +1,6 @@
 ﻿using DataAccess.CRUD;
 using DTO;
+using SendGrid.Helpers.Errors.Model;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -13,22 +14,30 @@ namespace CoreApp
 {
     public class UserManager
     {
-
-        public string HashPassword(string password)
+        /*public string HashPassword(string password)
         {
+            byte[] saltBytes = new byte[16];
+            using (var rng = new RNGCryptoServiceProvider())
+            {
+                rng.GetBytes(saltBytes);
+            }
+
+            byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
+            byte[] saltedPasswordBytes = new byte[saltBytes.Length + passwordBytes.Length];
+            Buffer.BlockCopy(saltBytes, 0, saltedPasswordBytes, 0, saltBytes.Length);
+            Buffer.BlockCopy(passwordBytes, 0, saltedPasswordBytes, saltBytes.Length, passwordBytes.Length);
+
             using (SHA256 sha256Hash = SHA256.Create())
             {
-                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(password));
+                byte[] hashBytes = sha256Hash.ComputeHash(saltedPasswordBytes);
+
                 StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < bytes.Length; i++)
-                {
-                    builder.Append(bytes[i].ToString("x2"));
-                }
+                builder.Append(Convert.ToBase64String(saltBytes));
+                builder.Append(":");
+                builder.Append(Convert.ToBase64String(hashBytes));
                 return builder.ToString();
             }
-        }
-
-
+        }*/
 
         public async void Create(User user)
         {
@@ -83,7 +92,7 @@ namespace CoreApp
             {
                 throw new Exception("Province can't be null");
             };
-            user.Password = HashPassword(user.Password);
+            //user.Password = HashPassword(user.Password);
             uc.Create(user);
 
             var otpM = new ValidateOTPManager();
@@ -109,14 +118,11 @@ namespace CoreApp
             var uc = new UserCrudFactory();
             return uc.RetrieveAll<User>();
         }
-
         public User RetrieveById(int userId)
         {
             var uc = new UserCrudFactory();
             return uc.RetrieveById<User>(userId);
         }
-
-
         public void Update(User user)
         {
             // Validar que el usuario no sea nulo y que tenga un ID válido
@@ -167,28 +173,20 @@ namespace CoreApp
             uc.Update(user);
 
         }
-
         public void Delete(User user)
         {
             var uc = new UserCrudFactory();
             uc.Delete(user);
         }
-
         public User GetUserByEmail(string email)
         {
             var uc = new UserCrudFactory();
             var users = uc.RetrieveAll<User>();
+            Console.WriteLine("Recuperando usuario con correo electrónico: " + email);
+
 
             return users.FirstOrDefault(u => u.Email == email);
         }
-
-        public bool VerifyPassword(string passwordInput, string storedPassword)
-        {
-            string hashedPasswordInput = HashPassword(passwordInput);
-
-            return hashedPasswordInput == storedPassword;
-        }
-
         public async void ForgotPassword(string email)
         {
             var otpM = new ValidateOTPManager();
@@ -210,9 +208,31 @@ namespace CoreApp
             
         }
 
-        
+        /* public bool VerifyPassword(string storedPassword, string enteredPassword)
+        {
+            string[] parts = storedPassword.Split(':');
+            if (parts.Length != 2)
+            {
+                return false;
+            }
 
-        public void LoginVal(string email, string password)
+            byte[] saltBytes = Convert.FromBase64String(parts[0]);
+            byte[] storedHashBytes = Convert.FromBase64String(parts[1]);
+
+            byte[] enteredPasswordBytes = Encoding.UTF8.GetBytes(enteredPassword);
+            byte[] saltedPasswordBytes = new byte[saltBytes.Length + enteredPasswordBytes.Length];
+            Buffer.BlockCopy(saltBytes, 0, saltedPasswordBytes, 0, saltBytes.Length);
+            Buffer.BlockCopy(enteredPasswordBytes, 0, saltedPasswordBytes, saltBytes.Length, enteredPasswordBytes.Length);
+
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                byte[] enteredHashBytes = sha256Hash.ComputeHash(saltedPasswordBytes);
+
+                return storedHashBytes.SequenceEqual(enteredHashBytes);
+            }
+        }*/
+
+        /*public void LoginVal(string email, string password)
         {
             var user = GetUserByEmail(email);
 
@@ -220,7 +240,79 @@ namespace CoreApp
             {
                 throw new Exception("Invalid email or password");
             }
+        }*/
+
+        /*        public User GetUserByEmail(string email)
+                {
+                    Console.WriteLine("Recuperando usuario con correo electrónico: " + email);
+                    return _userCrudFactory.GetUserByEmail(email);
+                }*/
+
+        /*        private string GetStoredPasswordByEmail(string email)
+                {
+                    return _userCrudFactory.GetStoredPasswordByEmail(email);
+                }*/
+
+        /*public bool AuthenticateUser(string email, string enteredPassword)
+        {
+            var uc = new UserCrudFactory();
+            List<string> storedPasswords = uc.GetStoredPasswordByEmail<string>(email);
+
+            foreach (string storedPassword in storedPasswords)
+            {
+                string[] parts = storedPassword.Split(':');
+                if (parts.Length != 2)
+                {
+                    throw new InvalidOperationException("Invalid stored password format");
+                }
+
+                byte[] saltBytes = Convert.FromBase64String(parts[0]);
+                byte[] enteredPasswordBytes = Encoding.UTF8.GetBytes(enteredPassword);
+
+                byte[] saltedPasswordBytes = new byte[saltBytes.Length + enteredPasswordBytes.Length];
+                Buffer.BlockCopy(saltBytes, 0, saltedPasswordBytes, 0, saltBytes.Length);
+                Buffer.BlockCopy(enteredPasswordBytes, 0, saltedPasswordBytes, saltBytes.Length, enteredPasswordBytes.Length);
+
+                byte[] hashBytes;
+                using (SHA256 sha256Hash = SHA256.Create())
+                {
+                    hashBytes = sha256Hash.ComputeHash(saltedPasswordBytes);
+                }
+
+                string enteredPasswordHash = Convert.ToBase64String(hashBytes);
+
+                if (enteredPasswordHash == parts[1])
+                {
+                    
+                    return true;
+                }
+            }
+            return false;
+        }*/
+
+        public bool Authenticate(string email, string password)
+        {
+            try
+            {
+                var uc = new UserCrudFactory();
+                var user = uc.UserByEmailAndPassword<User>(email, password);
+
+                if (user != null)
+                {
+                    return true;
+                }
+                else
+                {
+                    throw new Exception("Authentication failed! Incorrect email or password.");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new BadRequestException("Error during authentication");
+            }
         }
+
+
 
         public void CreateOTP(ValidateOTP validateOTP)
         {
@@ -264,12 +356,14 @@ namespace CoreApp
                 throw new Exception("Password does not meet the requirements.");
             }
 
-            string hashedPassword = HashPassword(newPassword);
-            newPassword = hashedPassword;
+           /* string hashedPassword = HashPassword(newPassword);
+            newPassword = hashedPassword;*/
 
             var uc = new UserCrudFactory();
             uc.UpdateUserPassword(email, newPassword);
         }
+
+        /* /////////////////////////////////////// VALICACIONES ///////////////////////////////////////*/
 
 
         private bool IsValidName(string name)
@@ -313,7 +407,6 @@ namespace CoreApp
 
         private bool IsValidEmail(string email)
         {
-            // Verifica el formato del correo electrónico
             string emailRegexPattern = @"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
             if (!Regex.IsMatch(email, emailRegexPattern))
             {
