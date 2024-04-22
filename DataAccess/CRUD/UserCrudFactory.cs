@@ -33,6 +33,7 @@ namespace DataAccess.CRUD
             sqlOperation.AddVarcharParam("P_STATUS", user.Status);
             sqlOperation.AddVarcharParam("P_PROVINCE", user.Province);
             sqlOperation.AddVarcharParam("P_ADDRESS", user.Address);
+            sqlOperation.AddVarcharParam("P_IMAGE_NAME", user.ImageName);
 
             // Ejecutar el procedimiento almacenado
             _dao.ExecuteProcedure(sqlOperation);
@@ -74,6 +75,8 @@ namespace DataAccess.CRUD
             sqlOperation.AddVarcharParam("P_STATUS", user.Status);
             sqlOperation.AddVarcharParam("P_PROVINCE", user.Province);
             sqlOperation.AddVarcharParam("P_ADDRESS", user.Address);
+            sqlOperation.AddVarcharParam("P_IMAGE_NAME", user.ImageName);
+
 
             // Ejecutar el procedimiento almacenado
             _dao.ExecuteProcedure(sqlOperation);
@@ -96,6 +99,8 @@ namespace DataAccess.CRUD
                 Created = (DateTime)row["CREATED"],
                 Province = (string)row["PROVINCE"],
                 Address = (string)row["ADDRESS"],
+                ImageName = (string)row["IMAGE_NAME"]
+
 
             };
             return userToReturn;

@@ -55,6 +55,24 @@ function SignUpController() {
     };
 
     this.Create = function () {
+
+        console.log("Attempting to create user...");
+
+        let profileImageInput = $("#profileImage")[0];
+        if (!profileImageInput) {
+            console.error("Profile image input not found");
+            return;
+        }
+
+        let files = profileImageInput.files;
+        if (!files || files.length === 0) {
+            console.error("No files selected");
+            return;
+        }
+
+        let imageName = files[0].name;
+        console.log("Image name:", imageName);
+
         let name1 = $("#txtName").val();
         let lastName = $("#txtLastName").val();
         let phoneNumber = $("#txtPhoneNumber").val();
@@ -65,6 +83,7 @@ function SignUpController() {
         let birthdate = new Date(birthdateValue);
         let province = $("#txtProvince").val();
         let address = $("#txtAddress").val();
+
         let user = {
             name: name1,
             lastName: lastName,
@@ -76,17 +95,20 @@ function SignUpController() {
             role: 'User',
             status: 'Default',
             province: province,
-            address: address
+            address: address,
+            imageName: imageName
         };
 
+        console.log("User object:", user);
+
         let ca = new ControlActions();
-        let srvR = "User/Create"
+        let srvR = "User/Create";
 
         ca.PostToAPI(srvR, user, function (response) {
-            console.log(response);
+            console.log("API response:", response);
             setTimeout(function () {
                 window.location.href = `/CodeVerification?email=${user.email}`;
-            }, 500);
+            }, 1000);
         })
     }
 }

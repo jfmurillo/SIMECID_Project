@@ -44,5 +44,7 @@ namespace DTO
 
         public bool isValid { get; set; }
 
+        public string ImageName { get; set; }
+
     }
 }
