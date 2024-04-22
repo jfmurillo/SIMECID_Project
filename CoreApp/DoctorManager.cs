@@ -75,7 +75,6 @@ namespace CoreApp
             return dc.RetrieveById<Doctor>(doctorID);
         }
 
-
         public void Update(Doctor doctor)
         {
             var dc = new DoctorCrudFactory();
@@ -128,6 +127,12 @@ namespace CoreApp
         {
             var dc = new DoctorCrudFactory();
             dc.Delete(doctor);
+        }
+
+        public List<string> GetSpecialtiesByBranch(int branchId)
+        {
+            var dc = new DoctorCrudFactory();
+            return dc.GetSpecialtiesByBranch(branchId);
         }
 
         private bool IsValidName(string name)

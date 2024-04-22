@@ -85,6 +85,23 @@ namespace WebAPI.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("GetSpecialtiesByBranch")]
+        public ActionResult GetSpecialtiesByBranch(int branchId)
+        {
+            try
+            {
+                var doctorManager = new DoctorManager();
+                var specialties = doctorManager.GetSpecialtiesByBranch(branchId);
+                return Ok(specialties);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+
         [HttpPut]
         [Route("Update")]
         public ActionResult Update(Doctor doctor)
