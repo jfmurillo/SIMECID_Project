@@ -86,7 +86,7 @@ function SignUpController() {
             console.log(response);
             setTimeout(function () {
                 window.location.href = `/CodeVerification?email=${user.email}`;
-            }, 1000);
+            }, 500);
         })
     }
 }
@@ -130,7 +130,7 @@ function EmailController2() {
             ca.PostToAPI(srv, data, function (response) {
                 setTimeout(function () {
                     window.location.href = `/Login`;
-                }, 1000);
+                }, 500);
             });
         } catch (error)
         {
