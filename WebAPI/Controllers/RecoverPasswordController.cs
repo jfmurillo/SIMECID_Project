@@ -76,7 +76,7 @@ namespace WebAPI.Controllers
 
                 _userManager.UpdatePassword(request.Email, request.NewPassword, request.ConfirmPassword);
 
-                return Ok(new { message = "Password changed successfully" });
+                return Ok(new { message = "Password changed successfully" + request.ConfirmPassword });
             }
             catch (Exception ex)
             {
