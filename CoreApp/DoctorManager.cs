@@ -63,6 +63,12 @@ namespace CoreApp
             dc.AddSpecialty(doctor);
         }
 
+        public void AddSchedule(Doctor doctor)
+        {
+            var dc = new DoctorCrudFactory();
+            dc.AddSchedule(doctor);
+        }
+
         public List<T> RetrieveAll<T>()
         {
             var dc = new DoctorCrudFactory();

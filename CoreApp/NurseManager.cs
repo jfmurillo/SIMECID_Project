@@ -123,7 +123,13 @@ namespace CoreApp
 
 		}
 
-		public void Delete(Nurse nurse)
+        public void AddSchedule(Nurse nurse)
+        {
+            var nc = new NurseCrudFactory();
+            nc.AddSchedule(nurse);
+        }
+
+        public void Delete(Nurse nurse)
 		{
 			var uc = new NurseCrudFactory();
 			uc.Delete(nurse);

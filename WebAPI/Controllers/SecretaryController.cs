@@ -50,7 +50,21 @@ namespace WebAPI.Controllers
                 }
             }
 
-
+            [HttpPost]
+            [Route("AddSchedule")]
+            public ActionResult AddSchedule(Secretary secretary)
+            {
+                try
+                {
+                    var sm = new SecretaryManager();
+                    sm.AddSchedule(secretary);
+                    return Ok(secretary);
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(500, ex.Message);
+                }
+            }
 
             [HttpPost]
             [Route("Create")]

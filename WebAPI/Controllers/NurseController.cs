@@ -25,7 +25,23 @@ namespace WebAPI.Controllers
 
 		}
 
-		[HttpGet]
+        [HttpPost]
+        [Route("AddSchedule")]
+        public ActionResult AddSchedule(Nurse nurse)
+        {
+            try
+            {
+                var nm = new NurseManager();
+                nm.AddSchedule(nurse);
+                return Ok(nurse);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpGet]
 		[Route("RetrieveById")]
 		public ActionResult RetrieveById(int nurseId)
 		{

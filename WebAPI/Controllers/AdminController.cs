@@ -106,6 +106,21 @@ namespace WebAPI.Controllers
                 return StatusCode(500, $"An error occurred while assigning role: {ex.Message}");
             }
         }
+        [HttpPost]
+        [Route("AssignSchedule")]
+        public ActionResult AssignSchedule(int staffId, string schedule, string staffType)
+        {
+            try
+            {
+                var am = new AdminManager();
+                am.AssignSchedule(staffId, schedule, staffType);
+                return Ok($"Schedule assigned successfully to {staffType} with ID {staffId}.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred while assigning schedule: {ex.Message}");
+            }
+        }
 
 
         [HttpDelete]
