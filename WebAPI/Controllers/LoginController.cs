@@ -1,5 +1,6 @@
 ﻿using CoreApp;
 using DTO;
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
@@ -8,35 +9,34 @@ namespace WebAPI.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
-        [HttpPost] 
+        private readonly UserManager _userManager;
+
+        public LoginController(UserManager userManager)
+        {
+            _userManager = userManager;
+        }
+
+        [HttpPost]
         [Route("Authenticate")]
         public ActionResult Authenticate([FromBody] LoginRequest request)
         {
             try
             {
-                var um = new UserManager();
-                var user = um.GetUserByEmail(request.Email);
-
-                if (user != null && um.VerifyPassword(request.Password, user.Password))
+                bool isAuthenticated = _userManager.Authenticate(request.Email, request.Password);
+                if (isAuthenticated)
                 {
                     return Ok(new { message = "Login successful" });
                 }
                 else
                 {
-                    return Unauthorized("Invalid email or password");
+                    return Unauthorized(new { message = "Incorrect email or password" });
                 }
             }
             catch (Exception ex)
             {
-                return Unauthorized(ex + "Something went wrong");
+                return StatusCode(500, ex.Message);
             }
         }
-    }
 
-    public class LoginRequest
-    {
-        public string Email { get; set; }
-        public string Password { get; set; }
     }
 }
-

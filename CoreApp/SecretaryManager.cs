@@ -117,6 +117,12 @@ namespace CoreApp
 
         }
 
+        public void AddSchedule(Secretary secretary)
+        {
+            var sc = new SecretaryCrudFactory();
+            sc.AddSchedule(secretary);
+        }
+
         public void Delete(Secretary secretary)
         {
             var sc = new SecretaryCrudFactory();

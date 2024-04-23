@@ -79,7 +79,8 @@ function ControlActions() {
 			data: JSON.stringify(data),
 			contentType: "application/json; charset=utf-8",
 			dataType: "json",
-			success: function (data) {
+			success: function (data, textStatus, xhr) {
+				data['status'] = xhr.status
 				if (callBackFunction && typeof callBackFunction === "function") {
 					callBackFunction(data);
 				}

@@ -94,14 +94,24 @@ namespace WebAPI.Controllers
                 var doctorManager = new DoctorManager();
                 var specialties = doctorManager.GetSpecialtiesByBranch(branchId);
                 return Ok(specialties);
+
+
+        [HttpPost]
+        [Route("AddSchedule")]
+        public ActionResult AddSchedule(Doctor doctor)
+        {
+            try
+            {
+                var dm = new DoctorManager();
+                dm.AddSchedule(doctor);
+                return Ok(doctor);
             }
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
             }
         }
-
-
+        
         [HttpPut]
         [Route("Update")]
         public ActionResult Update(Doctor doctor)

@@ -58,8 +58,8 @@ namespace CoreApp
                 throw new Exception("Invalid status value");
             }
             ac.Create(admin);
-        }
 
+        }
         public List<string> GetSpecialtiesByBranch(int branchId)
         {
             var ac = new AdminCrudFactory();
@@ -259,13 +259,36 @@ namespace CoreApp
             }
         }
 
+        public void AssignSchedule(int staffId, string schedule, string staffType)
+        {
+            switch (staffType.ToLower())
+            {
+                case "doctor":
+                    var doctor = new Doctor { Id = staffId, Schedule = schedule };
+                    var doctorCrud = new DoctorCrudFactory();
+                    doctorCrud.AddSchedule(doctor);
+                    break;
 
+                case "nurse":
+                    var nurse = new Nurse { Id = staffId, Schedule = schedule };
+                    var nurseCrud = new NurseCrudFactory();
+                    nurseCrud.AddSchedule(nurse);
+                    break;
 
+                case "secretary":
+                    var secretary = new Secretary { Id = staffId, Schedule = schedule };
+                    var secretaryCrud = new SecretaryCrudFactory();
+                    secretaryCrud.AddSchedule(secretary);
+                    break;
+
+                default:
+                    throw new ArgumentException("Invalid staff type.");
+            }
+        }
 
 
 
         /// VALIDACIONES
-
         private bool IsValidName(string name)
         {
             return !string.IsNullOrWhiteSpace(name) && char.IsUpper(name[0]) && name.All(c => char.IsLetter(c) && !char.IsWhiteSpace(c));

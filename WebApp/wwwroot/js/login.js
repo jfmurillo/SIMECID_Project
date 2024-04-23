@@ -24,7 +24,7 @@ function LoginController() {
             let lc = new LoginController();
             let urlParams = new URLSearchParams(window.location.search);
             email = urlParams.get("email")
-            lc.NewPasswordUpdate();
+            lc.NewPasswordUpdate(); 
         })
 
     }
@@ -34,24 +34,31 @@ function LoginController() {
         let password = $("#password").val();
 
         let loginData = {
-            email,
-            password
-        }
+            Email: email,
+            Password: password 
+        };
 
         serviceRoute = "Login/Authenticate"
         let ca = new ControlActions();
         ca.PostToAPI(serviceRoute, loginData, function (response) {
+            
             if (response.status == 200) {
-                console.log("login successful")
+                console.log("Login successful");
+                setTimeout(function () {
+                    window.location.href = `/UserProfile`;
+                }, 1000);
+                
             } else {
-                console.log("error")
+                console.log(response)
+                console.log("Error during login:", response.message); 
+                throw new Error("Error during login")
             }
-
-            setTimeout(function () {
-                window.location.href = `/UserProfile`;
-            }, 1000);
-        })
+        });
     }
+/*    function hashPassword(password) {
+        let hashedPassword = CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64);
+        return hashedPassword;
+    }*/
 
     this.ValidateOTP = function (email, otp) {
         if (email === "" || otp === "") {
@@ -81,7 +88,8 @@ function LoginController() {
                     console.log("Valid OTP");
                     setTimeout(function () {
                         window.location.href = `/NewPassword?email=${data.email}`;
-                    }, 2000);
+                    }, 1000);
+                    
                 } else {
                     console.log("Invalid OTP");
                 }

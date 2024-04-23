@@ -33,6 +33,7 @@ namespace DataAccess.CRUD
             sqlOperation.AddVarcharParam("P_STATUS", user.Status);
             sqlOperation.AddVarcharParam("P_PROVINCE", user.Province);
             sqlOperation.AddVarcharParam("P_ADDRESS", user.Address);
+            sqlOperation.AddVarcharParam("P_IMAGE_NAME", user.ImageName);
 
             // Ejecutar el procedimiento almacenado
             _dao.ExecuteProcedure(sqlOperation);
@@ -74,6 +75,8 @@ namespace DataAccess.CRUD
             sqlOperation.AddVarcharParam("P_STATUS", user.Status);
             sqlOperation.AddVarcharParam("P_PROVINCE", user.Province);
             sqlOperation.AddVarcharParam("P_ADDRESS", user.Address);
+            sqlOperation.AddVarcharParam("P_IMAGE_NAME", user.ImageName);
+
 
             // Ejecutar el procedimiento almacenado
             _dao.ExecuteProcedure(sqlOperation);
@@ -96,6 +99,8 @@ namespace DataAccess.CRUD
                 Created = (DateTime)row["CREATED"],
                 Province = (string)row["PROVINCE"],
                 Address = (string)row["ADDRESS"],
+                ImageName = (string)row["IMAGE_NAME"]
+
 
             };
             return userToReturn;
@@ -121,6 +126,24 @@ namespace DataAccess.CRUD
             return default(T); // Return default value for type T if user not found
         }
 
+        public T UserByEmailAndPassword<T>(string email, string password)
+        {
+
+            var sqlOperation = new SqlOperation() { ProcedureName = "GET_USER_BY_EMAIL_AND_PASSWORD" };
+            sqlOperation.AddVarcharParam("@P_EMAIL", email);
+            sqlOperation.AddVarcharParam("@P_PASSWORD", password);
+
+            var lstResult = _dao.ExecuteQueryProcedure(sqlOperation);
+
+            if (lstResult.Count > 0)
+            {
+                var row = lstResult[0]; 
+                var userFound = BuildUser(row);
+                return (T)Convert.ChangeType(userFound, typeof(T));
+            }
+            return default(T);
+        }
+
 
         public override List<T> RetrieveAll<T>()
         {
@@ -143,21 +166,48 @@ namespace DataAccess.CRUD
 
         }
 
-        public List<T> LoginValidation<T>()
+
+
+        public List<T> GetStoredPasswordByEmail<T>(string email)
         {
-            var otpList = new List<T>();
-            var sqlOperation = new SqlOperation() { ProcedureName = "VAL_LOGIN_PR" };
+            var passwordList = new List<T>();
+            var sqlOperation = new SqlOperation() { ProcedureName = "GET_PASSWORD_BY_EMAIL_PR" };
+            sqlOperation.AddVarcharParam("P_EMAIL", email);
             var lstResults = _dao.ExecuteQueryProcedure(sqlOperation);
 
             if (lstResults.Count > 0)
             {
                 foreach (var row in lstResults)
                 {
-                    var user = BuildLogin(row);
-                    otpList.Add((T)Convert.ChangeType(user, typeof(T)));
+                    var password = BuildPassword(row);
+                    passwordList.Add((T)Convert.ChangeType(password, typeof(T)));
                 }
             }
-            return otpList;
+            return passwordList;
+        }
+
+        private string BuildPassword(Dictionary<string, object> row)
+        {
+            return (string)row["PASSWORD"];
+        }
+
+
+        public bool AuthenticateUser(string email, string password)
+        {
+            var sqlOperation = new SqlOperation() { ProcedureName = "VAL_LOGIN_PR" };
+            sqlOperation.AddVarcharParam("P_EMAIL", email);
+            sqlOperation.AddVarcharParam("P_PASSWORD", password);
+
+            var lstResults = _dao.ExecuteQueryProcedure(sqlOperation);
+
+            if (lstResults.Count > 0)
+            {
+                return true;// Se encontraron resultados, el usuario está autenticado
+            }
+            else
+            {
+                return false;// No se encontraron resultados, la autenticación falló
+            }
         }
 
         private User BuildLogin(Dictionary<string, object> row)

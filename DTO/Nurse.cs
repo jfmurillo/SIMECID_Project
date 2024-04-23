@@ -39,5 +39,8 @@ namespace DTO
 		[Required(ErrorMessage = "Status is required")]
 		public string Status { get; set; }
 
-	}
+        public string Schedule { get; set; }
+
+
+    }
 }
