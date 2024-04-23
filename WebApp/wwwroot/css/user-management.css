@@ -297,7 +297,6 @@ h2 {
         display: flex;
         width: 100px;
         margin-left: 10px;
-        text-align: right;
     }
 
     .form-field input[type="text"] {
