@@ -18,7 +18,7 @@ namespace DataAccess.CRUD
 
         public override void Create(BaseDTO baseDTO)
         {
-            // Convertir BaseDTO en un usuario
+            // Convertir BaseDTO en un examen médico
             var exam = baseDTO as MedicalExam;
 
             // Crear la operación SQL para ejecutar el procedimiento almacenado
@@ -27,9 +27,15 @@ namespace DataAccess.CRUD
             sqlOperation.AddVarcharParam("P_EXAM_TYPE", exam.Examtype);
             sqlOperation.AddDatetimeParam("P_EXAM_DATE", exam.ExamDate);
             sqlOperation.AddVarcharParam("P_DETAILS", exam.Details);
+            sqlOperation.AddDoubleParam("P_WEIGHT", exam.Weight);
+            sqlOperation.AddDoubleParam("P_SIZE", exam.Size);
+            sqlOperation.AddDoubleParam("P_BODY_MASS", exam.BodyMass);
+            sqlOperation.AddVarcharParam("P_RESULT", exam.Result);
+
             // Ejecutar el procedimiento almacenado
             _dao.ExecuteProcedure(sqlOperation);
         }
+
 
 
 
@@ -60,13 +66,14 @@ namespace DataAccess.CRUD
             sqlOperation.AddVarcharParam("P_EXAM_TYPE", exam.Examtype);
             sqlOperation.AddDatetimeParam("P_EXAM_DATE", exam.ExamDate);
             sqlOperation.AddVarcharParam("P_DETAILS", exam.Details);
+            sqlOperation.AddDoubleParam("P_WEIGHT", exam.Weight);
+            sqlOperation.AddDoubleParam("P_SIZE", exam.Size);
+            sqlOperation.AddDoubleParam("P_BODY_MASS", exam.BodyMass);
+            sqlOperation.AddVarcharParam("P_RESULT", exam.Result);
 
             // Ejecutar el procedimiento almacenado
             _dao.ExecuteProcedure(sqlOperation);
         }
-
-
-
 
         private MedicalExam BuildExam(Dictionary<string, object> row)
         {
@@ -76,11 +83,16 @@ namespace DataAccess.CRUD
                 PatientId = (int)row["PATIENT_ID"],
                 Examtype = (string)row["EXAM_TYPE"],
                 ExamDate = (DateTime)row["EXAM_DATE"],
-                Details = (string)row["DETAILS"]
+                Details = (string)row["DETAILS"],
+                Weight = (double)row["WEIGHT"],
+                Size = (double)row["SIZE"],
+                BodyMass = (double)row["BODY_MASS"],
+                Result = (string)row["RESULT"] 
             };
 
             return ExamToReturn;
         }
+
 
 
         public override T Retrieve<T>()
