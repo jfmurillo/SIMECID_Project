@@ -1,14 +1,15 @@
 ﻿using CoreApp;
 using DTO;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace WebAPI.Controllers
-{ 
-        [Route("api/[controller]")]
-        [ApiController]
+{
+    [Route("api/[controller]")]
+    [ApiController]
 
-        public class DoctorController: ControllerBase
-        {
+    public class DoctorController : ControllerBase
+    {
         [HttpGet]
         [Route("RetrieveAll")]
         public ActionResult RetrieveAll()
@@ -23,7 +24,6 @@ namespace WebAPI.Controllers
             {
                 return StatusCode(500, ex.Message);
             }
-
         }
 
         [HttpGet]
@@ -50,8 +50,6 @@ namespace WebAPI.Controllers
             }
         }
 
-
-
         [HttpPost]
         [Route("Create")]
         public ActionResult Create(Doctor doctor)
@@ -67,7 +65,6 @@ namespace WebAPI.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
-
 
         [HttpPost]
         [Route("AddSpecialty")]
@@ -94,7 +91,12 @@ namespace WebAPI.Controllers
                 var doctorManager = new DoctorManager();
                 var specialties = doctorManager.GetSpecialtiesByBranch(branchId);
                 return Ok(specialties);
-
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
 
         [HttpPost]
         [Route("AddSchedule")]
@@ -111,7 +113,7 @@ namespace WebAPI.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
-        
+
         [HttpPut]
         [Route("Update")]
         public ActionResult Update(Doctor doctor)
@@ -128,8 +130,6 @@ namespace WebAPI.Controllers
             }
         }
 
-
-
         [HttpDelete]
         [Route("Delete")]
         public ActionResult Delete(Doctor doctor)
@@ -145,6 +145,5 @@ namespace WebAPI.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
-
     }
 }
