@@ -85,6 +85,16 @@ namespace WebAPI.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("GetSpecialtiesByBranch")]
+        public ActionResult GetSpecialtiesByBranch(int branchId)
+        {
+            try
+            {
+                var doctorManager = new DoctorManager();
+                var specialties = doctorManager.GetSpecialtiesByBranch(branchId);
+                return Ok(specialties);
+
 
         [HttpPost]
         [Route("AddSchedule")]
@@ -101,7 +111,7 @@ namespace WebAPI.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
-
+        
         [HttpPut]
         [Route("Update")]
         public ActionResult Update(Doctor doctor)
