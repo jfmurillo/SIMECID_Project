@@ -44,5 +44,11 @@ namespace CoreApp
             //Aqui se ejecuta el metodo del crud
             aptc.Delete(appointment);
         }
+
+        public void GetAppointment(Appointment appointment)
+        {
+            var aptc = new AppointmentCrudFactory();
+
+        }
     }
 }
