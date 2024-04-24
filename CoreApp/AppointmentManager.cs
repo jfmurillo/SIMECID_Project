@@ -44,5 +44,12 @@ namespace CoreApp
             //Aqui se ejecuta el metodo del crud
             aptc.Delete(appointment);
         }
+
+        public List<Appointment> RetrieveAppointmentsByUserEmail(string userEmail)
+        {
+            var pc = new AppointmentCrudFactory();
+            return pc.RetrieveAppointmentsByUserEmail<Appointment>(userEmail);
+        }
+
     }
 }
