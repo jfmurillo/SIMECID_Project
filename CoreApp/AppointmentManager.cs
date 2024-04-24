@@ -45,10 +45,17 @@ namespace CoreApp
             aptc.Delete(appointment);
         }
 
-        public void GetAppointment(Appointment appointment)
+        public List<Appointment> RetrieveAppointmentsByUserEmail(string userEmail)
+        {
+            var pc = new AppointmentCrudFactory();
+            return pc.RetrieveAppointmentsByUserEmail<Appointment>(userEmail);
+        }
+      
+              public void GetAppointment(Appointment appointment)
         {
             var aptc = new AppointmentCrudFactory();
 
         }
+
     }
 }

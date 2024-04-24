@@ -35,5 +35,7 @@ namespace DTO
         public String Text { get; set; } //Este es el motive 
 
         public String Status { get; set; }
+
+        public String UserEmail { get; set; }
     }
 }

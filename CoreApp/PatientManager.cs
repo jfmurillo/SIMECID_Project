@@ -56,11 +56,6 @@ namespace CoreApp
             }
             pc.Create(patient);
 
-
-
-
-
-
         }
 
         public List<Patient> RetrieveAll()

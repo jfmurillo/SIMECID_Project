@@ -92,6 +92,31 @@ namespace DataAccess.CRUD
             return lstAppts;
         }
 
+        public List<T> RetrieveAppointmentsByUserEmail<T>(string userEmail)
+        {
+            var lstAppts = new List<T>();
+            var sqlOperation = new SqlOperation() { ProcedureName = "RET_APPOINTMENTS_BY_USER_EMAIL" };
+            sqlOperation.AddVarcharParam("P_EMAIL", userEmail); // Corregido el nombre del parámetro
+
+            var lstResults = _dao.ExecuteQueryProcedure(sqlOperation);
+
+            if (lstResults.Count > 0)
+            {
+                // Recorre cada fila en la lista de resultados
+                foreach (var row in lstResults)
+                {
+                    var appt = BuildAppointment(row);
+
+                    // Esta conversión es necesaria porque la lista está definida como List<T>.
+                    lstAppts.Add((T)Convert.ChangeType(appt, typeof(T)));
+                }
+            }
+
+            // Retorna la lista final que contiene objetos del tipo T
+            return lstAppts;
+        }
+
+
         public override T RetrieveById<T>(int Id)
         {
             //throw new NotImplementedException();
