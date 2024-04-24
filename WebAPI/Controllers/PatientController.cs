@@ -53,8 +53,6 @@ namespace WebAPI.Controllers
             }
         }
 
-
-
         [HttpPost]
         [Route("Create")]
         public ActionResult Create(Patient patient)
@@ -69,9 +67,6 @@ namespace WebAPI.Controllers
             {
                 return StatusCode(500, ex.Message);
             }
-
-
-
         }
 
         [HttpPut]
@@ -88,10 +83,7 @@ namespace WebAPI.Controllers
             {
                 return StatusCode(500, ex.Message);
             }
-
         }
-
-
 
         [HttpDelete]
         [Route("Delete")]

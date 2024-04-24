@@ -55,12 +55,6 @@ namespace CoreApp
                 throw new Exception("Invalid status value");
             }
             pc.Create(patient);
-
-
-
-
-
-
         }
 
         public List<Patient> RetrieveAll()
@@ -74,7 +68,6 @@ namespace CoreApp
             var pc = new PatientCrudFactory();
             return pc.RetrieveById<Patient>(patientId);
         }
-
 
         public void Update(Patient patient)
         {

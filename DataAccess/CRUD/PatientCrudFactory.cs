@@ -119,7 +119,6 @@ namespace DataAccess.CRUD
             return default(T); // Return default value for type T if user not found
         }
 
-
         public override List<T> RetrieveAll<T>()
         {
 
@@ -138,7 +137,6 @@ namespace DataAccess.CRUD
 
             }
             return patientList;
-
         }
 
 
