@@ -123,6 +123,12 @@ namespace CoreApp
 
         }
 
+        public void UpdateUserRole(Admin admin)
+        {
+            var ac = new AdminCrudFactory();
+            ac.UpdateUserRole(admin);
+        }
+
         public void Delete(Admin admin)
         {
             var ac = new AdminCrudFactory();

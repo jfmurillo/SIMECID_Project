@@ -75,6 +75,23 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut]
+        [Route("UpdateUserRole")]
+        public ActionResult UpdateUserRole(Admin admin)
+        {
+            try
+            {
+                var am = new AdminManager();
+                am.UpdateUserRole(admin);
+                return Ok(admin);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+
+        }
+
+        [HttpPut]
         [Route("Update")]
         public ActionResult Update(Admin admin)
         {
