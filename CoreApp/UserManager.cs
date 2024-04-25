@@ -123,6 +123,13 @@ namespace CoreApp
             var uc = new UserCrudFactory();
             return uc.RetrieveById<User>(userId);
         }
+
+        public User RetrieveRoleByUserEmail(string email)
+        {
+            var uc = new UserCrudFactory();
+            return uc.RetrieveRoleByUserEmail<User>(email);
+        }
+
         public void Update(User user)
         {
             // Validar que el usuario no sea nulo y que tenga un ID válido
@@ -173,6 +180,13 @@ namespace CoreApp
             uc.Update(user);
 
         }
+
+        public void UpdateUserRole(User user)
+        {
+            var uc = new UserCrudFactory();
+            uc.UpdateUserRole(user);
+        }
+
         public void Delete(User user)
         {
             var uc = new UserCrudFactory();
