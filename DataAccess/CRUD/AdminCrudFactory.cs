@@ -78,6 +78,18 @@ namespace DataAccess.CRUD
             _dao.ExecuteProcedure(sqlOperation);
         }
 
+        public void UpdateUserRole(BaseDTO baseDTO)
+        {
+            var admin = baseDTO as Admin;
+            var user = baseDTO as User;
+            var sqlOperation = new SqlOperation { ProcedureName = "UPD_USER_ROL_PR" };
+            sqlOperation.AddIntParam("UserID", user.Id);
+            sqlOperation.AddVarcharParam("NewRole", user.Role);
+
+            _dao.ExecuteProcedure(sqlOperation);
+        }
+
+
         public List<string> GetSpecialtiesByBranch(int branchId)
         {
             var sqlOperation = new SqlOperation { ProcedureName = "GET_SPECIALTIES_BY_BRANCH_PR" };
