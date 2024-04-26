@@ -9,10 +9,6 @@ namespace WebAPI.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        //Siempre vamos a retornar 2 respuestas
-        //200 --> OK
-        //500 --> Internal server Error
-        //Los retrieve trabajan con el verbo get de http
         [HttpGet]
         [Route("RetrieveAll")]
         public ActionResult RetrieveAll()
@@ -54,18 +50,18 @@ namespace WebAPI.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("RetrieveRoleByUserEmail")]
-        public ActionResult RetrieveRoleByUserEmail(string email)
+        public ActionResult RetrieveRoleByUserEmail(UserForgotPasswordModel usr)
         {
             try
             {
                 var um = new UserManager();
-                var user = um.RetrieveRoleByUserEmail(email);
+                var user = um.RetrieveRoleByUserEmail(usr.Email);
 
                 if (user != null)
                 {
-                    return Ok(user);
+                    return Ok(new {User = user, Role = user.Role});
                 }
                 else
                 {

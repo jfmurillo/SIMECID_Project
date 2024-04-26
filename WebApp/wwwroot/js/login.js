@@ -36,17 +36,14 @@ function LoginController() {
         let loginData = {
             Email: email,
             Password: password 
-        };
+        }
 
         serviceRoute = "Login/Authenticate"
         let ca = new ControlActions();
-        ca.PostToAPI(serviceRoute, loginData, function (response) {
-            
+        ca.PostToAPI(serviceRoute, loginData, (response) => {
             if (response.status == 200) {
                 console.log("Login successful");
-                setTimeout(function () {
-                    window.location.href = `/UserProfile`;
-                }, 1000);
+                this.ManageRol(email);
                 
             } else {
                 console.log(response)
@@ -55,10 +52,60 @@ function LoginController() {
             }
         });
     }
-/*    function hashPassword(password) {
-        let hashedPassword = CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64);
-        return hashedPassword;
-    }*/
+
+    this.ManageRol = function (email) {
+        let route = "User/RetrieveRoleByUserEmail"
+        let ca = new ControlActions();
+
+        let user = {
+            Email: email
+        }
+
+        console.log(email)
+        ca.PostToAPI(route, user, (response) => {
+            if (response.status == 200) {
+                console.log("manage rol");
+                let role = response.role
+
+                switch (role) {
+                    case "Nurse":
+                        setTimeout(function () {
+                            window.location.href = `/Nurse-Profile`;
+                        }, 500);
+                        break;
+                    case "Secretary":
+                        setTimeout(function () {
+                            window.location.href = `/Secretary-Profile`;
+                        }, 500);
+                        break;
+                    case "Doctor":
+                        setTimeout(function () {
+                            window.location.href = `/Doctor-Profile`;
+                        }, 500);
+                        break;
+                    case "User":
+                        setTimeout(function () {
+                            window.location.href = `/Patient-UserProfile`;
+                        }, 500);
+                        break;
+                    case "Admin":
+                        setTimeout(function () {
+                            window.location.href = `/UserProfile`;
+                        }, 500);
+                        break;
+                    default:
+                        setTimeout(function () {
+                            window.location.href = `/Error`;
+                        }, 500);
+                        break;
+                }
+
+            } else {
+                console.log(response)
+                console.log("Error during login:", response.message);
+                throw new Error("Error during login")
+            }
+        });
 
     this.ValidateOTP = function (email, otp) {
         if (email === "" || otp === "") {
@@ -124,7 +171,7 @@ function LoginController() {
 
             setTimeout(function () {
                 window.location.href = `/Login`;
-            }, 3000);
+            }, 2000);
         });
     };
 }
