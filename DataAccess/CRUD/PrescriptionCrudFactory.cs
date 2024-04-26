@@ -10,11 +10,9 @@ namespace DataAccess.CRUD
 {
     public class PrescriptionCrudFactory : CrudFactory
     {
-
         public PrescriptionCrudFactory()
         {
             _dao = SqlDao.GetInstace();
-
         }
 
         public override void Create(BaseDTO baseDTO)
