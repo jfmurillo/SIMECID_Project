@@ -54,18 +54,18 @@ namespace WebAPI.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("RetrieveRoleByUserEmail")]
-        public ActionResult RetrieveRoleByUserEmail(string email)
+        public ActionResult RetrieveRoleByUserEmail(UserForgotPasswordModel usr)
         {
             try
             {
                 var um = new UserManager();
-                var user = um.RetrieveRoleByUserEmail(email);
+                var user = um.RetrieveRoleByUserEmail(usr.Email);
 
                 if (user != null)
                 {
-                    return Ok(user);
+                    return Ok(new {User = user, Role = user.Role});
                 }
                 else
                 {

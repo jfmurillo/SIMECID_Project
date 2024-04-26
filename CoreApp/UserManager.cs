@@ -132,7 +132,6 @@ namespace CoreApp
 
         public void Update(User user)
         {
-            // Validar que el usuario no sea nulo y que tenga un ID válido
             if (user == null || user.Id == 0)
             {
                 throw new ArgumentException("Invalid user.");
@@ -160,10 +159,6 @@ namespace CoreApp
             {
                 throw new Exception("Invalid Password format");
             }
-            /*else if (!IsValidSex(user.Sex))
-            {
-                throw new Exception("Invalid Sex format");
-            }*/
             else if (!IsValidBirthDate(user.BirthDate))
             {
                 throw new Exception("Invalid birth date format");
