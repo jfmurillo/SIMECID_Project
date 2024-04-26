@@ -107,55 +107,6 @@ function LoginController() {
             }
         });
 
-
-
-
-
-
-        /*ca.PostToAPI(route, data, (response) => {
-            console.log(response)
-            let role = response.Role
-
-            switch (role) {
-                case "Nurse":
-                    setTimeout(function () {
-                        window.location.href = `/Nurse-Profile`;
-                    }, 500);
-                    break;
-                case "Secretary":
-                    setTimeout(function () {
-                        window.location.href = `/Secretary-Profile`;
-                    }, 500);
-                    break;
-                case "Doctor":
-                    setTimeout(function () {
-                        window.location.href = `/Doctor-Profile`;
-                    }, 500);
-                    break;
-                case "User":
-                    setTimeout(function () {
-                        window.location.href = `/Patient-Profile`;
-                    }, 500);
-                    break;
-                case "Admin":
-                    setTimeout(function () {
-                        window.location.href = `/UserProfile`;
-                    }, 500);
-                    break;
-                default:
-                    setTimeout(function () {
-                        window.location.href = `/Error`;
-                    }, 500);
-                    break;
-            }
-        });*/
-    }
-
-/*    function hashPassword(password) {
-        let hashedPassword = CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64);
-        return hashedPassword;
-    }*/
-
     this.ValidateOTP = function (email, otp) {
         if (email === "" || otp === "") {
             return;
