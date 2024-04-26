@@ -35,8 +35,12 @@
                 <h1>SIMECID</h1>
             </span>
             <h2 style="margin-bottom:20px ;padding: 0">Create new account</h2>
+           @*  <form method="post" enctype="multipart/form-data" action="/SignUp/UploadFile">
+                
+                <button class="btn" type="submit" style="margin-left: 350px;">submit button</button>
+            </form> *@
 
-            <form class="form-container">
+            <form id="uploadForm" class="form-container" enctype="multipart/form-data">
                 <div class="sign-up-form">
                     <label for="name">Name</label><br>
                     <input type="text" id="txtName" name="name" required><br><br>
@@ -98,17 +102,17 @@
                     <textarea class="classinput" id="txtAddress" name="address" required></textarea><br><br>
                 </div>
                 <div class="sign-up-form">
-                    <label for="photo">Photo</label><br>
-                    <input name="photo" type="file" id="profileImage" accept="image/*">
+                    <label for="file">Photo</label><br>
+                    <input name="file" type="file" id="profileImage" accept="image/*">
                 </div>
                 
-                <button class="btn" id="BtnSignIn" type="button" style="margin-left: 350px;">Create Account</button>
+                <button class="btn" id="BtnSignIn" type="submit" style="margin-left: 350px;">Create Account</button>
                
                 @* <a class="btn" style="margin-left: 350px;" asp-area="" asp-page="/CodeVerification">Create Account</a> *@
             </form>
-
-
+            
         </div>
     </div>
+	<script src="~/js/imagesave.js"></script>
 </body>
 </html>
