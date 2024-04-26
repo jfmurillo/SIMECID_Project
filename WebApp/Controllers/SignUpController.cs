@@ -29,24 +29,29 @@ namespace WebApp.Controllers
                     Directory.CreateDirectory(uploadsFolder);
                 }
 
-                // Obtén el nombre original del archivo
-                var originalFileName = Path.GetFileName(file.FileName);
+                // Obtén el nombre del archivo original
+                var fileName = Path.GetFileName(file.FileName);
 
-                // Combina el nombre original con la ruta de la carpeta de carga
-                var filePath = Path.Combine(uploadsFolder, originalFileName);
+                // Construye la ruta completa donde se guardará el archivo
+                var filePath = Path.Combine(uploadsFolder, fileName);
 
-                // Guarda el archivo en el servidor
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
+                    // Guarda el archivo en el servidor
                     await file.CopyToAsync(fileStream);
                 }
 
-                // Devuelve un mensaje indicando que la carga del archivo se ha completado
-                return Content("File uploaded successfully.");
+                // Muestra el nombre del archivo en la consola
+                Console.WriteLine($"El archivo '{fileName}' se ha cargado correctamente.");
+            }
+            else
+            {
+                // Si no se proporciona ningún archivo, muestra un mensaje en la consola
+                Console.WriteLine("No se ha seleccionado ningún archivo para cargar.");
             }
 
-            // Si no se ha enviado ningún archivo, devolver un BadRequest u otro resultado adecuado
-            return BadRequest("No file was uploaded.");
+            // Retorna una respuesta de éxito al cliente
+            return Ok();
         }
     }
 }
