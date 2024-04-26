@@ -54,6 +54,30 @@ namespace WebAPI.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("RetrieveRoleByUserEmail")]
+        public ActionResult RetrieveRoleByUserEmail(string email)
+        {
+            try
+            {
+                var um = new UserManager();
+                var user = um.RetrieveRoleByUserEmail(email);
+
+                if (user != null)
+                {
+                    return Ok(user);
+                }
+                else
+                {
+                    return NotFound("User not found");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
 
 
         [HttpPost]
@@ -89,7 +113,22 @@ namespace WebAPI.Controllers
 
         }
 
+        [HttpPut]
+        [Route("UpdateUserRole")]
+        public ActionResult UpdateUserRole(User user)
+        {
+            try
+            {
+                var um = new UserManager();
+                um.UpdateUserRole(user);
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
 
+        }
 
         [HttpDelete]
         [Route("Delete")]
