@@ -70,7 +70,6 @@ namespace CoreApp
             return pc.RetrieveById<Patient>(patientId);
         }
 
-
         public void Update(Patient patient)
         {
             var pc = new PatientCrudFactory();

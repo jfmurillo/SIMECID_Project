@@ -1,0 +1,60 @@
+﻿using CoreApp;
+using DTO;
+using Microsoft.AspNetCore.Mvc;
+
+namespace WebAPI.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class PrescriptionController : ControllerBase
+    {
+        [HttpPost]
+        [Route("Create")]
+        public ActionResult Create(Prescription prescription)
+        {
+            try
+            {
+                var pm = new PrescriptionManager();
+                pm.Create(prescription);
+                return Ok(prescription);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpPut]
+        [Route("Update")]
+        public ActionResult Update(Prescription prescription)
+        {
+            try
+            {
+                var pm = new PrescriptionManager();
+                pm.Update(prescription);
+                return Ok(prescription);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+
+        [HttpDelete]
+        [Route("Delete")]
+        public ActionResult Delete(Prescription prescription)
+        {
+            try
+            {
+                var pm = new PrescriptionManager();
+                pm.Delete(prescription);
+                return Ok(prescription);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+    }
+}

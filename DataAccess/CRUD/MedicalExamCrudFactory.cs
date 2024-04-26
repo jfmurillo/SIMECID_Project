@@ -36,9 +36,6 @@ namespace DataAccess.CRUD
             _dao.ExecuteProcedure(sqlOperation);
         }
 
-
-
-
         public override void Delete(BaseDTO baseDTO)
         {
             var exam = baseDTO as MedicalExam;
@@ -93,8 +90,6 @@ namespace DataAccess.CRUD
             return ExamToReturn;
         }
 
-
-
         public override T Retrieve<T>()
         {
             throw new NotImplementedException();
@@ -130,11 +125,8 @@ namespace DataAccess.CRUD
                     var exam = BuildExam(row);
                     examList.Add((T)Convert.ChangeType(exam, typeof(T)));
                 }
-
-
             }
             return examList;
-
         }
 
         public override T RetrieveById<T>(int id)
