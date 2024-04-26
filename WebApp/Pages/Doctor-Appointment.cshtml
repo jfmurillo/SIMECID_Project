@@ -86,7 +86,7 @@
 </div>
 
 <!------- CONTENIDO PRINCIPAL --------->
-<body class="main-content" style="align-content: center; align-items:center">
+<body class="main-content" style="align-content: center; align-items:center; margin-left:25%">
 
         <div class="table-container">
             <p>Select your Appointment</p>
@@ -112,8 +112,8 @@
                 </thead>
             </table>
         </div>
-        
-        <form class="form-container">
+
+    <form class="form-container" style="margin-left:43%">
             <div>
                 <label for="txtId">Appointment ID</label><br />
                 <input type="number" id="txtId" name="txtAppointmentId"/>
@@ -159,10 +159,10 @@
                 <label for="txtBranchName">Branch Name</label><br />
                 <input type="text" id="txtBranchName" />
             </div><br />
-            <h1 class="fontTitle">Choose your date</h1>
+        <h1 class="fontTitle" style="margin-left:-50%">Choose your date</h1>
             <div class="date-form">
                 <label class="appointDate" for="birthdate">Appointment Date</label><br>
-                <input type="datetime-local" id="txtStartTime" name="birthdate" required><br><br>
+            <input style="width:60%" type="datetime-local" id="txtStartTime" name="birthdate" required><br><br>
             </div><br />
             <div>
                 <label for="txtReason">Text</label><br />
@@ -175,7 +175,7 @@
             <br />
             <div style="flex-wrap: ">
 
-                <button class="btn" type="submit" id="btnDelete">Delete</button>
+                <button style="margin-left:10%" class="btn" type="button" id="btnDelete">Delete</button>
             </div>
         </form>
 

@@ -17,8 +17,6 @@ namespace CoreApp
             var aptc = new AppointmentCrudFactory();
 
             // Aquí se realizan validaciones 
-            
-
             //Aqui se ejecuta el metodo del crud
             aptc.Create(appointment);
         }
@@ -29,7 +27,6 @@ namespace CoreApp
 
             // Aquí se realizan validaciones 
             //
-
             //Aqui se ejecuta el metodo del crud
             aptc.Update(appointment);
         }
@@ -39,10 +36,23 @@ namespace CoreApp
             var aptc = new AppointmentCrudFactory();
 
             // Aquí se realizan validaciones 
-
-
             //Aqui se ejecuta el metodo del crud
             aptc.Delete(appointment);
         }
+
+        public List<Appointment> RetrieveAppointmentsByUserEmail(string userEmail)
+        {
+            var pc = new AppointmentCrudFactory();
+            return pc.RetrieveAppointmentsByUserEmail<Appointment>(userEmail);
+        }
+      
+        public async void GetAppointment(Appointment appointment)
+        {
+            var user = new User();
+            var am = new ApptAlertManager();
+            await am.SendAppointmentAlert(user.Email);
+
+        }
+
     }
 }

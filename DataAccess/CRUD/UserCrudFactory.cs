@@ -82,6 +82,16 @@ namespace DataAccess.CRUD
             _dao.ExecuteProcedure(sqlOperation);
         }
 
+        public void UpdateUserRole(BaseDTO baseDTO)
+        {
+            var user = baseDTO as User;
+            var sqlOperation = new SqlOperation { ProcedureName = "UPD_USER_ROL_PR" };
+            sqlOperation.AddIntParam("UserID", user.Id);
+            sqlOperation.AddVarcharParam("NewRole", user.Role);
+
+            _dao.ExecuteProcedure(sqlOperation);
+        }
+
         private User BuildUser(Dictionary<string, object> row)
         {
             var userToReturn = new User()
@@ -124,6 +134,30 @@ namespace DataAccess.CRUD
                 return (T)Convert.ChangeType(userFound, typeof(T));
             }
             return default(T); // Return default value for type T if user not found
+        }
+
+        public T RetrieveRoleByUserEmail<T>(string email)
+        {
+            var sqlOperation = new SqlOperation() { ProcedureName = "RETRIEVE_ROL_BY_USER_EMAIL_SP" };
+            sqlOperation.AddVarcharParam("EMAIL", email);
+            var lstResult = _dao.ExecuteQueryProcedure(sqlOperation);
+
+            if (lstResult.Count > 0)
+            {
+                var row = lstResult[0]; // Extract the first row from the result
+                var userFound = BuildUserRol(row);
+                return (T)Convert.ChangeType(userFound, typeof(T));
+            }
+            return default(T); // Return default value for type T if user not found
+        }
+
+        private object BuildUserRol(Dictionary<string, object> row)
+        {
+            var userToReturn = new User()
+            {
+                Role = (string)row["ROLE"],
+            };
+            return userToReturn;
         }
 
         public T UserByEmailAndPassword<T>(string email, string password)

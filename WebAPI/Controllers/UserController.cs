@@ -9,10 +9,6 @@ namespace WebAPI.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        //Siempre vamos a retornar 2 respuestas
-        //200 --> OK
-        //500 --> Internal server Error
-        //Los retrieve trabajan con el verbo get de http
         [HttpGet]
         [Route("RetrieveAll")]
         public ActionResult RetrieveAll()
@@ -42,6 +38,30 @@ namespace WebAPI.Controllers
                 if (user != null)
                 {
                     return Ok(user);
+                }
+                else
+                {
+                    return NotFound("User not found");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpPost]
+        [Route("RetrieveRoleByUserEmail")]
+        public ActionResult RetrieveRoleByUserEmail(UserForgotPasswordModel usr)
+        {
+            try
+            {
+                var um = new UserManager();
+                var user = um.RetrieveRoleByUserEmail(usr.Email);
+
+                if (user != null)
+                {
+                    return Ok(new {User = user, Role = user.Role});
                 }
                 else
                 {
@@ -89,7 +109,22 @@ namespace WebAPI.Controllers
 
         }
 
+        [HttpPut]
+        [Route("UpdateUserRole")]
+        public ActionResult UpdateUserRole(User user)
+        {
+            try
+            {
+                var um = new UserManager();
+                um.UpdateUserRole(user);
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
 
+        }
 
         [HttpDelete]
         [Route("Delete")]

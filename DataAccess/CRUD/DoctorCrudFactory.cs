@@ -120,6 +120,23 @@ namespace DataAccess.CRUD
             _dao.ExecuteProcedure(sqlOperation);
         }
 
+        public List<string> GetSpecialtiesByBranch(int branchId)
+        {
+            var sqlOperation = new SqlOperation { ProcedureName = "GET_SPECIALTIES_BY_BRANCH_PR" };
+            sqlOperation.AddIntParam("BRANCH_ID", branchId);
+
+            var specialties = new List<string>();
+            var lstResults = _dao.ExecuteQueryProcedure(sqlOperation);
+
+            foreach (var row in lstResults)
+            {
+                specialties.Add((string)row["SPECIALTY"]);
+            }
+
+            return specialties;
+        }
+
+
         public void AddSchedule(Doctor doctor)
         {
             var sqlOperation = new SqlOperation { ProcedureName = "ADD_SCHEDULE_DOCTOR_PR" };

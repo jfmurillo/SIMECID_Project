@@ -74,6 +74,8 @@ namespace WebAPI.Controllers
 
         }
 
+       
+
         [HttpPut]
         [Route("Update")]
         public ActionResult Update(Admin admin)
@@ -122,6 +124,21 @@ namespace WebAPI.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("GetSpecialtiesByBranch")]
+        public ActionResult GetSpecialtiesByBranch(int branchId)
+        {
+            try
+            {
+                var adminManager = new AdminManager();
+                var specialties = adminManager.GetSpecialtiesByBranch(branchId);
+                return Ok(specialties);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
 
         [HttpDelete]
         [Route("Delete")]

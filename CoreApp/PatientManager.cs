@@ -55,6 +55,7 @@ namespace CoreApp
                 throw new Exception("Invalid status value");
             }
             pc.Create(patient);
+
         }
 
         public List<Patient> RetrieveAll()

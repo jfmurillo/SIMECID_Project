@@ -58,6 +58,12 @@ namespace CoreApp
                 throw new Exception("Invalid status value");
             }
             ac.Create(admin);
+
+        }
+        public List<string> GetSpecialtiesByBranch(int branchId)
+        {
+            var ac = new AdminCrudFactory();
+            return ac.GetSpecialtiesByBranch(branchId);
         }
 
         public List<Admin> RetrieveAll()
@@ -116,6 +122,7 @@ namespace CoreApp
             ac.Update(admin);
 
         }
+
 
         public void Delete(Admin admin)
         {

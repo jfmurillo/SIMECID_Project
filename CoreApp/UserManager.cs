@@ -14,30 +14,6 @@ namespace CoreApp
 {
     public class UserManager
     {
-        /*public string HashPassword(string password)
-        {
-            byte[] saltBytes = new byte[16];
-            using (var rng = new RNGCryptoServiceProvider())
-            {
-                rng.GetBytes(saltBytes);
-            }
-
-            byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
-            byte[] saltedPasswordBytes = new byte[saltBytes.Length + passwordBytes.Length];
-            Buffer.BlockCopy(saltBytes, 0, saltedPasswordBytes, 0, saltBytes.Length);
-            Buffer.BlockCopy(passwordBytes, 0, saltedPasswordBytes, saltBytes.Length, passwordBytes.Length);
-
-            using (SHA256 sha256Hash = SHA256.Create())
-            {
-                byte[] hashBytes = sha256Hash.ComputeHash(saltedPasswordBytes);
-
-                StringBuilder builder = new StringBuilder();
-                builder.Append(Convert.ToBase64String(saltBytes));
-                builder.Append(":");
-                builder.Append(Convert.ToBase64String(hashBytes));
-                return builder.ToString();
-            }
-        }*/
 
         public async void Create(User user)
         {
@@ -123,9 +99,15 @@ namespace CoreApp
             var uc = new UserCrudFactory();
             return uc.RetrieveById<User>(userId);
         }
+
+        public User RetrieveRoleByUserEmail(string email)
+        {
+            var uc = new UserCrudFactory();
+            return uc.RetrieveRoleByUserEmail<User>(email);
+        }
+
         public void Update(User user)
         {
-            // Validar que el usuario no sea nulo y que tenga un ID válido
             if (user == null || user.Id == 0)
             {
                 throw new ArgumentException("Invalid user.");
@@ -153,10 +135,6 @@ namespace CoreApp
             {
                 throw new Exception("Invalid Password format");
             }
-            /*else if (!IsValidSex(user.Sex))
-            {
-                throw new Exception("Invalid Sex format");
-            }*/
             else if (!IsValidBirthDate(user.BirthDate))
             {
                 throw new Exception("Invalid birth date format");
@@ -173,6 +151,13 @@ namespace CoreApp
             uc.Update(user);
 
         }
+
+        public void UpdateUserRole(User user)
+        {
+            var uc = new UserCrudFactory();
+            uc.UpdateUserRole(user);
+        }
+
         public void Delete(User user)
         {
             var uc = new UserCrudFactory();
@@ -355,9 +340,6 @@ namespace CoreApp
             {
                 throw new Exception("Password does not meet the requirements.");
             }
-
-           /* string hashedPassword = HashPassword(newPassword);
-            newPassword = hashedPassword;*/
 
             var uc = new UserCrudFactory();
             uc.UpdateUserPassword(email, newPassword);
