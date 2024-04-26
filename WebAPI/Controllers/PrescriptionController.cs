@@ -56,5 +56,22 @@ namespace WebAPI.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+
+        [HttpGet]
+        [Route("RetrieveAll")]
+        public ActionResult RetrieveAll()
+        {
+            try
+            {
+                var pm = new PrescriptionManager();
+                var prescriptionList = pm.RetrieveAll();
+                return Ok(prescriptionList);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+
+        }
     }
 }

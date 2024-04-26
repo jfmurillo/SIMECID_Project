@@ -185,8 +185,7 @@ function formatDate(dateString) {
     return year + '-' + month + '-' + day;
 }
 
-// Instanciamiento de la clase 
-    $(document).ready(function () {
-        var vc = new PrescriptionController();
-        vc.InitView();
-    });
+$(document).ready(function () {
+    var vc = new PrescriptionController();
+    vc.InitView();
+});
