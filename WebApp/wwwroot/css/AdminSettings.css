@@ -85,14 +85,15 @@ p {
 
 .containerUser {
     padding: 2%;
-    width: 100%;
+    width: 90%;
     display: flex;
+    justify-content: space-between; /* Para alinear los elementos en los extremos */
     align-items: center;
 }
 
 .userIcon {
-    width: 4vw;
-    height: 4vw;
+    width: 10px;
+    height: 10px;
     min-width: 40px;
     min-height: 40px;
     border-radius: 50%;
@@ -101,7 +102,7 @@ p {
 
 .userName {
     color: var(--whiteBackground);
-    margin: 5%;
+    margin: 15% 5% 5% 5%;
     font-size: 2vh;
 }
 

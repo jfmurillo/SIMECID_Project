@@ -14,13 +14,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-    <title>UserProfile</title>
+
     <link href="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.css" rel="stylesheet">
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/controlactions.js"></script>
+
+    <title>SimecidApp</title>
+
     <link href="~/css/userprofile.css" rel="stylesheet" />
 </head>
 
@@ -36,7 +39,7 @@
         <!--Boton para ver el perfil de usuario (no es lo mismo que gestion de users)-->
         <form asp-page="/UserProfile">
             <button class="buttonUser">
-                <img src="/Assets/1st_Girl.png" class="userIcon" />
+                <img src="~/assets/defaultpictureprofile.png" class="userIcon" />
                 <div class="fontTitle userName">Profile</div>
             </button>
         </form>
