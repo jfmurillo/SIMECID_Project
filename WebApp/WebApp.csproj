@@ -34,6 +34,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\ProfilePictureUploads\" />
+    <Folder Include="wwwroot\PrescriptionUploads\" />
     <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
 

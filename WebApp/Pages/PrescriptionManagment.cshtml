@@ -16,16 +16,19 @@
     <title>Prescription</title>
     <link href="~/css/prescriptionmanagment.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.css" rel="stylesheet">
-    
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/controlactions.js"></script>
-
     <link href="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.css" rel="stylesheet">
     <script src="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.js"></script>
     <script src="~/js/pages/prescriptionmanagment.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.css" />
+    <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
+
+
+
 </head>
 
 <!------- SIDEBAR ------>
@@ -40,7 +43,7 @@
         <form asp-page="/UserProfile">
             <button class="buttonUser">
                 <img src="/Assets/1st_Girl.png" class="userIcon" />
-                <div class="fontTitle userName">Emily Sanchez</div>
+                <div class="fontTitle userName">Profile</div>
             </button>
         </form>
         <!--Boton para ir a los settings-->
@@ -119,13 +122,17 @@
         <!--Aca tabla service history tabla-->
         <div class="row" style="margin-left: 20%">
             <div class="col-lg-12">
-                <table id="tblUser" class="table table-hover" class="display" style="width:100%">
+                <table id="tblPrescriptions" class="table table-hover display" style="width:100%">
                     <thead>
                         <tr>
-                            <th>B</th>
-                            <th>N</th>
-                            <th>A</th>
-                            <th>D</th>
+                            <th>Prescription Id</th>
+                            <th>Patient Id</th>
+                            <th>Doctor Id</th>
+                            <th>Prescription Name</th>
+                            <th>Medication Name</th>
+                            <th>Prescription Date</th>
+                            <th>Recommendations</th>
+                            <th>Uploaded file</th>
                         </tr>
                     </thead>
                 </table>
@@ -133,19 +140,19 @@
         </div>
     </div>
 
-@*     <div class="gestionDePerfilDeUsuario">
-        <form class="form-container">
-            <h1 class="fontTitle">Patient Details</h1>
-            <div class="sign-up-form">
-                <label for="name">Name</label><br>
-                <input type="text" id="name" name="name" required><br><br>
-            </div>
+    @*     <div class="gestionDePerfilDeUsuario">
+    <form class="form-container">
+    <h1 class="fontTitle">Patient Details</h1>
+    <div class="sign-up-form">
+    <label for="name">Name</label><br>
+    <input type="text" id="name" name="name" required><br><br>
+    </div>
 
-            <div class="sign-up-form">
-                <label for="lastName">Last Name</label><br>
-                <input type="text" id="lastName" name="lastName" required><br><br>
-            </div>
-        </form>
+    <div class="sign-up-form">
+    <label for="lastName">Last Name</label><br>
+    <input type="text" id="lastName" name="lastName" required><br><br>
+    </div>
+    </form>
     </div> *@
 
     <div class="gestionDePerfilDeUsuario" style="margin-top:5%">
@@ -173,45 +180,52 @@
     </div>
 
     @* <div class="gestionDePerfilDeUsuario">
-        <form class="form-container">
-            <h1 class="fontTitle">Doctor Details</h1>
-            <div class="sign-up-form">
-                <label for="name">Name</label><br>
-                <input type="text" id="name" name="name" required><br><br>
-            </div>
+    <form class="form-container">
+    <h1 class="fontTitle">Doctor Details</h1>
+    <div class="sign-up-form">
+    <label for="name">Name</label><br>
+    <input type="text" id="name" name="name" required><br><br>
+    </div>
 
-            <div class="sign-up-form">
-                <label for="lastName">Last Name</label><br>
-                <input type="text" id="lastName" name="lastName" required><br><br>
-            </div>
+    <div class="sign-up-form">
+    <label for="lastName">Last Name</label><br>
+    <input type="text" id="lastName" name="lastName" required><br><br>
+    </div>
 
-            <div class="sign-up-form">
-                <label for="branchBelong">Branch to which they belong</label><br>
-                <input type="text" id="" name="branchBelong" required><br><br>
-            </div>
-        </form>
+    <div class="sign-up-form">
+    <label for="branchBelong">Branch to which they belong</label><br>
+    <input type="text" id="" name="branchBelong" required><br><br>
+    </div>
+    </form>
     </div> *@
 
     <div class="gestionDePerfilDeUsuario">
-        <form class="form-container">
+        <form id="uploadForm" class="form-container" enctype="multipart/form-data">
             <h1 class="fontTitle">Prescription parameters</h1>
             <div class="sign-up-form">
+                <label class="birthdate" for="textId">Prescription Id</label>
+                <input type="number" id="txtId" name="textId" required/><br /><br />
+            </div>
+            <div class="sign-up-form">
+                <label class="birthdate" for="prescriptionName">Prescription Name</label><br>
+                <input type="text" id="prescriptionName" name="prescriptionName" required><br><br>
+            </div>
+            <div class="sign-up-form">
                 <label for="medicationName">Medication name</label><br>
-                <input type="text" id="" name="medicationName" required><br><br>
+                <input type="text" id="medicationName" name="medicationName" required><br><br>
             </div>
 
             <div class="sign-up-form">
                 <label class="birthdate" for="date">Date</label><br>
-                <input type="date" id="date" name="date" required><br><br>
+                <input type="date" id="prescriptionDate" name="date" required><br><br>
             </div>
-
-
             <div class="sign-up-form">
                 <label for="recommendations">Recommendations</label><br>
-                <textarea id="" name="medical" required></textarea><br><br>
+                <textarea id="recommendations" name="recommendations" required></textarea><br><br>
             </div>
 
             <div class="sign-up-form">
+
                 <label for="medicationName">Patient Id</label><br>
                 <input type="text" id="TxtUserId" name="patientId" required><br><br>
             </div>
@@ -219,17 +233,18 @@
             <div class="sign-up-form">
                 <label for="medicationName">Doctor Id</label><br>
                 <input type="text" id="TxtDoctorId" name="doctorId" required><br><br>
+
             </div>
 
             <div class="sign-up-form">
-                <label for="photo">Upload a photo or file</label><br>
-                <input type="text" id="photo" name="photo" required><br><br>
+                <label for="file">Photo</label><br>
+                <input name="file" type="file" id="profileImage" accept="image/*">
             </div>
 
             <div style="display:flex">
-                <button class="btn" type="button" id="" style="margin-top: 6%">Create</button>
-                <button class="btn" type="button" id="" style="margin-top: 6%">Update</button>
-                <button class="btn" type="button" id="" style="margin-top: 6%">Delete</button>
+                <button class="btn" type="submit" id="btnCreate" style="margin-top: 6%">Create</button>
+                <button class="btn" type="submit" id="btnUpdate" style="margin-top: 6%">Update</button>
+                <button class="btn" type="submit" id="btnDelete" style="margin-top: 6%">Delete</button>
             </div>
         </form>
     </div>
@@ -240,6 +255,7 @@
         </form>
     </div>
 
-
+	<script src="~/js/imagesaveprescription.js"></script>
+    <script src="~/js/pages/prescriptionmanager.js"></script>
 </body>
 </html>
