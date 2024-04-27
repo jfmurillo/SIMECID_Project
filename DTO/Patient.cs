@@ -35,5 +35,10 @@ namespace DTO
 
         [Required(ErrorMessage = "Status is required")]
         public string Status { get; set; }
+
+        public string Province { get; set; }
+
+        public string Address { get; set; }
+        
     }
 }
