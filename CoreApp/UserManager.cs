@@ -94,6 +94,12 @@ namespace CoreApp
             var uc = new UserCrudFactory();
             return uc.RetrieveAll<User>();
         }
+
+        public List<User> RetrieveAllRoleUser()
+        {
+            var uc = new UserCrudFactory();
+            return uc.RetrieveAllRoleUser<User>();
+        }
         public User RetrieveById(int userId)
         {
             var uc = new UserCrudFactory();

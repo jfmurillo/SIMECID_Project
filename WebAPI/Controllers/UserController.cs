@@ -27,6 +27,23 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
+        [Route("RetrieveAllRoleUser")]
+        public ActionResult RetrieveAllRoleUser()
+        {
+            try
+            {
+                var um = new UserManager();
+                var userList = um.RetrieveAllRoleUser();
+                return Ok(userList);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+
+        }
+
+        [HttpGet]
         [Route("RetrieveById")]
         public ActionResult RetrieveById(int userId)
         {

@@ -200,6 +200,27 @@ namespace DataAccess.CRUD
 
         }
 
+        public  List<T> RetrieveAllRoleUser<T>()
+        {
+
+            var userList = new List<T>();
+            var sqlOperation = new SqlOperation() { ProcedureName = "RET_ALL_USERS_WITH_USER_ROLE" };
+            var lstResults = _dao.ExecuteQueryProcedure(sqlOperation);
+
+            if (lstResults.Count > 0)
+            {
+                foreach (var row in lstResults)
+                {
+                    var user = BuildUser(row);
+                    userList.Add((T)Convert.ChangeType(user, typeof(T)));
+                }
+
+
+            }
+            return userList;
+
+        }
+
 
 
         public List<T> GetStoredPasswordByEmail<T>(string email)
