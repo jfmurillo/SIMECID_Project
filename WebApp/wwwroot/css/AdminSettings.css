@@ -87,6 +87,7 @@ p {
     padding: 2%;
     width: 90%;
     display: flex;
+    justify-content: space-between; /* Para alinear los elementos en los extremos */
     align-items: center;
 }
 
