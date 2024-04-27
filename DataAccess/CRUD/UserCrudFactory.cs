@@ -283,5 +283,19 @@ namespace DataAccess.CRUD
 
             _dao.ExecuteProcedure(sqlOperation);
         }
+
+        public T RetrieveUserByEmail<T>(string email)
+        {
+            var sqlOperation = new SqlOperation() { ProcedureName = "RET_USER_BY_EMAIL" };
+            sqlOperation.AddVarcharParam("P_EMAIL", email);
+            var lstResult = _dao.ExecuteQueryProcedure(sqlOperation);
+            if (lstResult.Count > 0)
+            {
+                var row = lstResult[0]; // Extract the first row from the result
+                var userFound = BuildUser(row);
+                return (T)Convert.ChangeType(userFound, typeof(T));
+            }
+            return default(T); // Return default value for type T if user not found
+        }
     }
 }
