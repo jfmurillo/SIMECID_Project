@@ -24,9 +24,9 @@ namespace DataAccess.CRUD
 
             // Crear la operación SQL para ejecutar el procedimiento almacenado
             var sqlOperation = new SqlOperation { ProcedureName = "CRE_MEDICAL_REPORT_PR" };
-            sqlOperation.AddIntParam("P_USER_ID", medRep.PatientId);
-            sqlOperation.AddVarcharParam("P_USER_NAME", medRep.PatientName);
-            sqlOperation.AddVarcharParam("P_USER_LAST_NAME", medRep.PatientLastName);
+            sqlOperation.AddIntParam("P_PATIENT_ID", medRep.PatientId);
+            sqlOperation.AddVarcharParam("P_PATIENT_NAME", medRep.PatientName);
+            sqlOperation.AddVarcharParam("P_PATIENT_LAST_NAME", medRep.PatientLastName);
             sqlOperation.AddVarcharParam("P_HISTORIAL", medRep.Historial);
             sqlOperation.AddVarcharParam("P_MEDICAL_NOTES", medRep.MedicalNotes);
             sqlOperation.AddDatetimeParam("P_DATE", medRep.Date);
@@ -58,9 +58,9 @@ namespace DataAccess.CRUD
             // Crear la operación SQL para ejecutar el procedimiento almacenado
             var sqlOperation = new SqlOperation { ProcedureName = "UPD_MEDICAL_REPORT_PR" };
             sqlOperation.AddIntParam("P_MEDICAL_REPORT_ID", medRep.Id);
-            sqlOperation.AddIntParam("P_USER_ID", medRep.PatientId);
-            sqlOperation.AddVarcharParam("P_USER_NAME", medRep.PatientName);
-            sqlOperation.AddVarcharParam("P_USER_LAST_NAME", medRep.PatientLastName);
+            sqlOperation.AddIntParam("P_PATIENT_ID", medRep.PatientId);
+            sqlOperation.AddVarcharParam("P_PATIENT_NAME", medRep.PatientName);
+            sqlOperation.AddVarcharParam("P_PATIENT_LAST_NAME", medRep.PatientLastName);
             sqlOperation.AddVarcharParam("P_HISTORIAL", medRep.Historial);
             sqlOperation.AddVarcharParam("P_MEDICAL_NOTES", medRep.MedicalNotes);
             sqlOperation.AddDatetimeParam("P_DATE", medRep.Date);
@@ -74,9 +74,9 @@ namespace DataAccess.CRUD
             var ReportToReturn = new MedicalReport()
             {
                 Id = (int)row["MEDICAL_REPORT_ID"],
-                PatientId = (int)row["USER_ID"],
-                PatientName = (string)row["USER_NAME"],
-                PatientLastName = (string)row["USER_LAST_NAME"],
+                PatientId = (int)row["PATIENT_ID"],
+                PatientName = (string)row["PATIENT_NAME"],
+                PatientLastName = (string)row["PATIENT_LAST_NAME"],
                 Historial = (string)row["HISTORIAL"],
                 MedicalNotes = (string)row["MEDICAL_NOTES"],
                 Date = (DateTime)row["DATE"]
