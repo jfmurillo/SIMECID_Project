@@ -1,27 +1,23 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System.IO;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace WebApp.Controllers
 {
-	public class SignUpController : Controller
+	public class PrescriptionController : Controller
 	{
 		private readonly IWebHostEnvironment _environment;
 
-		public SignUpController(IWebHostEnvironment environment)
+		public PrescriptionController(IWebHostEnvironment environment)
 		{
 			_environment = environment;
 		}
 
-		[HttpPost("SignUp/UploadFile")]
+		[HttpPost("Prescription/UploadFile")]
 		public async Task<IActionResult> UploadFile(IFormFile file)
 		{
 			if (file != null && file.Length > 0)
 			{
 				// Ruta donde se guardará el archivo
-				var uploadsFolder = Path.Combine(_environment.WebRootPath, "ProfilePictureUploads");
+				var uploadsFolder = Path.Combine(_environment.WebRootPath, "PrescriptionUploads");
 
 				// Asegúrate de que la carpeta exista, si no, créala
 				if (!Directory.Exists(uploadsFolder))
