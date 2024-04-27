@@ -160,18 +160,130 @@
 
             // extraer la data del registro contenido en la fila
 
-            var appointment = $('#tblAppointments').DataTable().row(row).data();
+            var prescription = $('#tblPrescriptions').DataTable().row(row).data();
 
             // mapeo de los valores del objeto data con el  formulario
-            $("#txtId").val(appointment.id);
-            $("#patientId").val(appointment.patientId);
-            $("#txtPatientName").val(appointment.patientName);
-            $("#txtPatientLastName").val(appointment.patientLastName);
-            $("#doctorId").val(appointment.doctorId);
-            $("#doctorName").val(appointment.doctorName);
-            $("#doctorLastName").val(appointment.doctorLastName);
-            $("#serviceId").val(appointment.serviceId);
-           
+            $("#txtId").val(prescription.id);
+            $("#patientId").val(prescription.patientId);
+            $("#doctorId").val(prescription.doctorId);
+            $("#prescriptionName").val(prescription.prescriptionName);
+            $("#medicationName").val(prescription.medicationName);
+            $("#prescriptionDate").val(prescription.prescriptionDate);
+            $("#recommendations").val(prescription.recommendations);
+            $("#profileImage").val(prescription.UploadedFile);
+        });
+    }
+}
+
+function UserInfoController() {
+    this.ViewName = "Patient";
+    this.ApiService = "Patient";
+
+    this.InitViewUser = function () {
+        console.log("Patient Info");
+
+
+        this.LoadTableUserInfo();
+    }
+
+
+
+    this.LoadTableUserInfo = function () {
+        var us = new ControlActions();
+
+        //Ruta del api
+        var urlService = us.GetUrlApiService(this.ApiService + "/RetrieveAll")
+
+        // Definir las columnas de la tabla
+        var columns = [];
+        columns[0] = { 'data': "id" }
+        columns[1] = { 'data': "name" }
+        columns[2] = { 'data': "lastName" }
+        columns[3] = { 'data': "phoneNumber" }
+        columns[4] = { 'data': "email" }
+        columns[5] = { 'data': "sex" }
+        columns[6] = { 'data': "province" }
+        columns[7] = { 'data': "address" }
+
+        // Crear la tabla utilizando DataTables
+        $("#tblUserInfo").dataTable({
+            "ajax": {
+                "url": urlService,
+                "dataSrc": ""
+            },
+            "columns": columns
+        });
+
+        $('#tblUserInfo tbody').on('click', 'tr', function () {
+
+            //Extrae la fila a la que le dio click
+            var row = $(this).closest('tr');
+
+            //Extraer la data del registro contenido en la fila
+            var patient = $('#tblUserInfo').DataTable().row(row).data();
+
+            var userIdWithName = patient.id + ' - ' + patient.name + '  ' + patient.lastName;
+
+            // Establecer el valor del campo TxtUserId con la cadena creada
+            $("#patientId").val(userIdWithName);
+
+
+
+        });
+    }
+}
+
+function DoctorInfoController() {
+    this.ViewName = "Doctor";
+    this.ApiService = "Doctor";
+
+    this.InitViewDoctor = function () {
+        console.log("Doctor Info");
+
+
+        this.LoadTableDoctorInfo();
+    }
+
+    this.LoadTableDoctorInfo = function () {
+        var dc = new ControlActions();
+
+        //Ruta del api
+        var urlService = dc.GetUrlApiService(this.ApiService + "/RetrieveAll")
+
+        // Definir las columnas de la tabla
+        var columns = [];
+        columns[0] = { 'data': "id" }
+        columns[1] = { 'data': "name" }
+        columns[2] = { 'data': "lastName" }
+        columns[3] = { 'data': "phoneNumber" }
+        columns[4] = { 'data': "email" }
+        columns[5] = { 'data': "sex" }
+        columns[6] = { 'data': "branchID" }
+        columns[7] = { 'data': "specialty" }
+
+        // Crear la tabla utilizando DataTables
+        $("#tblDoctorInfo").dataTable({
+            "ajax": {
+                "url": urlService,
+                "dataSrc": ""
+            },
+            "columns": columns
+        });
+
+        $('#tblDoctorInfo tbody').on('click', 'tr', function () {
+
+            //Extrae la fila a la que le dio click
+            var row = $(this).closest('tr');
+
+            //Extraer la data del registro contenido en la fila
+            var doctor = $('#tblDoctorInfo').DataTable().row(row).data();
+
+            var doctorIdWithName = doctor.id + ' - ' + doctor.name + '  ' + doctor.lastName;
+
+            // Establecer el valor del campo TxtUserId con la cadena creada
+            $("#doctorId").val(doctorIdWithName);
+
+
 
         });
     }
@@ -188,4 +300,10 @@ function formatDate(dateString) {
 $(document).ready(function () {
     var vc = new PrescriptionController();
     vc.InitView();
+
+    var us = new UserInfoController();
+    us.InitViewUser();
+
+    var dc = new DoctorInfoController();
+    dc.InitViewDoctor();
 });
