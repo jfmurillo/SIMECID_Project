@@ -21,6 +21,7 @@ body {
 
 /* para darle color a los titulos */
 h1 {
+    margin-top: 2%;
     color: var(--greenMedium2);
 }
 
