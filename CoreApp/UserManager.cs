@@ -158,12 +158,48 @@ namespace CoreApp
 
         }
 
+        public void UpdateUserData(UserUpdData userUpdData)
+        {
+            if (userUpdData == null || userUpdData.Id == 0)
+            {
+                throw new ArgumentException("Invalid user.");
+            }
+
+            var uc = new UserCrudFactory();
+
+            if (!IsValidName(userUpdData.Name))
+            {
+                throw new Exception("Invalid name format");
+            }
+            else if (!IsValidLastName(userUpdData.LastName))
+            {
+                throw new Exception("Invalid Lastname format");
+            }
+            else if (!IsValidPhoneNumber(userUpdData.PhoneNumber))
+            {
+                throw new Exception("Invalid phone number format");
+            }
+            else if (!IsValidEmail(userUpdData.Email))
+            {
+                throw new Exception("Email is required");
+            }
+          
+            
+
+            uc.UpdateUserData(userUpdData);
+
+        }
+
         public void UpdateUserRole(User user)
         {
             var uc = new UserCrudFactory();
             uc.UpdateUserRole(user);
         }
-
+        public void DeleteUserData(UserUpdData userUpdData)
+        {
+            var uc = new UserCrudFactory();
+            uc.DeleteUserData(userUpdData);
+        }
         public void Delete(User user)
         {
             var uc = new UserCrudFactory();

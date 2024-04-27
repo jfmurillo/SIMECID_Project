@@ -57,6 +57,22 @@ namespace DataAccess.CRUD
             _dao.ExecuteProcedure(SqlOperation);
         }
 
+        public  void DeleteUserData(BaseDTO baseDTO)
+        {
+            var user = baseDTO as UserUpdData;
+
+            // Verificar si el usuario tiene un nombre válido
+            if (user == null || user.Id == 0)
+            {
+                throw new ArgumentException("Invalid Id.");
+            }
+
+            var SqlOperation = new SqlOperation { ProcedureName = "DEL_USER_PR" };
+            SqlOperation.AddIntParam("P_USER_ID", user.Id);
+
+            _dao.ExecuteProcedure(SqlOperation);
+        }
+
         public override void Update(BaseDTO baseDTO)
         {
             var user = baseDTO as User;
@@ -76,6 +92,26 @@ namespace DataAccess.CRUD
             sqlOperation.AddVarcharParam("P_PROVINCE", user.Province);
             sqlOperation.AddVarcharParam("P_ADDRESS", user.Address);
             sqlOperation.AddVarcharParam("P_IMAGE_NAME", user.ImageName);
+
+
+            // Ejecutar el procedimiento almacenado
+            _dao.ExecuteProcedure(sqlOperation);
+        }
+
+        public  void UpdateUserData(BaseDTO baseDTO)
+        {
+            var user = baseDTO as UserUpdData;
+
+            // Crear la operación SQL para ejecutar el procedimiento almacenado
+            var sqlOperation = new SqlOperation { ProcedureName = "UPD_USER_DATA_SP" };
+            sqlOperation.AddIntParam("P_USER_ID", user.Id);
+            sqlOperation.AddVarcharParam("P_NAME", user.Name);
+            sqlOperation.AddVarcharParam("P_LAST_NAME", user.LastName);
+            sqlOperation.AddIntParam("P_PHONE_NUMBER", user.PhoneNumber);
+            sqlOperation.AddVarcharParam("P_EMAIL", user.Email);
+            sqlOperation.AddVarcharParam("P_ROLE", user.Role);
+            sqlOperation.AddVarcharParam("P_PROVINCE", user.Province);
+            sqlOperation.AddVarcharParam("P_ADDRESS", user.Address);
 
 
             // Ejecutar el procedimiento almacenado

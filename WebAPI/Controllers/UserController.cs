@@ -127,6 +127,23 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut]
+        [Route("UpdateUserData")]
+        public ActionResult UpdateUserData(UserUpdData userUpdData)
+        {
+            try
+            {
+                var um = new UserManager();
+                um.UpdateUserData(userUpdData);
+                return Ok(userUpdData);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+
+        }
+
+        [HttpPut]
         [Route("UpdateUserRole")]
         public ActionResult UpdateUserRole(User user)
         {
@@ -152,6 +169,24 @@ namespace WebAPI.Controllers
                 var um = new UserManager();
                 um.Delete(user);
                 return Ok(user);
+
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpDelete]
+        [Route("DeleteUserData")]
+        public ActionResult DeleteUserData(UserUpdData userUpdData)
+        {
+            try
+            {
+                var um = new UserManager();
+                um.DeleteUserData(userUpdData);
+                return Ok(userUpdData);
 
 
             }
