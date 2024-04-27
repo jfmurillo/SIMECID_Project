@@ -66,6 +66,7 @@ namespace DataAccess.CRUD
             return prescriptionList;
         }
 
+
         public override T RetrieveById<T>(int id)
         {
             var sqlOperation = new SqlOperation { ProcedureName = "RET_PRESCRIPTION_BY_ID" };

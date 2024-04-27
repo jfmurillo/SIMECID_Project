@@ -16,6 +16,16 @@
     <title>Prescription</title>
     <link href="~/css/prescriptionmanagment.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.css" rel="stylesheet">
+    
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/controlactions.js"></script>
+
+    <link href="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.css" rel="stylesheet">
+    <script src="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.js"></script>
+    <script src="~/js/pages/prescriptionmanagment.js"></script>
 </head>
 
 <!------- SIDEBAR ------>
@@ -83,13 +93,17 @@
         <!--Aca tabla service history tabla-->
         <div class="row" style="margin-left: 20%">
             <div class="col-lg-12">
-                <table id="" class="table table-hover" class="display" style="width:100%">
+                <table id="tblUserInfo" class="table table-hover" class="display" style="width:100%">
                     <thead>
                         <tr>
-                            <th>B</th>
-                            <th>N</th>
-                            <th>A</th>
-                            <th>D</th>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Last Name</th>
+                            <th>PhoneNumber</th>
+                            <th>Email</th>
+                            <th>Gender</th>
+                            <th>Province</th>
+                            <th>Address</th>
                         </tr>
                     </thead>
                 </table>
@@ -105,7 +119,7 @@
         <!--Aca tabla service history tabla-->
         <div class="row" style="margin-left: 20%">
             <div class="col-lg-12">
-                <table id="" class="table table-hover" class="display" style="width:100%">
+                <table id="tblUser" class="table table-hover" class="display" style="width:100%">
                     <thead>
                         <tr>
                             <th>B</th>
@@ -140,20 +154,23 @@
         <!--Aca tabla service history tabla-->
         <div class="row" style="margin-left: 20%">
             <div class="col-lg-12">
-                <table id="" class="table table-hover" class="display" style="width:100%">
+                <table id="tblDoctorInfo" class="table table-hover" class="display" style="width:100%">
                     <thead>
                         <tr>
-                            <th>B</th>
-                            <th>N</th>
-                            <th>A</th>
-                            <th>D</th>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Last Name</th>
+                            <th>PhoneNumber</th>
+                            <th>Email</th>
+                            <th>Gender</th>
+                            <th>Branch Id</th>
+                            <th>Specialty</th>
                         </tr>
                     </thead>
                 </table>
             </div>
         </div>
     </div>
-
 
     @* <div class="gestionDePerfilDeUsuario">
         <form class="form-container">
@@ -196,12 +213,12 @@
 
             <div class="sign-up-form">
                 <label for="medicationName">Patient Id</label><br>
-                <input type="text" id="" name="patientId" required><br><br>
+                <input type="text" id="TxtUserId" name="patientId" required><br><br>
             </div>
 
             <div class="sign-up-form">
                 <label for="medicationName">Doctor Id</label><br>
-                <input type="text" id="" name="doctorId" required><br><br>
+                <input type="text" id="TxtDoctorId" name="doctorId" required><br><br>
             </div>
 
             <div class="sign-up-form">

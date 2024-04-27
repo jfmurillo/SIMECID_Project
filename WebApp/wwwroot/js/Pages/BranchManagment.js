@@ -68,7 +68,7 @@ function AllBranchInfoController() {
             $("#TxtName").val(branch.name);
             $("#TxtAddress").val(branch.address);
             $("#TxtDescription").val(branch.description);
-
+             
 
         });
     }
