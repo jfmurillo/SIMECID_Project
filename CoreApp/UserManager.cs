@@ -111,6 +111,11 @@ namespace CoreApp
             var uc = new UserCrudFactory();
             return uc.RetrieveRoleByUserEmail<User>(email);
         }
+        public List<UserUpdData> RetrieveUsersByRole(string role)
+        {
+            var factory = new UserCrudFactory();
+            return factory.RetrieveUsersByRole(role);
+        }
 
         public void Update(User user)
         {

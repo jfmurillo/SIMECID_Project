@@ -175,86 +175,38 @@
                 <form action="/action_page.php">
                     <div class="form-field">
                         <label for="employees">Employees</label>
-                        <input type="text" id="employees" name="employees" value="">
-                        </div>
+                        <select class="password" id="role" name="role" style="width: 20vw; height: 3vh;" required>
+                            @* <option value="" disabled selected hidden></option> *@
+                            <option value="User">User</option>
+                            <option value="Doctor">Doctor</option>
+                            <option value="Nurse">Nurse</option>
+                            <option value="Secretary">Secretary</option>
+                        </select><br><br>
+                     </div>
                 </form>
             </div>
         </div>
 
         <div class="container2">
 
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">Type</th>
-                        <th scope="col">Column heading</th>
-                        <th scope="col">Column heading</th>
-                        <th scope="col">Column heading</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="table-active">
-                        <th scope="row">Active</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Default</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-primary">
-                        <th scope="row">Primary</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-secondary">
-                        <th scope="row">Secondary</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-success">
-                        <th scope="row">Success</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-danger">
-                        <th scope="row">Danger</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-warning">
-                        <th scope="row">Warning</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-info">
-                        <th scope="row">Info</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-light">
-                        <th scope="row">Light</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-dark">
-                        <th scope="row">Dark</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="row" style="margin-left: 20%">
+                <div class="col-lg-12">
+                    <table id="tblUserRole" class="table table-hover" class="display" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Last Name</th>
+                                <th>PhoneNumber</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Province</th>
+                                <th>Address</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
         </div>
 
         <div class="container2" style="margin-left:45%">

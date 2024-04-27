@@ -16,6 +16,7 @@
         })
 
         this.LoadTableUserInfo();
+        this.LoadTableUserRole();
     }
 
 
@@ -124,7 +125,46 @@
         });
         $('#tblUserInfo').DataTable().ajax.reload();
     }
+    this.LoadTableUserRole = function () {
+        var us = new ControlActions();
+        var self = this;
+        $('#role').change(function () {
+            var selectedRole = $('#role').val(); 
+            self.GetUsersByRole(selectedRole);
+        });
+
+     
+        var defaultRole = $('#role').val();
+        this.GetUsersByRole(defaultRole);
+    }
+
+
+    this.GetUsersByRole = function (role) {
+        var us = new ControlActions();
+        var urlService = us.GetUrlApiService(this.ApiService + "/RetrieveUsersByRole?" + "role=" + role);
+
+
+        var columns = [];
+        columns[0] = { 'data': "id" }
+        columns[1] = { 'data': "name" }
+        columns[2] = { 'data': "lastName" }
+        columns[3] = { 'data': "phoneNumber" }
+        columns[4] = { 'data': "email" }
+        columns[5] = { 'data': "role" }
+        columns[6] = { 'data': "province" }
+        columns[7] = { 'data': "address" }
+
+        $("#tblUserRole").dataTable({
+            "destroy": true,
+            "ajax": {
+                "url": urlService,
+                "dataSrc": ""
+            },
+            "columns": columns
+        });
+    }
 }
+
 
 $(document).ready(function () {
     var us = new UserInfoController();

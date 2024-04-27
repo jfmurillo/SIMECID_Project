@@ -91,6 +91,9 @@ namespace WebAPI.Controllers
             }
         }
 
+        
+
+
 
 
         [HttpPost]
@@ -160,6 +163,29 @@ namespace WebAPI.Controllers
 
         }
 
+        [HttpGet]
+        [Route("RetrieveUsersByRole")]
+        public ActionResult RetrieveUsersByRole(string role)
+        {
+            try
+            {
+                var um = new UserManager();
+                var users = um.RetrieveUsersByRole(role);
+
+                if (users != null)
+                {
+                    return Ok(users);
+                }
+                else
+                {
+                    return NotFound("No users found for the specified role");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
         [HttpDelete]
         [Route("Delete")]
         public ActionResult Delete(User user)

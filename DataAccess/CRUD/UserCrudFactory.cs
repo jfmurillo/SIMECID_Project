@@ -152,6 +152,22 @@ namespace DataAccess.CRUD
             return userToReturn;
         }
 
+        private UserUpdData BuildUserData(Dictionary<string, object> row)
+        {
+            var userToReturn = new UserUpdData()
+            {
+                Id = (int)row["USER_ID"],
+                Name = (string)row["NAME"],
+                LastName = (string)row["LAST_NAME"],
+                PhoneNumber = (int)row["PHONE_NUMBER"],
+                Email = (string)row["EMAIL"],
+                Role = (string)row["ROLE"],
+                Province = (string)row["PROVINCE"],
+                Address = (string)row["ADDRESS"]
+            };
+            return userToReturn;
+        }
+
         public override T Retrieve<T>()
         {
             throw new NotImplementedException();
@@ -185,6 +201,26 @@ namespace DataAccess.CRUD
                 return (T)Convert.ChangeType(userFound, typeof(T));
             }
             return default(T); // Return default value for type T if user not found
+        }
+
+        public List<UserUpdData> RetrieveUsersByRole(string role)
+        {
+            var userListRole = new List<UserUpdData>();
+
+            var sqlOperation = new SqlOperation() { ProcedureName = "RET_USER_BY_ROLE" };
+            sqlOperation.AddVarcharParam("P_ROLE", role);
+            var lstResult = _dao.ExecuteQueryProcedure(sqlOperation);
+
+            if (lstResult.Count > 0)
+            {
+                foreach (var row in lstResult)
+                {
+                    var user = BuildUserData(row);
+                    userListRole.Add(user);
+                }
+            }
+
+            return userListRole;
         }
 
         private object BuildUserRol(Dictionary<string, object> row)
