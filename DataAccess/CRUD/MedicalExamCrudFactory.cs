@@ -29,7 +29,7 @@ namespace DataAccess.CRUD
             sqlOperation.AddVarcharParam("P_DETAILS", exam.Details);
             sqlOperation.AddDoubleParam("P_WEIGHT", exam.Weight);
             sqlOperation.AddDoubleParam("P_SIZE", exam.Size);
-            sqlOperation.AddDoubleParam("P_BODY_MASS", exam.BodyMass);
+            sqlOperation.AddVarcharParam("P_BODY_MASS", exam.BodyMass);
             sqlOperation.AddVarcharParam("P_RESULT", exam.Result);
 
             // Ejecutar el procedimiento almacenado
@@ -65,7 +65,7 @@ namespace DataAccess.CRUD
             sqlOperation.AddVarcharParam("P_DETAILS", exam.Details);
             sqlOperation.AddDoubleParam("P_WEIGHT", exam.Weight);
             sqlOperation.AddDoubleParam("P_SIZE", exam.Size);
-            sqlOperation.AddDoubleParam("P_BODY_MASS", exam.BodyMass);
+            sqlOperation.AddVarcharParam("P_BODY_MASS", exam.BodyMass);
             sqlOperation.AddVarcharParam("P_RESULT", exam.Result);
 
             // Ejecutar el procedimiento almacenado
@@ -83,7 +83,7 @@ namespace DataAccess.CRUD
                 Details = (string)row["DETAILS"],
                 Weight = (double)row["WEIGHT"],
                 Size = (double)row["SIZE"],
-                BodyMass = (double)row["BODY_MASS"],
+                BodyMass = (string)row["BODY_MASS"],
                 Result = (string)row["RESULT"] 
             };
 

@@ -20,7 +20,7 @@ namespace DTO
 
         public double Size { get; set; }
 
-        public double BodyMass { get; set; }
+        public string BodyMass { get; set; }
 
         public string Result { get; set; }
     }
