@@ -1,5 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
 /* ---- CLASES GENERALES ---*/
 
 :root {
@@ -73,7 +91,7 @@ p {
 .buttonUser {
     display: flex;
     margin-top: 1%;
-    padding: 2%;
+    padding: 10%;
     text-align: left;
     color: var(--whiteBackground);
     background-color: var(--greenMain-SideBar);
@@ -87,14 +105,15 @@ p {
 
 .containerUser {
     padding: 2%;
-    width: 100%;
+    width: 90%;
     display: flex;
+    justify-content: space-between; /* Para alinear los elementos en los extremos */
     align-items: center;
 }
 
 .userIcon {
-    width: 4vw;
-    height: 4vw;
+    width: 10px;
+    height: 10px;
     min-width: 40px;
     min-height: 40px;
     border-radius: 50%;
@@ -103,7 +122,7 @@ p {
 
 .userName {
     color: var(--whiteBackground);
-    margin: 5%;
+    margin: 15% 5% 5% 5%;
     font-size: 2vh;
 }
 
@@ -162,13 +181,25 @@ p {
 /*------- CLASES PARA EL CONTENIDO PRINCIPAL -----*/
 
 .main-content {
-    flex: center;
-    width: 70%;
+    max-width: 100%;
+}
+
+
+.content{
     margin-left: 20%;
+
+}
+
+.profileHeader {
+    background-image: url('../assets/SimecidHeader3.png');
+    background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el encabezado */
+    text-align: center;
+    height: 30vh; /* Ajusta la altura del encabezado según sea necesario */
 }
 
 table {
-    width: 100%;
+    width: 90%;
+    margin: 5%;
     border-collapse: collapse;
     /* Otros estilos según tus preferencias */
 }
@@ -186,7 +217,7 @@ td {
     width: 100%;
     border-radius: 10px; /* Ajusta este valor según tu preferencia */
     overflow: hidden;
-    margin-left: -10%;
+    margin-left: 10%;
 }
 
 th,
@@ -214,19 +245,18 @@ th {
 }
 
 .container1 {
-    margin-left: 28%;
     margin-top: 5%;
+    margin: 10%;
 }
 
 .container2 {
-    margin-left: 28%;
     margin-top: 5%;
     margin-bottom: 25px;
 }
 
 .container3 {
-    margin-left: 45%;
     margin-top: 5%;
+    margin-left: 30%;
 }
 
 h1 {

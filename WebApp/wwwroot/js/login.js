@@ -67,38 +67,35 @@ function LoginController() {
                 console.log("manage rol");
                 let role = response.role
 
+                let redirectUrl;
+
                 switch (role) {
                     case "Nurse":
-                        setTimeout(function () {
-                            window.location.href = `/Nurse-Profile`;
-                        }, 500);
+                        redirectUrl = `/Nurse-Profile`;
                         break;
                     case "Secretary":
-                        setTimeout(function () {
-                            window.location.href = `/Secretary-Profile`;
-                        }, 500);
+                        redirectUrl = `/Secretary-Profile`;
                         break;
                     case "Doctor":
-                        setTimeout(function () {
-                            window.location.href = `/Doctor-Profile`;
-                        }, 500);
+                        redirectUrl = `/Doctor-Profile`;
                         break;
                     case "User":
-                        setTimeout(function () {
-                            window.location.href = `/Patient-UserProfile`;
-                        }, 500);
+                        redirectUrl = `/Patient-UserProfile`;
                         break;
                     case "Admin":
-                        setTimeout(function () {
-                            window.location.href = `/UserProfile`;
-                        }, 500);
+                        redirectUrl = `/UserProfile`;
                         break;
                     default:
-                        setTimeout(function () {
-                            window.location.href = `/Error`;
-                        }, 500);
+                        redirectUrl = `/Error`;
                         break;
                 }
+
+                // Agregar el correo electrónico como parámetro en la URL de redirección
+                redirectUrl += `?email=${encodeURIComponent(email)}`;
+
+                setTimeout(function () {
+                    window.location.href = redirectUrl;
+                }, 500);
 
             } else {
                 console.log(response)
@@ -106,78 +103,78 @@ function LoginController() {
                 throw new Error("Error during login")
             }
         });
-
-        this.ValidateOTP = function (email, otp) {
-            if (email === "" || otp === "") {
-                return;
-            }
-
-            let data = {
-                email,
-                otp
-            }
-
-            var srv = "RecoverPassword/CreateData"
-            ca.PostToAPI(srv, data, function (response) {
-                console.log("Creating data for database");
-                var serviceRoute = "RecoverPassword/VerifyOtp";
-
-                ca.GetToApi(serviceRoute, function (response) {
-                    console.log(response);
-                    var validOTP = false;
-                    for (var i = 0; i < response.length; i++) {
-                        if (response[i].otp === otp && response[i].email === email) {
-                            validOTP = true;
-                            break;
-                        }
-                    }
-                    if (validOTP) {
-                        console.log("Valid OTP");
-                        setTimeout(function () {
-                            window.location.href = `/NewPassword?email=${data.email}`;
-                        }, 1000);
-
-                    } else {
-                        console.log("Invalid OTP");
-                    }
-                }, function (error) {
-                    console.error("Error validating OTP:", error);
-                });
-            });
-        };
-
-        this.NewPasswordUpdate = function () {
-            let newPassword = $("#new-pass").val();
-            let confirmPassword = $("#conf-pass").val();
-            let email;
-
-            if (newPassword !== confirmPassword) {
-                throw new Error("Passwords don't match")
-            }
-
-            let urlParams = new URLSearchParams(window.location.search);
-            email = urlParams.get("email");
-
-            let data = {
-                email: email,
-                newPassword: newPassword,
-                confirmPassword: confirmPassword
-            };
-
-            let serviceRoute = "RecoverPassword/Update";
-
-            ca.PostToAPI(serviceRoute, data, function (response) {
-                console.log(response);
-
-                setTimeout(function () {
-                    window.location.href = `/Login`;
-                }, 2000);
-            });
-        };
     }
+
+    this.ValidateOTP = function (email, otp) {
+        if (email === "" || otp === "") {
+            return;
+        }
+
+        let data = {
+            email,
+            otp
+        }
+
+        var srv = "RecoverPassword/CreateData"
+        ca.PostToAPI(srv, data, function (response) {
+            console.log("Creating data for database");
+            var serviceRoute = "RecoverPassword/VerifyOtp";
+
+            ca.GetToApi(serviceRoute, function (response) {
+                console.log(response);
+                var validOTP = false;
+                for (var i = 0; i < response.length; i++) {
+                    if (response[i].otp === otp && response[i].email === email) {
+                        validOTP = true;
+                        break;
+                    }
+                }
+                if (validOTP) {
+                    console.log("Valid OTP");
+                    setTimeout(function () {
+                        window.location.href = `/NewPassword?email=${data.email}`;
+                    }, 1000);
+
+                } else {
+                    console.log("Invalid OTP");
+                }
+            }, function (error) {
+                console.error("Error validating OTP:", error);
+            });
+        });
+    };
+
+    this.NewPasswordUpdate = function () {
+        let newPassword = $("#new-pass").val();
+        let confirmPassword = $("#conf-pass").val();
+        let email;
+
+        if (newPassword !== confirmPassword) {
+            throw new Error("Passwords don't match")
+        }
+
+        let urlParams = new URLSearchParams(window.location.search);
+        email = urlParams.get("email");
+
+        let data = {
+            email: email,
+            newPassword: newPassword,
+            confirmPassword: confirmPassword
+        };
+
+        let serviceRoute = "RecoverPassword/Update";
+
+        ca.PostToAPI(serviceRoute, data, function (response) {
+            console.log(response);
+
+            setTimeout(function () {
+                window.location.href = `/Login`;
+            }, 2000);
+        });
+    };
 }
 
-    $(document).ready(function () {
-        let lc = new LoginController();
-        lc.InitView();
-    })
+$(document).ready(function () {
+    let lc = new LoginController();
+    lc.InitView();
+})

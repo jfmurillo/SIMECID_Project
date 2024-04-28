@@ -90,7 +90,22 @@ namespace WebAPI.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+        [HttpGet]
+        [Route("RetrieveUserByEmail")]
+        public ActionResult RetrieveUserByEmail(string email)
+        {
+            try
+            {
+                var um = new UserManager();
+                var userList = um.RetrieveUserByEmail(email);
+                return Ok(userList);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
 
+        }
 
 
         [HttpPost]

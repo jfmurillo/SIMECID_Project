@@ -106,6 +106,12 @@ namespace CoreApp
             return uc.RetrieveById<User>(userId);
         }
 
+        public User RetrieveUserByEmail(string email)
+        {
+            var uc = new UserCrudFactory();
+            return uc.RetrieveUserByEmail<User>(email);
+        }
+
         public User RetrieveRoleByUserEmail(string email)
         {
             var uc = new UserCrudFactory();

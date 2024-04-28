@@ -16,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="icon" href="~/assets/2_logosimecid.png" type="image/x-icon" />
-    <title>SideBarTemplate</title>
+    <title>SimecidApp</title>
     <link href="~/css/branchmanagment.css" rel="stylesheet" />
 
     <script src="~/lib/jquery/dist/jquery.js"></script>
@@ -66,7 +66,7 @@
         <!--Boton para ver el perfil de usuario (no es lo mismo que gestion de users)-->
         <form asp-page="/UserProfile">
             <button class="buttonUser">
-                <img src="/Assets/1st_Girl.png" class="userIcon" />
+                <img src="~/assets/defaultpictureprofile.png" class="userIcon" />
                 <div class="fontTitle userName">Profile</div>
             </button>
         </form>
@@ -111,12 +111,12 @@
 </div>
 
 <!------- CONTENIDO PRINCIPAL --------->
-<body>
-    <div class="main-content">
+<body class="main-content">
+    <div class="profileHeader">
+    </div>
+    <div class="content">
         <div class="container1">
             <h1 class="title1">All your Branches</h1>
-
-
             <!--Todas las branch tabla-->
             <div class="row">
                 <div class="col-lg-12">
