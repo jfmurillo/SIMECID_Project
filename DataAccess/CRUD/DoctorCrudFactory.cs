@@ -71,6 +71,23 @@ namespace DataAccess.CRUD
             _dao.ExecuteProcedure(sqlOperation);
         }
 
+        public  void UpdateDoctorSpecialty(BaseDTO baseDTO)
+        {
+            var doctor = baseDTO as DoctorSpecialty;
+            if (doctor == null || doctor.Id == 0)
+            {
+                throw new ArgumentException("Invalid Id.");
+            }
+
+            var sqlOperation = new SqlOperation { ProcedureName = "UPD_DOCTOR_SPECIALTY_PR" };
+            sqlOperation.AddIntParam("P_DOCTOR_ID", doctor.Id);
+            sqlOperation.AddVarcharParam("P_NAME", doctor.Name);
+            sqlOperation.AddVarcharParam("P_LAST_NAME", doctor.LastName);
+            sqlOperation.AddVarcharParam("P_EMAIL", doctor.Email);
+            sqlOperation.AddVarcharParam("P_SPECIALTY", doctor.Specialty); ;
+
+            _dao.ExecuteProcedure(sqlOperation);
+        }
 
         public override T Retrieve<T>()
         {
@@ -105,6 +122,24 @@ namespace DataAccess.CRUD
                 foreach (var row in lstResults)
                 {
                     var doctor = BuildDoctor(row);
+                    doctorList.Add((T)Convert.ChangeType(doctor, typeof(T)));
+                }
+            }
+            return doctorList;
+        }
+
+        public  List<T> RetrieveDoctorSpecialty<T>()
+        {
+
+            var doctorList = new List<T>();
+            var sqlOperation = new SqlOperation() { ProcedureName = "RET_DOCTOR_SPECIALTY" };
+            var lstResults = _dao.ExecuteQueryProcedure(sqlOperation);
+
+            if (lstResults.Count > 0)
+            {
+                foreach (var row in lstResults)
+                {
+                    var doctor = BuildDoctorSpecialty(row);
                     doctorList.Add((T)Convert.ChangeType(doctor, typeof(T)));
                 }
             }
@@ -162,7 +197,22 @@ namespace DataAccess.CRUD
                 Status = (string)row["STATUS"],
                 Created = (DateTime)row["CREATED"],
                 BranchID = (int)row["BRANCH_ID"],
+                Schedule = (string)row["SCHEDULE"]
                 /*BranchID = row["BRANCH_ID"] != DBNull.Value ? (int)row["BRANCH_ID"] : 0, // Check for DBNull for integer fields*/
+            };
+            return doctorToReturn;
+        }
+
+        private DoctorSpecialty BuildDoctorSpecialty(Dictionary<string, object> row)
+        {
+            var doctorToReturn = new DoctorSpecialty()
+            {
+                Id = (int)row["DOCTOR_ID"],
+                Name = (string)row["NAME"],
+                LastName = (string)row["LAST_NAME"],
+                Email = (string)row["EMAIL"],
+                Specialty = (string)row["SPECIALTY"]
+                
             };
             return doctorToReturn;
         }

@@ -145,5 +145,39 @@ namespace WebAPI.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+
+
+        [HttpPut]
+        [Route("UpdateDoctorSpecialty")]
+        public ActionResult UpdateDoctorSpecialty(DoctorSpecialty doctorSpecialty)
+        {
+            try
+            {
+                var dm = new DoctorManager();
+                dm.UpdateDoctorSpecialty(doctorSpecialty);
+                return Ok(doctorSpecialty);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+
+        }
+
+        [HttpGet]
+        [Route("RetrieveDoctorSpecialty")]
+        public ActionResult RetrieveDoctorSpecialty()
+        {
+            try
+            {
+                var dm = new DoctorManager();
+                var doctorList = dm.RetrieveDoctorSpecialty<DoctorSpecialty>();
+                return Ok(doctorList);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
     }
 }

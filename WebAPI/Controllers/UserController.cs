@@ -104,9 +104,7 @@ namespace WebAPI.Controllers
             {
                 return StatusCode(500, ex.Message);
             }
-
         }
-
 
         [HttpPost]
         [Route("Create")]
@@ -142,6 +140,40 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut]
+        [Route("UpdateUserData")]
+        public ActionResult UpdateUserData(UserDataList userDataList)
+        {
+            try
+            {
+                var um = new UserManager();
+                um.UpdateUserData(userDataList);
+                return Ok(userDataList);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+
+        }
+
+        [HttpPut]
+        [Route("UpdateEmployeeData")]
+        public ActionResult UpdateEmployeeData(Employee employee)
+        {
+            try
+            {
+                var um = new UserManager();
+                um.UpdateEmployeeData(employee);
+                return Ok(employee);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+
+        }
+
+        [HttpPut]
         [Route("UpdateUserRole")]
         public ActionResult UpdateUserRole(User user)
         {
@@ -158,6 +190,29 @@ namespace WebAPI.Controllers
 
         }
 
+        [HttpGet]
+        [Route("RetrieveUsersByRole")]
+        public ActionResult RetrieveUsersByRole(string role)
+        {
+            try
+            {
+                var um = new UserManager();
+                var users = um.RetrieveUsersByRole(role);
+
+                if (users != null)
+                {
+                    return Ok(users);
+                }
+                else
+                {
+                    return NotFound("No users found for the specified role");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
         [HttpDelete]
         [Route("Delete")]
         public ActionResult Delete(User user)
@@ -167,6 +222,24 @@ namespace WebAPI.Controllers
                 var um = new UserManager();
                 um.Delete(user);
                 return Ok(user);
+
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpDelete]
+        [Route("DeleteUserData")]
+        public ActionResult DeleteUserData(UserUpdData userUpdData)
+        {
+            try
+            {
+                var um = new UserManager();
+                um.DeleteUserData(userUpdData);
+                return Ok(userUpdData);
 
 
             }

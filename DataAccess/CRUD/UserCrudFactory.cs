@@ -57,6 +57,22 @@ namespace DataAccess.CRUD
             _dao.ExecuteProcedure(SqlOperation);
         }
 
+        public  void DeleteUserData(BaseDTO baseDTO)
+        {
+            var user = baseDTO as UserUpdData;
+
+            // Verificar si el usuario tiene un nombre válido
+            if (user == null || user.Id == 0)
+            {
+                throw new ArgumentException("Invalid Id.");
+            }
+
+            var SqlOperation = new SqlOperation { ProcedureName = "DEL_USER_PR" };
+            SqlOperation.AddIntParam("P_USER_ID", user.Id);
+
+            _dao.ExecuteProcedure(SqlOperation);
+        }
+
         public override void Update(BaseDTO baseDTO)
         {
             var user = baseDTO as User;
@@ -76,6 +92,45 @@ namespace DataAccess.CRUD
             sqlOperation.AddVarcharParam("P_PROVINCE", user.Province);
             sqlOperation.AddVarcharParam("P_ADDRESS", user.Address);
             sqlOperation.AddVarcharParam("P_IMAGE_NAME", user.ImageName);
+
+
+            // Ejecutar el procedimiento almacenado
+            _dao.ExecuteProcedure(sqlOperation);
+        }
+
+        public  void UpdateUserData(BaseDTO baseDTO)
+        {
+            var user = baseDTO as UserDataList;
+
+            // Crear la operación SQL para ejecutar el procedimiento almacenado
+            var sqlOperation = new SqlOperation { ProcedureName = "UPD_USER_DATA_SP" };
+            sqlOperation.AddIntParam("P_USER_ID", user.Id);
+            sqlOperation.AddVarcharParam("P_NAME", user.Name);
+            sqlOperation.AddVarcharParam("P_LAST_NAME", user.LastName);
+            sqlOperation.AddIntParam("P_PHONE_NUMBER", user.PhoneNumber);
+            sqlOperation.AddVarcharParam("P_EMAIL", user.Email);
+            sqlOperation.AddVarcharParam("P_ROLE", user.Role);
+            sqlOperation.AddVarcharParam("P_PROVINCE", user.Province);
+            sqlOperation.AddVarcharParam("P_ADDRESS", user.Address);
+            
+
+            // Ejecutar el procedimiento almacenado
+            _dao.ExecuteProcedure(sqlOperation);
+        }
+
+        public void UpdateEmployeeData(BaseDTO baseDTO)
+        {
+            var user = baseDTO as Employee;
+
+            // Crear la operación SQL para ejecutar el procedimiento almacenado
+            var sqlOperation = new SqlOperation { ProcedureName = "UPD_EMPLOYEE_DATA_SP" };
+            sqlOperation.AddIntParam("P_USER_ID", user.Id);
+            sqlOperation.AddVarcharParam("P_NAME", user.Name);
+            sqlOperation.AddVarcharParam("P_LAST_NAME", user.LastName);
+            sqlOperation.AddVarcharParam("P_EMAIL", user.Email);
+            sqlOperation.AddVarcharParam("P_ROLE", user.Role);
+            sqlOperation.AddIntParam("P_BRANCH_ID", user.BranchId);
+            sqlOperation.AddVarcharParam("P_SCHEDULE", user.Schedule);
 
 
             // Ejecutar el procedimiento almacenado
@@ -116,6 +171,24 @@ namespace DataAccess.CRUD
             return userToReturn;
         }
 
+        private UserUpdData BuildUserData(Dictionary<string, object> row)
+        {
+            var userToReturn = new UserUpdData()
+            {
+                Id = (int)row["USER_ID"],
+                Name = (string)row["NAME"],
+                LastName = (string)row["LAST_NAME"],
+                PhoneNumber = (int)row["PHONE_NUMBER"],
+                Email = (string)row["EMAIL"],
+                Role = (string)row["ROLE"],
+                Province = (string)row["PROVINCE"],
+                Address = (string)row["ADDRESS"],
+                BranchId = (int)row["BRANCH_ID"],
+                Schedule = (string)row["SCHEDULE"]
+            };
+            return userToReturn;
+        }
+
         public override T Retrieve<T>()
         {
             throw new NotImplementedException();
@@ -149,6 +222,26 @@ namespace DataAccess.CRUD
                 return (T)Convert.ChangeType(userFound, typeof(T));
             }
             return default(T); // Return default value for type T if user not found
+        }
+
+        public List<UserUpdData> RetrieveUsersByRole(string role)
+        {
+            var userListRole = new List<UserUpdData>();
+
+            var sqlOperation = new SqlOperation() { ProcedureName = "RET_USER_BY_ROLE" };
+            sqlOperation.AddVarcharParam("P_ROLE", role);
+            var lstResult = _dao.ExecuteQueryProcedure(sqlOperation);
+
+            if (lstResult.Count > 0)
+            {
+                foreach (var row in lstResult)
+                {
+                    var user = BuildUserData(row);
+                    userListRole.Add(user);
+                }
+            }
+
+            return userListRole;
         }
 
         private object BuildUserRol(Dictionary<string, object> row)

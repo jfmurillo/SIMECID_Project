@@ -75,6 +75,18 @@ namespace CoreApp
             return dc.RetrieveAll<T>();
         }
 
+        public List<T> RetrieveDoctorSpecialty<T>()
+        {
+            var dc = new DoctorCrudFactory();
+            return dc.RetrieveDoctorSpecialty<T>();
+        }
+
+        public void UpdateDoctorSpecialty(DoctorSpecialty doctorSpecialty)
+        {
+            var dc = new DoctorCrudFactory();
+            dc.UpdateDoctorSpecialty(doctorSpecialty);
+        }
+
         public Doctor RetrieveById(int doctorID)
         {
             var dc = new DoctorCrudFactory();

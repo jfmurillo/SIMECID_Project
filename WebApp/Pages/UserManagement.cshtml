@@ -14,6 +14,13 @@
     <link rel="icon" href="~/assets/2_logosimecid.png" type="image/x-icon" />
     <title>SimecidApp</title>
     <link href="/css/user-management.css" rel="stylesheet" />
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.js"></script>
+    <script src="~/js/controlactions.js"></script>
+    <script src="~/js/pages/usermanagment.js"></script>
 </head>
 
 <!------- SIDEBAR ------>
@@ -80,78 +87,25 @@
         <div class="container2">
             <h1 class="title2" style="margin-left:32%">User List</h1>
 
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">Type</th>
-                        <th scope="col">Column heading</th>
-                        <th scope="col">Column heading</th>
-                        <th scope="col">Column heading</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="table-active">
-                        <th scope="row">Active</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Default</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-primary">
-                        <th scope="row">Primary</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-secondary">
-                        <th scope="row">Secondary</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-success">
-                        <th scope="row">Success</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-danger">
-                        <th scope="row">Danger</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-warning">
-                        <th scope="row">Warning</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-info">
-                        <th scope="row">Info</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-light">
-                        <th scope="row">Light</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-dark">
-                        <th scope="row">Dark</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="row" style="margin-left: 20%">
+                <div class="col-lg-12">
+                    <table id="tblUserInfo" class="table table-hover" class="display" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Last Name</th>
+                                <th>PhoneNumber</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Province</th>
+                                <th>Address</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            
         </div>
 
         <div class="container2" style="margin-left:47%">
@@ -160,53 +114,55 @@
             <div class="form">
                 <form action="/action_page.php">
                     <div class="form-field">
+                        <label for="id">Id</label>
+                        <input type="text" id="id" name="id" value="">
+                    </div>
+                    <div class="form-field">
                         <label for="name">Name</label>
                         <input type="text" id="name" name="name" value="">
                     </div>
                     <div class="form-field">
                         <label for="name">Last Name</label>
-                        <input type="text" id="last-name" name="last-name" value="">
+                        <input type="text" id="lastName" name="last-name" value="">
                     </div>
                     <div class="form-field">
                         <label for="phone-number" style="text-align:left">Phone Number</label>
-                        <input type="text" id="phone-number" name="phone-number" value="">
+                        <input type="text" id="phoneNumber" name="phone-number" value="">
                     </div>
                     <div class="form-field">
                         <label class="email" for="email">Email</label>
                         <input type="text" id="email" name="email" value="">
                     </div>
                     <div class="form-field">
-                        <label for="name">Password</label>
-                        <input class="password" type="password" id="password" name="password" value="">
-                    </div>
-                    <div class="form-field">
-                        <label for="sex">Gender</label><br>
-                        <select class="password" id="sex" name="sex" style="width: 20vw; height: 3vh;" required>
+                        <label for="role">Role</label><br>
+                        <select class="password" id="sex" name="role" style="width: 20vw; height: 3vh;" required>
                             <option value="" disabled selected hidden></option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                            <option value="other">Other</option>
+                            <option value="User">User</option>
+                            <option value="Doctor">Doctor</option>
+                            <option value="Nurse">Nurse</option>
+                            <option value="Secretary">Secretary</option>
                         </select><br><br>
                     </div>
                     <div class="form-field">
-                        <label for="role">Role</label>
-                        <input type="text" id="role" name="role" value="">
-                    </div>
-                    <div class="form-field">
-                        <label for="status">Status</label>
-                        <input type="text" id="status" name="status" value="">
-                    </div>
-                    <div class="form-field">
-                        <label for="birthdate">Birth Date</label>
-                        <input class="password" type="date" id="birthdate" name="birthdate" style="width: 20vw; height: 3vh;" required>
+                        <label for="province">Province</label><br>
+                        <select class="password" id="province" name="province" style="width: 30vw; height: 3vh;" required>
+                            <option value="" disabled selected hidden>Select your province</option>
+                            <option value="San José">San José</option>
+                            <option value="Alajuela">Alajuela</option>
+                            <option value="Heredia">Heredia</option>
+                            <option value="Cartago">Cartago</option>
+                            <option value="Puntarenas">Puntarenas</option>
+                            <option value="Guanacaste">Guanacaste</option>
+                            <option value="Limón">Limón</option>
+                        </select><br><br>
                     </div>
                     <div class="form-field">
                         <label for="address">Address</label><br>
                         <textarea class="password" id="address" name="address" required style="width: 600px; height: 48px;"></textarea>
                     </div>
                         <div class="form-buttons" style="margin-right: 100px">
-                        <button class="button" type="submit" style="margin-left:100px">Update</button>
-                        <button class="button" type="submit">Delete</button>
+                        <button class="button" id="btnUpdate" type="button" style="margin-left:100px">Update</button>
+                        <button class="button" id="btnDelete" type="button">Delete</button>
                         </div>
                 </form>
             </div>
@@ -219,86 +175,40 @@
                 <form action="/action_page.php">
                     <div class="form-field">
                         <label for="employees">Employees</label>
-                        <input type="text" id="employees" name="employees" value="">
-                        </div>
+                        <select class="password" id="role" name="role" style="width: 20vw; height: 3vh;" required>
+                            
+                            
+                            <option value="Doctor">Doctor</option>
+                            <option value="Nurse">Nurse</option>
+                            <option value="Secretary">Secretary</option>
+                        </select><br><br>
+                     </div>
                 </form>
             </div>
         </div>
 
         <div class="container2">
 
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">Type</th>
-                        <th scope="col">Column heading</th>
-                        <th scope="col">Column heading</th>
-                        <th scope="col">Column heading</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="table-active">
-                        <th scope="row">Active</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Default</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-primary">
-                        <th scope="row">Primary</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-secondary">
-                        <th scope="row">Secondary</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-success">
-                        <th scope="row">Success</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-danger">
-                        <th scope="row">Danger</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-warning">
-                        <th scope="row">Warning</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-info">
-                        <th scope="row">Info</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-light">
-                        <th scope="row">Light</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-dark">
-                        <th scope="row">Dark</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="row" style="margin-left: 20%">
+                <div class="col-lg-12">
+                    <table id="tblUserRole" class="table table-hover" class="display" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Last Name</th>
+                                <th>PhoneNumber</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Province</th>
+                                <th>Address</th>
+                                <th>Branch Id</th>
+                                <th>Schedule</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
         </div>
 
         <div class="container2" style="margin-left:45%">
@@ -320,17 +230,35 @@
                     </div>
 
                     <div class="form-field">
-                        <label for="branch">Branch</label>
-                        <input type="text" id="branch" name="branch" value="">
+                        <label for="employeeEmail">Employee Email</label>
+                        <input type="email" class="password" id="employeeEmail" name="email" value="">
                     </div>
 
                     <div class="form-field">
-                        <label for="schedule">Schedule</label>
-                        <input type="text" id="schedule" name="schedule" value="">
+                        <label for="branchSelect">Branch</label>
+                        <select id="branchSelect" class="formularyform password">
+                            <option value="" disabled selected hidden></option>
+                            <!-- Aquí puedes agregar las opciones de las sucursales desde tu base de datos -->
+                            <!-- Agrega más opciones según sea necesario -->
+                        </select>
+                    </div>
+
+                  
+                    <div class="form-field">
+                        <label for="role">Schedule</label><br>
+                        <select class="password" id="schedule" name="schedule" style="width: 20vw; height: 3vh;" required>
+                            <option value="" disabled selected hidden></option>
+                            <option value="Horario Completo">Lunes a viernes. de 8:00 a.m. a 6:00 p.m.</option>
+                            <option value="Medio Tiempo 1">Medio Tiempo 1: Lunes a viernes de 7:00 a.m. a 12:00 p.m.</option>
+                            <option value="Medio Tiempo 2">Medio Tiempo 1: Lunes a viernes de 1:00 p.m. a 7:00 p.m.</option>
+                            <option value="Nocturno">Nocturno: Lunes a viernes de 7:00 p.m. a 7:00 a.m.</option>
+                            <option value="Fin de Semana día">Fin de Semana día: Sábados y domingos de 7:00 a.m. a 6:00 p.m.</option>
+                            <option value="Fin de Semana noche">Fin de Semana noche: Sábados y domingos de 6:00 p.m. a 7:00 a.m.</option>
+                        </select><br><br>
                     </div>
 
                     <div class="form-buttons" style="margin-right: 50%">
-                        <button class="button" type="submit" style="margin-left:100px">Update</button>
+                        <button class="button" id="btnEmployee" type="button" style="margin-left:100px">Update</button>
                     </div>
                 </form>
             </div>
@@ -339,78 +267,21 @@
         <div class="container2">
             <h1 style="margin-left: 25%;" class="details">Add Doctor Speciality</h1>
 
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">Type</th>
-                        <th scope="col">Column heading</th>
-                        <th scope="col">Column heading</th>
-                        <th scope="col">Column heading</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="table-active">
-                        <th scope="row">Active</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Default</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-primary">
-                        <th scope="row">Primary</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-secondary">
-                        <th scope="row">Secondary</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-success">
-                        <th scope="row">Success</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-danger">
-                        <th scope="row">Danger</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-warning">
-                        <th scope="row">Warning</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-info">
-                        <th scope="row">Info</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-light">
-                        <th scope="row">Light</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                    <tr class="table-dark">
-                        <th scope="row">Dark</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="row" style="margin-left: 20%">
+                <div class="col-lg-12">
+                    <table id="tblDoctorInfo" class="table table-hover" class="display" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>Specialty</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
         </div>
 
         <div class="container2" style="margin-left:45%">
@@ -418,27 +289,47 @@
             <div class="form">
                 <form action="/action_page.php">
                     <div class="form-field">
-                        <label for="employeeId">Employee <br /> id</label>
-                        <input type="text" id="employeeId" name="employeeId" value="">
+                        <label for="doctorId">Doctor Id <br /> id</label>
+                        <input type="text" id="doctorId" name="doctorId" value="">
                     </div>
 
                     <div class="form-field">
-                        <label for="employeeName">Employee name</label>
-                        <input type="text" id="employeeName" name="employeeName" value="">
+                        <label for="doctorName">Doctor Name</label>
+                        <input type="text" id="doctorname" name="doctorName" value="">
                     </div>
 
                     <div class="form-field">
-                        <label for="employeeLastName">Employee last name</label>
-                        <input type="text" id="employeeLastName" name="employeeLastName" value="">
+                        <label for="doctorLastName">Doctor Last Name</label>
+                        <input type="text" id="doctorLastName" name="doctorLastName" value="">
                     </div>
 
                     <div class="form-field">
-                        <label for="specialty">Specialty</label>
-                        <input type="text" id="specialty" name="specialty" value="">
+                        <label for="doctorEmail">Doctor Email</label>
+                        <input type="email" class="password" id="doctorEmail" name="doctorEmail" value="">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="specialty">Specialty</label><br>
+                        <select class="password" id="doctorSpecialty" name="doctorSpecialty" style="width: 20vw; height: 3vh;" required>
+                            <option value="">Select a specialty</option>
+                            <option value="Anesthesiology">Anesthesiology</option>
+                            <option value="Cardiology">Cardiology</option>
+                            <option value="Dermatology">Dermatology</option>
+                            <option value="Endocrinology">Endocrinology</option>
+                            <option value="Gastroenterology">Gastroenterology</option>
+                            <option value="Geriatrics">Geriatrics</option>
+                            <option value="Gynecology and Obstetrics">Gynecology and Obstetrics</option>
+                            <option value="Emergency Medicine">Emergency Medicine</option>
+                            <option value="Internal Medicine">Internal Medicine</option>
+                            <option value="Neurology">Neurology</option>
+                            <option value="Ophthalmology">Ophthalmology</option>
+                            <option value="Otorhinolaryngology">Otorhinolaryngology</option>
+                            <option value="Pediatrics">Pediatrics</option>
+                        </select><br><br>
                     </div>
 
                     <div class="form-buttons" style="margin-right: 100px">
-                        <button class="button" type="submit" style="margin-left:100px">Update</button>
+                        <button class="button" id="btnSpecialty" type="button" style="margin-left:100px">Update</button>
                     </div>
                 </form>
             </div>

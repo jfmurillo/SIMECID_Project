@@ -117,6 +117,11 @@ namespace CoreApp
             var uc = new UserCrudFactory();
             return uc.RetrieveRoleByUserEmail<User>(email);
         }
+        public List<UserUpdData> RetrieveUsersByRole(string role)
+        {
+            var factory = new UserCrudFactory();
+            return factory.RetrieveUsersByRole(role);
+        }
 
         public void Update(User user)
         {
@@ -164,12 +169,53 @@ namespace CoreApp
 
         }
 
+        public void UpdateUserData(UserDataList userDataList)
+        {
+            if (userDataList == null || userDataList.Id == 0)
+            {
+                throw new ArgumentException("Invalid user.");
+            }
+
+            var uc = new UserCrudFactory();
+
+            if (!IsValidName(userDataList.Name))
+            {
+                throw new Exception("Invalid name format");
+            }
+            else if (!IsValidLastName(userDataList.LastName))
+            {
+                throw new Exception("Invalid Lastname format");
+            }
+            else if (!IsValidPhoneNumber(userDataList.PhoneNumber))
+            {
+                throw new Exception("Invalid phone number format");
+            }
+            else if (!IsValidEmail(userDataList.Email))
+            {
+                throw new Exception("Email is required");
+            }
+          
+            
+
+            uc.UpdateUserData(userDataList);
+
+        }
+
+        public void UpdateEmployeeData(Employee employee)
+        {
+            var uc = new UserCrudFactory();
+            uc.UpdateEmployeeData(employee);
+        }
         public void UpdateUserRole(User user)
         {
             var uc = new UserCrudFactory();
             uc.UpdateUserRole(user);
         }
-
+        public void DeleteUserData(UserUpdData userUpdData)
+        {
+            var uc = new UserCrudFactory();
+            uc.DeleteUserData(userUpdData);
+        }
         public void Delete(User user)
         {
             var uc = new UserCrudFactory();
