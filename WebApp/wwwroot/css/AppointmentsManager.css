@@ -1,5 +1,28 @@
 ﻿@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
 /* ---- CLASES GENERALES ---*/
 
 :root {
@@ -80,7 +103,7 @@ p {
 .buttonUser {
     display: flex;
     margin-top: 1%;
-    padding: 2%;
+    padding: 10%;
     text-align: left;
     color: var(--whiteBackground);
     background-color: var(--greenMain-SideBar);
@@ -171,11 +194,21 @@ p {
 /*------ CLASES PARA EL CONTENIDO PRINCIPAL -----*/
 
 .main-content {
-    display: flex;
     justify-content: center;
     flex-direction: column;
+    align-content: center; 
+    align-items:center; 
+    margin-left:20%;
 }
 
+.profileHeader {
+    background-image: url('../assets/SimecidHeader1.png');
+    background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el encabezado */
+    text-align: center;
+    height: 30vh; /* Ajusta la altura del encabezado según sea necesario */
+    width: 100%;
+    background-color: red;
+}
 
 .branchTitle {
     color: var(--greenLight1)
@@ -338,6 +371,12 @@ th {
 
 /*CLASES PARA EL CALENDARIO*/
 
+.calendarAndTable{
+    padding:2%;
+    margin:2%;
+
+}
+
 .calendar-container {
     width: 80%;
     margin-top: 2%;
@@ -361,5 +400,12 @@ th {
 
     margin-left: 20%;
 
+}/*TABLA DE CITAS*/
+.tableContainer {
+    padding: 2%;
+    margin-left: 5%;
+    width: 90%;
 }
+
+
 

@@ -73,7 +73,7 @@ p {
 .buttonUser {
     display: flex;
     margin-top: 1%;
-    padding: 2%;
+    padding: 10%;
     text-align: left;
     color: var(--whiteBackground);
     background-color: var(--greenMain-SideBar);

@@ -1,4 +1,27 @@
+ï»¿@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
 
 /* ---- CLASES GENERALES ---*/
 
@@ -6,7 +29,7 @@
     --greenMain-SideBar: #02b1a9; /* Fondo del sidebar */
     --whiteBackground: #ffffff; /* Fondo */
     --colorText: #333; /* Texto normal */
-    --colorTextLight: #666; /* texto más claro */
+    --colorTextLight: #666; /* texto mÃ¡s claro */
     --colorLightGrey: #efefef; /* gris claro para distinguir del blanco */
     --greenLight1: #4ec8a4; /* Turqueza claro*/
     --greenMedium2: #2fa5a5; /* Turqueza medio */
@@ -21,6 +44,7 @@ body {
 
 /* para darle color a los titulos */
 h1 {
+    margin-top: 2%;
     color: var(--greenMedium2);
 }
 
@@ -32,6 +56,12 @@ p {
 
 /* para darle formato a los titulos */
 .fontTitle {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600; /* Utiliza el peso 600 para semi-bold */
+    line-height: 1.2;
+}
+
+.fontTitleNavBar {
     font-family: "Montserrat", sans-serif;
     font-weight: 600; /* Utiliza el peso 600 para semi-bold */
     line-height: 1.2;
@@ -54,7 +84,7 @@ p {
     background: var(--greenMain-SideBar);
 }
 
-/*Contenedor del logo y el título */
+/*Contenedor del logo y el tÃ­tulo */
 .containerLogo {
     width: 99%;
     display: flex;
@@ -82,7 +112,7 @@ p {
 }
 
     .buttonUser:hover {
-        border: 2px solid var(--whiteBackground); /* Agrega un borde al botón en el hover */
+        border: 2px solid var(--whiteBackground); /* Agrega un borde al botÃ³n en el hover */
     }
 
 .containerUser {
@@ -99,7 +129,7 @@ p {
     min-width: 40px;
     min-height: 40px;
     border-radius: 50%;
-    overflow: hidden; /* Asegura que cualquier contenido adicional esté oculto dentro del círculo */
+    overflow: hidden; /* Asegura que cualquier contenido adicional estÃ© oculto dentro del cÃ­rculo */
 }
 
 .userName {
@@ -117,11 +147,11 @@ p {
     border: 2px solid var(--greenMain-SideBar); /* Aunque no se vea, No se debe borrar el borde, porque cambia los padding y entonces las cosas se mueven */
     border-radius: 5px;
     margin-top: 10px;
-    margin-left:16px;
+    margin-left: 16px;
 }
 
     .buttonSettings:hover {
-        border: 2px solid var(--whiteBackground); /* Agrega un borde al botón en el hover */
+        border: 2px solid var(--whiteBackground); /* Agrega un borde al botÃ³n en el hover */
     }
 
 .settingsIcon {
@@ -151,7 +181,7 @@ p {
 }
 
     .buttonMenu:hover {
-        border: 2px solid var(--whiteBackground); /* Agrega un borde al botón en el hover */
+        border: 2px solid var(--whiteBackground); /* Agrega un borde al botÃ³n en el hover */
     }
 
 .sidebarFooter {
@@ -164,70 +194,85 @@ p {
 /*------ CLASES PARA EL CONTENIDO PRINCIPAL -----*/
 
 .main-content {
-    width: 100%;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    margin-left: 0; /* Elimina el margen izquierdo */
+    margin-right: 0; /* Elimina el margen derecho */
 }
 
 .profileHeader {
-    background-image: url('../assets/simecidheaderproflie.png');
-    background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el encabezado */
+    background-image: url('../assets/SimecidHeader1.png');
+    background-size: cover; /* Ajusta el tamaÃ±o de la imagen para cubrir todo el encabezado */
     text-align: center;
-    height: 30vh; /* Ajusta la altura del encabezado según sea necesario */
+    height: 30vh; /* Ajusta la altura del encabezado segÃºn sea necesario */
+    width: 100%;
+    background-color: red;
+}
+
+.branchTitle {
+    color: var(--greenLight1)
+}
+
+.serviceTitle {
+    color: var(--greenMedium2)
 }
 
 
-.profilePic {
-    width: 20vh;
-    height: 20vh;
-    border-radius: 50%; /* Esto hace que la imagen sea un círculo */
-    overflow: hidden; /* Asegura que cualquier contenido adicional esté oculto dentro del círculo */
-    margin-top: 20vh;
-    margin-left: 20%;
-}
-
-.gestionDePerfilDeUsuario {
-    text-align: center;
-    padding-left: 18%;
+.gestionDeCitas {
+    margin-top: 5%;
 }
 
 .form-container {
-    max-width: 100%;
-    margin: 10% 40%;
+    max-width: 30%;
+    margin: 0 auto;
+    padding: 2%;
 }
 
-.sign-up-form {
+.btn-send {
+    width: 75%;
+    margin-left: 20%;
+    margin-bottom: 10%;
+    padding: 3% 5%;
+    background-color: #02B1A9;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family: "Montserrat", sans-serif;
+}
+
+.confirmation-form {
     width: 100%;
     display: flex;
     flex-direction: row;
     margin-bottom: 3%;
-    text-align: right;
     font-family: "Montserrat", sans-serif;
+    font-size: 16px;
 }
 
-    .sign-up-form label {
-        justify-self: start;
-        width: 30%;
-        min-width: 50px;
-        margin-bottom: 2%;
-        margin-right: 10%;
-        text-align: right;
-        font-family: "Montserrat", sans-serif;
-    }
-
-    .sign-up-form input,
-    .sign-up-form textarea {
-        width: 100%;
-        min-width: 50px;
-        border: 1px solid black;
-        border-radius: 5px;
-    }
-
-.birthdate {
+.sign-up-form label {
+    justify-self: start;
+    width: 30%;
+    min-width: 50px;
+    margin-bottom: 2%;
+    margin-right: 5%;
     font-family: "Montserrat", sans-serif;
     font-size: 14px;
 }
 
+.sign-up-form input,
+.sign-up-form textarea {
+    width: 50%;
+    min-width: 50px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
 .sign-up-form select {
-    width: 100%;
+    width: 50%;
     border: 1px solid black;
     border-radius: 5px;
     font-family: "Montserrat", sans-serif;
@@ -235,8 +280,26 @@ p {
 }
 
 .buttonContainer {
-    max-width: 100%;
-    margin-top: 10%;
+    max-width: 30%;
+    margin: 0 auto;
+}
+
+body, html {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif; /* Ajusta la fuente segÃºn tu preferencia */
+}
+
+.main-content {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+}
+
+/* Estilos para centrar los tÃ­tulos */
+.branchTitle,
+.serviceTitle,
+.fontTitle {
+    text-align: center;
 }
 
 .btn {
@@ -255,11 +318,57 @@ p {
 }
 
     .btn:hover {
-        background-color: var(--greenLight1);
+        background-color: Â  #666;
     }
 
 
+/* ----CLASES PARA LA TABLA------- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    /* Otros estilos segÃºn tus preferencias */
+}
+
+th,
+td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    /* Otros estilos segÃºn tus preferencias */
+}
+
+.table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    border-radius: 10px; /* Ajusta este valor segÃºn tu preferencia */
+    overflow: hidden;
+    margin-left: -10%;
+}
+
+th,
+td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid var(--whiteBackground);
+}
+
+th {
+    background-color: var(--greenMain-SideBar);
+    color: var(--whiteBackground);
+}
+
+.table-active,
+.table-primary,
+.table-secondary,
+.table-success,
+.table-danger,
+.table-warning,
+.table-info,
+.table-light,
+.table-dark {
+    background-color: rgba(255, 255, 255, 0.075);
+}
 
 
-  
-  
+
+
