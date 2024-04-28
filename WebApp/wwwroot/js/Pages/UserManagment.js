@@ -86,9 +86,6 @@
         user.role = $("#sex").val();
         user.province = $("#province").val();
         user.address = $("#address").val();
-        
-
-
 
         // Invocar la API para actualizar el servicio
         var ca = new ControlActions();
@@ -106,6 +103,8 @@
             $("#province").val("");
             $("#address").val("");
         });
+        $('#tblUserRole').DataTable().ajax.reload();
+
     }
 
     this.Delete = function () {
@@ -139,6 +138,7 @@
         ca.DeleteToAPI(serviceRoute, user, function () {
             console.log("User Deleted --->" + userId);
             $('#tblUserInfo').DataTable().ajax.reload();
+            $('#tblUserRole').DataTable().ajax.reload();
             $("#id").val("");
             $("#name").val("");
             $("#lastName").val("");
@@ -150,6 +150,8 @@
 
         });
         $('#tblUserInfo').DataTable().ajax.reload();
+        $('#tblUserRole').DataTable().ajax.reload();
+        $('#tblDoctorInfo').DataTable().ajax.reload();
     }
     this.LoadTableUserRole = function () {
         var us = new ControlActions();
@@ -223,8 +225,9 @@
 
         ca.PutToAPI(serviceRoute, user, function () {
             console.log("User Updated --->" + JSON.stringify(user));
-            $('#tblUserInfo').DataTable().ajax.reload();
             $('#tblUserRole').DataTable().ajax.reload();
+            $('#tblUserInfo').DataTable().ajax.reload();
+            $('#tblDoctorInfo').DataTable().ajax.reload();
             $("#employeeId").val("");
             $("#employeeName").val("");
             $("#employeeLastName").val("");
@@ -345,6 +348,8 @@ function DoctorInfoController() {
         ca.PutToAPI(serviceRoute, user, function () {
             console.log("Doctor Updated --->" + JSON.stringify(user));
             $('#tblDoctorInfo').DataTable().ajax.reload();
+            $('#tblUserInfo').DataTable().ajax.reload();
+            $('#tblUserRole').DataTable().ajax.reload();
             $("#doctorId").val(""); 
             $("#doctorname").val("");
             $("#doctorLastName").val("");
