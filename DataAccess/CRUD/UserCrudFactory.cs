@@ -118,6 +118,26 @@ namespace DataAccess.CRUD
             _dao.ExecuteProcedure(sqlOperation);
         }
 
+        public void UpdateEmployeeData(BaseDTO baseDTO)
+        {
+            var user = baseDTO as UserUpdData;
+
+            // Crear la operación SQL para ejecutar el procedimiento almacenado
+            var sqlOperation = new SqlOperation { ProcedureName = "UPD_USER_DATA_SP" };
+            sqlOperation.AddIntParam("P_USER_ID", user.Id);
+            sqlOperation.AddVarcharParam("P_NAME", user.Name);
+            sqlOperation.AddVarcharParam("P_LAST_NAME", user.LastName);
+            sqlOperation.AddIntParam("P_PHONE_NUMBER", user.PhoneNumber);
+            sqlOperation.AddVarcharParam("P_EMAIL", user.Email);
+            sqlOperation.AddVarcharParam("P_ROLE", user.Role);
+            sqlOperation.AddVarcharParam("P_PROVINCE", user.Province);
+            sqlOperation.AddVarcharParam("P_ADDRESS", user.Address);
+
+
+            // Ejecutar el procedimiento almacenado
+            _dao.ExecuteProcedure(sqlOperation);
+        }
+
         public void UpdateUserRole(BaseDTO baseDTO)
         {
             var user = baseDTO as User;

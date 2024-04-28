@@ -134,6 +134,7 @@
             $("#employeeId").val("");
             $("#employeeName").val("");
             $("#employeeLastName").val("");
+            $("#branchSelect").val("");
             $("#schedule").val("");
         });
 
@@ -174,6 +175,27 @@
                 "dataSrc": ""
             },
             "columns": columns
+        });
+    }
+
+    this.UpdateSchedule = function () {
+        var user = {};
+        user.Id = $("#employeeId").val();
+        user.name = $("#employeeName").val();
+        user.lastName = $("#employeeLastName").val();
+        user.email = $("#email").val();
+        user.role = $("#role").val();
+        user.branchId = $("#branchSelect").val();
+        user.schedule = $("#schedule").val();
+
+
+        // Invocar la API para actualizar el servicio
+        var ca = new ControlActions();
+        var serviceRoute = this.ApiService + "/";//TO DO
+
+        ca.PutToAPI(serviceRoute, user, function () {
+            console.log("User Updated --->" + JSON.stringify(user));
+            $('#tblUserInfo').DataTable().ajax.reload();
         });
     }
 }
