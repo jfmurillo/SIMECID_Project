@@ -134,6 +134,7 @@
             $("#employeeId").val("");
             $("#employeeName").val("");
             $("#employeeLastName").val("");
+            $("#schedule").val("");
         });
 
      
@@ -175,9 +176,46 @@
     }
 }
 
+function AllBranchInfoController() {
+  
+    this.ViewName = "Branch"; 
+    this.ApiService = "Branch";
+
+  
+    this.InitViewAllBranch = function () {
+        console.log("All Branch view init");
+
+        
+        $("#btnAdd").click(function () {
+            var vc = new AllBranchInfoController();
+            vc.Add();
+        });
+
+     
+        
+        this.LoadBranches();
+    }
+
+    
+    this.LoadBranches = function () {
+        var ba = new ControlActions();
+        var urlService = this.ApiService + "/RetrieveAll";
+
+       
+        ba.GetToApi(urlService, function (response) {
+            response.forEach(function (branch) {
+                $("#branchSelect").append('<option value="' + branch.id + '">' + branch.id + ' - ' + branch.name + '</option>');
+            });
+        });
+    }
+}
+
 
 $(document).ready(function () {
     var us = new UserInfoController();
     us.InitViewUser();
+
+    var br = new AllBranchInfoController();
+    br.InitViewAllBranch();
 
 })
