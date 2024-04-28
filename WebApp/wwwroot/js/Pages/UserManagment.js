@@ -14,6 +14,12 @@
             var us = new UserInfoController();
             us.Delete();
         })
+        
+
+        $("#btnEmployee").click(function () {
+            var us = new UserInfoController();
+            us.UpdateSchedule();
+        })
 
         this.LoadTableUserInfo();
         this.LoadTableUserRole();
@@ -134,6 +140,7 @@
             $("#employeeId").val("");
             $("#employeeName").val("");
             $("#employeeLastName").val("");
+            $("#employeeEmail").val("");
             $("#branchSelect").val("");
             $("#schedule").val("");
         });
@@ -147,6 +154,7 @@
             $("#employeeId").val(userData.id);
             $("#employeeName").val(userData.name);
             $("#employeeLastName").val(userData.lastName);
+            $("#employeeEmail").val(userData.email);
         });
     }
 
@@ -161,7 +169,7 @@
         columns[1] = { 'data': "name" }
         columns[2] = { 'data': "lastName" }
         columns[3] = { 'data': "phoneNumber" }
-        columns[4] = { 'data': "email" }
+        columns[4] = { 'data': "email"}
         columns[5] = { 'data': "role" }
         columns[6] = { 'data': "province" }
         columns[7] = { 'data': "address" }
@@ -183,7 +191,7 @@
         user.Id = $("#employeeId").val();
         user.name = $("#employeeName").val();
         user.lastName = $("#employeeLastName").val();
-        user.email = $("#email").val();
+        user.email = $("#employeeEmail").val();
         user.role = $("#role").val();
         user.branchId = $("#branchSelect").val();
         user.schedule = $("#schedule").val();
@@ -191,11 +199,12 @@
 
         // Invocar la API para actualizar el servicio
         var ca = new ControlActions();
-        var serviceRoute = this.ApiService + "/";//TO DO
+        var serviceRoute = this.ApiService + "/UpdateEmployeeData";
 
         ca.PutToAPI(serviceRoute, user, function () {
             console.log("User Updated --->" + JSON.stringify(user));
             $('#tblUserInfo').DataTable().ajax.reload();
+            $('#tblUserRole').DataTable().ajax.reload();
         });
     }
 }

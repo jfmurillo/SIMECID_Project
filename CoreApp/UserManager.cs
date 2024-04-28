@@ -195,6 +195,11 @@ namespace CoreApp
 
         }
 
+        public void UpdateEmployeeData(Employee employee)
+        {
+            var uc = new UserCrudFactory();
+            uc.UpdateEmployeeData(employee);
+        }
         public void UpdateUserRole(User user)
         {
             var uc = new UserCrudFactory();

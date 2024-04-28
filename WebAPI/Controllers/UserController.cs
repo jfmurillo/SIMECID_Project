@@ -147,6 +147,23 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut]
+        [Route("UpdateEmployeeData")]
+        public ActionResult UpdateEmployeeData(Employee employee)
+        {
+            try
+            {
+                var um = new UserManager();
+                um.UpdateEmployeeData(employee);
+                return Ok(employee);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+
+        }
+
+        [HttpPut]
         [Route("UpdateUserRole")]
         public ActionResult UpdateUserRole(User user)
         {
