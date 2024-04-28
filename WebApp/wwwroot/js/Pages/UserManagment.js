@@ -164,6 +164,8 @@
         columns[5] = { 'data': "role" }
         columns[6] = { 'data': "province" }
         columns[7] = { 'data': "address" }
+        columns[8] = { 'data': "branchId" }
+        columns[9] = { 'data': "schedule" }
 
         $("#tblUserRole").dataTable({
             "destroy": true,
