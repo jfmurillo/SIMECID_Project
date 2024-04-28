@@ -100,7 +100,7 @@ namespace DataAccess.CRUD
 
         public  void UpdateUserData(BaseDTO baseDTO)
         {
-            var user = baseDTO as UserUpdData;
+            var user = baseDTO as UserDataList;
 
             // Crear la operación SQL para ejecutar el procedimiento almacenado
             var sqlOperation = new SqlOperation { ProcedureName = "UPD_USER_DATA_SP" };
@@ -112,7 +112,7 @@ namespace DataAccess.CRUD
             sqlOperation.AddVarcharParam("P_ROLE", user.Role);
             sqlOperation.AddVarcharParam("P_PROVINCE", user.Province);
             sqlOperation.AddVarcharParam("P_ADDRESS", user.Address);
-
+            
 
             // Ejecutar el procedimiento almacenado
             _dao.ExecuteProcedure(sqlOperation);

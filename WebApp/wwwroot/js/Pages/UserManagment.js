@@ -69,6 +69,8 @@
             $("#province").val(user.province);
             $("#address").val(user.address);
 
+            
+
 
         });
      }
@@ -84,6 +86,8 @@
         user.role = $("#sex").val();
         user.province = $("#province").val();
         user.address = $("#address").val();
+        
+
 
 
         // Invocar la API para actualizar el servicio
@@ -93,6 +97,14 @@
         ca.PutToAPI(serviceRoute, user, function () {
             console.log("User Updated --->" + JSON.stringify(user));
             $('#tblUserInfo').DataTable().ajax.reload();
+            $("#id").val("");
+            $("#name").val("");
+            $("#lastName").val("");
+            $("#phoneNumber").val("");
+            $("#email").val("");
+            $("#sex").val("");
+            $("#province").val("");
+            $("#address").val("");
         });
     }
 
@@ -127,6 +139,14 @@
         ca.DeleteToAPI(serviceRoute, user, function () {
             console.log("User Deleted --->" + userId);
             $('#tblUserInfo').DataTable().ajax.reload();
+            $("#id").val("");
+            $("#name").val("");
+            $("#lastName").val("");
+            $("#phoneNumber").val("");
+            $("#email").val("");
+            $("#sex").val("");
+            $("#province").val("");
+            $("#address").val("");
 
         });
         $('#tblUserInfo').DataTable().ajax.reload();
@@ -205,6 +225,13 @@
             console.log("User Updated --->" + JSON.stringify(user));
             $('#tblUserInfo').DataTable().ajax.reload();
             $('#tblUserRole').DataTable().ajax.reload();
+            $("#employeeId").val("");
+            $("#employeeName").val("");
+            $("#employeeLastName").val("");
+            $("#employeeEmail").val("");
+            $("#role").val("");
+            $("#branchSelect").val("");
+            $("#schedule").val("");
         });
     }
 }

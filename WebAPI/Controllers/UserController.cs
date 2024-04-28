@@ -131,13 +131,13 @@ namespace WebAPI.Controllers
 
         [HttpPut]
         [Route("UpdateUserData")]
-        public ActionResult UpdateUserData(UserUpdData userUpdData)
+        public ActionResult UpdateUserData(UserDataList userDataList)
         {
             try
             {
                 var um = new UserManager();
-                um.UpdateUserData(userUpdData);
-                return Ok(userUpdData);
+                um.UpdateUserData(userDataList);
+                return Ok(userDataList);
             }
             catch (Exception ex)
             {

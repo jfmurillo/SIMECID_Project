@@ -176,7 +176,7 @@
                     <div class="form-field">
                         <label for="employees">Employees</label>
                         <select class="password" id="role" name="role" style="width: 20vw; height: 3vh;" required>
-                            @* <option value="" disabled selected hidden></option> *@
+                            
                             
                             <option value="Doctor">Doctor</option>
                             <option value="Nurse">Nurse</option>
@@ -237,6 +237,7 @@
                     <div class="form-field">
                         <label for="branchSelect">Branch</label>
                         <select id="branchSelect" class="formularyform password">
+                            <option value="" disabled selected hidden></option>
                             <!-- Aquí puedes agregar las opciones de las sucursales desde tu base de datos -->
                             <!-- Agrega más opciones según sea necesario -->
                         </select>
@@ -244,8 +245,9 @@
 
                   
                     <div class="form-field">
-                        <label for="role">Role</label><br>
+                        <label for="role">Schedule</label><br>
                         <select class="password" id="schedule" name="schedule" style="width: 20vw; height: 3vh;" required>
+                            <option value="" disabled selected hidden></option>
                             <option value="Horario Completo">Lunes a viernes. de 8:00 a.m. a 6:00 p.m.</option>
                             <option value="Medio Tiempo 1">Medio Tiempo 1: Lunes a viernes de 7:00 a.m. a 12:00 p.m.</option>
                             <option value="Medio Tiempo 2">Medio Tiempo 1: Lunes a viernes de 1:00 p.m. a 7:00 p.m.</option>

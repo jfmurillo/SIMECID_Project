@@ -163,35 +163,35 @@ namespace CoreApp
 
         }
 
-        public void UpdateUserData(UserUpdData userUpdData)
+        public void UpdateUserData(UserDataList userDataList)
         {
-            if (userUpdData == null || userUpdData.Id == 0)
+            if (userDataList == null || userDataList.Id == 0)
             {
                 throw new ArgumentException("Invalid user.");
             }
 
             var uc = new UserCrudFactory();
 
-            if (!IsValidName(userUpdData.Name))
+            if (!IsValidName(userDataList.Name))
             {
                 throw new Exception("Invalid name format");
             }
-            else if (!IsValidLastName(userUpdData.LastName))
+            else if (!IsValidLastName(userDataList.LastName))
             {
                 throw new Exception("Invalid Lastname format");
             }
-            else if (!IsValidPhoneNumber(userUpdData.PhoneNumber))
+            else if (!IsValidPhoneNumber(userDataList.PhoneNumber))
             {
                 throw new Exception("Invalid phone number format");
             }
-            else if (!IsValidEmail(userUpdData.Email))
+            else if (!IsValidEmail(userDataList.Email))
             {
                 throw new Exception("Email is required");
             }
           
             
 
-            uc.UpdateUserData(userUpdData);
+            uc.UpdateUserData(userDataList);
 
         }
 
