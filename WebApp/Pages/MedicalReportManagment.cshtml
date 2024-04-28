@@ -17,6 +17,16 @@
     <title>Medical Report</title>
     <link href="~/css/medicalreportmanagment.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.css" rel="stylesheet">
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/controlactions.js"></script>
+    <link href="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.css" rel="stylesheet">
+    <script src="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.css" />
+    <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
 </head>
 
 
@@ -87,13 +97,17 @@
         <!--Aca tabla service history tabla-->
         <div class="row" style="margin-left: 20%">
             <div class="col-lg-12">
-                <table id="" class="table table-hover" class="display" style="width:100%">
+                <table id="tblPatientInfo" class="table table-hover" class="display" style="width:100%">
                     <thead>
                         <tr>
-                            <th>B</th>
-                            <th>N</th>
-                            <th>A</th>
-                            <th>D</th>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Last Name</th>
+                            <th>PhoneNumber</th>
+                            <th>Email</th>
+                            <th>Gender</th>
+                            <th>Province</th>
+                            <th>Address</th>
                         </tr>
                     </thead>
                 </table>
@@ -104,40 +118,45 @@
     <div class="gestionDePerfilDeUsuario">
         <form class="form-container">
             <h1 class="fontTitle">Manage Record</h1>
+
+            <div class="sign-up-form">
+                <label for="medicalReportId">Medical Report Id</label><br>
+                <input type="text" id="TxtmedicalReportId" name="medicalReportId" required><br><br>
+            </div>
             <div class="sign-up-form">
                 <label for="patientId">Patient Id</label><br>
-                <input type="number" id="" name="patientId" required><br><br>
+                <input type="text" id="patientId" name="patientId" required><br><br>
             </div>
 
             <div class="sign-up-form">
-                <label for="patientName">Patient name</label><br>
-                <input type="text" id="" name="patientName" required><br><br>
+                <label for="patientName">Patient Name</label><br>
+                <input type="text" id="patientName" name="patientName" required><br><br>
             </div>
 
             <div class="sign-up-form">
-                <label for="patientLastName">Patient last name</label><br>
-                <input type="text" id="" name="patientLastName" required><br><br>
+                <label for="patientLastName">Patient LastName</label><br>
+                <input type="text" id="patientLastName" name="patientLastName" required><br><br>
             </div>
 
             <div class="sign-up-form">
                 <label for="medicalHistory">Medical history</label><br>
-                <textarea id="" name="medicalHistory" required></textarea><br><br>
+                <textarea id="txtMedicalHistory" name="medicalHistory" required></textarea><br><br>
             </div>
 
             <div class="sign-up-form">
                 <label for="medicalNotes">Medical notes</label><br>
-                <textarea id="" name="medicalNotes" required></textarea><br><br>
+                <textarea id="txtMedicalNotes" name="medicalNotes" required></textarea><br><br>
             </div>
 
             <div class="sign-up-form">
                 <label class="birthdate" for="date">Date</label><br>
-                <input type="date" id="date" name="date" required><br><br>
+                <input type="date" id="txtDate" name="date" required><br><br>
             </div>
 
             <div style="display:flex">
-                <button class="btn" type="button" id="" style="margin-top: 6%">Create</button>
-                <button class="btn" type="button" id="" style="margin-top: 6%">Update</button>
-                <button class="btn" type="button" id="" style="margin-top: 6%">Delete</button>
+                <button class="btn" type="button" id="btnCreate" style="margin-top: 6%">Create</button>
+                <button class="btn" type="button" id="btnUpdate" style="margin-top: 6%">Update</button>
+                <button class="btn" type="button" id="btnDelete" style="margin-top: 6%">Delete</button>
             </div>
         </form>
     </div>
@@ -149,14 +168,17 @@
             <!--Aca tabla appointments history tabla-->
             <div class="row" style="margin-left: 20%">
                 <div class="col-lg-12">
-                    <table id="" class="table table-hover" class="display" style="width:100%">
+                    <table id="tblMedicalReport" class="table table-hover" class="display" style="width:100%">
                         <thead>
                             <tr>
-                                <th>B</th>
-                                <th>N</th>
-                                <th>A</th>
-                                <th>D</th>                       
-                            </tr>
+                                <th>Id</th>
+                            <th>Patient Id</th>
+                                <th>Name</th>
+                                <th>LastName</th>
+                            <th>Medical History</th>
+                            <th>Medical Notes</th>
+                            <th>Date</th>
+                        </tr>
                         </thead>
                     </table>
                 </div>
@@ -171,13 +193,14 @@
         <!--Aca tabla service history tabla-->
         <div class="row" style="margin-left: 20%">
             <div class="col-lg-12">
-                <table id="" class="table table-hover" class="display" style="width:100%">
+                <table id="tblDiagnostic" class="table table-hover" class="display" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Example</th>
-                            <th>Example</th>
-                            <th>Example</th>
-                            <th>Example</th>
+                            <th>Id</th>
+                            <th>Patient Id</th>
+                            <th>Diagnose Name</th>
+                            <th>Date</th>
+                            <th>Description</th>
                         </tr>
                     </thead>
                 </table>
@@ -190,29 +213,39 @@
             <h1 class="fontTitle">Diagnosis</h1>
 
             <div class="sign-up-form">
+                <label for="diagnosticId">Diagnostic Id</label><br>
+                <input type="text" id="TxtdiagnosticId" name="diagnosticId" required><br><br>
+            </div>
+
+            <div class="sign-up-form">
+                <label for="patientId">Patient id</label><br>
+                <input type="text" id="TxtPatientId" name="patientdId" required><br><br>
+            </div>
+
+            <div class="sign-up-form">
                 <label for="diagnoseName">Diagnose name</label><br>
-                <input type="text" id="name" name="diagnoseName" required><br><br>
+                <input type="text" id="TxtDiagnoseName" name="diagnoseName" required><br><br>
             </div>
 
             <div class="sign-up-form">
                 <label class="birthdate" for="date">Date</label><br>
-                <input type="date" id="date" name="date" required><br><br>
+                <input type="date" id="TxtDate" name="date" required><br><br>
             </div>
 
             <div class="sign-up-form">
                 <label for="description">Description</label><br>
-                <textarea id="description" name="description" required></textarea><br><br>
+                <textarea id="TxtDescription" name="description" required></textarea><br><br>
             </div>
 
             <div style="display:flex">
-                <button class="btn" type="button" id="" style="margin-top: 6%">Create</button>
-                <button class="btn" type="button" id="" style="margin-top: 6%">Update</button>
-                <button class="btn" type="button" id="" style="margin-top: 6%">Delete</button>
+                <button class="btn" type="button" id="btnCreateDiagnostic" style="margin-top: 6%">Create</button>
+                <button class="btn" type="button" id="btnUpdateDiagnostic" style="margin-top: 6%">Update</button>
+                <button class="btn" type="button" id="btnDeleteDiagnostic" style="margin-top: 6%">Delete</button>
             </div>
         </form>
     </div>
 
-
+    <script src="~/js/pages/medicalreportmanagment.js"></script>
 
 </body>
 </html>
