@@ -243,6 +243,95 @@ function AllBranchInfoController() {
     }
 }
 
+function DoctorInfoController() {
+    this.ViewName = "Doctor";
+    this.ApiService = "Doctor";
+
+    this.InitViewDoctor = function () {
+        console.log("Doctor Info");
+
+        $("#btnSpecialty").click(function () {
+            var dc = new DoctorInfoController();
+            dc.UpdateSpecialty();
+        })
+
+        this.LoadTableDoctorInfo();
+        
+    }
+
+
+
+    this.LoadTableDoctorInfo = function () {
+        var dc = new ControlActions();
+
+        //Ruta del api
+        var urlService = dc.GetUrlApiService(this.ApiService + "/RetrieveDoctorSpecialty")
+
+        // Definir las columnas de la tabla
+        var columns = [];
+        columns[0] = { 'data': "id" }
+        columns[1] = { 'data': "name" }
+        columns[2] = { 'data': "lastName" }
+        columns[3] = { 'data': "email" }
+        columns[4] = { 'data': "specialty" }
+
+        // Crear la tabla utilizando DataTables
+        $("#tblDoctorInfo").dataTable({
+            "ajax": {
+                "url": urlService,
+                "dataSrc": ""
+            },
+            "columns": columns
+        });
+
+        $('#tblDoctorInfo tbody').on('click', 'tr', function () {
+
+            
+            var row = $(this).closest('tr');
+
+            var user = $('#tblDoctorInfo').DataTable().row(row).data();
+            
+            $("#doctorId").val(user.id);
+            $("#doctorname").val(user.name);
+            $("#doctorLastName").val(user.lastName);
+            $("#doctorEmail").val(user.email);
+            $("#doctorSpecialty").val(user.specialty);
+
+
+        });
+    }
+
+
+    this.UpdateSpecialty = function () {
+        var user = {};
+        user.Id = $("#doctorId").val();
+        user.name = $("#doctorname").val();
+        user.lastName = $("#doctorLastName").val();
+        user.email = $("#doctorEmail").val();
+        user.specialty = $("#doctorSpecialty").val();
+
+
+        // Invocar la API para actualizar el servicio
+        var ca = new ControlActions();
+        var serviceRoute = this.ApiService + "/UpdateDoctorSpecialty";
+
+        ca.PutToAPI(serviceRoute, user, function () {
+            console.log("Doctor Updated --->" + JSON.stringify(user));
+            $('#tblDoctorInfo').DataTable().ajax.reload();
+            $("#doctorId").val(""); 
+            $("#doctorname").val("");
+            $("#doctorLastName").val("");
+            $("#doctorEmail").val("");
+            $("#doctorSpecialty").val("");
+        });
+    }
+
+    
+    
+}
+
+
+
 
 $(document).ready(function () {
     var us = new UserInfoController();
@@ -250,5 +339,8 @@ $(document).ready(function () {
 
     var br = new AllBranchInfoController();
     br.InitViewAllBranch();
+
+    var dc = new DoctorInfoController();
+    dc.InitViewDoctor();
 
 })
