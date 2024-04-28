@@ -131,11 +131,21 @@
         $('#role').change(function () {
             var selectedRole = $('#role').val(); 
             self.GetUsersByRole(selectedRole);
+            $("#employeeId").val("");
+            $("#employeeName").val("");
+            $("#employeeLastName").val("");
         });
 
      
         var defaultRole = $('#role').val();
         this.GetUsersByRole(defaultRole);
+        $('#tblUserRole tbody').on('click', 'tr', function () {
+            var row = $(this).closest('tr');
+            var userData = $('#tblUserRole').DataTable().row(row).data();
+            $("#employeeId").val(userData.id);
+            $("#employeeName").val(userData.name);
+            $("#employeeLastName").val(userData.lastName);
+        });
     }
 
 

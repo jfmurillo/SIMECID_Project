@@ -29,5 +29,9 @@ namespace DTO
         [Required(ErrorMessage = "Address is required")]
         public string Address { get; set; }
 
+        public int BranchId { get; set; }
+
+        public string Schedule { get; set; }
+
     }
 }

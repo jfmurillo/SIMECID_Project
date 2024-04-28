@@ -163,7 +163,9 @@ namespace DataAccess.CRUD
                 Email = (string)row["EMAIL"],
                 Role = (string)row["ROLE"],
                 Province = (string)row["PROVINCE"],
-                Address = (string)row["ADDRESS"]
+                Address = (string)row["ADDRESS"],
+                BranchId = (int)row["BRANCH_ID"],
+                Schedule = (string)row["SCHEDULE"]
             };
             return userToReturn;
         }
