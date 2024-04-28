@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\js\Pages\MedicalReportManagment.js" />
     <Content Remove="wwwroot\js\Pages\PrescriptionManagment.js" />
   </ItemGroup>
 
@@ -16,6 +17,7 @@
 
   <ItemGroup>
     <None Include="wwwroot\Assets\LogoSIMECID.png" />
+    <None Include="wwwroot\js\Pages\MedicalReportManagment.js" />
     <None Include="wwwroot\js\Pages\PrescriptionManagment.js" />
   </ItemGroup>
 

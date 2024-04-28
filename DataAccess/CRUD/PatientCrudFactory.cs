@@ -94,7 +94,9 @@ namespace DataAccess.CRUD
                 BirthDate = (DateTime)row["BIRTHDATE"],
                 Role = (string)row["ROLE"],
                 Status = (string)row["STATUS"],
-                Created = (DateTime)row["CREATED"]
+                Created = (DateTime)row["CREATED"],
+                Province = (string)row["PROVINCE"],
+                Address = (string)row["ADDRESS"]
             };
             return patientToReturn;
         }

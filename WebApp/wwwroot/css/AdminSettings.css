@@ -1,3 +1,26 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
 /* ---- CLASES GENERALES ---*/
 
 :root {
@@ -71,7 +94,7 @@ p {
 .buttonUser {
     display: flex;
     margin-top: 1%;
-    padding: 2%;
+    padding: 10%;
     text-align: left;
     color: var(--whiteBackground);
     background-color: var(--greenMain-SideBar);
@@ -85,14 +108,15 @@ p {
 
 .containerUser {
     padding: 2%;
-    width: 100%;
+    width: 90%;
     display: flex;
+    justify-content: space-between; /* Para alinear los elementos en los extremos */
     align-items: center;
 }
 
 .userIcon {
-    width: 4vw;
-    height: 4vw;
+    width: 10px;
+    height: 10px;
     min-width: 40px;
     min-height: 40px;
     border-radius: 50%;
@@ -101,7 +125,7 @@ p {
 
 .userName {
     color: var(--whiteBackground);
-    margin: 5%;
+    margin: 15% 5% 5% 5%;
     font-size: 2vh;
 }
 
@@ -164,12 +188,13 @@ p {
 }
 
 .profileHeader {
-    background-image: url('../assets/1_Doctor_Taking_Notes.png');
+    background-image: url('../assets/SimecidHeader2.png');
     background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el encabezado */
     text-align: center;
     height: 30vh; /* Ajusta la altura del encabezado según sea necesario */
-    margin: 0;
+    margin-top: -2%;
 }
+
 
 .gestionDePerfilDeUsuario {
     text-align: center;

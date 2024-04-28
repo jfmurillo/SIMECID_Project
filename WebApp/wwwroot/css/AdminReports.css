@@ -1,24 +1,24 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
 
 /* ---- CLASES GENERALES ---*/
@@ -95,7 +95,7 @@ p {
 .buttonUser {
     display: flex;
     margin-top: 1%;
-    padding: 2%;
+    padding: 10%;
     text-align: left;
     color: var(--whiteBackground);
     background-color: var(--greenMain-SideBar);
@@ -109,14 +109,15 @@ p {
 
 .containerUser {
     padding: 2%;
-    width: 100%;
+    width: 90%;
     display: flex;
+    justify-content: space-between; /* Para alinear los elementos en los extremos */
     align-items: center;
 }
 
 .userIcon {
-    width: 4vw;
-    height: 4vw;
+    width: 10px;
+    height: 10px;
     min-width: 40px;
     min-height: 40px;
     border-radius: 50%;
@@ -125,7 +126,7 @@ p {
 
 .userName {
     color: var(--whiteBackground);
-    margin: 5%;
+    margin: 15% 5% 5% 5%;
     font-size: 2vh;
 }
 
@@ -184,13 +185,16 @@ p {
 
 /*------- CLASES PARA EL CONTENIDO PRINCIPAL -----*/
 
+
+
 .main-content {
-    width: 100%;
+    width: 90%; /* Cambia el ancho al 80% */
     margin-left: 10%;
 }
 
+
 .profileHeader {
-    background-image: url('headerpic.png');
+    background-image: url('../assets/SimecidHeader1.png');
     background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el encabezado */
     text-align: center;
     height: 30vh; /* Ajusta la altura del encabezado según sea necesario */
@@ -207,13 +211,14 @@ p {
 
 .gestionDePerfilDeUsuario {
     margin-top: 5%;
+    margin-left:5%;
     text-align: center;
 }
 
 .form-container {
     max-width: 30%;
-    margin: 0 auto;
     padding: 2%;
+    margin: 2% 35% 2%;
 }
 
 .sign-up-form {
