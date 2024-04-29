@@ -70,6 +70,24 @@ namespace CoreApp
             return pc.RetrieveById<Patient>(patientId);
         }
 
+        public Patient RetrieveIdByEmail(string email)
+        {
+            var pc = new PatientCrudFactory();
+            List<Patient> patients = pc.RetrieveIdByEmail<Patient>(email);
+
+            // Suponiendo que solo quieres el primer paciente encontrado
+            if (patients.Count > 0)
+            {
+                return patients[0];
+            }
+            else
+            {
+                // Manejo de caso en el que no se encuentra ningún paciente
+                return null; // O podrías lanzar una excepción, dependiendo de tus necesidades
+            }
+        }
+
+
         public void Update(Patient patient)
         {
             var pc = new PatientCrudFactory();

@@ -79,6 +79,29 @@ namespace DataAccess.CRUD
             _dao.ExecuteProcedure(sqlOperation);
         }
 
+        public List<T> RetrieveIdByEmail<T>(string Email)
+        {
+            var lstAppts = new List<T>();
+            var sqlOperation = new SqlOperation() { ProcedureName = "RET_PATIENTID_BY_EMAIL" };
+            sqlOperation.AddVarcharParam("@P_PATIENT_EMAIL", Email); // Corregido el nombre del parámetro
+
+            var lstResults = _dao.ExecuteQueryProcedure(sqlOperation);
+
+            if (lstResults.Count > 0)
+            {
+                // Recorre cada fila en la lista de resultados
+                foreach (var row in lstResults)
+                {
+                    var appt = BuildIdByEmail(row);
+
+                    // Esta conversión es necesaria porque la lista está definida como List<T>.
+                    lstAppts.Add((T)Convert.ChangeType(appt, typeof(T)));
+                }
+            }
+
+            // Retorna la lista final que contiene objetos del tipo T
+            return lstAppts;
+        }
 
         private Patient BuildPatient(Dictionary<string, object> row)
         {
@@ -97,6 +120,16 @@ namespace DataAccess.CRUD
                 Created = (DateTime)row["CREATED"],
                 Province = (string)row["PROVINCE"],
                 Address = (string)row["ADDRESS"]
+            };
+            return patientToReturn;
+        }
+
+        private Patient BuildIdByEmail(Dictionary<string, object> row)
+        {
+            var patientToReturn = new Patient()
+            { 
+                Id = (int)row["PATIENT_ID"]
+                
             };
             return patientToReturn;
         }

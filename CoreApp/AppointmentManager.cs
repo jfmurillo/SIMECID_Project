@@ -40,6 +40,12 @@ namespace CoreApp
             aptc.Delete(appointment);
         }
 
+        public List<Appointment> RetrieveAppointmentsByEmail(string userEmail)
+        {
+            var pc = new AppointmentCrudFactory();
+            return pc.RetrieveAppointmentsByEmail<Appointment>(userEmail);
+        }
+
         public List<Appointment> RetrieveAppointmentsByUserEmail(string userEmail)
         {
             var pc = new AppointmentCrudFactory();
