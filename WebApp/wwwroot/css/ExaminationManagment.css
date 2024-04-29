@@ -218,9 +218,13 @@ th {
     background-color: rgba(255, 255, 255, 0.075);
 }
 
+.tabbleMedicalExam{
+    margin-left: 10%;
+}
+
 
 .profileHeader {
-    background-image: url('../assets/SimecidHeader2.png');
+    background-image: url('../assets/simecidheader2.png');
     background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el encabezado */
     text-align: center;
     height: 30vh; /* Ajusta la altura del encabezado según sea necesario */
@@ -238,7 +242,7 @@ th {
 
 .gestionDePerfilDeUsuario {
     text-align: center;
-    padding-left: 18%;
+    padding: 0% 10% 0% 20%;
 }
 
 .form-container {
@@ -305,16 +309,10 @@ th {
     transition: background-color 0.3s;
     font-family: "Montserrat", sans-serif;
 }
-
     .btn:hover {
         background-color: var(--greenLight1);
     }
-
-
-
   
  .classDisplayFlex{
-
      display: flex;
-
  }
