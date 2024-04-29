@@ -245,6 +245,11 @@ th {
     padding: 0% 10% 0% 20%;
 }
 
+    .gestionDePerfilDeUsuario .row {
+        margin-bottom: 20px; /* Ajusta este valor según el espacio que desees agregar */
+    }
+
+
 .form-container {
     max-width: 100%;
     margin: 10% 35%;
