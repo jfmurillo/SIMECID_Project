@@ -222,7 +222,7 @@ function UserInfoController() {
             //Extraer la data del registro contenido en la fila
             var patient = $('#tblUserInfo').DataTable().row(row).data();
 
-            var userIdWithName = patient.id + ' - ' + patient.name + '  ' + patient.lastName;
+            var userIdWithName = patient.id
 
             // Establecer el valor del campo TxtUserId con la cadena creada
             $("#patientId").val(userIdWithName);
@@ -278,7 +278,7 @@ function DoctorInfoController() {
             //Extraer la data del registro contenido en la fila
             var doctor = $('#tblDoctorInfo').DataTable().row(row).data();
 
-            var doctorIdWithName = doctor.id + ' - ' + doctor.name + '  ' + doctor.lastName;
+            var doctorIdWithName = doctor.id
 
             // Establecer el valor del campo TxtUserId con la cadena creada
             $("#doctorId").val(doctorIdWithName);

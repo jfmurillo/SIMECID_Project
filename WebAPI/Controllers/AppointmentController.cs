@@ -62,6 +62,22 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
+        [Route("RetrieveAllByEmail")]
+        public ActionResult RetrieveAppointmentsByEmail(string userEmail)
+        {
+            try
+            {
+                var aptc = new AppointmentCrudFactory();
+                var lastAppointments = aptc.RetrieveAppointmentsByEmail<Appointment>(userEmail);
+                return Ok(lastAppointments);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpGet]
         [Route("RetrieveAllByUserEmail")]
         public ActionResult RetrieveAppointmentsByUserEmail(string userEmail)
         {

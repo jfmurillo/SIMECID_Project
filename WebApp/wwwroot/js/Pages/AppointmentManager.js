@@ -6,20 +6,28 @@
     this.InitView = function () {
         console.log("appointment view init");
 
+        var self = this;
 
         // Bind del click del botón create con la función correspondiente
-        $("#btnCreate").click(function () {
-            var vc = new AppointmentController();
-            vc.Create();
+        $("#btnCreate").click(function (event) {
+            // Prevenir que el botón cause la recarga de la página
+            event.preventDefault();
+
+            // Llamar a la función Create del contexto actual
+            self.Create();
         });
 
-        $("#btnUpdate").click(function () {
-            var vc = new AppointmentController();
-            vc.Update();
+        $("#btnUpdate").click(function (event) {
+            event.preventDefault();
+
+            // Llamar a la función Create del contexto actual
+            self.Update();
         });
-        $("#btnDelete").click(function () {
-            var vc = new AppointmentController();
-            vc.Delete();
+        $("#btnDelete").click(function (event) {
+            event.preventDefault();
+
+            // Llamar a la función Create del contexto actual
+            self.Delete();
         });
 
         this.loadTable();
@@ -28,23 +36,28 @@
 
     this.Create = function () {
         try {
+            // Obtener el correo electrónico de la URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const email = urlParams.get("email");
+
             // Crear un dto
             var appointment = {};
 
             appointment.patientId = 15;
             appointment.patientName = "Default";
             appointment.patientLastName = "Default";
-            appointment.doctorId = 16; //Cambio doctor
+            appointment.doctorId = 26; // Cambio doctor
             appointment.doctorName = "Default";
             appointment.doctorLastName = "Default";
             appointment.serviceId = $("#ServiceId").val();
             appointment.serviceName = "Default";
             appointment.branchId = $("#BranchId").val();
             appointment.branchName = "Default";
-            appointment.startTime = $("#startTime").val(); // Format date here
+            appointment.startTime = $("#startTime").val(); // Formato de fecha aquí
             appointment.endTime = $("#startTime").val();
             appointment.text = $("#txtReason").val();
             appointment.status = $("#txtStatus").val();
+            appointment.userEmail = email; // Agregar el campo de correo electrónico
 
             // Invocar al API
             var ca = new ControlActions();
@@ -52,14 +65,19 @@
 
             ca.PostToAPI(serviceRoute, appointment, function () {
                 console.log("Appointment Created --->" + JSON.stringify(appointment));
+                $('#tblAppointments').DataTable().ajax.reload();
             });
         } catch (error) {
             console.error("Error occurred while creating appointment:", error);
         }
     };
 
+    // Obtener el correo electrónico de la URL
+    
 
     this.Update = function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const email = urlParams.get("email");
 
         // crear un dto
         var appointment = {};
@@ -78,6 +96,7 @@
         appointment.endTime = $("#txtStartTime").val();
         appointment.text = $("#text").val();
         appointment.status = $("#status").val();
+        appointment.userEmail = email; // Agregar el campo de correo electrónico
 
         // invocar al api
 
@@ -86,6 +105,7 @@
 
         ca.PutToAPI(serviceRoute, appointment, function () {
             console.log("Appointment Updated --->" + JSON.stringify(appointment));
+            $('#tblAppointments').DataTable().ajax.reload();
         })
     }
 
@@ -108,6 +128,7 @@
         appointment.endTime = formatDate($("#txtStartTime").val());
         appointment.text = $("#text").val();
         appointment.status = $("#status").val();
+        appointment.userEmail = "defautl";
 
 
         // invocar al api
@@ -117,6 +138,7 @@
 
         ca.DeleteToAPI(serviceRoute, appointment, function () {
             console.log("Appointment Deleted --->" + JSON.stringify(appointment));
+            $('#tblAppointments').DataTable().ajax.reload();
         })
     }
 

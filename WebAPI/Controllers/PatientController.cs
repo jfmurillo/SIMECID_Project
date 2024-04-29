@@ -53,6 +53,30 @@ namespace WebAPI.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("RetrieveIdByEmail")]
+        public ActionResult RetrieveIdByEmail(string email)
+        {
+            try
+            {
+                var pm = new PatientManager();
+                var patient = pm.RetrieveIdByEmail(email);
+
+                if (patient != null)
+                {
+                    return Ok(patient);
+                }
+                else
+                {
+                    return NotFound("Patient not found");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
         [HttpPost]
         [Route("Create")]
         public ActionResult Create(Patient patient)
