@@ -133,5 +133,30 @@ namespace DataAccess.CRUD
         {
             throw new NotImplementedException();
         }
+
+        public List<T> RetrieveMedicalExamByEmail<T>(string userEmail)
+        {
+            var lstAppts = new List<T>();
+            var sqlOperation = new SqlOperation() { ProcedureName = "RET_MEDICAL_EXAM_BY_EMAIL" };
+            sqlOperation.AddVarcharParam("P_USER_EMAIL", userEmail); // Corregido el nombre del parámetro
+
+            var lstResults = _dao.ExecuteQueryProcedure(sqlOperation);
+
+            if (lstResults.Count > 0)
+            {
+                // Recorre cada fila en la lista de resultados
+                foreach (var row in lstResults)
+                {
+                    var appt = BuildExam(row);
+
+                    // Esta conversión es necesaria porque la lista está definida como List<T>.
+                    lstAppts.Add((T)Convert.ChangeType(appt, typeof(T)));
+                }
+            }
+
+            // Retorna la lista final que contiene objetos del tipo T
+            return lstAppts;
+        }
+
     }
 }

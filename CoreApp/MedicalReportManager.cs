@@ -52,6 +52,12 @@ namespace CoreApp
             return mr.RetrieveAll<MedicalReport>();
         }
 
+        public List<MedicalReport> RetrieveMedicalReportByEmail(string userEmail)
+        {
+            var pc = new MedicalReportCrudFactory();
+            return pc.RetrieveMedicalReportByEmail<MedicalReport>(userEmail);
+        }
+
 
     }
 }

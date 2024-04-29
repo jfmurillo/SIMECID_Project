@@ -75,5 +75,23 @@ namespace WebAPI.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("RetrieveByEmail")]
+        public ActionResult RetrieveMedicalReportByEmail(string userEmail)
+        {
+            try
+            {
+                var aptc = new MedicalReportCrudFactory();
+                var lastMedicalReport = aptc.RetrieveMedicalReportByEmail<MedicalReport>(userEmail);
+                return Ok(lastMedicalReport);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+
+
     }
 }
