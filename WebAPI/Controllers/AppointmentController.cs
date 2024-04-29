@@ -62,7 +62,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        [Route("RetrieveAllByEmail")]
+        [Route("RetrieveByEmail")]
         public ActionResult RetrieveAppointmentsByEmail(string userEmail)
         {
             try
