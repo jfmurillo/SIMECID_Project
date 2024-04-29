@@ -29,10 +29,11 @@
 
 
 <!------- SIDEBAR ------>
+<<!------- SIDEBAR ------>
 <div class="sidebar">
     <!------- Logo y titulo ------>
     <div class="containerLogo">
-        <img src="~/Assets/LogoSIMECID.png" class="logoMini" />
+        <img src="/Assets/LogoSIMECID.png" class="logoMini" />
     </div>
     <!------- Icono y nombre del usuario, e icono de settings------>
     <div class="containerUser">
@@ -73,22 +74,25 @@
         <h1 class="fontTitle">Medical Report History</h1>
 
 
-            <!--Aca tabla appointments history tabla-->
-            <div class="row" style="margin-left: 20%">
-                <div class="col-lg-12">
-                    <table id="" class="table table-hover" class="display" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>B</th>
-                                <th>N</th>
-                                <th>A</th>
-                                <th>D</th>                       
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-            </div>  
-     </div>
+        <!--Aca tabla appointments history tabla-->
+        <div class="row" style="margin-left: 20%">
+            <div class="col-lg-12">
+                <table id="tblMedicalReport" class="table table-hover" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Patient Id</th>
+                            <th>Name</th>
+                            <th>LastName</th>
+                            <th>Medical History</th>
+                            <th>Medical Notes</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -98,13 +102,14 @@
         <!--Aca tabla service history tabla-->
         <div class="row" style="margin-left: 20%">
             <div class="col-lg-12">
-                <table id="" class="table table-hover" class="display" style="width:100%">
+                <table id="tblDiagnostic" class="table table-hover" class="display" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Example</th>
-                            <th>Example</th>
-                            <th>Example</th>
-                            <th>Example</th>
+                            <th>Id</th>
+                            <th>Patient Id</th>
+                            <th>Diagnose Name</th>
+                            <th>Date</th>
+                            <th>Description</th>
                         </tr>
                     </thead>
                 </table>
