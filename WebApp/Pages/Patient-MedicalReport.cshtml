@@ -69,11 +69,83 @@
 
 </div>
 
+
+<!--CONTENIDO PRINCIPAL-->
 <body class="main-content">
 
     <div class="profileHeader">
     </div>
- 
+
+    <div class="gestionDePerfilDeUsuario" style="margin-top:5%">
+        <h1 class="fontTitle">Patient Details</h1>
+
+        <!--Aca tabla service history tabla-->
+        <div class="row" style="margin-left: 10%; margin-right:5%">
+            <div class="col-lg-12">
+                <table id="tblPatientInfo" class="table table-hover" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Last Name</th>
+                            <th>PhoneNumber</th>
+                            <th>Email</th>
+                            <th>Gender</th>
+                            <th>Province</th>
+                            <th>Address</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="gestionDePerfilDeUsuario">
+        <form class="form-container">
+            <h1 class="fontTitle">Manage Record</h1>
+
+            <div class="sign-up-form">
+                <label for="medicalReportId">Medical Report Id</label><br>
+                <input type="text" id="TxtmedicalReportId" name="medicalReportId" required><br><br>
+            </div>
+            <div class="sign-up-form">
+                <label for="patientId">Patient Id</label><br>
+                <input type="text" id="patientId" name="patientId" required><br><br>
+            </div>
+
+            <div class="sign-up-form">
+                <label for="patientName">Patient Name</label><br>
+                <input type="text" id="patientName" name="patientName" required><br><br>
+            </div>
+
+            <div class="sign-up-form">
+                <label for="patientLastName">Patient LastName</label><br>
+                <input type="text" id="patientLastName" name="patientLastName" required><br><br>
+            </div>
+
+            <div class="sign-up-form">
+                <label for="medicalHistory">Medical history</label><br>
+                <textarea id="txtMedicalHistory" name="medicalHistory" required></textarea><br><br>
+            </div>
+
+            <div class="sign-up-form">
+                <label for="medicalNotes">Medical notes</label><br>
+                <textarea id="txtMedicalNotes" name="medicalNotes" required></textarea><br><br>
+            </div>
+
+            <div class="sign-up-form">
+                <label class="birthdate" for="date">Date</label><br>
+                <input type="date" id="txtDate" name="date" required><br><br>
+            </div>
+
+            <div style="display:flex">
+                <button class="btn" type="button" id="btnCreate" style="margin-top: 6%">Create</button>
+                <button class="btn" type="button" id="btnUpdate" style="margin-top: 6%">Update</button>
+                <button class="btn" type="button" id="btnDelete" style="margin-top: 6%">Delete</button>
+            </div>
+        </form>
+    </div>
+
     <div class="gestionDePerfilDeUsuario">
         <h1 class="fontTitle">Medical Report History</h1>
 
@@ -104,7 +176,9 @@
         <h1 class="fontTitle">Diagnostic History</h1>
 
         <!--Aca tabla service history tabla-->
+
         <div class="row" style="margin-left: 10%">
+
             <div class="col-lg-12">
                 <table id="tblDiagnostic" class="table table-hover" class="display" style="width:100%">
                     <thead>
@@ -120,7 +194,6 @@
             </div>
         </div>
     </div>
-
     <div class="gestionDePerfilDeUsuario" style="margin-top:5%; margin-right:5%">
         <h1 class="fontTitle">Exam History</h1>
 
@@ -143,9 +216,6 @@
                     </thead>
                 </table>
             </div>
-        </div>
-    </div>
-
     <div class="gestionDePerfilDeUsuario" style="margin-top:5%; margin-right:5%">
         <h1 class="fontTitle">Prescription History</h1>
 
