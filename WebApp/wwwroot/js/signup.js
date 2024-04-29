@@ -161,7 +161,12 @@ function EmailController2() {
     };
 }
 
-    $(document).ready(function () {
+$(document).ready(function () {
+    window.history.pushState(null, "", window.location.href);
+    window.onpopstate = function () {
+        window.history.pushState(null, "", window.location.href);
+    };
+
         var ec = new SignUpController();
         ec.InitView();
     });
