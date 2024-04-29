@@ -8,5 +8,8 @@ namespace WebApp.Pages
         public void OnGet()
         {
         }
+
+        public string Email { get; set; }
+
     }
 }
