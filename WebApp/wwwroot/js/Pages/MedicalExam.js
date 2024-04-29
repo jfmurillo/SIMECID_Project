@@ -163,24 +163,30 @@ function MedicalExamController() {
     };
 
     this.Update = function () {
-
         var medicalExam = {};
 
         medicalExam.id = $("#TxtmedicalExamId").val();
         medicalExam.patientId = $("#patientId").val();
         medicalExam.examtype = $("#TxtexamType").val();
-        medicalExam.examDate = $("#TxtexamDate").val();
-        medicalExam.details = $("#Txtdetails").val();
+
+        // Obtener la fecha y hora del campo datetime-local
+        var examDateTime = $("#TxtexamDate").val();
+
+        // Si necesitas manipular la fecha y hora antes de enviarla al servidor, puedes hacerlo aquí
+
+        medicalExam.examDate = examDateTime; // La fecha y hora se envían tal como están
+
         medicalExam.weight = $("#Txtweight").val();
         medicalExam.size = $("#Txtsize").val();
         medicalExam.bodyMass = $("#TxtbodyMass").val();
+        medicalExam.details = $("#Txtdetails").val();
         medicalExam.result = $("#Txtresult").val();
 
-        // Invocar Api
+        // Invocar API
         var ca = new ControlActions();
         var serviceRoute = this.ApiService + "/Update";
 
-        ca.PostToAPI(serviceRoute, medicalExam, function () {
+        ca.PutToAPI(serviceRoute, medicalExam, function () {
             console.log("Medical Exam Updated --->" + JSON.stringify(medicalExam));
             $('#tblMedicalExam').DataTable().ajax.reload();
         });

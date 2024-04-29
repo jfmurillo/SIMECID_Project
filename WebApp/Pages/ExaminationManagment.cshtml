@@ -127,16 +127,6 @@
             </div>
 
             <div class="sign-up-form">
-                <label for="patientName">Patient Name</label><br>
-                <input type="text" id="patientName" name="patientName" required><br><br>
-            </div>
-
-            <div class="sign-up-form">
-                <label for="patientLastName">Patient LastName</label><br>
-                <input type="text" id="patientLastName" name="patientLastName" required><br><br>
-            </div>
-
-            <div class="sign-up-form">
                 <label for="Id">Examn Id</label><br>
                 <input type="number" id="TxtmedicalExamId" name="Id" required><br><br>
             </div>
@@ -173,7 +163,7 @@
             <!--Aqui pide la fecha que no se pueda en el pasado-->
             <div class="sign-up-form">
                 <label class="birthdate" for="date">Date</label><br>
-                <input type="date" id="TxtexamDate" name="date" required><br><br>
+                <input type="datetime-local" id="TxtexamDate" name="date" required><br><br>
             </div>
             <script>
                 // Obtener la fecha de hoy en formato yyyy-mm-dd
