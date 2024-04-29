@@ -1,4 +1,5 @@
 ﻿using CoreApp;
+using DataAccess.CRUD;
 using DTO;
 using Microsoft.AspNetCore.Mvc;
 
@@ -72,6 +73,22 @@ namespace WebAPI.Controllers
                 return StatusCode(500, ex.Message);
             }
 
+        }
+
+        [HttpGet]
+        [Route("RetrieveByEmail")]
+        public ActionResult RetrievePrescriptionByEmail(string userEmail)
+        {
+            try
+            {
+                var aptc = new PrescriptionCrudFactory();
+                var lastPrescription = aptc.RetrievePrescriptionByEmail<Prescription>(userEmail);
+                return Ok(lastPrescription);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
     }
 }

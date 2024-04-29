@@ -77,5 +77,21 @@ namespace WebAPI.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("RetrieveByEmail")]
+        public ActionResult RetrieveDiagnosticByEmail(string userEmail)
+        {
+            try
+            {
+                var aptc = new DiagnosticCrudFactory();
+                var lastDiagnostic = aptc.RetrieveDiagnosticByEmail<Diagnostic>(userEmail);
+                return Ok(lastDiagnostic);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
     }
 }

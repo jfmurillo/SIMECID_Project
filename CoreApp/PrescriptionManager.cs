@@ -39,5 +39,11 @@ namespace CoreApp
             var pc = new PrescriptionCrudFactory();
             return pc.RetrieveById<Prescription>(prescriptionId);
         }
+
+        public List<Prescription> RetrievePrescriptionByEmail(string userEmail)
+        {
+            var pc = new PrescriptionCrudFactory();
+            return pc.RetrievePrescriptionByEmail<Prescription>(userEmail);
+        }
     }
 }

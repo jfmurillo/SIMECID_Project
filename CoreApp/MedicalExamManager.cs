@@ -50,5 +50,11 @@ namespace CoreApp
 
             return me.RetrieveAll<MedicalExam>();
         }
+
+        public List<MedicalExam> RetrieveMedicalExamByEmail(string userEmail)
+        {
+            var pc = new MedicalExamCrudFactory();
+            return pc.RetrieveMedicalExamByEmail<MedicalExam>(userEmail);
+        }
     }
 }

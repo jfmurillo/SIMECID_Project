@@ -24,6 +24,10 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/controlactions.js"></script>
 
+    <script src="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.css" />
+    <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
+
 </head>
 
 
@@ -154,8 +158,8 @@
                         <tr>
                             <th>Id</th>
                             <th>Patient Id</th>
-                            <th>Name</th>
-                            <th>LastName</th>
+                            <th>Patient Name</th>
+                            <th>Patient LastName</th>
                             <th>Medical History</th>
                             <th>Medical Notes</th>
                             <th>Date</th>
@@ -168,11 +172,13 @@
 
 
 
-    <div class="gestionDePerfilDeUsuario" style="margin-top:5%">
+    <div class="gestionDePerfilDeUsuario" style="margin-top:5%; margin-right:5%">
         <h1 class="fontTitle">Diagnostic History</h1>
 
         <!--Aca tabla service history tabla-->
-        <div class="row" style="margin-left: 10%; margin-right:5%">
+
+        <div class="row" style="margin-left: 10%">
+
             <div class="col-lg-12">
                 <table id="tblDiagnostic" class="table table-hover" class="display" style="width:100%">
                     <thead>
@@ -188,43 +194,52 @@
             </div>
         </div>
     </div>
+    <div class="gestionDePerfilDeUsuario" style="margin-top:5%; margin-right:5%">
+        <h1 class="fontTitle">Exam History</h1>
 
-    <div class="gestionDePerfilDeUsuario">
-        <form class="form-container">
-            <h1 class="fontTitle">Diagnosis</h1>
-
-            <div class="sign-up-form">
-                <label for="diagnosticId">Diagnostic Id</label><br>
-                <input type="text" id="TxtdiagnosticId" name="diagnosticId" required><br><br>
+        <!--Aca tabla service history tabla-->
+        <div class="row" style="margin-left: 10%;">
+            <div class="col-lg-12">
+                <table id="tblMedicalExam" class="table table-hover" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Patient Id</th>
+                            <th>Exam Type</th>
+                            <th>Exam Date</th>
+                            <th>Details</th>
+                            <th>Weight</th>
+                            <th>Size</th>
+                            <th>Body Mass</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                </table>
             </div>
+    <div class="gestionDePerfilDeUsuario" style="margin-top:5%; margin-right:5%">
+        <h1 class="fontTitle">Prescription History</h1>
 
-            <div class="sign-up-form">
-                <label for="patientId">Patient id</label><br>
-                <input type="text" id="TxtPatientId" name="patientdId" required><br><br>
+        <!--Aca tabla service history tabla-->
+        <div class="row" style="margin-left: 10%;">
+            <div class="col-lg-12">
+                <table id="tblPrescriptions" class="table table-hover" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Patient Id</th>
+                            <th>Doctor Id</th>
+                            <th>Prescription Name</th>
+                            <th>Medication Name</th>
+                            <th>Prescription Date</th>
+                            <th>Recommendations</th>
+                            <th>Uploaded File</th>
+                        </tr>
+                    </thead>
+                </table>
             </div>
-
-            <div class="sign-up-form">
-                <label for="diagnoseName">Diagnose name</label><br>
-                <input type="text" id="TxtDiagnoseName" name="diagnoseName" required><br><br>
-            </div>
-
-            <div class="sign-up-form">
-                <label class="birthdate" for="date">Date</label><br>
-                <input type="date" id="TxtDate" name="date" required><br><br>
-            </div>
-
-            <div class="sign-up-form">
-                <label for="description">Description</label><br>
-                <textarea id="TxtDescription" name="description" required></textarea><br><br>
-            </div>
-
-            <div style="display:flex">
-                <button class="btn" type="button" id="btnCreateDiagnostic" style="margin-top: 6%">Create</button>
-                <button class="btn" type="button" id="btnUpdateDiagnostic" style="margin-top: 6%">Update</button>
-                <button class="btn" type="button" id="btnDeleteDiagnostic" style="margin-top: 6%">Delete</button>
-            </div>
-        </form>
-
+        </div>
+    </div>
+    <script src="~/js/pages/patientmedicalreport.js"></script>
     <script src="~/js/redirect/patientredirect.js"></script>
     <script src="~/js/pages/patientdata.js"></script>
 </body>

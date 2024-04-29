@@ -74,5 +74,21 @@ namespace WebAPI.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+
+        [HttpGet]
+        [Route("RetrieveByEmail")]
+        public ActionResult RetrieveMedicalExamByEmail(string userEmail)
+        {
+            try
+            {
+                var aptc = new MedicalExamCrudFactory();
+                var lastMedicalExam = aptc.RetrieveMedicalExamByEmail<MedicalExam>(userEmail);
+                return Ok(lastMedicalExam);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
     }
 }

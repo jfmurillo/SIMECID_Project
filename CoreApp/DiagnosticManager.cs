@@ -52,5 +52,11 @@ namespace CoreApp
             return dg.RetrieveAll<Diagnostic>();
         }
 
+        public List<Diagnostic> RetrieveDiagnosticByEmail(string userEmail)
+        {
+            var pc = new DiagnosticCrudFactory();
+            return pc.RetrieveDiagnosticByEmail<Diagnostic>(userEmail);
+        }
+
     }
 }
