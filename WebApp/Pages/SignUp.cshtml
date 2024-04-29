@@ -65,6 +65,9 @@
                 <div class="sign-up-form">
                     <label for="password">Password</label><br>
                     <input type="password" id="txtPassword" name="password" required><br><br>
+                    <span style="margin-left:-3%" class="toggle-password" onclick="togglePasswordVisibility()">
+                        <i class="fas fa-eye" id="eyeIcon"></i>
+                    </span>
                 </div>
 
                 <div class="sign-up-form">
@@ -114,5 +117,23 @@
         </div>
     </div>
 	<script src="~/js/imagesavesignup.js"></script>
+
+    <script>
+        // Función para mostrar u ocultar la contraseña
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById("txtPassword");
+            var eyeIcon = document.getElementById("eyeIcon");
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                eyeIcon.classList.remove("fa-eye");
+                eyeIcon.classList.add("fa-eye-slash");
+            } else {
+                passwordInput.type = "password";
+                eyeIcon.classList.remove("fa-eye-slash");
+                eyeIcon.classList.add("fa-eye");
+            }
+        }
+    </script>
 </body>
 </html>
