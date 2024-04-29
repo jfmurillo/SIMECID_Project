@@ -162,11 +162,17 @@ p {
 }
 
 /*------- CLASES PARA EL CONTENIDO PRINCIPAL -----*/
-
 .main-content {
     flex: center;
     width: 70%;
     margin-left: 20%;
+}
+
+.profileHeader {
+    background-image: url('../assets/simecidheader2.png');
+    background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el encabezado */
+    text-align: center;
+    height: 30vh; /* Ajusta la altura del encabezado según sea necesario */
 }
 
 table {

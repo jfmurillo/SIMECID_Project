@@ -81,7 +81,9 @@
 </div>
 
 <!------- CONTENIDO PRINCIPAL --------->
-<body class="main-content" style="align-content: center; align-items:center; margin-left:25%">
+<body class="main-content">
+    <div class="profileHeader">
+    </div>
     <div class="gestionDeCitas">
         <h1 class="fontTitle">Make your appointments</h1>
         <div class="row">
@@ -160,31 +162,34 @@
         </form>
 
     </div>
-    
+
+    <!--CALENDARIO-->
     <div>
-        <div style="display: flex">
 
-            <div style="margin-right: 10px;">
-                <div id="nav"></div>
-            </div>
-
-            <div style="flex-grow: 1;">
-
-                <div class="toolbar">
-                    Theme: <select id="theme">
-                        <option value="calendar_default">Default</option>
-                        <option value="calendar_white" selected>White</option>
-                        <option value="calendar_green">Green</option>
-                        <option value="calendar_traditional">Traditional</option>
-                        <option value="calendar_transparent">Transparent</option>
-                    </select>
+        <div class="calendarAndTable">
+            <div style="display: flex">
+                <div style="margin-right: 10px;">
+                    <div id="nav"></div>
                 </div>
+                <div style="flex-grow: 1;">
 
-                <div id="dp"></div>
+                    <div class="toolbar">
+                        Theme: <select id="theme">
+                            <option value="calendar_default">Default</option>
+                            <option value="calendar_white" selected>White</option>
+                            <option value="calendar_green">Green</option>
+                            <option value="calendar_traditional">Traditional</option>
+                            <option value="calendar_transparent">Transparent</option>
+                        </select>
+                    </div>
+                    <div id="dp"></div>
+                </div>
             </div>
 
         </div>
-        <div class="table-container">
+
+        <!--TABLA DE APPOINTMENTS-->
+        <div class="tableContainer">
             <p>Select your Appointment</p>
             <table id="tblAppointments">
                 <thead>
@@ -208,11 +213,11 @@
                 </thead>
             </table>
         </div>
-        
+
         <form class="form-container" style="margin-left:43%">
             <div>
                 <label for="txtId">Appointment ID</label><br />
-                <input type="number" id="txtId" name="txtAppointmentId"/>
+                <input type="number" id="txtId" name="txtAppointmentId" />
             </div><br />
             <div>
                 <label for="txtPatientId">Patient ID</label><br />
@@ -277,6 +282,7 @@
         </form>
 
     </div>
+
 
     <script src="~/lib/daypilot/daypilot-all.min.js" asp-append-version="true"></script>
 	<script src="~/js/pages/calendar.js"></script>
