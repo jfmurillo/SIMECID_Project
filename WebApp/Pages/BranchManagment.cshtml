@@ -29,29 +29,6 @@
     <script src="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.js"></script>
     <script defer src="~/js/pages/BranchManagment.js"></script>
 
-    <script>
-        // Función para actualizar el mapa con la dirección proporcionada
-        function updateMap() {
-            // Obtener la dirección ingresada por el usuario
-            var address = document.getElementById('TxtAddress').value;
-
-            // Obtener la clave de API de Google Maps
-            var apiKey = 'AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik';
-
-            // Construir la URL del mapa de Google Maps con la dirección y la clave de API
-            var mapUrl = 'https://www.google.com/maps/embed/v1/place?q=' + encodeURIComponent(address) + '&key=' + apiKey;
-
-            // Actualizar el atributo 'src' del iframe con la nueva URL del mapa
-            $('.ClassMap').attr('src', mapUrl);
-        }
-
-        // Asociar la función updateMap al evento click de los botones Register y Update
-        $(document).ready(function () {
-            $('#btnCreate, #btnUpdate').click(function () {
-                updateMap();
-            });
-        });
-    </script>
 
 </head>
 
@@ -177,7 +154,7 @@
 
             <div class="SubCont-Mapa">
                 <!-- Mapa incrustado -->
-                <iframe class="ClassMap" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <iframe class="ClassMap" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3930.0308996927915!2d-84.06672232496979!3d9.93138459017052!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0e3f13462cc7b%3A0x97219232a6ee2da8!2sUniversidad%20CENFOTEC!5e0!3m2!1ses!2scr!4v1714439351707!5m2!1ses!2scr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
 
