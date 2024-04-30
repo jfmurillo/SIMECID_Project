@@ -30,50 +30,38 @@
             self.Delete();
         });
 
-        this.loadTable();
+        this.loadTableAdmin();
 
     };
 
     this.Create = function () {
         try {
-            // Obtener el correo electrónico de la URL
-            const urlParams = new URLSearchParams(window.location.search);
-            const email = urlParams.get("email");
+            // Crear un dto
+            var appointment = {};
 
-            // Hacer una solicitud AJAX GET para obtener el patientId asociado al email
+            appointment.patientId = 27;
+            appointment.patientName = "Default";
+            appointment.patientLastName = "Default";
+            appointment.doctorId = 26; //Cambio doctor
+            appointment.doctorName = "Default";
+            appointment.doctorLastName = "Default";
+            appointment.serviceId = $("#ServiceId").val();
+            appointment.serviceName = "Default";
+            appointment.branchId = $("#BranchId").val();
+            appointment.branchName = "Default";
+            appointment.startTime = $("#startTime").val(); // Format date here
+            appointment.endTime = $("#startTime").val();
+            appointment.text = $("#txtReason").val();
+            appointment.status = $("#txtStatus").val();
+            appointment.userEmail = "admin@admin.com";
+
+            // Invocar al API
             var ca = new ControlActions();
-            var patientUrl = ca.GetUrlApiService("Patient/RetrieveIdByEmail?email=" + email); // Cambia la ruta según tu API
-            $.get(patientUrl, function (data) {
-                // Verificar si se obtuvo el paciente correctamente
-                if (data && data.id) {
-                    // Crear un dto para la cita con el patientId obtenido
-                    var appointment = {
-                        patientId: data.id,
-                        patientName: "Default",
-                        patientLastName: "Default",
-                        doctorId: 26, // Cambio doctor
-                        doctorName: "Default",
-                        doctorLastName: "Default",
-                        serviceId: $("#ServiceId").val(),
-                        serviceName: "Default",
-                        branchId: $("#BranchId").val(),
-                        branchName: "Default",
-                        startTime: $("#startTime").val(), // Formato de fecha aquí
-                        endTime: $("#startTime").val(),
-                        text: $("#txtReason").val(),
-                        status: $("#txtStatus").val(),
-                        userEmail: email // Agregar el campo de correo electrónico
-                    };
+            var serviceRoute = this.ApiService + "/Create";
 
-                    // Invocar al API para crear la cita
-                    var serviceRoute = "Appointment/Create"; // Ajusta la ruta según tu API
-                    ca.PostToAPI(serviceRoute, appointment, function () {
-                        console.log("Appointment Created --->" + JSON.stringify(appointment));
-                        $('#tblAppointments').DataTable().ajax.reload();
-                    });
-                } else {
-                    console.error("No se encontró el paciente asociado al correo electrónico proporcionado.");
-                }
+            ca.PostToAPI(serviceRoute, appointment, function () {
+                console.log("Appointment Created --->" + JSON.stringify(appointment));
+                $('#tblAppointmentsAdmin').DataTable().ajax.reload();
             });
         } catch (error) {
             console.error("Error occurred while creating appointment:", error);
@@ -85,9 +73,6 @@
     
 
     this.Update = function () {
-        const urlParams = new URLSearchParams(window.location.search);
-        const email = urlParams.get("email");
-
         // crear un dto
         var appointment = {};
         appointment.id = $("#txtId").val();
@@ -105,7 +90,7 @@
         appointment.endTime = $("#txtStartTime").val();
         appointment.text = $("#text").val();
         appointment.status = $("#status").val();
-        appointment.userEmail = email; // Agregar el campo de correo electrónico
+        appointment.userEmail = "admin@admin.com"; // Agregar el campo de correo electrónico
 
         // invocar al api
 
@@ -114,7 +99,7 @@
 
         ca.PutToAPI(serviceRoute, appointment, function () {
             console.log("Appointment Updated --->" + JSON.stringify(appointment));
-            $('#tblAppointments').DataTable().ajax.reload();
+            $('#tblAppointmentsAdmin').DataTable().ajax.reload();
         })
     }
 
@@ -147,19 +132,15 @@
 
         ca.DeleteToAPI(serviceRoute, appointment, function () {
             console.log("Appointment Deleted --->" + JSON.stringify(appointment));
-            $('#tblAppointments').DataTable().ajax.reload();
+            $('#tblAppointmentsAdmin').DataTable().ajax.reload();
         })
     }
 
-    this.loadTable = function () {
+    this.loadTableAdmin = function () {
         var ca = new ControlActions();
 
-        // Obtener el correo electrónico de la URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const userEmail = urlParams.get("email");
-
-        // Ruta del API para obtener las citas por email
-        var urlService = ca.GetUrlApiService(this.ApiService + "/RetrieveByEmail?userEmail=" + userEmail);
+        //Ruta del api
+        var urlService = ca.GetUrlApiService(this.ApiService + "/RetrieveAll")
 
         // Definir las columnas a extraer del JSON de respuesta
         var columns = [
@@ -181,7 +162,7 @@
         ];
 
         // Inicializar la tabla como un DataTable
-        $("#tblAppointments").dataTable({
+        $("#tblAppointmentsAdmin").dataTable({
             "ajax": {
                 "url": urlService,
                 "dataSrc": ""
@@ -192,11 +173,11 @@
             ]
         });
 
-        $('#tblAppointments tbody').on('click', 'tr', function () {
+        $('#tblAppointmentsAdmin tbody').on('click', 'tr', function () {
             // Extraer fila a la que se le dio clic
             var row = $(this).closest('tr');
             // Extraer la data del registro contenido en la fila
-            var appointment = $('#tblAppointments').DataTable().row(row).data();
+            var appointment = $('#tblAppointmentsAdmin').DataTable().row(row).data();
             // Mapeo de los valores del objeto data con el formulario
             $("#txtId").val(appointment.id);
             $("#patientId").val(appointment.patientId);
