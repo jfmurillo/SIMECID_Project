@@ -32,6 +32,8 @@
 
         this.loadTable();
 
+        this.loadTableAdmin();
+
     };
 
     this.Create = function () {
@@ -213,6 +215,64 @@
         });
     }
 
+    this.loadTableAdmin = function () {
+        var ca = new ControlActions();
+
+        //Ruta del api
+        var urlService = ca.GetUrlApiService(this.ApiService + "/RetrieveAll")
+
+        // Definir las columnas a extraer del JSON de respuesta
+        var columns = [
+            { 'data': 'id' },
+            { 'data': 'patientId' },
+            { 'data': 'patientName' },
+            { 'data': 'patientLastName' },
+            { 'data': 'doctorId' },
+            { 'data': 'doctorName' },
+            { 'data': 'doctorLastName' },
+            { 'data': 'serviceId' },
+            { 'data': 'serviceName' },
+            { 'data': 'branchId' },
+            { 'data': 'branchName' },
+            { 'data': 'startTime' },
+            { 'data': 'endTime' },
+            { 'data': 'text' },
+            { 'data': 'status' }
+        ];
+
+        // Inicializar la tabla como un DataTable
+        $("#tblAppointmentsAdmin").dataTable({
+            "ajax": {
+                "url": urlService,
+                "dataSrc": ""
+            },
+            "columns": columns,
+            "columnDefs": [
+                { "targets": [1, 4, 5, 6, 7, 8, 9, 12], "visible": false } // Ocultar ciertas columnas si es necesario
+            ]
+        });
+
+        $('#tblAppointmentsAdmin tbody').on('click', 'tr', function () {
+            // Extraer fila a la que se le dio clic
+            var row = $(this).closest('tr');
+            // Extraer la data del registro contenido en la fila
+            var appointment = $('#tblAppointmentsAdmin').DataTable().row(row).data();
+            // Mapeo de los valores del objeto data con el formulario
+            $("#txtId").val(appointment.id);
+            $("#patientId").val(appointment.patientId);
+            $("#txtPatientName").val(appointment.patientName);
+            $("#txtPatientLastName").val(appointment.patientLastName);
+            $("#doctorId").val(appointment.doctorId);
+            $("#doctorName").val(appointment.doctorName);
+            $("#doctorLastName").val(appointment.doctorLastName);
+            $("#serviceId").val(appointment.serviceId);
+            $("#txtServiceName").val(appointment.serviceName);
+            $("#branchId").val(appointment.branchId);
+            $("#txtBranchName").val(appointment.branchName);
+            $("#text").val(appointment.text);
+            $("#status").val(appointment.status);
+        });
+    }
 
     function formatDate(dateString) {
         var date = new Date(dateString);
