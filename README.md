@@ -174,8 +174,6 @@ SIMECID_Project/
 
 ## Screenshots
 
-> _(Add screenshots of the landing page, login screen, and each role dashboard here)_
-
 ---
 
 ## License
