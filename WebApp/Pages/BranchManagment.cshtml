@@ -4,8 +4,6 @@
     Layout = null;
 }
 
-
-
 <html lang="en">
 <!DOCTYPE html>
 <html lang="en">
@@ -17,10 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="icon" href="~/assets/2_logosimecid.png" type="image/x-icon" />
     <title>SimecidApp</title>
-    <link href="~/css/branchmanagment.css" rel="stylesheet" />
-
-    <script src="~/lib/jquery/dist/jquery.js"></script>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <link href="~/css/branchmanagment.css" rel="stylesheet" />    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/controlactions.js"></script>
@@ -30,21 +25,20 @@
     <script src="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.js"></script>
     <script defer src="~/js/pages/BranchManagment.js"></script>
 
-
 </head>
 
 <!------- SIDEBAR ------>
 <div class="sidebar">
     <!------- Logo y titulo ------>
     <div class="containerLogo">
-        <img src="~/Assets/LogoSIMECID.png" class="logoMini" />
+        <img src="~/Assets/LogoSIMECID.png" class="logoMini" alt="SIMECID Logo" />
     </div>
     <!------- Icono y nombre del usuario, e icono de settings------>
     <div class="containerUser">
         <!--Boton para ver el perfil de usuario (no es lo mismo que gestion de users)-->
         <form asp-page="/UserProfile">
             <button class="buttonUser">
-                <img src="~/assets/defaultpictureprofile.png" class="userIcon" />
+                <img src="~/assets/defaultpictureprofile.png" class="userIcon" alt="User icon" />
                 <div class="fontTitle userName">Profile</div>
             </button>
         </form>
@@ -105,10 +99,7 @@
                                 <th>Name</th>
                                 <th>Address</th>
                                 <th>Description</th>
-                                @* <th>ServiceId</th>
-                                <th>ServiceName</th>
-                                <th>ServicePrice</th>
-                                <th>ServiceTax</th> *@
+                                
                             </tr>
                         </thead>
                     </table>
@@ -158,7 +149,6 @@
                 <iframe class="ClassMap" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3930.0308996927915!2d-84.06672232496979!3d9.93138459017052!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0e3f13462cc7b%3A0x97219232a6ee2da8!2sUniversidad%20CENFOTEC!5e0!3m2!1ses!2scr!4v1714439351707!5m2!1ses!2scr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
-
 
 </body>
 </html>
