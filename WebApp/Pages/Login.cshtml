@@ -1,4 +1,4 @@
-﻿@page
+@page
 @model WebApp.Pages.LoginModel
 @{
     Layout = null;
@@ -9,20 +9,13 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="/css/log-in.css" />
-    <link rel="icon" href="~/assets/2_logosimecid.png" type="image/x-icon"   />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <link rel="icon" href="~/assets/2_logosimecid.png" type="image/x-icon" />
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/controlactions.js"></script>
-    <script src="~/js/login.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-
-    <title>SimecidApp</title>
+    <title>SIMECID — Log In</title>
 </head>
 <body>
     <div class="container">
@@ -34,52 +27,50 @@
 
         <div class="split right">
             <span class="topSignUp">
-                <img src="/Assets/logo-white.png" />
+                <img src="/Assets/logo-white.png" alt="SIMECID Logo" />
                 <h1>SIMECID</h1>
             </span>
             <h2>Hello!</h2>
 
-            <form class="form-container" id="loginForm">
+            @if (Model.ErrorMessage != null)
+            {
+                <div class="alert alert-danger login-error" role="alert">@Model.ErrorMessage</div>
+            }
+
+            <form class="form-container" method="post" id="loginForm">
+                @Html.AntiForgeryToken()
                 <div class="sign-up-form">
-                    <label for="email">Email</label>
-                    <input style="margin-left:3.5%" type="email" id="email" name="email" required><br><br>
+                    <label for="Email">Email</label>
+                    <input class="login-email-input" type="email" id="Email" name="Email" required />
                 </div>
 
-                <div class="sign-up-form">
-                    <label for="password">Password</label><br>
-                    <input type="password" id="password" name="password" required><br><br>
-                    <span style="margin-left:-6%" class="toggle-password" onclick="togglePasswordVisibility()">
+                <div class="sign-up-form password-field">
+                    <label for="Password">Password</label>
+                    <input type="password" id="Password" name="Password" required />
+                    <span class="toggle-password" onclick="togglePasswordVisibility()">
                         <i class="fas fa-eye" id="eyeIcon"></i>
                     </span>
                 </div>
+
                 <div>
-                <a class="frgtPwd" asp-area="" asp-page="/RecoverPass-Email">Did you forget your password?</a>
+                    <a class="frgtPwd" asp-area="" asp-page="/RecoverPass-Email">Did you forget your password?</a>
                 </div>
 
-                <button id="btn" type="button" class="btn" style="margin-left: 460px; cursor: pointer">Log In</button>
+                <button id="btn" type="submit" class="btn btn-login">Log In</button>
             </form>
-
-@*             <form asp-page="/UserProfile">
-                <button id="btn" class="btn" style="margin-left: 460px;">Log In</button>
-            </form> *@
-     
         </div>
     </div>
 
     <script>
-        // Función para mostrar u ocultar la contraseña
         function togglePasswordVisibility() {
-            var passwordInput = document.getElementById("password");
+            var passwordInput = document.getElementById("Password");
             var eyeIcon = document.getElementById("eyeIcon");
-
             if (passwordInput.type === "password") {
                 passwordInput.type = "text";
-                eyeIcon.classList.remove("fa-eye");
-                eyeIcon.classList.add("fa-eye-slash");
+                eyeIcon.classList.replace("fa-eye", "fa-eye-slash");
             } else {
                 passwordInput.type = "password";
-                eyeIcon.classList.remove("fa-eye-slash");
-                eyeIcon.classList.add("fa-eye");
+                eyeIcon.classList.replace("fa-eye-slash", "fa-eye");
             }
         }
     </script>

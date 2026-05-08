@@ -8,37 +8,28 @@ using System.Threading.Tasks;
 
 namespace DataAccess.DAOs
 {
-    /*
-     * Clase u objeto que se encargar de comunicarse con la base de datos 
-     *para ejecutar sentencias sql en este caso para esta arquitectura 
-     *solo tendra la habilidad de ejecutar STORE PROCEDURE  
-     *
-     *Esta clase implementa el patron de SINGLETON para asegurar que solo existe una unica instancia
-     *del SqlDAO en toda la arquitectura,con el objetivo de que este sea el unico objeto de acceso a la 
-     *informacion en la base de datos.
-     *Para no tener 2 objetos que puedan acceder a la misma base de datos a la vez 
-     */
+    // Singleton data access object — executes stored procedures against the database.
+    // Call SqlDao.Configure(connectionString) at application startup before first use.
     public class SqlDao
     {
-        //Guarda la ruta para llegar al servidor de las Bases de Datos
-        private string _connectionString;
+        private static string _connectionString = string.Empty;
+        private static SqlDao? _instance;
 
-        //Paso 1 Singleton: Crear una instancia privada de la misma clase.
-        private static SqlDao _instance;
-
-        //Paso 2 Definir el constructor Privado
         private SqlDao()
         {
-            //String de conexion  que obtengo de properties
-            
-            _connectionString = "Data Source = srv-db-carlospoltro202401.database.windows.net;" +
-                "Initial Catalog = SimecidDB; Persist Security Info = True;" +
-                "User ID=sysman;Password=Cenfotec123!";
-
+            if (string.IsNullOrEmpty(_connectionString))
+                throw new InvalidOperationException(
+                    "SqlDao has not been configured. Call SqlDao.Configure(connectionString) at startup.");
         }
 
-        //Paso 3 Definir el metodo que expone la instancia de la clase SqlDao
-        //Si el objeto no existe lo creamos
+        public static void Configure(string connectionString)
+        {
+            if (string.IsNullOrWhiteSpace(connectionString))
+                throw new ArgumentException("Connection string cannot be empty.", nameof(connectionString));
+            _connectionString = connectionString;
+            _instance = null; // Reset singleton so next GetInstance() uses the new string
+        }
+
         public static SqlDao GetInstace()
         {
             if (_instance == null)

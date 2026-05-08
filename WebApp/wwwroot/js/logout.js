@@ -1,21 +1,12 @@
 function LogoutController() {
-
     this.InitView = function () {
-        console.log("logout init view")
-
         $("#LogOut").click(function () {
-            window.history.pushState(null, "", window.location.href);
-            window.onpopstate = function () {
-                window.history.pushState(null, "", window.location.href);
-            };
-
-            window.location.href = "LandingPageSIMECID";
+            window.location.href = "/Logout";
         });
-
-    }
+    };
 }
 
 $(document).ready(function () {
     let lc = new LogoutController();
     lc.InitView();
-})
+});

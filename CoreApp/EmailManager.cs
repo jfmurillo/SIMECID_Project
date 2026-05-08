@@ -1,40 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Mail;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using Azure;
+﻿using Azure;
 using Azure.Communication.Email;
+using System.Threading.Tasks;
 
 namespace CoreApp
 {
+    // Call EmailManager.Configure(connectionString) at application startup before first use.
     public class EmailManager
     {
-        public async Task<string> SendEmail(string emailAddress, string otp) 
+        private static string _connectionString = string.Empty;
+
+        public static void Configure(string connectionString)
         {
-            string connectionString = "endpoint=https://emailotpcommunication.unitedstates.communication.azure.com/;accesskey=fUSkmhkbbVbswwMw55/GkM6SV4KmWLND0FFG1bQ9m7rMe2gTUi3OSyO8DNLbr40Tjid0RqLTr5dBBeevwwlKGA==";
+            if (string.IsNullOrWhiteSpace(connectionString))
+                throw new ArgumentException("Azure Communication connection string cannot be empty.", nameof(connectionString));
+            _connectionString = connectionString;
+        }
 
-            EmailClient emailClient = new EmailClient(connectionString);
-            EmailContent emailContent = new EmailContent("OTP Verification"); //Subject
-            emailContent.PlainText = "\nHere is your verification code:" + otp;
+        public async Task<string> SendEmail(string emailAddress, string otp)
+        {
+            if (string.IsNullOrEmpty(_connectionString))
+                throw new InvalidOperationException(
+                    "EmailManager has not been configured. Call EmailManager.Configure(connectionString) at startup.");
 
+            var emailClient = new EmailClient(_connectionString);
+            var emailContent = new EmailContent("OTP Verification")
+            {
+                PlainText = $"\nHere is your verification code: {otp}"
+            };
 
+            var emailAddresses = new List<EmailAddress> { new EmailAddress(emailAddress, "SIMECID User") };
+            var emailRecipients = new EmailRecipients(emailAddresses);
+            var emailMessage = new EmailMessage(
+                "DoNotReply@66e6180a-61c2-48bc-a646-7eb37607e7d8.azurecomm.net",
+                emailRecipients,
+                emailContent);
 
-            List<EmailAddress> emailAddresses = new List<EmailAddress> { new EmailAddress(emailAddress, "Suscriptor de ISA-CLINIC") };
-            EmailRecipients emailRecipients = new EmailRecipients(emailAddresses);
-
-
-            EmailMessage emailMessage = new EmailMessage("DoNotReply@66e6180a-61c2-48bc-a646-7eb37607e7d8.azurecomm.net", emailRecipients, emailContent);
-
-            EmailSendOperation emailSendOperation = await emailClient.SendAsync(
-                                                    WaitUntil.Completed,
-                                                                emailMessage, CancellationToken.None);
-            EmailSendResult statusMonitor = emailSendOperation.Value;
-
-            Console.WriteLine($"Email Sent. Status = {emailSendOperation.Value.Status}");
+            var emailSendOperation = await emailClient.SendAsync(
+                WaitUntil.Completed, emailMessage, CancellationToken.None);
 
             return emailSendOperation.Value.Status.ToString();
         }

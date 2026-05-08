@@ -1,7 +1,6 @@
 ﻿
 function ControlActions() {
-	//Ruta base del API
-	this.URL_API = "https://localhost:7144/api/";
+	this.URL_API = (typeof SIMECID_API_BASE !== 'undefined') ? SIMECID_API_BASE : "https://localhost:7144/api/";
 
 	this.GetUrlApiService = function (service) {
 		return this.URL_API + service;
@@ -49,7 +48,6 @@ function ControlActions() {
 	};
 
 	this.BindFields = function (formId, data) {
-		console.log(data);
 		$('#' + formId + ' *').filter(':input').each(function (input) {
 			var columnDataName = $(this).attr("ColumnDataName");
 			this.value = data[columnDataName];
@@ -64,7 +62,6 @@ function ControlActions() {
 			data[columnDataName] = this.value;
 		});
 
-		console.log(data);
 		return data;
 	}
 
@@ -85,8 +82,8 @@ function ControlActions() {
 					callBackFunction(data);
 				}
 				Swal.fire(
-					'¡Good Job!',
-					'¡Transaction completed!',
+					'Success',
+					'Transaction completed.',
 					'success'
 				);
 			},
@@ -101,9 +98,9 @@ function ControlActions() {
 				}
 				Swal.fire({
 					icon: 'error',
-					title: '¡Oops...',
+					title: 'Error',
 					html: message,
-					footer: 'UCenfotec'
+					footer: 'SIMECID'
 				});
 			}
 		});
@@ -115,8 +112,8 @@ function ControlActions() {
 			var ctrlActions = new ControlActions();
 
 			Swal.fire(
-				'Good job!',
-				'Transaction completed!',
+				'Success',
+				'Transaction completed.',
 				'success'
 			)
 
@@ -132,9 +129,9 @@ function ControlActions() {
 				message = errorMessages.join("<br/> ");
 				Swal.fire({
 					icon: 'error',
-					title: 'Oops...',
+					title: 'Error',
 					html: message,
-					footer: 'UCenfotec'
+					footer: 'SIMECID'
 				})
 			})
 	};
@@ -143,8 +140,8 @@ function ControlActions() {
 		var jqxhr = $.delete(this.GetUrlApiService(service), data, function (response) {
 			var ctrlActions = new ControlActions();
 			Swal.fire(
-				'Good job!',
-				'Transaction completed!',
+				'Success',
+				'Transaction completed.',
 				'success'
 			)
 
@@ -164,20 +161,18 @@ function ControlActions() {
 				}
 				Swal.fire({
 					icon: 'error',
-					title: 'Oops...',
+					title: 'Error',
 					html: message,
-					footer: 'UCenfotec'
+					footer: 'SIMECID'
 				})
 			})
 	};
 
 	this.GetToApi = function (service, callBackFunction) {
 		var jqxhr = $.get(this.GetUrlApiService(service), function (response) {
-			console.log("Response " + response);
 			if (callBackFunction) {
 				callBackFunction(response);
 			}
-
 		});
 	}
 }
