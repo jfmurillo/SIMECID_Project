@@ -1,189 +1,62 @@
-﻿const nav = new DayPilot.Navigator("nav", {
-    showMonths: 3,
-    skipMonths: 3,
-    selectMode: "Week",
-    onTimeRangeSelected: args => {
-        dp.update({
-            startDate: args.day
-        });
-        app.loadEvents();
-    }
+﻿document.addEventListener('DOMContentLoaded', function () {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridYear,dayGridMonth,timeGridWeek'
+        },
+        initialView: 'dayGridYear',
+        initialDate: '2023-01-12',
+        editable: true,
+        selectable: true,
+        dayMaxEvents: true,
+        events: 'api/appointment/RetrieveAll' // Endpoint para obtener eventos desde el servidor
+    });
+
+    calendar.render();
 });
-nav.init();
 
-const dp = new DayPilot.Calendar("dp", {
-    viewType: "Week",
-    /*
-    eventDeleteHandling: "Update",
-    onEventDeleted: async (args) => {
-        const id = args.e.id();
-        await DayPilot.Http.delete(`/api/CalendarEvents/${id}`);
+function AppointmentController() {
+    this.ViewName = "Appointment";
+    this.ApiService = "Appointment";
 
-    },
-    */
-    onEventMoved: async (args) => {
-        const id = args.e.id();
-        const data = {
-            id: args.e.id(),
-            start: args.newStart,
-            end: args.newEnd,
-            text: args.e.text()
-        };
-        await DayPilot.Http.put(`/api/CalendarEvents/${id}`, data);
+    // Método para ejecutar al inicio de la vista
+    this.InitView = function () {
+        console.log("appointment view init");
 
-    },
-    onEventResized: async (args) => {
-        const id = args.e.id();
-        const data = {
-            id: args.e.id(),
-            start: args.newStart,
-            end: args.newEnd,
-            text: args.e.text()
-        };
-        await DayPilot.Http.put(`/api/CalendarEvents/${id}`, data);
+        this.loadTable();
 
-    },
-    onTimeRangeSelected: async (args) => {
-        const form = [
-            { name: "Name", id: "text" }
+
+    };
+
+    this.loadTable = function () {
+        var ca = new ControlActions();
+
+        // Ruta del api a consumir servicio
+        var urlService = ca.GetUrlApiService(this.ApiService + "/RetrieveAll");
+
+        // Definir las columnas a extraer del json de  respuesta
+        var columns = [
+            { 'data': 'appointmentDate' },
+            { 'data': 'motive' },
+            { 'data': 'diagnostic' },
+            { 'data': 'status' }
         ];
 
-        const modal = await DayPilot.Modal.form(form, { text: "Event" });
-        dp.clearSelection();
-
-        if (modal.canceled) {
-            return;
-        }
-
-        const event = {
-            start: args.start,
-            end: args.end,
-            text: modal.result.text
-        };
-        const { data } = await DayPilot.Http.post(`/api/CalendarEvents`, event);
-
-        dp.events.add({
-            start: args.start,
-            end: args.end,
-            id: data.id,
-            text: modal.result.text
-        });
-
-
-    },
-    onEventClick: async (args) => {
-        app.editEvent(args.e);
-    },
-    onBeforeEventRender: args => {
-        args.data.areas = [
-            {
-                top: 5,
-                right: 5,
-                width: 16,
-                height: 16,
-                symbol: "icons/daypilot.svg#minichevron-down-4",
-                fontColor: "#666",
-                visibility: "Hover",
-                action: "ContextMenu",
-                style: "background-color: #f9f9f9; border: 1px solid #666; cursor:pointer; border-radius: 15px;"
-            }
-        ];
-    },
-    contextMenu: new DayPilot.Menu({
-        items: [
-            {
-                text: "Edit...",
-                onClick: args => {
-                    app.editEvent(args.source);
-                }
+        // Inicializar la tabla como un data table
+        $("#tblAppointments").dataTable({
+            "ajax": {
+                "url": urlService,
+                "dataSrc": ""
             },
-            {
-                text: "Delete",
-                onClick: args => {
-                    app.deleteEvent(args.source);
-                }
-            },
-            {
-                text: "-"
-            },
-            {
-                text: "Duplicate",
-                onClick: args => {
-                    app.duplicateEvent(args.source);
-                }
-            },
-        ]
-    })
-});
-dp.init();
-
-
-const app = {
-    elements: {
-        theme: document.querySelector("#theme")
-    },
-    loadEvents() {
-        dp.events.load("/api/CalendarEvents");
-    },
-    async editEvent(e) {
-        const form = [
-            { name: "Name", id: "text" }
-        ];
-
-        const modal = await DayPilot.Modal.form(form, e.data);
-        if (modal.canceled) {
-            return;
-        }
-
-        const id = e.id();
-        const data = {
-            id: e.id(),
-            start: e.start(),
-            end: e.end(),
-            text: modal.result.text
-        };
-        await DayPilot.Http.put(`/api/CalendarEvents/${id}`, data);
-
-        dp.events.update({
-            ...e.data,
-            text: modal.result.text
+            "columns": columns
         });
-
-    },
-    async deleteEvent(e) {
-        const modal = await DayPilot.Modal.confirm("Do you really want to delete this event?");
-        if (modal.canceled) {
-            return;
-        }
-        const id = e.id();
-        await DayPilot.Http.delete(`/api/CalendarEvents/${id}`);
-
-        dp.events.remove(id);
-
-    },
-    async duplicateEvent(e) {
-        const event = {
-            start: e.start(),
-            end: e.end(),
-            text: e.text() + " (copy)"
-        };
-        const { data } = await DayPilot.Http.post(`/api/CalendarEvents`, event);
-
-        dp.events.add({
-            ...event,
-            id: data.id,
-        });
-
-    },
-    init() {
-        app.elements.theme.addEventListener("change", () => {
-            dp.update({
-                theme: app.elements.theme.value
-            });
-        });
-
-        dp.update({ theme: app.elements.theme.value });
-        app.loadEvents();
     }
-};
-app.init();
+}
+
+// Instanciamiento de la clase 
+$(document).ready(function () {
+    var vc = new AppointmentController();
+    vc.InitView();
+});
