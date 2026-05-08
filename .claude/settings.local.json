@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -r \"^\\\\s*//.*\" --include=\"*.cs\")",
+      "Bash(grep -v \"node_modules\\\\|\\\\.git\\\\|wwwroot/lib\\\\|^[[:space:]]*///\")",
+      "Bash(Get-ChildItem -Path \"D:\\\\Usr\\\\joseph\\\\Cenfotec\\\\SIMECID\\\\SIMECID_Project\" -Recurse -Filter \"Login.cshtml.cs\")",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(dotnet user-secrets *)",
+      "Bash(dotnet build *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)"
+    ]
+  }
+}

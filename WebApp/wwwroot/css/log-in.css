@@ -1,0 +1,183 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+:root {
+    --greenMain: #02B1A9;
+    --greenLight: #4EC8A4;
+    --greenMedium: #2FA5A5;
+    --greenDark: #1F95A1;
+    --white: #FFFFFF;
+    --text: #333;
+    --textLight: #666;
+    --lightGrey: #EFEFEF;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+h2 {
+    font-size: 64px;
+    color: var(--greenMain);
+    position: absolute;
+    font-weight: 900;
+    display: flex;
+    justify-content: center;
+}
+
+img {
+    width: 120px;
+    height: 130px;
+    top: 25px;
+    left: 695px;
+    gap: 0px;
+}
+
+.topSignUp {
+    display: flex;
+}
+
+    .topSignUp h1 {
+        margin-top: 70px;
+    }
+
+.split.right h2 {
+    width: 70%;
+    top: 28%;
+    padding: 0;
+    margin-left: 200px;
+    font-weight: 900;
+}
+
+.split {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+}
+
+    .split.left {
+        left: 0;
+        background: url('../assets/estetoscopioFinal.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 40%;
+    }
+
+.frgtPwd {
+    margin-left: auto;
+    margin-bottom: 15px;
+    color: var(--greenMedium);
+    display: block;
+    text-align: right;
+    padding-right: 40px;
+}
+
+.split.right {
+    right: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 60%;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 1000px;
+    margin-top: 195px;
+    padding: 40px;
+}
+
+.sign-up-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+    .sign-up-form input {
+        border-radius: 5px;
+        display: block;
+        width: 600px;
+        font-size: 18px;
+    }
+
+    .sign-up-form label {
+        display: inline-block;
+        width: 200px;
+        text-align: right;
+        margin-bottom: 10px;
+        margin-left: 100px;
+        white-space: nowrap;
+    }
+
+/* Password field with toggle icon */
+.password-field {
+    position: relative;
+}
+
+.login-email-input {
+    width: 600px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 45px;
+    cursor: pointer;
+    color: var(--textLight);
+}
+
+/* Login button — aligned to the right of the form */
+.btn-login {
+    align-self: flex-end;
+    width: 30%;
+    color: var(--lightGrey);
+    background: black;
+    padding: 15px;
+    font-family: inherit;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    text-decoration: none;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+    .btn-login:hover {
+        background: #333;
+    }
+
+.login-error {
+    margin: 0 40px 15px 40px;
+    border-radius: 6px;
+}
+
+footer {
+    color: black;
+    padding: 20px 0;
+    text-align: left;
+    margin-left: 10%;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+@media (max-width: 800px) {
+    h2 {
+        font-size: 2rem;
+        top: 30%;
+    }
+}
