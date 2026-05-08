@@ -3,7 +3,7 @@
     this.ApiService = "Patient";
 
     this.InitViewPatient = function () {
-        console.log("Patient Info");
+
         this.LoadTablePatientInfo();
     };
 
@@ -54,11 +54,11 @@ function MedicalReportInfoController() {
     this.ApiService = "MedicalReport";
 
     this.InitViewMedicalReport = function () {
-        console.log("Medical Report view init");
+
 
         $("#btnCreate").click(function () {
             var vc = new MedicalReportInfoController();
-            console.log("Console log Vc", vc);
+
             vc.Create();
         });
 
@@ -138,7 +138,7 @@ function MedicalReportInfoController() {
         var serviceRoute = this.ApiService + "/Create";
 
         ca.PostToAPI(serviceRoute, MedicalReport, function () {
-            console.log("Medical Report Created --->" + JSON.stringify(MedicalReport));
+
             $('#tblMedicalReport').DataTable().ajax.reload();
         });
     };
@@ -161,7 +161,7 @@ function MedicalReportInfoController() {
         var serviceRoute = this.ApiService + "/Update";
 
         ca.PutToAPI(serviceRoute, medicalReport, function () {
-            console.log("Medical Report Updated --->" + JSON.stringify(medicalReport));
+
             $('#tblMedicalReport').DataTable().ajax.reload();
         })
     }
@@ -184,7 +184,7 @@ function MedicalReportInfoController() {
         var serviceRoute = this.ApiService + "/Delete";
 
         ca.DeleteToAPI(serviceRoute, medicalReport, function () {
-            console.log("Medical Report Deleted --->" + JSON.stringify(medicalReport));
+
             $('#tblMedicalReport').DataTable().ajax.reload();
         })
     }
@@ -195,11 +195,11 @@ function DiagnosticInfoController() {
     this.ApiService = "Diagnostic";
 
     this.InitViewDiagnostic = function () {
-        console.log("Diagnostic view init");
+
 
         $("#btnCreateDiagnostic").click(function () {
             var vc = new DiagnosticInfoController();
-            console.log("Console log Vc", vc);
+
             vc.Create();
         });
 
@@ -271,7 +271,7 @@ function DiagnosticInfoController() {
         var serviceRoute = this.ApiService + "/Create";
 
         ca.PostToAPI(serviceRoute, Diagnostic, function () {
-            console.log("Diagnostic Created --->" + JSON.stringify(Diagnostic));
+
             $('#tblDiagnostic').DataTable().ajax.reload();
         });
     };
@@ -293,7 +293,7 @@ function DiagnosticInfoController() {
         var serviceRoute = this.ApiService + "/Update";
 
         ca.PutToAPI(serviceRoute, diagnostic, function () {
-            console.log("Diagnostic Updated --->" + JSON.stringify(diagnostic));
+
             $('#tblDiagnostic').DataTable().ajax.reload();
         })
     }
@@ -314,7 +314,7 @@ function DiagnosticInfoController() {
         var serviceRoute = this.ApiService + "/Delete";
 
         ca.DeleteToAPI(serviceRoute, diagnostic, function () {
-            console.log("Diagnostic Deleted --->" + JSON.stringify(diagnostic));
+
             $('#tblDiagnostic').DataTable().ajax.reload();
         })
     }

@@ -1,8 +1,8 @@
-function EmailController() {
+﻿function EmailController() {
     this.InitView = function () {
         console.log("init view mail")
         /*let urlParams = new URLSearchParams(window.location.search);
-        console.log(urlParams.get(`email`));*/
+*/
 
         $("#btnTry").click(function () {
             let ec = new EmailController();
@@ -15,7 +15,6 @@ function EmailController() {
         var ca = new ControlActions();
         const email = $("#email").val();
 
-        console.log("email value " + email);
         if (email === "") {
             return;
         }
@@ -38,4 +37,3 @@ $(document).ready(function () {
     var ec = new EmailController();
     ec.InitView();
 });
-

@@ -15,7 +15,7 @@ namespace CoreApp
     public class UserManager
     {
 
-        public async void Create(User user)
+        public async Task Create(User user)
         {
             var uc = new UserCrudFactory();
 
@@ -44,10 +44,6 @@ namespace CoreApp
             {
                 throw new Exception("Invalid Password format");
             }
-            /*else if (!IsValidSex(user.Sex))
-            {
-                throw new Exception("Invalid Sex format");
-            }*/
             else if (!IsValidBirthDate(user.BirthDate))
             {
                 throw new Exception("Invalid birth date format");
@@ -68,18 +64,11 @@ namespace CoreApp
             {
                 throw new Exception("Province can't be null");
             };
-            //user.Password = HashPassword(user.Password);
+            // TODO: Enable password hashing (Phase 5) — passwords currently stored as plain text.
             uc.Create(user);
 
             var otpM = new ValidateOTPManager();
-            const string digits = "0123456789";
-            var OTP = "";
-            var len = digits.Length;
-            Random random = new Random();
-            for (int i = 0; i < 4; i++)
-            {
-                OTP += digits[(int)Math.Floor(random.NextDouble() * len)];
-            }
+            string OTP = string.Concat(Enumerable.Range(0, 6).Select(_ => RandomNumberGenerator.GetInt32(0, 10)));
 
             var daoOtp = new ValidateOTP();
             daoOtp.Email = user.Email;
@@ -225,22 +214,15 @@ namespace CoreApp
         {
             var uc = new UserCrudFactory();
             var users = uc.RetrieveAll<User>();
-            Console.WriteLine("Recuperando usuario con correo electrónico: " + email);
 
 
             return users.FirstOrDefault(u => u.Email == email);
         }
-        public async void ForgotPassword(string email)
+
+        public async Task ForgotPassword(string email)
         {
             var otpM = new ValidateOTPManager();
-            const string digits = "0123456789";
-            var OTP = "";
-            var len = digits.Length;
-            Random random = new Random();
-            for (int i = 0; i < 4; i++)
-            {
-                OTP += digits[(int)Math.Floor(random.NextDouble() * len)];
-            }
+            string OTP = string.Concat(Enumerable.Range(0, 6).Select(_ => RandomNumberGenerator.GetInt32(0, 10)));
 
             var daoOtp = new ValidateOTP();
             daoOtp.Email = email;
@@ -251,88 +233,8 @@ namespace CoreApp
             
         }
 
-        /* public bool VerifyPassword(string storedPassword, string enteredPassword)
-        {
-            string[] parts = storedPassword.Split(':');
-            if (parts.Length != 2)
-            {
-                return false;
-            }
-
-            byte[] saltBytes = Convert.FromBase64String(parts[0]);
-            byte[] storedHashBytes = Convert.FromBase64String(parts[1]);
-
-            byte[] enteredPasswordBytes = Encoding.UTF8.GetBytes(enteredPassword);
-            byte[] saltedPasswordBytes = new byte[saltBytes.Length + enteredPasswordBytes.Length];
-            Buffer.BlockCopy(saltBytes, 0, saltedPasswordBytes, 0, saltBytes.Length);
-            Buffer.BlockCopy(enteredPasswordBytes, 0, saltedPasswordBytes, saltBytes.Length, enteredPasswordBytes.Length);
-
-            using (SHA256 sha256Hash = SHA256.Create())
-            {
-                byte[] enteredHashBytes = sha256Hash.ComputeHash(saltedPasswordBytes);
-
-                return storedHashBytes.SequenceEqual(enteredHashBytes);
-            }
-        }*/
-
-        /*public void LoginVal(string email, string password)
-        {
-            var user = GetUserByEmail(email);
-
-            if (user == null || !VerifyPassword(password, user.Password))
-            {
-                throw new Exception("Invalid email or password");
-            }
-        }*/
-
-        /*        public User GetUserByEmail(string email)
-                {
-                    Console.WriteLine("Recuperando usuario con correo electrónico: " + email);
-                    return _userCrudFactory.GetUserByEmail(email);
-                }*/
-
-        /*        private string GetStoredPasswordByEmail(string email)
-                {
-                    return _userCrudFactory.GetStoredPasswordByEmail(email);
-                }*/
-
-        /*public bool AuthenticateUser(string email, string enteredPassword)
-        {
-            var uc = new UserCrudFactory();
-            List<string> storedPasswords = uc.GetStoredPasswordByEmail<string>(email);
-
-            foreach (string storedPassword in storedPasswords)
-            {
-                string[] parts = storedPassword.Split(':');
-                if (parts.Length != 2)
-                {
-                    throw new InvalidOperationException("Invalid stored password format");
-                }
-
-                byte[] saltBytes = Convert.FromBase64String(parts[0]);
-                byte[] enteredPasswordBytes = Encoding.UTF8.GetBytes(enteredPassword);
-
-                byte[] saltedPasswordBytes = new byte[saltBytes.Length + enteredPasswordBytes.Length];
-                Buffer.BlockCopy(saltBytes, 0, saltedPasswordBytes, 0, saltBytes.Length);
-                Buffer.BlockCopy(enteredPasswordBytes, 0, saltedPasswordBytes, saltBytes.Length, enteredPasswordBytes.Length);
-
-                byte[] hashBytes;
-                using (SHA256 sha256Hash = SHA256.Create())
-                {
-                    hashBytes = sha256Hash.ComputeHash(saltedPasswordBytes);
-                }
-
-                string enteredPasswordHash = Convert.ToBase64String(hashBytes);
-
-                if (enteredPasswordHash == parts[1])
-                {
-                    
-                    return true;
-                }
-            }
-            return false;
-        }*/
-
+        // TODO: Phase 5 — implement password hashing using PasswordHasher<User>.
+        // Requires a DB migration to hash existing plain-text passwords before enabling.
         public bool Authenticate(string email, string password)
         {
             try

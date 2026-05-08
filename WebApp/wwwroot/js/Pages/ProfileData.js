@@ -4,10 +4,10 @@
     var email;
 
     this.InitView = function () {
-        console.log("init view sign up");
+
         let urlParams = new URLSearchParams(window.location.search);
         email = urlParams.get(`email`); // Obtener el valor de email de los parámetros de la URL
-        console.log(email);
+
 
         this.RetrieveUserByEmail(email); // Pasar email como argumento al llamar al método
     };
@@ -17,8 +17,8 @@
         let ca = new ControlActions();
 
         ca.GetToApi(route, function (response) {
-            console.log("User retrieved successfully:");
-            console.log(response);
+
+
 
             // Verificar si los datos están disponibles y no son undefined
             if (response) {
@@ -31,7 +31,7 @@
                 document.getElementById("birthdate").placeholder = response.birthDate || '';
                 document.getElementById("address").placeholder = response.address || '';
             } else {
-                console.error("No data received from server");
+
             }
 
             // Obtener el nombre de la imagen del usuario desde la respuesta
@@ -46,7 +46,7 @@
 
 
         }, function (error) {
-            console.error("Error retrieving user:", error);
+
         });
     }
 }

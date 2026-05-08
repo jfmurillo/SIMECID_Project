@@ -12,11 +12,11 @@
             processData: false,
             success: function (response) {
                 // Maneja la respuesta exitosa (opcional)
-                console.log('El archivo se ha cargado correctamente');
+
             },
             error: function (xhr, status, error) {
                 // Maneja el error (opcional)
-                console.error('Error al cargar el archivo:', error);
+
             }
         });
     });

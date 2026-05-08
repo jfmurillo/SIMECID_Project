@@ -1,4 +1,4 @@
-function LoginController() {
+Ôªøfunction LoginController() {
     this.ViewName = "Login";
     this.ApiService = "Login";
     var email;
@@ -42,12 +42,12 @@ function LoginController() {
         let ca = new ControlActions();
         ca.PostToAPI(serviceRoute, loginData, (response) => {
             if (response.status == 200) {
-                console.log("Login successful");
+
                 this.ManageRol(email);
 
             } else {
                 console.log(response)
-                console.log("Error during login:", response.message);
+
                 throw new Error("Error during login")
             }
         });
@@ -64,7 +64,7 @@ function LoginController() {
         console.log(email)
         ca.PostToAPI(route, user, (response) => {
             if (response.status == 200) {
-                console.log("manage rol");
+
                 let role = response.role
 
                 let redirectUrl;
@@ -90,7 +90,7 @@ function LoginController() {
                         break;
                 }
 
-                // Agregar el correo electrÛnico como par·metro en la URL de redirecciÛn
+                // Agregar el correo electr√≥nico como par√°metro en la URL de redirecci√≥n
                 redirectUrl += `?email=${encodeURIComponent(email)}`;
 
                 setTimeout(function () {
@@ -99,7 +99,7 @@ function LoginController() {
 
             } else {
                 console.log(response)
-                console.log("Error during login:", response.message);
+
                 throw new Error("Error during login")
             }
         });
@@ -117,11 +117,11 @@ function LoginController() {
 
         var srv = "RecoverPassword/CreateData"
         ca.PostToAPI(srv, data, function (response) {
-            console.log("Creating data for database");
+
             var serviceRoute = "RecoverPassword/VerifyOtp";
 
             ca.GetToApi(serviceRoute, function (response) {
-                console.log(response);
+
                 var validOTP = false;
                 for (var i = 0; i < response.length; i++) {
                     if (response[i].otp === otp && response[i].email === email) {
@@ -130,16 +130,16 @@ function LoginController() {
                     }
                 }
                 if (validOTP) {
-                    console.log("Valid OTP");
+
                     setTimeout(function () {
                         window.location.href = `/NewPassword?email=${data.email}`;
                     }, 1000);
 
                 } else {
-                    console.log("Invalid OTP");
+
                 }
             }, function (error) {
-                console.error("Error validating OTP:", error);
+
             });
         });
     };
@@ -165,7 +165,7 @@ function LoginController() {
         let serviceRoute = "RecoverPassword/Update";
 
         ca.PostToAPI(serviceRoute, data, function (response) {
-            console.log(response);
+
 
             setTimeout(function () {
                 window.location.href = `/Login`;

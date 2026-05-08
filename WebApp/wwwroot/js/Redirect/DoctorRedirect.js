@@ -3,7 +3,7 @@
     var ca = new ControlActions();
 
     this.InitView = function () {
-        console.log("Redirect init view");
+
 
         // Obtener el email de la URL
         let urlParams = new URLSearchParams(window.location.search);

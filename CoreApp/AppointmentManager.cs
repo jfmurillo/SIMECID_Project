@@ -52,7 +52,7 @@ namespace CoreApp
             return pc.RetrieveAppointmentsByUserEmail<Appointment>(userEmail);
         }
       
-        public async void GetAppointment(Appointment appointment)
+        public async Task GetAppointment(Appointment appointment)
         {
             var user = new User();
             var am = new ApptAlertManager();

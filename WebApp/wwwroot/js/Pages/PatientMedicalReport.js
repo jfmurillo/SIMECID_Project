@@ -3,7 +3,7 @@
     this.ApiService = "MedicalReport";
 
     this.InitViewMedicalReport = function () {
-        console.log("Medical Report view init");
+
         this.LoadTableMedicalReportInfo();
     };
 
@@ -42,7 +42,7 @@ function DiagnosticInfoController() {
     this.ApiService = "Diagnostic";
 
     this.InitViewDiagnostic = function () {
-        console.log("Diagnostic view init");
+
         this.LoadTableDiagnosticInfo();
     };
 
@@ -78,7 +78,7 @@ function MedicalExamController() {
     this.ApiService = "MedicalExam";
 
     this.InitViewAllMedicalExamn = function () {
-        console.log("All Medical Exam view init");
+
         this.LoadTableMedicalExam();
     }
 
@@ -119,7 +119,7 @@ function PrescriptionController() {
 
     // Método para ejecutar al inicio de la vista
     this.InitView = function () {
-        console.log("Prescription view init");
+
         this.loadTable();
 
     }

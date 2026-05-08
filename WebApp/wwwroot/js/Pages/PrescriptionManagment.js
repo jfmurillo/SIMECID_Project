@@ -3,7 +3,7 @@
     this.ApiService = "User";
 
     this.InitViewUser = function () {
-        console.log("User Info");
+
 
 
         this.LoadTableUserInfo();
@@ -61,7 +61,7 @@ function DoctorInfoController() {
     this.ApiService = "Doctor";
 
     this.InitViewDoctor = function () {
-        console.log("Doctor Info");
+
 
 
         this.LoadTableDoctorInfo();
@@ -119,4 +119,3 @@ $(document).ready(function () {
     var dc = new DoctorInfoController();
     dc.InitViewDoctor();
 })
-

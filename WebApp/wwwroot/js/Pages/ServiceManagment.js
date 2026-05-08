@@ -10,7 +10,7 @@ function AllBranchInfoController() {
 
     // Método para inicializar la vista de todas las sucursales
     this.InitViewAllBranch = function () {
-        console.log("All Branch view init");
+
 
         // Asignar evento click al botón de agregar
         $("#btnAdd").click(function () {
@@ -57,7 +57,7 @@ function AllBranchInfoController() {
         var serviceRoute = this.ApiService + "/AddServiceToBranch";
 
         ca.PostToAPI(serviceRoute, Branchservice, function () {
-            console.log("Service Added to branch --->" + JSON.stringify(Branchservice));
+
             $('#tblBranch').DataTable().ajax.reload();
         });
     }
@@ -77,7 +77,7 @@ function AllBranchInfoController() {
 
         ca.PostToAPI(serviceRoute, service, function () {
             let loadsrv = new ServiceController();
-            console.log("Service Created --->" + JSON.stringify(service));
+
             $('#tblServices').DataTable().ajax.reload();
             loadsrv.LoadAllServices();
         });
@@ -116,7 +116,7 @@ function BranchController() {
 
     // Método para inicializar la vista de la sucursal
     this.InitViewBranch = function () {
-        console.log("Branch view init");
+
         this.LoadTableBranch();
     }
 
@@ -126,7 +126,7 @@ function BranchController() {
 
         //Ruta del api
         var urlService = ba.GetUrlApiService(this.ApiService + "/RetrieveAllBranchServices")
-        console.log(urlService);
+
 
         // Definir las columnas de la tabla
         var columns = [];
@@ -136,7 +136,7 @@ function BranchController() {
         columns[3] = { 'data': "serviceName" }
         columns[4] = { 'data': "servicePrice" }
         columns[5] = { 'data': "serviceTax" }
-        console.log(columns);
+
 
         // Crear la tabla utilizando DataTables
         $("#tblBranch").dataTable({
@@ -147,7 +147,6 @@ function BranchController() {
             "columns": columns
         });
 
-        console.log(urlService);
     }
 }
 
@@ -159,7 +158,7 @@ function ServiceController() {
 
     // Método a ejecutar al inicio de la vista
     this.InitView = function () {
-        console.log("Services view init");
+
 
         // Asignar eventos a los botones de crear, actualizar y eliminar servicios
         $("#btnCreate").click(function () {
@@ -221,7 +220,7 @@ function ServiceController() {
 
         ca.PostToAPI(serviceRoute, service, function () {
             let loadsrv = new ServiceController();
-            console.log("Service Created --->" + JSON.stringify(service));
+
             $('#tblServices').DataTable().ajax.reload();
             loadsrv.LoadAllServices();
         });
@@ -241,7 +240,7 @@ function ServiceController() {
         var serviceRoute = this.ApiService + "/Update";
 
         ca.PutToAPI(serviceRoute, service, function () {
-            console.log("Service Updated --->" + JSON.stringify(service));
+
             $('#tblServices').DataTable().ajax.reload();
         });
     }
@@ -266,7 +265,7 @@ function ServiceController() {
 
 
         ca.DeleteToAPI(serviceRoute, service, function () {
-            console.log("Service Deleted --->" + serviceId);
+
             $('#tblServices').DataTable().ajax.reload();
 
             // Eliminar el servicio del dropdown después de eliminarlo

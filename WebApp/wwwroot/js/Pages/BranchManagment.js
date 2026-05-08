@@ -9,13 +9,13 @@ function AllBranchInfoController() {
 
 
     this.InitViewAllBranch = function () {
-        console.log("All Branch view init");
+
        
 
 
         $("#btnCreate").click(function () {
             var vc = new AllBranchInfoController();
-            console.log("Console log Vc", vc);
+
             vc.Create();
 
         })
@@ -95,7 +95,7 @@ function AllBranchInfoController() {
         var serviceRoute = this.ApiService + "/Create";
 
         ca.PostToAPI(serviceRoute, Branch, function () {
-            console.log("Branch Created --->" + JSON.stringify(Branch));
+
             $('#tblAllBranches').DataTable().ajax.reload();
         });
     }
@@ -123,7 +123,6 @@ function AllBranchInfoController() {
 
         ca.PutToAPI(serviceRoute, Branch, function () {
 
-            console.log("Branch Updated --->" + JSON.stringify(Branch));
             $('#tblAllBranches').DataTable().ajax.reload();
 
         });
@@ -152,15 +151,15 @@ function AllBranchInfoController() {
         ca.DeleteToAPI(serviceRoute, Branch, function (response) {
 
             if (response.statusCode == 200) {
-                console.log("Branch Deleted --->" + branchId);
+
                 $('#tblAllBranches').DataTable().ajax.reload(); //Esto para que si se elimina un service se actualice el branch que lo tenia y se elimine
  
 
             } else if (response.statusCode == 500) {
-                console.log("El branch con el Id " + branchId + " no existe.");
+
 
             } else {
-                console.log("Error al eliminar el branch. CÃ³digo de estado: " + response.statusCode);
+
 
             }
             $('#tblAllBranches').DataTable().ajax.reload();
@@ -176,5 +175,3 @@ $(document).ready(function () {
     var ba = new AllBranchInfoController();
     ba.InitViewAllBranch();
 })
-
-

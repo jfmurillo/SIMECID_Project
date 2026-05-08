@@ -20,7 +20,7 @@ function RedirectController() {
     var ca = new ControlActions();
 
     this.InitView = function () {
-        console.log("Redirect init view");
+
 
         // Configurar redirección en función del rol o acción
 

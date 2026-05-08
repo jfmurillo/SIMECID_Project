@@ -3,7 +3,7 @@
     this.ApiService = "User";
 
     this.InitViewUser = function () {
-        console.log("User Info");
+
 
         $("#btnUpdate").click(function () {
             var us = new UserInfoController();
@@ -92,7 +92,7 @@
         var serviceRoute = this.ApiService + "/UpdateUserData";
 
         ca.PutToAPI(serviceRoute, user, function () {
-            console.log("User Updated --->" + JSON.stringify(user));
+
             $('#tblUserInfo').DataTable().ajax.reload();
             $("#id").val("");
             $("#name").val("");
@@ -136,7 +136,7 @@
 
 
         ca.DeleteToAPI(serviceRoute, user, function () {
-            console.log("User Deleted --->" + userId);
+
             $('#tblUserInfo').DataTable().ajax.reload();
             $('#tblUserRole').DataTable().ajax.reload();
             $("#id").val("");
@@ -224,7 +224,7 @@
         var serviceRoute = this.ApiService + "/UpdateEmployeeData";
 
         ca.PutToAPI(serviceRoute, user, function () {
-            console.log("User Updated --->" + JSON.stringify(user));
+
             $('#tblUserRole').DataTable().ajax.reload();
             $('#tblUserInfo').DataTable().ajax.reload();
             $('#tblDoctorInfo').DataTable().ajax.reload();
@@ -246,7 +246,7 @@ function AllBranchInfoController() {
 
   
     this.InitViewAllBranch = function () {
-        console.log("All Branch view init");
+
 
         
         $("#btnAdd").click(function () {
@@ -278,7 +278,7 @@ function DoctorInfoController() {
     this.ApiService = "Doctor";
 
     this.InitViewDoctor = function () {
-        console.log("Doctor Info");
+
 
         $("#btnSpecialty").click(function () {
             var dc = new DoctorInfoController();
@@ -346,7 +346,7 @@ function DoctorInfoController() {
         var serviceRoute = this.ApiService + "/UpdateDoctorSpecialty";
 
         ca.PutToAPI(serviceRoute, user, function () {
-            console.log("Doctor Updated --->" + JSON.stringify(user));
+
             $('#tblDoctorInfo').DataTable().ajax.reload();
             $('#tblUserInfo').DataTable().ajax.reload();
             $('#tblUserRole').DataTable().ajax.reload();

@@ -10,7 +10,7 @@ function PatientInfoController() {
     this.ApiService = "Patient";
 
     this.InitViewPatient = function () {
-        console.log("Patient Info");
+
         this.LoadTablePatientInfo();
     };
 
@@ -66,10 +66,10 @@ function MedicalExamController() {
     this.ApiService = "MedicalExam";
 
     this.InitViewAllMedicalExamn = function () {
-        console.log("All Medical Exam view init");
+
         $("#btnCreate").click(function () {
             var vc = new MedicalExamController();
-            console.log("Console log Vc", vc);
+
             vc.Create();
         })
         $("#btnUpdate").click(function () {
@@ -157,7 +157,7 @@ function MedicalExamController() {
         var serviceRoute = this.ApiService + "/Create";
 
         ca.PostToAPI(serviceRoute, medicalExam, function () {
-            console.log("Medical Exam Created --->" + JSON.stringify(medicalExam));
+
             $('#tblMedicalExam').DataTable().ajax.reload();
         });
     };
@@ -187,7 +187,7 @@ function MedicalExamController() {
         var serviceRoute = this.ApiService + "/Update";
 
         ca.PutToAPI(serviceRoute, medicalExam, function () {
-            console.log("Medical Exam Updated --->" + JSON.stringify(medicalExam));
+
             $('#tblMedicalExam').DataTable().ajax.reload();
         });
     };
@@ -212,7 +212,7 @@ function MedicalExamController() {
         var serviceRoute = this.ApiService + "/Delete";
 
         ca.DeleteToAPI(serviceRoute, medicalExam, function () {
-            console.log("Medical Exam Deleted --->" + JSON.stringify(medicalExam));
+
             $('#tblMedicalExam').DataTable().ajax.reload();
         })
     }

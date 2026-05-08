@@ -4,7 +4,7 @@
 
     // Método para ejecutar al inicio de la vista
     this.InitView = function () {
-        console.log("appointment view init");
+
 
         var self = this;
 
@@ -60,11 +60,11 @@
             var serviceRoute = this.ApiService + "/Create";
 
             ca.PostToAPI(serviceRoute, appointment, function () {
-                console.log("Appointment Created --->" + JSON.stringify(appointment));
+
                 $('#tblAppointmentsAdmin').DataTable().ajax.reload();
             });
         } catch (error) {
-            console.error("Error occurred while creating appointment:", error);
+
         }
     };
 
@@ -98,7 +98,7 @@
         var serviceRoute = this.ApiService + "/Update";
 
         ca.PutToAPI(serviceRoute, appointment, function () {
-            console.log("Appointment Updated --->" + JSON.stringify(appointment));
+
             $('#tblAppointmentsAdmin').DataTable().ajax.reload();
         })
     }
@@ -131,7 +131,7 @@
         var serviceRoute = this.ApiService + "/Delete";
 
         ca.DeleteToAPI(serviceRoute, appointment, function () {
-            console.log("Appointment Deleted --->" + JSON.stringify(appointment));
+
             $('#tblAppointmentsAdmin').DataTable().ajax.reload();
         })
     }
@@ -271,7 +271,7 @@ function AllBranchInfoController() {
 
         //Ruta del api
         var urlService = ba.GetUrlApiService(this.ApiService + "/RetrieveAllBranchServices")
-        console.log(urlService);
+
 
         // Definir las columnas de la tabla
         var columns = [];
@@ -281,7 +281,7 @@ function AllBranchInfoController() {
         columns[3] = { 'data': "serviceName" }
         columns[4] = { 'data': "servicePrice" }
         columns[5] = { 'data': "serviceTax" }
-        console.log(columns);
+
 
         // Crear la tabla utilizando DataTables
         $("#tblBranch").dataTable({

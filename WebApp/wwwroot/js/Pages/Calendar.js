@@ -18,7 +18,7 @@ const dp = new DayPilot.Calendar("dp", {
     onEventDeleted: async (args) => {
         const id = args.e.id();
         await DayPilot.Http.delete(`/api/CalendarEvents/${id}`);
-        console.log("Deleted.");
+
     },
     */
     onEventMoved: async (args) => {
@@ -30,7 +30,7 @@ const dp = new DayPilot.Calendar("dp", {
             text: args.e.text()
         };
         await DayPilot.Http.put(`/api/CalendarEvents/${id}`, data);
-        console.log("Moved.");
+
     },
     onEventResized: async (args) => {
         const id = args.e.id();
@@ -41,7 +41,7 @@ const dp = new DayPilot.Calendar("dp", {
             text: args.e.text()
         };
         await DayPilot.Http.put(`/api/CalendarEvents/${id}`, data);
-        console.log("Resized.");
+
     },
     onTimeRangeSelected: async (args) => {
         const form = [
@@ -68,7 +68,7 @@ const dp = new DayPilot.Calendar("dp", {
             id: data.id,
             text: modal.result.text
         });
-        console.log("Created.");
+
 
     },
     onEventClick: async (args) => {
@@ -148,7 +148,7 @@ const app = {
             ...e.data,
             text: modal.result.text
         });
-        console.log("Updated.");
+
     },
     async deleteEvent(e) {
         const modal = await DayPilot.Modal.confirm("Do you really want to delete this event?");
@@ -160,7 +160,6 @@ const app = {
 
         dp.events.remove(id);
 
-        console.log("Deleted.");
     },
     async duplicateEvent(e) {
         const event = {
@@ -174,7 +173,7 @@ const app = {
             ...event,
             id: data.id,
         });
-        console.log("Duplicated.");
+
     },
     init() {
         app.elements.theme.addEventListener("change", () => {
@@ -188,4 +187,3 @@ const app = {
     }
 };
 app.init();
-

@@ -4,7 +4,7 @@
 
     // Método para ejecutar al inicio de la vista
     this.InitView = function () {
-        console.log("Prescription view init");
+
 
 
         // Bind del click del botón create con la función correspondiente
@@ -40,13 +40,13 @@
 
             let profileImageInput = $("#profileImage")[0];
             if (!profileImageInput) {
-                console.error("Profile image input not found");
+
                 return;
             }
 
             let files = profileImageInput.files;
             if (!files || files.length === 0) {
-                console.error("No files selected");
+
                 return;
             }
 
@@ -57,11 +57,11 @@
             var serviceRoute = this.ApiService + "/Create";
 
             ca.PostToAPI(serviceRoute, prescription, function () {
-                console.log("Prescription Created --->" + JSON.stringify(prescription));
+
                 $('#tblPrescriptions').DataTable().ajax.reload();
             });
         } catch (error) {
-            console.error("Error occurred while creating prescription:", error);
+
         }
     };
 
@@ -81,13 +81,13 @@
 
         let profileImageInput = $("#profileImage")[0];
         if (!profileImageInput) {
-            console.error("Profile image input not found");
+
             return;
         }
 
         let files = profileImageInput.files;
         if (!files || files.length === 0) {
-            console.error("No files selected");
+
             return;
         }
 
@@ -99,7 +99,7 @@
         var serviceRoute = this.ApiService + "/Update";
 
         ca.PutToAPI(serviceRoute, prescription, function () {
-            console.log("Prescription Updated --->" + JSON.stringify(prescription));
+
             $('#tblPrescriptions').DataTable().ajax.reload();
         })
     }
@@ -124,7 +124,7 @@
         var serviceRoute = this.ApiService + "/Delete";
 
         ca.DeleteToAPI(serviceRoute, prescription, function () {
-            console.log("Prescription Deleted --->" + JSON.stringify(prescription));
+
             $('#tblPrescriptions').DataTable().ajax.reload();
         })
     }
@@ -183,7 +183,7 @@ function UserInfoController() {
     this.ApiService = "Patient";
 
     this.InitViewUser = function () {
-        console.log("Patient Info");
+
 
 
         this.LoadTableUserInfo();
@@ -241,7 +241,7 @@ function DoctorInfoController() {
     this.ApiService = "Doctor";
 
     this.InitViewDoctor = function () {
-        console.log("Doctor Info");
+
 
 
         this.LoadTableDoctorInfo();

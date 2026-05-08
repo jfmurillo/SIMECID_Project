@@ -1,12 +1,12 @@
-function SignUpController() {
+﻿function SignUpController() {
     this.ViewName = "User";
     this.ApiService = "User";
     var email;
 
     this.InitView = function () {
-        console.log("init view sign up");
+
         let urlParams = new URLSearchParams(window.location.search);
-        console.log(urlParams.get(`email`));
+
         $("#BtnSignIn").click(function () {
             let ec = new SignUpController();
             ec.Create();
@@ -56,22 +56,21 @@ function SignUpController() {
 
     this.Create = function () {
 
-        console.log("Attempting to create user...");
 
         let profileImageInput = $("#profileImage")[0];
         if (!profileImageInput) {
-            console.error("Profile image input not found");
+
             return;
         }
 
         let files = profileImageInput.files;
         if (!files || files.length === 0) {
-            console.error("No files selected");
+
             return;
         }
 
         let imageName = files[0].name;
-        console.log("Image name:", imageName);
+
 
         let name1 = $("#txtName").val();
         let lastName = $("#txtLastName").val();
@@ -99,13 +98,12 @@ function SignUpController() {
             imageName: imageName
         };
 
-        console.log("User object:", user);
 
         let ca = new ControlActions();
         let srvR = "User/Create";
 
         ca.PostToAPI(srvR, user, function (response) {
-            console.log("API response:", response);
+
             setTimeout(function () {
                 window.location.href = `/CodeVerification?email=${user.email}`;
             }, 1000);
@@ -126,12 +124,12 @@ function EmailController2() {
 
         var serviceRoute = this.ApiService + "/SendEmail";
         ca.PostToAPI(serviceRoute, keysAuth, function (response) {
-            console.log("Email sent successfully");
+
             if (callback && typeof callback === 'function') {
                 callback();
             }
         }, function (error) {
-            console.error("Error sending email:", error);
+
         });
     };
 

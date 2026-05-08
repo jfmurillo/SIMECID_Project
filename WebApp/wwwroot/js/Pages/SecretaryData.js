@@ -4,12 +4,12 @@
     var email;
 
     this.InitView = function () {
-        console.log("init view");
+
 
         // Obtener el email de la URL
         let urlParams = new URLSearchParams(window.location.search);
         email = urlParams.get(`email`);
-        console.log(email);
+
 
         // Llamar al método para obtener y actualizar la información del usuario
         this.RetrieveUserByEmail(email);
@@ -20,8 +20,8 @@
         let ca = new ControlActions();
 
         ca.GetToApi(route, function (response) {
-            console.log("User retrieved successfully:");
-            console.log(response);
+
+
 
             // Verificar si los datos están disponibles y no son undefined
             if (response) {
@@ -30,11 +30,11 @@
                 let profileIcon = document.querySelector('.userIcon');
                 profileIcon.src = "/ProfilePictureUploads/" + imageName;
             } else {
-                console.error("No data received from server");
+
             }
 
         }, function (error) {
-            console.error("Error retrieving user:", error);
+
         });
     }
 }

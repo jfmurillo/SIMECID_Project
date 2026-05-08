@@ -1,7 +1,6 @@
 ﻿using CoreApp;
 using DTO;
 using Microsoft.AspNetCore.Mvc;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WebAPI.Controllers
 {
@@ -113,8 +112,8 @@ namespace WebAPI.Controllers
             try
             {
                 var um = new UserManager();
-                um.Create(user);
-                return Ok(new { message = "User created" + user });
+                await um.Create(user);
+                return Ok(new { message = "User created successfully." });
             }
             catch (Exception ex)
             {
@@ -261,7 +260,7 @@ namespace WebAPI.Controllers
                 }
 
                 var um = new UserManager();
-                um.ForgotPassword(model.Email);
+                await um.ForgotPassword(model.Email);
 
                 return Ok(new { message = "Operation successful" });
             }
